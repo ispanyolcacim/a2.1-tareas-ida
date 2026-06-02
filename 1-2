@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – H1 1-2. Ders – Pretérito Perfecto</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pink1:  #F6C4C3;
+  --pink2:  #F8DBD8;
+  --pink3:  #FAAED2;
+  --yellow: #F8CE5B;
+  --cream:  #FFFFE0;
+  --yellow2:#FAFC97;
+  --dark:   #5a3a3a;
+  --mid:    #8a6060;
+  --light:  #fff9f9;
+  --white:  #ffffff;
+  --green:  #6aab7a;
+  --red:    #d97070;
+  --radius: 14px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(160deg, #fff5f5 0%, #fffde8 60%, #fff0f8 100%);
+  min-height: 100vh;
+  color: var(--dark);
+}
+
+/* ── HEADER ── */
+.header {
+  background: linear-gradient(135deg, var(--pink1), var(--pink3));
+  padding: 18px 20px 14px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(246,196,195,0.45);
+  position: relative; overflow: hidden;
+}
+.header::before {
+  content:''; position:absolute; inset:0;
+  background: repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.13) 14px,rgba(255,255,255,0.13) 15px);
+}
+.header-tag {
+  display:inline-block;
+  background:rgba(255,255,255,0.4);
+  border:1.5px solid rgba(255,255,255,0.6);
+  border-radius:20px; font-size:11px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase;
+  padding:3px 14px; margin-bottom:8px;
+  color:var(--dark); position:relative;
+}
+.header h1 {
+  font-size: clamp(16px,4vw,23px); font-weight:800;
+  color:var(--dark); position:relative;
+  text-shadow:0 1px 4px rgba(255,255,255,0.5);
+}
+.header-sub { font-size:12px; color:var(--mid); margin-top:4px; position:relative; }
+
+/* ── SCREENS ── */
+.screen { display:none; animation:fadeIn 0.3s ease; }
+.screen.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* ══ SCREEN 1: AD SEÇİMİ ══ */
+.name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
+.name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
+.name-body p  { font-size:13px; color:var(--mid); margin-bottom:20px; }
+
+.name-select {
+  width:100%; padding:13px 16px; font-size:15px;
+  background:var(--white); border:2px solid var(--pink1);
+  border-radius:var(--radius); color:var(--dark);
+  appearance:none; cursor:pointer; margin-bottom:14px;
+  font-family:inherit; transition:border-color 0.2s, box-shadow 0.2s;
+}
+.name-select:focus { outline:none; border-color:var(--yellow); box-shadow:0 0 0 3px rgba(248,206,91,0.2); }
+
+.info-box {
+  background:var(--white); border:1.5px solid var(--pink2);
+  border-radius:var(--radius); padding:14px 16px;
+  margin-bottom:18px; text-align:left; font-size:13px; line-height:1.75;
+  box-shadow:0 2px 10px rgba(246,196,195,0.18);
+}
+.ib-row { display:flex; align-items:flex-start; gap:9px; margin-bottom:5px; }
+.ib-row:last-child { margin-bottom:0; }
+.ib-dot { width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; margin-top:5px; }
+.ib-hr  { height:1px; background:var(--pink2); margin:9px 0; }
+
+/* ── BUTTONS ── */
+.btn {
+  display:inline-flex; align-items:center; justify-content:center; gap:7px;
+  padding:12px 24px; border:none; border-radius:var(--radius);
+  font-size:14px; font-weight:700; cursor:pointer;
+  transition:all 0.2s; font-family:inherit;
+}
+.btn-pink   { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); box-shadow:0 4px 12px rgba(246,196,195,0.45); }
+.btn-pink:hover   { transform:translateY(-2px); box-shadow:0 6px 18px rgba(246,196,195,0.65); }
+.btn-yellow { background:linear-gradient(135deg,var(--yellow),#e8b84b); color:var(--dark); box-shadow:0 4px 12px rgba(248,206,91,0.4); }
+.btn-yellow:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(248,206,91,0.55); }
+.btn-outline { background:var(--white); border:2px solid var(--pink1); color:var(--dark); }
+.btn-outline:hover { background:var(--pink2); }
+.btn-sm   { padding:9px 18px; font-size:13px; }
+.btn-full { width:100%; }
+.btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
+
+/* ══ SCREEN 2: QUIZ ══ */
+.quiz-wrap { max-width:620px; margin:0 auto; padding:16px; }
+
+/* Üst bar */
+.top-bar {
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--white); border:1.5px solid var(--pink2);
+  border-radius:var(--radius); padding:10px 16px;
+  margin-bottom:12px; gap:8px; flex-wrap:wrap;
+  box-shadow:0 2px 8px rgba(246,196,195,0.18);
+}
+.top-student { font-size:12px; color:var(--mid); font-weight:600; }
+.top-scores  { display:flex; gap:14px; }
+.top-score-item { display:flex; align-items:center; gap:5px; font-size:13px; font-weight:700; }
+.sc-correct { color:var(--green); }
+.sc-wrong   { color:var(--red); }
+
+/* Progress */
+.prog-wrap { margin-bottom:14px; }
+.prog-bar  { height:7px; background:var(--pink2); border-radius:4px; overflow:hidden; }
+.prog-fill { height:100%; background:linear-gradient(90deg,var(--pink1),var(--yellow)); border-radius:4px; transition:width 0.4s ease; width:0%; }
+.prog-info { display:flex; justify-content:space-between; font-size:11px; color:var(--mid); margin-top:3px; }
+
+/* Section badge */
+.section-badge {
+  display:inline-flex; align-items:center; gap:8px;
+  background:linear-gradient(90deg,var(--pink1),var(--pink3));
+  border-radius:20px; padding:5px 14px;
+  font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+  color:var(--dark); margin-bottom:10px;
+  box-shadow:0 2px 8px rgba(246,196,195,0.3);
+}
+
+/* Soru kartı */
+.q-card {
+  background:var(--white);
+  border:1.5px solid var(--pink2);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 3px 14px rgba(246,196,195,0.2);
+  margin-bottom:12px;
+}
+
+.q-head {
+  padding:16px 18px 14px;
+  border-bottom:1px solid var(--pink2);
+  display:flex; gap:12px; align-items:flex-start;
+}
+.q-num {
+  background:linear-gradient(135deg,var(--pink1),var(--pink3));
+  color:var(--dark); width:30px; height:30px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:800; flex-shrink:0; margin-top:1px;
+}
+.q-text { font-size:14.5px; line-height:1.65; flex:1; color:var(--dark); font-weight:500; }
+
+.reading-tag {
+  display:inline-block;
+  background:rgba(248,206,91,0.22); border:1px solid rgba(248,206,91,0.5);
+  color:#9a7000; font-size:10px; font-weight:700;
+  letter-spacing:1.5px; text-transform:uppercase;
+  padding:2px 8px; border-radius:4px; margin-bottom:8px;
+}
+.reading-box {
+  background:#fffde8; border-left:3px solid var(--yellow);
+  border-radius:0 8px 8px 0;
+  padding:10px 14px; margin:8px 0 10px;
+  font-size:13px; line-height:1.75; font-style:italic; color:var(--mid);
+}
+.q-sub { font-weight:600; font-size:14.5px; margin-top:6px; color:var(--dark); }
+
+/* Şıklar */
+.q-opts { padding:12px 16px 14px; display:grid; gap:8px; }
+.opt-btn {
+  display:flex; align-items:flex-start; gap:10px;
+  padding:11px 14px;
+  background:#fdf8f8; border:1.5px solid var(--pink2);
+  border-radius:10px; color:var(--dark);
+  font-size:13.5px; line-height:1.5;
+  cursor:pointer; text-align:left; width:100%;
+  transition:all 0.18s; font-family:inherit;
+}
+.opt-btn:hover:not(:disabled) { background:var(--cream); border-color:var(--yellow); transform:translateX(4px); }
+.opt-btn:disabled { cursor:default; }
+.opt-letter {
+  background:var(--pink2); color:var(--dark);
+  border-radius:6px; width:24px; height:24px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; flex-shrink:0;
+  transition:all 0.18s;
+}
+.opt-btn.correct { background:#edfaf2; border-color:#8dcca0; }
+.opt-btn.correct .opt-letter { background:var(--green); color:white; }
+.opt-btn.wrong   { background:#fdf0f0; border-color:#e8a0a0; }
+.opt-btn.wrong   .opt-letter { background:var(--red);   color:white; }
+
+/* Açıklama */
+.explanation {
+  display:none;
+  margin:0 16px 14px;
+  background:#fffde8; border-left:3px solid var(--yellow);
+  border-radius:0 8px 8px 0;
+  padding:11px 14px; font-size:13px; line-height:1.7; color:var(--mid);
+}
+.explanation.show { display:block; }
+.exp-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a7000; margin-bottom:4px; }
+
+/* Navigasyon butonları */
+.nav-bar {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; margin-top:4px; margin-bottom:16px; flex-wrap:wrap;
+}
+.nav-center { font-size:13px; color:var(--mid); font-weight:600; text-align:center; flex:1; }
+
+/* Teslim et barı */
+.finish-bar {
+  position:sticky; bottom:0;
+  background:rgba(255,249,249,0.97);
+  backdrop-filter:blur(10px);
+  border-top:1.5px solid var(--pink2);
+  padding:11px 16px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  box-shadow:0 -4px 14px rgba(246,196,195,0.22);
+}
+.finish-info { font-size:12px; color:var(--mid); }
+.finish-info strong { color:var(--dark); font-size:14px; }
+
+/* Yazma bölümü (son karttan sonra) */
+.writing-card {
+  background:var(--white); border:1.5px solid var(--pink2);
+  border-radius:var(--radius); margin-bottom:14px; overflow:hidden;
+  box-shadow:0 2px 10px rgba(246,196,195,0.15);
+}
+.writing-head {
+  background:linear-gradient(90deg,var(--pink1),var(--pink3));
+  padding:11px 16px; display:flex; align-items:center; gap:10px;
+  font-weight:700; font-size:14px; color:var(--dark);
+}
+.writing-body { padding:16px; font-size:13.5px; line-height:1.8; color:var(--dark); }
+.writing-body strong { color:#9a7000; }
+.writing-body ul { margin:8px 0 8px 18px; }
+.writing-body li { margin-bottom:4px; }
+.rubric { width:100%; border-collapse:collapse; margin-top:12px; font-size:13px; }
+.rubric th { background:var(--pink2); padding:7px 12px; text-align:left; font-size:11px; letter-spacing:.8px; text-transform:uppercase; color:var(--mid); }
+.rubric td { padding:8px 12px; border-bottom:1px solid var(--pink2); vertical-align:top; }
+.rubric tr:last-child td { border-bottom:none; font-weight:700; }
+.rubric .pts { text-align:right; color:#9a7000; font-weight:700; white-space:nowrap; }
+
+/* ══ SCREEN 3: SONUÇ ══ */
+.result-wrap { max-width:440px; margin:0 auto; padding:28px 20px; text-align:center; }
+.result-card {
+  background:var(--white); border:1.5px solid var(--pink2);
+  border-radius:20px; padding:28px 22px; margin-bottom:14px;
+  box-shadow:0 6px 24px rgba(246,196,195,0.3);
+}
+.result-emoji { font-size:50px; margin-bottom:10px; }
+.result-name  { font-size:14px; color:var(--mid); margin-bottom:3px; }
+.result-title { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:16px; }
+.result-score-big { font-size:62px; font-weight:900; line-height:1; color:var(--dark); }
+.result-score-big span { font-size:24px; font-weight:400; color:var(--mid); }
+.result-pct   { font-size:13px; color:var(--mid); margin-top:4px; margin-bottom:18px; }
+.result-stats { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+.rs-item {
+  background:linear-gradient(135deg,var(--pink2),var(--cream));
+  border:1px solid var(--pink1); border-radius:12px;
+  padding:11px 16px; min-width:76px; text-align:center;
+}
+.rs-item .rs-n { font-size:28px; font-weight:800; line-height:1; }
+.rs-item .rs-l { font-size:11px; color:var(--mid); margin-top:3px; }
+.rs-correct .rs-n { color:var(--green); }
+.rs-wrong   .rs-n { color:var(--red); }
+.rs-blank   .rs-n { color:#bbb; }
+
+.status-badge {
+  display:inline-flex; align-items:center; gap:7px;
+  padding:9px 20px; border-radius:50px;
+  font-size:13px; font-weight:700; margin-bottom:14px;
+}
+.status-pending { background:rgba(248,206,91,0.18); border:1.5px solid rgba(248,206,91,0.45); color:#9a7000; }
+.status-ok      { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4);  color:#3a7a4a; }
+.status-error   { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4);  color:#a04040; }
+.result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+
+/* ══ MODAL ══ */
+.modal-bg {
+  display:none; position:fixed; inset:0;
+  background:rgba(90,58,58,0.38); backdrop-filter:blur(6px);
+  z-index:999; align-items:center; justify-content:center; padding:20px;
+}
+.modal-bg.open { display:flex; }
+.modal-box {
+  background:var(--white); border:1.5px solid var(--pink1);
+  border-radius:20px; padding:28px 26px 22px;
+  max-width:340px; width:100%; text-align:center;
+  box-shadow:0 18px 48px rgba(246,196,195,0.5);
+  animation:popIn 0.27s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+@keyframes popIn { from{transform:scale(0.84);opacity:0} to{transform:scale(1);opacity:1} }
+.modal-box h3   { font-size:19px; color:var(--dark); margin-bottom:8px; }
+.modal-score    { font-size:42px; font-weight:900; color:var(--dark); line-height:1; margin-bottom:6px; }
+.modal-score span { font-size:18px; font-weight:400; color:var(--mid); }
+.modal-box p    { font-size:13px; color:var(--mid); margin-bottom:18px; line-height:1.6; }
+.modal-actions  { display:flex; gap:10px; justify-content:center; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-tag">1. Hafta Ödevi &nbsp;|&nbsp; A2.1 (1-2. Ders)</div>
+  <h1>🇪🇸 A2.1 – H1 1-2. Ders – Pretérito Perfecto</h1>
+  <div class="header-sub">30 soru &nbsp;•&nbsp; Çoktan seçmeli &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+
+<!-- ══ EKRAN 1: AD SEÇİMİ ══ -->
+<div class="screen active" id="screen-name">
+  <div class="name-body">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="name-select" id="name-select">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option>
+      <option>Begum Senturk</option>
+      <option>Didem Dundar</option>
+      <option>Ece Turhanoglu</option>
+      <option>Esra Ozkaya</option>
+      <option>Gulsah Gundogdu</option>
+      <option>Irem Savas</option>
+      <option>Kardelen Kuscu</option>
+      <option>Oznur Ozdogan Ozer</option>
+      <option>Sevde Ozdemir</option>
+      <option>Seyma Kocak</option>
+      <option>Zumeyra Dogan</option>
+    </select>
+    <div class="info-box">
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Gramatik MasterClass — Soru 1–15 (30 puan)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> Okuduğunu Anlama — Soru 16–30 (30 puan)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Yazma Bölümü — Telegram'dan teslim (40 puan)</span></div>
+      <div class="ib-hr"></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--pink3)"></div><span>Her soru 2 puan &nbsp;•&nbsp; Bu ekranda toplam 60 puan</span></div>
+    </div>
+    <button class="btn btn-pink btn-full" onclick="startQuiz()">▶ Başla</button>
+  </div>
+</div>
+
+<!-- ══ EKRAN 2: QUIZ ══ -->
+<div class="screen" id="screen-quiz">
+  <div class="quiz-wrap">
+
+    <!-- Üst bar -->
+    <div class="top-bar">
+      <div class="top-student" id="top-student">—</div>
+      <div class="top-scores">
+        <div class="top-score-item sc-correct">✓ <span id="sc-correct">0</span></div>
+        <div class="top-score-item sc-wrong">✗ <span id="sc-wrong">0</span></div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+      <div class="prog-info">
+        <span id="prog-section">—</span>
+        <span>Soru <span id="prog-cur">1</span> / 30</span>
+      </div>
+    </div>
+
+    <!-- Soru alanı -->
+    <div id="q-area"></div>
+
+    <!-- Navigasyon -->
+    <div class="nav-bar">
+      <button class="btn btn-outline btn-sm" id="btn-prev" onclick="navigate(-1)">← Geri</button>
+      <div class="nav-center" id="nav-center">1 / 30</div>
+      <button class="btn btn-pink btn-sm" id="btn-next" onclick="navigate(1)">İleri →</button>
+    </div>
+
+    <!-- Finish bar -->
+    <div class="finish-bar">
+      <div class="finish-info"><strong id="bb-answered">0</strong> / 30 soru yanıtlandı</div>
+      <button class="btn btn-yellow" onclick="openFinishModal()">✔ Ödevi Teslim Et</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ EKRAN 3: SONUÇ ══ -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap">
+    <div class="result-card">
+      <div class="result-emoji">🇪🇸</div>
+      <div class="result-name"  id="res-name">—</div>
+      <div class="result-title">A2.1 · H1 – 1-2. Ders · Pretérito Perfecto</div>
+      <div class="result-score-big" id="res-score">0<span>/60</span></div>
+      <div class="result-pct"   id="res-pct">%0 başarı</div>
+      <div class="result-stats">
+        <div class="rs-item rs-correct"><div class="rs-n" id="res-c">0</div><div class="rs-l">Doğru</div></div>
+        <div class="rs-item rs-wrong">  <div class="rs-n" id="res-w">0</div><div class="rs-l">Yanlış</div></div>
+        <div class="rs-item rs-blank">  <div class="rs-n" id="res-b">0</div><div class="rs-l">Boş</div></div>
+      </div>
+      <div class="status-badge status-pending" id="res-status">⏳ Kaydediliyor…</div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-outline" onclick="reviewAnswers()">🔍 Yanlışları Gör</button>
+      <button class="btn btn-outline" onclick="goToName()">🔄 Yeniden Başla</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL ══ -->
+<div class="modal-bg" id="modal-finish">
+  <div class="modal-box">
+    <h3>Ödevi Teslim Et</h3>
+    <div class="modal-score" id="modal-score-preview">0<span>/60</span></div>
+    <p>Teslim ettikten sonra cevaplarınız değiştirilemez.<br>Emin misiniz?</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">❌ İptal</button>
+      <button class="btn btn-yellow btn-sm" onclick="submitQuiz()">✔ Evet, Teslim Et</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──
+const APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+const SPREADSHEET_ID  = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const SHEET_NAME      = 'A2.1';
+const TASK_COLUMN     = 'H1 – 1-2.Ders';
+
+// ── SORULAR ──
+const QUESTIONS = [
+  {id:1,sec:1,q:'¿Cuál de las siguientes frases usa correctamente el Pretérito Perfecto con un marcador temporal relacionado con el presente?',opts:['Este año he aprendido muchas estructuras nuevas.','Ayer he aprendido muchas estructuras nuevas.','En 2019 he aprendido muchas estructuras nuevas.','La semana pasada he aprendido muchas estructuras nuevas.'],ans:0,exp:'<b>Este año</b> hâlâ devam eden bir zaman dilimidir → Pretérito Perfecto doğrudur. "Ayer", "en 2019", "la semana pasada" kapalı zaman → Pretérito Indefinido gerekir.'},
+  {id:2,sec:1,q:'Elige la opción en la que el participio pasado está correctamente formado.',opts:['He escribido la carta.','He escrito la carta.','He escribado la carta.','He escribto la carta.'],ans:1,exp:'<b>Escribir</b> → düzensiz participio: <b>escrito</b>. "Escribido" yanlış — bu fiil düzensiz participio alır.'},
+  {id:3,sec:1,q:'¿Qué opción contiene un error gramatical en el uso del Pretérito Perfecto?',opts:['Hemos visto esa película tres veces.','¿Has terminado ya el ejercicio?','Han rompido la ventana.','Todavía no he entendido la diferencia.'],ans:2,exp:'<b>Romper</b> → düzensiz participio: <b>roto</b>. "Rompido" yanlış. Doğru: <i>Han roto la ventana</i>.'},
+  {id:4,sec:1,q:'Completa la frase: "Nosotros todavía no ________ la explicación del profesor."',opts:['ha comprendido','hemos comprender','comprendemos','hemos comprendido'],ans:3,exp:'"Nosotros" → <b>hemos</b>. Comprender → <b>comprendido</b>. "Todavía no" + Pretérito Perfecto çok sık birlikte kullanılır.'},
+  {id:5,sec:1,q:'¿Cuál de las siguientes frases está correctamente formada en Pretérito Perfecto?',opts:['He leído el libro.','He leer el libro.','He leıdo el libro.','He leyendo el libro.'],ans:0,exp:'Leer → <b>leído</b> (aksan şart!). "He leer" → infinitivo hatalı. "He leyendo" → gerundio hatalı.'},
+  {id:6,sec:1,q:'Elige la frase que NO debería usar Pretérito Perfecto en español peninsular estándar.',opts:['Hoy he desayunado muy tarde.','Esta semana hemos tenido mucho trabajo.','Últimamente has cambiado mucho.','El verano pasado he viajado a Perú.'],ans:3,exp:'"El verano pasado" → kapalı zaman → Pretérito Indefinido: <i>El verano pasado viajé a Perú</i>.'},
+  {id:7,sec:1,q:'¿Cuál de estas frases tiene una colocación correcta del pronombre reflexivo en Pretérito Perfecto?',opts:['Me he levantado muy temprano.','He me levantado muy temprano.','He levantadome muy temprano.','Levantado me he muy temprano.'],ans:0,exp:'Zamir çekimli yardımcı fiilden <b>önce</b> gelir: <b>me he levantado</b>. Haber bölünmez.'},
+  {id:8,sec:1,q:'Completa: "¿Vosotros ________ alguna vez una novela de Gabriel García Márquez?"',opts:['habéis leísteis','habéis leído','habéis leer','habéis leídois'],ans:1,exp:'"Vosotros" → <b>habéis</b>. Leer → <b>leído</b>. "Alguna vez" + Pretérito Perfecto: yaşam deneyimi.'},
+  {id:9,sec:1,q:'¿Cuál de las siguientes frases está correctamente formada en Pretérito Perfecto?',opts:['He estado en México varias veces.','He estado en México ayer.','Estoy estado en México varias veces.','He estar en México varias veces.'],ans:0,exp:'Estar → <b>estado</b>. "He estado en México varias veces" doğru. B\'de "ayer" Pretérito Indefinido ister.'},
+  {id:10,sec:1,q:'Elige la opción que respeta la estructura correcta del Pretérito Perfecto.',opts:['Sujeto + haber conjugado + participio','Sujeto + participio + haber conjugado','Sujeto + estar + gerundio','Sujeto + tener + infinitivo'],ans:0,exp:'Pretérito Perfecto = <b>haber (çekimli) + participio</b>. Örnek: Yo <i>he comido</i>.'},
+  {id:11,sec:1,q:'¿Cuál de estas frases contiene un participio irregular correcto?',opts:['He ponido la mesa.','He hacido la tarea.','He volvido tarde.','He puesto la mesa.'],ans:3,exp:'Poner → <b>puesto</b> ✓. ponido❌→puesto | hacido❌→hecho | volvido❌→vuelto'},
+  {id:12,sec:1,q:'Completa: "Todavía no ________ los resultados del examen."',opts:['recibí','recibo','he recibido','recibía'],ans:2,exp:'"Todavía no" + Pretérito Perfecto → konuşma anında hâlâ geçerli eksiklik: <b>he recibido</b>.'},
+  {id:13,sec:1,q:'¿Cuál de las siguientes frases muestra un uso incorrecto de "haber" como auxiliar?',opts:['Hemos estudiado mucho para el examen.','Ella ha abierto la puerta.','¿Has visto mi cuaderno?','Nosotros han terminado la actividad.'],ans:3,exp:'"Nosotros" → <b>hemos</b>, "han" değil. Han = ellos/ellas/ustedes.'},
+  {id:14,sec:1,q:'Elige la frase que combina correctamente Pretérito Perfecto y concordancia del participio.',opts:['Las cartas han escritas por María.','María ha escritas las cartas.','María ha escrito las cartas.','María ha escribidas las cartas.'],ans:2,exp:'Aktif cümlede participio değişmez: <b>María ha escrito las cartas</b>.'},
+  {id:15,sec:1,q:'¿Cuál de estas frases sería más adecuada si el hablante quiere enfatizar que la acción ocurrió dentro de un periodo que aún continúa?',opts:['Ayer terminé todos los ejercicios.','Esta mañana he corregido todos los ejercicios.','En 2020 corregí todos los ejercicios.','La semana pasada corregí todos los ejercicios.'],ans:1,exp:'"Esta mañana" konuşma aynı gündeyse açık zaman → <b>he corregido</b> doğru.'},
+  {id:16,sec:2,reading:'Lucía trabaja en una librería pequeña del centro. Le gusta mucho leer novelas tranquilas, pero no le interesan los libros de terror. Esta semana ha preparado una mesa especial con libros sobre viajes, porque muchos clientes están buscando ideas para las vacaciones. Ahora está colocando unos mapas al lado de los libros y mañana va a escribir recomendaciones para los lectores.',q:'¿Qué tipo de libros prefiere Lucía?',opts:['Novelas tranquilas.','Libros de terror.','Manuales de cocina.','Revistas deportivas.'],ans:0,exp:'"Le gusta mucho leer novelas tranquilas" ve "no le interesan los libros de terror."'},
+  {id:17,sec:2,reading:'Lucía trabaja en una librería pequeña del centro. Le gusta mucho leer novelas tranquilas, pero no le interesan los libros de terror. Esta semana ha preparado una mesa especial con libros sobre viajes, porque muchos clientes están buscando ideas para las vacaciones. Ahora está colocando unos mapas al lado de los libros y mañana va a escribir recomendaciones para los lectores.',q:'¿Por qué Lucía ha preparado una mesa con libros sobre viajes?',opts:['Porque muchos clientes buscan ideas para las vacaciones.','Porque ella va a cerrar la librería.','Porque no hay novelas en la tienda.','Porque los mapas están agotados.'],ans:0,exp:'"…porque muchos clientes están buscando ideas para las vacaciones."'},
+  {id:18,sec:2,reading:'Mateo estudia español por la tarde. Normalmente es muy organizado: hace una lista de tareas, revisa sus notas y practica quince minutos de pronunciación. Pero hoy está un poco distraído porque su hermano está tocando la guitarra en el salón. Aun así, Mateo ha terminado dos ejercicios y va a repasar los verbos después de cenar.',q:'¿Cómo es Mateo normalmente?',opts:['Desordenado y poco constante.','Muy ruidoso en casa.','Organizado y responsable.','Impaciente con su hermano.'],ans:2,exp:'"Normalmente es muy organizado" → sorumlu ve düzenli.'},
+  {id:19,sec:2,reading:'Mateo estudia español por la tarde. Normalmente es muy organizado: hace una lista de tareas, revisa sus notas y practica quince minutos de pronunciación. Pero hoy está un poco distraído porque su hermano está tocando la guitarra en el salón. Aun así, Mateo ha terminado dos ejercicios y va a repasar los verbos después de cenar.',q:'¿Qué está haciendo el hermano de Mateo?',opts:['Está estudiando español.','Está tocando la guitarra.','Está preparando la cena.','Está revisando sus notas.'],ans:1,exp:'"…su hermano está tocando la guitarra en el salón."'},
+  {id:20,sec:2,reading:'En el grupo de senderismo hay cuatro personas muy diferentes. Clara prefiere caminar por la mañana porque le gusta el aire fresco. Pablo siempre lleva una cámara y hace fotos de flores y montañas. Sara no camina rápido, pero nunca se queja. Diego, en cambio, camina muy rápido y se impacienta cuando los demás paran mucho.',q:'¿Quién parece más paciente durante las caminatas?',opts:['Diego.','Pablo.','Clara.','Sara.'],ans:3,exp:'"Sara no camina rápido, pero nunca se queja." → en sabırlı.'},
+  {id:21,sec:2,reading:'En el grupo de senderismo hay cuatro personas muy diferentes. Clara prefiere caminar por la mañana porque le gusta el aire fresco. Pablo siempre lleva una cámara y hace fotos de flores y montañas. Sara no camina rápido, pero nunca se queja. Diego, en cambio, camina muy rápido y se impacienta cuando los demás paran mucho.',q:'¿Qué afición tiene Pablo?',opts:['Cocinar para sus amigos.','Hacer fotos de la naturaleza.','Correr por la ciudad.','Tocar la guitarra en casa.'],ans:1,exp:'"Pablo siempre lleva una cámara y hace fotos de flores y montañas."'},
+  {id:22,sec:2,reading:'Marta y Elena son compañeras de piso, pero tienen costumbres opuestas. Marta se levanta temprano, desayuna en silencio y va al gimnasio antes de trabajar. Elena duerme más, toma café rápidamente y empieza el día con música. Esta semana han decidido organizar mejor la casa: Marta va a limpiar la cocina y Elena va a ordenar el salón.',q:'¿Qué diferencia hay entre Marta y Elena?',opts:['Las dos empiezan el día exactamente igual.','Marta duerme mucho y Elena se levanta temprano.','Elena va al gimnasio antes de trabajar.','Tienen rutinas de mañana diferentes.'],ans:3,exp:'Marta erken kalkar–spor–sessiz; Elena geç uyur–müzik. Sabah rutinleri tamamen farklı.'},
+  {id:23,sec:2,reading:'Marta y Elena son compañeras de piso, pero tienen costumbres opuestas. Marta se levanta temprano, desayuna en silencio y va al gimnasio antes de trabajar. Elena duerme más, toma café rápidamente y empieza el día con música. Esta semana han decidido organizar mejor la casa: Marta va a limpiar la cocina y Elena va a ordenar el salón.',q:'¿Qué van a hacer esta semana?',opts:['Van a buscar otro piso.','Van a dejar el gimnasio.','Van a organizar mejor la casa.','Van a desayunar juntas todos los días.'],ans:2,exp:'"Esta semana han decidido organizar mejor la casa."'},
+  {id:24,sec:2,reading:'Andrés vive cerca del mar y le encanta nadar. Los fines de semana suele ir a la playa con sus amigos, pero hoy no puede salir porque está lloviendo mucho. Por eso está preparando una cena sencilla en casa. Ha comprado verduras, arroz y pescado. Después de cenar, va a ver una película sobre viajes.',q:'¿Qué le gusta hacer a Andrés los fines de semana?',opts:['Ir a la playa con sus amigos.','Quedarse siempre en casa.','Comprar ropa en el centro.','Ver películas de terror.'],ans:0,exp:'"Los fines de semana suele ir a la playa con sus amigos."'},
+  {id:25,sec:2,reading:'Andrés vive cerca del mar y le encanta nadar. Los fines de semana suele ir a la playa con sus amigos, pero hoy no puede salir porque está lloviendo mucho. Por eso está preparando una cena sencilla en casa. Ha comprado verduras, arroz y pescado. Después de cenar, va a ver una película sobre viajes.',q:'¿Por qué Andrés no puede salir hoy?',opts:['Porque no tiene amigos.','Porque está enfermo.','Porque está lloviendo mucho.','Porque no le gusta la playa.'],ans:2,exp:'"…hoy no puede salir porque está lloviendo mucho."'},
+  {id:26,sec:2,reading:'En la clase de español, cada estudiante tiene un objetivo diferente. Laura quiere hablar con más seguridad porque va a viajar a Valencia. Emir necesita escribir correos para su trabajo. Sofía aprende español porque le gustan las series españolas. Marcos, en cambio, estudia solo para aprobar un examen y no practica fuera de clase.',q:'¿Quién estudia español por motivos profesionales?',opts:['Emir.','Laura.','Sofía.','Marcos.'],ans:0,exp:'"Emir necesita escribir correos para su trabajo." → profesyonel sebep.'},
+  {id:27,sec:2,reading:'En la clase de español, cada estudiante tiene un objetivo diferente. Laura quiere hablar con más seguridad porque va a viajar a Valencia. Emir necesita escribir correos para su trabajo. Sofía aprende español porque le gustan las series españolas. Marcos, en cambio, estudia solo para aprobar un examen y no practica fuera de clase.',q:'¿Qué se puede decir sobre Marcos?',opts:['Practica español todos los días fuera de clase.','Aprende español para ver series.','Va a viajar pronto a Valencia.','Estudia para un examen, pero no practica fuera de clase.'],ans:3,exp:'"…estudia solo para aprobar un examen y no practica fuera de clase."'},
+  {id:28,sec:2,reading:'Rosa tiene una cafetería pequeña en una calle tranquila. Por la mañana, muchos clientes piden café rápido para llevar. Por la tarde, el ambiente cambia: algunas personas leen, otras trabajan con el ordenador y varias parejas conversan sin prisa. Esta semana Rosa ha añadido una nueva bebida fría al menú porque hace mucho calor.',q:'¿Cómo es la cafetería por la tarde?',opts:['Ruidosa y vacía.','Tranquila y agradable.','Cerrada al público.','Llena solo de turistas.'],ans:1,exp:'"…conversan sin prisa" → sakin ve keyifli ortam.'},
+  {id:29,sec:2,reading:'Rosa tiene una cafetería pequeña en una calle tranquila. Por la mañana, muchos clientes piden café rápido para llevar. Por la tarde, el ambiente cambia: algunas personas leen, otras trabajan con el ordenador y varias parejas conversan sin prisa. Esta semana Rosa ha añadido una nueva bebida fría al menú porque hace mucho calor.',q:'¿Por qué Rosa ha añadido una bebida fría al menú?',opts:['Porque quiere cerrar la cafetería.','Porque nadie toma café por la mañana.','Porque sus clientes no leen nunca.','Porque hace mucho calor.'],ans:3,exp:'"…ha añadido una nueva bebida fría al menú porque hace mucho calor."'},
+  {id:30,sec:2,reading:'Nico y Valeria están preparando un viaje corto. Nico quiere visitar museos y edificios históricos. Valeria prefiere parques, mercados y lugares al aire libre. Han leído varios blogs de viaje y han elegido una ciudad que ofrece las dos cosas. Este sábado van a comprar los billetes y después van a reservar un apartamento cerca del centro.',q:'¿Cuál es la mejor descripción del viaje que están preparando?',opts:['Un viaje solo para descansar en la playa.','Un viaje que combina cultura y actividades al aire libre.','Un viaje de trabajo sin tiempo libre.','Un viaje improvisado sin ninguna preparación.'],ans:1,exp:'Nico kültür, Valeria açık hava → ikisine de uygun şehir seçtiler.'},
+];
+
+// ── STATE ──
+let studentName = '';
+let answers = {};       // { qId: chosenIdx }
+let currentQ = 0;       // şu an görünen soru index (0-29)
+let submitted = false;
+
+// ── SCREENS ──
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+// ── START ──
+function startQuiz() {
+  const sel = document.getElementById('name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  currentQ = 0;
+  answers = {};
+  submitted = false;
+  document.getElementById('top-student').textContent = studentName;
+  showScreen('quiz');
+  renderQuestion();
+}
+
+// ── RENDER QUESTION ──
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const letters = ['A','B','C','D'];
+
+  // Section badge
+  const secNames = {1:'Kısım 1 — Gramatik MasterClass', 2:'Kısım 2 — Okuduğunu Anlama'};
+  document.getElementById('prog-section').textContent = secNames[q.sec];
+
+  // Progress
+  const answered = Object.keys(answers).length;
+  document.getElementById('prog-fill').style.width = (answered / QUESTIONS.length * 100) + '%';
+  document.getElementById('prog-cur').textContent  = currentQ + 1;
+  document.getElementById('nav-center').textContent = (currentQ + 1) + ' / 30';
+  document.getElementById('bb-answered').textContent = answered;
+
+  // Nav buttons
+  document.getElementById('btn-prev').disabled = (currentQ === 0);
+  const isLast = (currentQ === QUESTIONS.length - 1);
+  const btnNext = document.getElementById('btn-next');
+  if (isLast) {
+    btnNext.textContent = '✔ Bitir';
+    btnNext.className = 'btn btn-yellow btn-sm';
+    btnNext.onclick = openFinishModal;
+  } else {
+    btnNext.textContent = 'İleri →';
+    btnNext.className = 'btn btn-pink btn-sm';
+    btnNext.onclick = () => navigate(1);
+  }
+
+  // Soru HTML
+  const readingHTML = q.reading
+    ? `<div class="reading-tag">📖 Okuma Metni</div>
+       <div class="reading-box">${q.reading}</div>
+       <div class="q-sub">${q.q}</div>`
+    : '';
+
+  const optsHTML = q.opts.map((o, i) => {
+    let cls = 'opt-btn';
+    const userAns = answers[q.id];
+    if (userAns !== undefined) {
+      if (i === q.ans) cls += ' correct';
+      if (i === userAns && userAns !== q.ans) cls += ' wrong';
+    }
+    const disabled = (userAns !== undefined) ? 'disabled' : '';
+    return `<button class="${cls}" ${disabled} onclick="answer(${q.id},${i})">
+              <span class="opt-letter">${letters[i]}</span>
+              <span>${o}</span>
+            </button>`;
+  }).join('');
+
+  const expShow = answers[q.id] !== undefined ? 'show' : '';
+
+  document.getElementById('q-area').innerHTML = `
+    <div class="section-badge">${secNames[q.sec]}</div>
+    <div class="q-card">
+      <div class="q-head">
+        <div class="q-num">${q.id}</div>
+        <div class="q-text">
+          ${q.reading ? readingHTML : q.q}
+        </div>
+      </div>
+      <div class="q-opts">${optsHTML}</div>
+      <div class="explanation ${expShow}" id="exp-box">
+        <div class="exp-label">💡 Açıklama</div>
+        ${q.exp}
+      </div>
+    </div>`;
+}
+
+// ── NAVIGATE ──
+function navigate(dir) {
+  currentQ = Math.max(0, Math.min(QUESTIONS.length - 1, currentQ + dir));
+  renderQuestion();
+}
+
+// ── ANSWER ──
+function answer(qId, chosen) {
+  if (answers[qId] !== undefined || submitted) return;
+  answers[qId] = chosen;
+  // Update HUD
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const a = answers[q.id];
+    if (a === undefined) return;
+    if (a === q.ans) correct++; else wrong++;
+  });
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent   = wrong;
+  // Re-render to show correct/wrong + explanation
+  renderQuestion();
+}
+
+// ── MODAL ──
+function openFinishModal() {
+  let correct = 0;
+  QUESTIONS.forEach(q => { if (answers[q.id] === q.ans) correct++; });
+  document.getElementById('modal-score-preview').innerHTML = (correct*2) + '<span>/60</span>';
+  document.getElementById('modal-finish').classList.add('open');
+}
+function closeModal() { document.getElementById('modal-finish').classList.remove('open'); }
+
+// ── SUBMIT ──
+function submitQuiz() {
+  closeModal();
+  submitted = true;
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const a = answers[q.id];
+    if (a === undefined) return;
+    if (a === q.ans) correct++; else wrong++;
+  });
+  const blank = QUESTIONS.length - Object.keys(answers).length;
+  const score = correct * 2;
+
+  document.getElementById('res-name').textContent  = studentName;
+  document.getElementById('res-score').innerHTML   = score + '<span>/60</span>';
+  document.getElementById('res-pct').textContent   = '%' + Math.round(score/60*100) + ' başarı';
+  document.getElementById('res-c').textContent     = correct;
+  document.getElementById('res-w').textContent     = wrong;
+  document.getElementById('res-b').textContent     = blank;
+
+  showScreen('result');
+  sendToSheets(studentName, score, correct, wrong, blank);
+}
+
+// ── SHEETS ──
+async function sendToSheets(name, score, correct, wrong, blank) {
+  const el = document.getElementById('res-status');
+  if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+    el.className = 'status-badge status-error';
+    el.textContent = '⚠️ Apps Script URL girilmedi';
+    return;
+  }
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ spreadsheetId:SPREADSHEET_ID, sheetName:SHEET_NAME, studentName:name, taskColumn:TASK_COLUMN, score, correct, wrong, blank, submittedAt:new Date().toLocaleString('tr-TR') })
+    });
+    el.className = 'status-badge status-ok';
+    el.textContent = '✅ Ödev başarıyla kaydedildi!';
+  } catch(e) {
+    el.className = 'status-badge status-error';
+    el.textContent = '⚠️ Kaydedilemedi — Profe\'ye bildirin';
+  }
+}
+
+// ── REVIEW ──
+function reviewAnswers() {
+  showScreen('quiz');
+  const firstWrong = QUESTIONS.findIndex(q => answers[q.id] !== undefined && answers[q.id] !== q.ans);
+  currentQ = firstWrong >= 0 ? firstWrong : 0;
+  renderQuestion();
+}
+
+function goToName() {
+  answers = {}; submitted = false; currentQ = 0;
+  document.getElementById('name-select').value = '';
+  showScreen('name');
+}
+</script>
+</body>
+</html>
