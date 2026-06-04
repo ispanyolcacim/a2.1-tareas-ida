@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – H1 3-4. Ders</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --pink1:#F6C4C3; --pink2:#F8DBD8; --pink3:#FAAED2;
+  --yellow:#F8CE5B; --cream:#FFFFE0;
+  --dark:#5a3a3a; --mid:#8a6060;
+  --white:#ffffff; --green:#6aab7a; --red:#d97070;
+  --radius:14px;
+}
+body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,#fff5f5 0%,#fffde8 60%,#fff0f8 100%); min-height:100vh; color:var(--dark); }
+.header { background:linear-gradient(135deg,var(--pink1),var(--pink3)); padding:18px 20px 14px; text-align:center; box-shadow:0 4px 18px rgba(246,196,195,0.45); position:relative; overflow:hidden; }
+.header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.13) 14px,rgba(255,255,255,0.13) 15px); }
+.header-tag { display:inline-block; background:rgba(255,255,255,0.4); border:1.5px solid rgba(255,255,255,0.6); border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; margin-bottom:8px; color:var(--dark); position:relative; }
+.header h1 { font-size:clamp(16px,4vw,23px); font-weight:800; color:var(--dark); position:relative; text-shadow:0 1px 4px rgba(255,255,255,0.5); }
+.header-sub { font-size:12px; color:var(--mid); margin-top:4px; position:relative; }
+.screen { display:none; animation:fadeIn 0.3s ease; }
+.screen.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* NAME */
+.name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
+.name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
+.name-body p { font-size:13px; color:var(--mid); margin-bottom:20px; }
+.name-select { width:100%; padding:13px 16px; font-size:15px; background:var(--white); border:2px solid var(--pink1); border-radius:var(--radius); color:var(--dark); appearance:none; cursor:pointer; margin-bottom:14px; font-family:inherit; transition:border-color 0.2s,box-shadow 0.2s; }
+.name-select:focus { outline:none; border-color:var(--yellow); box-shadow:0 0 0 3px rgba(248,206,91,0.2); }
+.info-box { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:14px 16px; margin-bottom:18px; text-align:left; font-size:13px; line-height:1.75; box-shadow:0 2px 10px rgba(246,196,195,0.18); }
+.ib-row { display:flex; align-items:flex-start; gap:9px; margin-bottom:5px; }
+.ib-row:last-child { margin-bottom:0; }
+.ib-dot { width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; margin-top:5px; }
+.ib-hr { height:1px; background:var(--pink2); margin:9px 0; }
+
+/* BUTTONS */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 24px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.btn-pink { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); box-shadow:0 4px 12px rgba(246,196,195,0.45); }
+.btn-pink:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(246,196,195,0.65); }
+.btn-yellow { background:linear-gradient(135deg,var(--yellow),#e8b84b); color:var(--dark); box-shadow:0 4px 12px rgba(248,206,91,0.4); }
+.btn-yellow:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(248,206,91,0.55); }
+.btn-outline { background:var(--white); border:2px solid var(--pink1); color:var(--dark); }
+.btn-outline:hover { background:var(--pink2); }
+.btn-purple { background:linear-gradient(135deg,#c39bd3,#9b59b6); color:white; box-shadow:0 4px 12px rgba(155,89,182,0.3); }
+.btn-purple:hover { transform:translateY(-2px); }
+.btn-green { background:linear-gradient(135deg,#82e0aa,#27ae60); color:white; box-shadow:0 4px 12px rgba(39,174,96,0.3); }
+.btn-green:hover { transform:translateY(-2px); }
+.btn-sm { padding:9px 18px; font-size:13px; }
+.btn-full { width:100%; }
+.btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
+
+/* QUIZ */
+.quiz-wrap { max-width:620px; margin:0 auto; padding:16px; }
+.top-bar { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:10px 16px; margin-bottom:12px; gap:8px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(246,196,195,0.18); }
+.top-student { font-size:12px; color:var(--mid); font-weight:600; }
+.top-scores { display:flex; gap:14px; }
+.top-score-item { display:flex; align-items:center; gap:5px; font-size:13px; font-weight:700; }
+.sc-correct { color:var(--green); }
+.sc-wrong { color:var(--red); }
+.prog-wrap { margin-bottom:14px; }
+.prog-bar { height:7px; background:var(--pink2); border-radius:4px; overflow:hidden; }
+.prog-fill { height:100%; background:linear-gradient(90deg,var(--pink1),var(--yellow)); border-radius:4px; transition:width 0.4s ease; width:0%; }
+.prog-info { display:flex; justify-content:space-between; font-size:11px; color:var(--mid); margin-top:3px; }
+.section-badge { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg,var(--pink1),var(--pink3)); border-radius:20px; padding:5px 14px; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--dark); margin-bottom:10px; box-shadow:0 2px 8px rgba(246,196,195,0.3); }
+.audio-box { background:linear-gradient(135deg,#e8f4f8,#d6eaf8); border:1.5px solid #85c1e9; border-radius:12px; padding:14px 16px; margin-bottom:12px; display:flex; align-items:center; gap:12px; }
+.audio-box .audio-icon { font-size:28px; }
+.audio-box .audio-text { flex:1; }
+.audio-box .audio-text p { font-size:13px; color:#1a5276; font-weight:600; margin-bottom:5px; }
+.audio-box a { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,#2980b9,#1a5276); color:white; padding:8px 16px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none; transition:all 0.2s; }
+.audio-box a:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(41,128,185,0.4); }
+.q-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(246,196,195,0.2); margin-bottom:12px; }
+.q-head { padding:16px 18px 14px; border-bottom:1px solid var(--pink2); display:flex; gap:12px; align-items:flex-start; }
+.q-num { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; flex-shrink:0; margin-top:1px; }
+.q-text { font-size:14.5px; line-height:1.65; flex:1; color:var(--dark); font-weight:500; }
+.reading-tag { display:inline-block; background:rgba(248,206,91,0.22); border:1px solid rgba(248,206,91,0.5); color:#9a7000; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:2px 8px; border-radius:4px; margin-bottom:8px; }
+.reading-box { background:#fffde8; border-left:3px solid var(--yellow); border-radius:0 8px 8px 0; padding:10px 14px; margin:8px 0 10px; font-size:13px; line-height:1.75; font-style:italic; color:var(--mid); }
+.q-sub { font-weight:600; font-size:14.5px; margin-top:6px; color:var(--dark); }
+.q-opts { padding:12px 16px 14px; display:grid; gap:8px; }
+.opt-btn { display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:#fdf8f8; border:1.5px solid var(--pink2); border-radius:10px; color:var(--dark); font-size:13.5px; line-height:1.5; cursor:pointer; text-align:left; width:100%; transition:all 0.18s; font-family:inherit; }
+.opt-btn:hover:not(:disabled) { background:var(--cream); border-color:var(--yellow); transform:translateX(4px); }
+.opt-btn:disabled { cursor:default; }
+.opt-letter { background:var(--pink2); color:var(--dark); border-radius:6px; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; transition:all 0.18s; }
+.opt-btn.correct { background:#edfaf2; border-color:#8dcca0; }
+.opt-btn.correct .opt-letter { background:var(--green); color:white; }
+.opt-btn.wrong { background:#fdf0f0; border-color:#e8a0a0; }
+.opt-btn.wrong .opt-letter { background:var(--red); color:white; }
+.explanation { display:none; margin:0 16px 14px; background:#fffde8; border-left:3px solid var(--yellow); border-radius:0 8px 8px 0; padding:11px 14px; font-size:13px; line-height:1.7; color:var(--mid); }
+.explanation.show { display:block; }
+.exp-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a7000; margin-bottom:4px; }
+.nav-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:4px; margin-bottom:16px; flex-wrap:wrap; }
+.nav-center { font-size:13px; color:var(--mid); font-weight:600; text-align:center; flex:1; }
+.finish-bar { position:sticky; bottom:0; background:rgba(255,249,249,0.97); backdrop-filter:blur(10px); border-top:1.5px solid var(--pink2); padding:11px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; box-shadow:0 -4px 14px rgba(246,196,195,0.22); }
+.finish-info { font-size:12px; color:var(--mid); }
+.finish-info strong { color:var(--dark); font-size:14px; }
+
+/* NAME CONFIRM */
+.confirm-wrap { max-width:420px; margin:0 auto; padding:40px 20px; text-align:center; }
+.confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
+.confirm-wrap p { font-size:14px; color:var(--mid); margin-bottom:24px; line-height:1.6; }
+.confirm-name-box { background:var(--white); border:2px solid var(--yellow); border-radius:var(--radius); padding:16px; margin-bottom:20px; font-size:18px; font-weight:700; color:var(--dark); }
+
+/* WRITING */
+.writing-wrap { max-width:620px; margin:0 auto; padding:20px 16px; }
+.writing-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(246,196,195,0.2); margin-bottom:16px; }
+.writing-head { background:linear-gradient(135deg,#c39bd3,#9b59b6); padding:14px 18px; display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; color:white; }
+.writing-body { padding:20px; font-size:14px; line-height:1.85; color:var(--dark); }
+.writing-body strong { color:#6c3483; }
+.konu-box { background:linear-gradient(135deg,rgba(195,155,211,0.15),rgba(250,174,210,0.15)); border:1.5px solid rgba(195,155,211,0.4); border-radius:10px; padding:14px 16px; margin-bottom:16px; font-size:15px; font-weight:700; color:var(--dark); text-align:center; }
+.bilgi-box { background:#fffde8; border:1px solid rgba(248,206,91,0.4); border-left:3px solid var(--yellow); border-radius:0 8px 8px 0; padding:12px 15px; margin:12px 0; font-size:13px; line-height:1.7; }
+.bilgi-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a7000; margin-bottom:5px; }
+.writing-body ul { margin:8px 0 8px 20px; }
+.writing-body li { margin-bottom:6px; }
+.ornek-box { background:#f8f4ff; border:1px solid rgba(155,89,182,0.2); border-left:3px solid #9b59b6; border-radius:0 8px 8px 0; padding:12px 15px; margin:12px 0; font-size:13px; line-height:1.8; font-style:italic; color:#6c3483; }
+.writing-textarea { width:100%; min-height:200px; padding:14px 16px; font-size:14px; line-height:1.8; font-family:inherit; color:var(--dark); background:#fffde8; border:2px solid rgba(248,206,91,0.5); border-radius:10px; resize:vertical; margin-top:12px; transition:border-color 0.2s; }
+.writing-textarea:focus { outline:none; border-color:var(--yellow); box-shadow:0 0 0 3px rgba(248,206,91,0.15); }
+.char-count { font-size:11px; color:var(--mid); text-align:right; margin-top:4px; }
+.rubric { width:100%; border-collapse:collapse; margin-top:16px; font-size:13.5px; }
+.rubric th { background:linear-gradient(90deg,var(--pink1),var(--pink3)); padding:9px 14px; text-align:left; font-size:12px; letter-spacing:.8px; text-transform:uppercase; color:var(--dark); }
+.rubric td { padding:9px 14px; border-bottom:1px solid var(--pink2); vertical-align:top; line-height:1.5; }
+.rubric tr:last-child td { border-bottom:none; font-weight:700; background:rgba(248,206,91,0.1); }
+.rubric .pts { text-align:right; color:#9a7000; font-weight:700; white-space:nowrap; }
+.rubric tr:nth-child(even) td { background:rgba(248,219,216,0.2); }
+.writing-nav { display:flex; gap:10px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+.send-status { margin-top:12px; padding:10px 16px; border-radius:8px; font-size:13px; font-weight:600; text-align:center; display:none; }
+.send-ok { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
+.send-err { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
+
+/* RESULT */
+.result-wrap { max-width:440px; margin:0 auto; padding:28px 20px; text-align:center; }
+.result-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:20px; padding:28px 22px; margin-bottom:14px; box-shadow:0 6px 24px rgba(246,196,195,0.3); }
+.result-emoji { font-size:50px; margin-bottom:10px; }
+.result-name { font-size:14px; color:var(--mid); margin-bottom:3px; }
+.result-title { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:16px; }
+.result-score-big { font-size:62px; font-weight:900; line-height:1; color:var(--dark); }
+.result-score-big span { font-size:24px; font-weight:400; color:var(--mid); }
+.result-pct { font-size:13px; color:var(--mid); margin-top:4px; margin-bottom:18px; }
+.result-stats { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+.rs-item { background:linear-gradient(135deg,var(--pink2),var(--cream)); border:1px solid var(--pink1); border-radius:12px; padding:11px 16px; min-width:76px; text-align:center; }
+.rs-item .rs-n { font-size:28px; font-weight:800; line-height:1; }
+.rs-item .rs-l { font-size:11px; color:var(--mid); margin-top:3px; }
+.rs-correct .rs-n { color:var(--green); }
+.rs-wrong .rs-n { color:var(--red); }
+.rs-blank .rs-n { color:#bbb; }
+.status-badge { display:inline-flex; align-items:center; gap:7px; padding:9px 20px; border-radius:50px; font-size:13px; font-weight:700; margin-bottom:14px; }
+.status-pending { background:rgba(248,206,91,0.18); border:1.5px solid rgba(248,206,91,0.45); color:#9a7000; }
+.status-ok { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
+.status-error { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
+.result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+
+/* MODAL */
+.modal-bg { display:none; position:fixed; inset:0; background:rgba(90,58,58,0.38); backdrop-filter:blur(6px); z-index:999; align-items:center; justify-content:center; padding:20px; }
+.modal-bg.open { display:flex; }
+.modal-box { background:var(--white); border:1.5px solid var(--pink1); border-radius:20px; padding:28px 26px 22px; max-width:340px; width:100%; text-align:center; box-shadow:0 18px 48px rgba(246,196,195,0.5); animation:popIn 0.27s cubic-bezier(0.175,0.885,0.32,1.275); }
+@keyframes popIn { from{transform:scale(0.84);opacity:0} to{transform:scale(1);opacity:1} }
+.modal-box h3 { font-size:19px; color:var(--dark); margin-bottom:8px; }
+.modal-score { font-size:42px; font-weight:900; color:var(--dark); line-height:1; margin-bottom:6px; }
+.modal-score span { font-size:18px; font-weight:400; color:var(--mid); }
+.modal-box p { font-size:13px; color:var(--mid); margin-bottom:18px; line-height:1.6; }
+.modal-actions { display:flex; gap:10px; justify-content:center; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">1. Hafta Ödevi &nbsp;|&nbsp; A2.1 (3-4. Ders)</div>
+  <h1>🇪🇸 A2.1 – H1 3-4. Ders</h1>
+  <div class="header-sub">50 soru &nbsp;•&nbsp; Çoktan seçmeli &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+
+<!-- EKRAN 1: AD SEÇİMİ -->
+<div class="screen active" id="screen-name">
+  <div class="name-body">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="name-select" id="name-select">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option>
+      <option>Begum Senturk</option>
+      <option>Didem Dundar</option>
+      <option>Ece Turhanoglu</option>
+      <option>Esra Ozkaya</option>
+      <option>Gulsah Gundogdu</option>
+      <option>Irem Savas</option>
+      <option>Kardelen Kuscu</option>
+      <option>Oznur Ozdogan Ozer</option>
+      <option>Sevde Ozdemir</option>
+      <option>Seyma Kocak</option>
+      <option>Zumeyra Dogan</option>
+    </select>
+    <div class="info-box">
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Başlık seçme — Soru 1–10</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> Boşluk doldurma — Soru 11–30</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Dinleme — Soru 31–50 (Vimeo linki her soruda)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 4:</strong> Yazma Bölümü — Bu sayfadan gönderilir</span></div>
+      <div class="ib-hr"></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--pink3)"></div><span>Her soru 2 puan &nbsp;•&nbsp; Toplam 100 puan</span></div>
+    </div>
+    <button class="btn btn-pink btn-full" onclick="startQuiz()">▶ Başla</button>
+  </div>
+</div>
+
+<!-- EKRAN 2: QUIZ -->
+<div class="screen" id="screen-quiz">
+  <div class="quiz-wrap">
+    <div class="top-bar">
+      <div class="top-student" id="top-student">—</div>
+      <div class="top-scores">
+        <div class="top-score-item sc-correct">✓ <span id="sc-correct">0</span></div>
+        <div class="top-score-item sc-wrong">✗ <span id="sc-wrong">0</span></div>
+      </div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+      <div class="prog-info">
+        <span id="prog-section">—</span>
+        <span>Soru <span id="prog-cur">1</span> / 50</span>
+      </div>
+    </div>
+    <div id="q-area"></div>
+    <div class="nav-bar">
+      <button class="btn btn-outline btn-sm" id="btn-prev" onclick="navigate(-1)">← Geri</button>
+      <div class="nav-center" id="nav-center">1 / 50</div>
+      <button class="btn btn-pink btn-sm" id="btn-next" onclick="navigate(1)">İleri →</button>
+    </div>
+    <div class="finish-bar">
+      <div class="finish-info"><strong id="bb-answered">0</strong> / 50 soru yanıtlandı</div>
+      <button class="btn btn-yellow" onclick="goToConfirm()">✔ Ödevi Teslim Et</button>
+    </div>
+  </div>
+</div>
+
+<!-- EKRAN 3: AD ONAY -->
+<div class="screen" id="screen-confirm">
+  <div class="confirm-wrap">
+    <div style="font-size:48px;margin-bottom:12px">🎯</div>
+    <h2>Teslim etmeden önce onaylayın</h2>
+    <p>Ödevi teslim eden öğrencinin adı doğru mu?</p>
+    <div class="confirm-name-box" id="confirm-name-display">—</div>
+    <p style="font-size:13px;color:var(--mid);margin-bottom:20px">Eğer bu sizin adınız değilse geri dönüp değiştirebilirsiniz.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-outline" onclick="showScreen('quiz');renderQuestion()">← Geri Dön</button>
+      <button class="btn btn-yellow" onclick="showScreen('writing')">✍️ Evet, Yazma Bölümüne Geç</button>
+    </div>
+  </div>
+</div>
+
+<!-- EKRAN 4: YAZMA BÖLÜMÜ -->
+<div class="screen" id="screen-writing">
+  <div class="writing-wrap">
+    <div class="writing-card">
+      <div class="writing-head">✍️ &nbsp;Yazma Bölümü &nbsp;<span style="opacity:.75;font-weight:400;font-size:13px">(Ayrıca değerlendirilir)</span></div>
+      <div class="writing-body">
+        <div class="konu-box" id="writing-konu">📝 Konu yükleniyor…</div>
+        <div class="bilgi-box">
+          <div class="bilgi-label">📋 Yazınızın başına ekleyin</div>
+          <strong>Nombre y Apellido:</strong> <span id="writing-name-display">—</span><br>
+          <strong>Número de tarea:</strong> A2.1 (3+4)<br>
+          <strong>Tema de la tarea:</strong> <span id="writing-tema">—</span>
+        </div>
+        <p><strong>Yönerge</strong></p>
+        <div id="writing-yonerge"></div>
+        <div class="ornek-box" id="writing-ornekler"></div>
+        <p style="margin-top:14px"><strong>✏️ Yazınızı aşağıya yazın:</strong></p>
+        <textarea class="writing-textarea" id="writing-input" placeholder="Yazınızı buraya yazın…" oninput="updateCharCount()"></textarea>
+        <div class="char-count" id="char-count">0 karakter</div>
+        <div class="send-status" id="send-status"></div>
+        <p style="margin-top:18px"><strong>📊 Puanlama Cetveli</strong></p>
+        <table class="rubric" id="writing-rubric"></table>
+      </div>
+    </div>
+    <div class="writing-nav">
+      <button class="btn btn-outline" onclick="showScreen('confirm')">← Geri</button>
+      <button class="btn btn-green" id="btn-send-writing" onclick="sendWriting()">📨 Yazıyı Gönder ve Teslim Et</button>
+    </div>
+  </div>
+</div>
+
+<!-- EKRAN 5: SONUÇ -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap">
+    <div class="result-card">
+      <div class="result-emoji">🇪🇸</div>
+      <div class="result-name" id="res-name">—</div>
+      <div class="result-title">A2.1 · H1 – 3-4. Ders</div>
+      <div class="result-score-big" id="res-score">0<span>/100</span></div>
+      <div class="result-pct" id="res-pct">%0 başarı</div>
+      <div class="result-stats">
+        <div class="rs-item rs-correct"><div class="rs-n" id="res-c">0</div><div class="rs-l">Doğru</div></div>
+        <div class="rs-item rs-wrong"><div class="rs-n" id="res-w">0</div><div class="rs-l">Yanlış</div></div>
+        <div class="rs-item rs-blank"><div class="rs-n" id="res-b">0</div><div class="rs-l">Boş</div></div>
+      </div>
+      <div class="status-badge status-pending" id="res-status">⏳ Kaydediliyor…</div>
+      <div class="status-badge" id="email-status" style="display:none"></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-outline" onclick="reviewAnswers()">🔍 Yanlışları Gör</button>
+      <button class="btn btn-outline" onclick="goToName()">🔄 Yeniden Başla</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-finish">
+  <div class="modal-box">
+    <h3>Ödevi Teslim Et</h3>
+    <div class="modal-score" id="modal-score-preview">0<span>/100</span></div>
+    <p>Teslim ettikten sonra cevaplarınız değiştirilemez.<br>Emin misiniz?</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">❌ İptal</button>
+      <button class="btn btn-yellow btn-sm" onclick="submitQuiz()">✔ Evet, Teslim Et</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+// ── CONFIG ──
+emailjs.init('xNYEbUQNiWJPvbyoJ');
+const EMAILJS_SERVICE  = 'service_4ee1wh7';
+const EMAILJS_TEMPLATE = 'template_xjyyxhf';
+const APPS_SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
+const SPREADSHEET_ID   = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const SHEET_NAME       = 'A2.1';
+const TASK_COLUMN      = 'H1 – 3-4.Ders';
+const LESSON_NAME      = 'A2.1 H1 – 3-4. Ders';
+const VIMEO_URL        = 'https://vimeo.com/205117603?fl=pl&fe=vl';
+
+const WRITING_CONFIG = {
+  konu: 'Describe tu rutina diaria.',
+  tema: 'La rutina diaria',
+  yonerge: `<ul style="margin-top:8px">
+    <li>Bir başlık olmalıdır.</li>
+    <li>Metin giriş, gelişme ve sonuç bölümlerinden oluşmalıdır.</li>
+    <li>Günlük rutininizi en az <strong>5 farklı eylemle</strong> anlatınız.</li>
+    <li>Eylemleri sadece listelemeyiniz; neden-sonuç ilişkisiyle açıklayınız.</li>
+    <li>Cümlelerinizde özellikle <strong>presente de indicativo</strong> kullanmaya dikkat ediniz.</li>
+    <li>Formal ve düzgün bir dil kullanınız.</li>
+  </ul>`,
+  ornekler: `<strong style="font-style:normal;color:#6c3483">Örnek yapılar:</strong><br>
+Me levanto a las siete porque tengo clase a las ocho.<br>
+Después de desayunar, voy a la universidad en metro.<br>
+Por la noche estudio dos horas y luego me acuesto.`,
+  rubric: [
+    ['Ad, soyad ve başlık bilgilerinin eksiksiz yazılması', '5'],
+    ['Giriş–gelişme–sonuç yapısı', '5'],
+    ['En az 5 farklı eylem', '10'],
+    ['Neden-sonuç ilişkisi', '10'],
+    ['Presente de indicativo doğru kullanımı', '10'],
+    ['Formal dil kullanımı', '5'],
+    ['Maksimum puan', '45'],
+  ]
+};
+
+// ── SORULAR ──
+const QUESTIONS = [
+  // KISIM 1: BAŞLIK SEÇME (1-10)
+  {id:1,sec:1,
+   reading:'Ayer Clara se levantó muy temprano porque tenía una excursión con su clase. Preparó una mochila con agua, fruta, una chaqueta y su cámara. A las ocho, todos los estudiantes salieron en autobús hacia un pequeño pueblo cerca de las montañas. Durante el camino, el profesor habló sobre la naturaleza y explicó algunas reglas importantes: no tirar basura, caminar juntos y respetar a los animales. Cuando llegaron, hicieron una caminata de dos horas. Clara tomó muchas fotos de los árboles, del río y de las flores. Al final del día, estaba cansada, pero muy contenta porque había pasado un día diferente fuera de la ciudad.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['Un día de excursión en la naturaleza','Una clase difícil de fotografía','Las vacaciones de verano de Clara','Un problema en el autobús escolar'],
+   ans:0,
+   exp:'Doğru cevap A. Metnin ana konusu Clara\'nın sınıfıyla doğaya yaptığı gezi, yürüyüş, doğa kuralları ve gün sonunda mutlu olmasıdır.<br>B çeldiricidir çünkü Clara fotoğraf çekiyor ama metin bir fotoğraf dersi hakkında değildir.<br>C yanlıştır çünkü yaz tatilinden bahsedilmiyor.<br>D yanlıştır çünkü otobüsle gidiyorlar ama otobüste bir problem yaşanmıyor.'},
+  {id:2,sec:1,
+   reading:'Mario vive en una ciudad grande y normalmente va al trabajo en coche. Sin embargo, últimamente ha decidido cambiar algunos hábitos. Ahora, tres días a la semana va en bicicleta. Al principio le parecía difícil porque no estaba acostumbrado, pero poco a poco se sintió mejor. También empezó a comprar menos comida preparada y a cocinar en casa. Por las noches, en lugar de mirar el móvil durante horas, lee un libro o da un paseo corto. Mario no ha cambiado toda su vida de golpe, pero se siente más tranquilo, duerme mejor y tiene más energía durante el día.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['El nuevo trabajo de Mario','Una ciudad con mucho tráfico','Pequeños cambios para vivir mejor','La bicicleta más rápida del barrio'],
+   ans:2,
+   exp:'Doğru cevap C. Metin Mario\'nun hayatındaki küçük ama olumlu değişiklikleri anlatıyor: bisiklete binmek, evde yemek yapmak, kitap okumak ve yürüyüş yapmak.<br>A yanlıştır çünkü yeni bir işten bahsedilmiyor.<br>B çeldiricidir çünkü şehir ve araba geçiyor ama ana konu trafik değildir.<br>D yanlıştır çünkü bisiklet sadece sağlıklı alışkanlıklardan biridir, metnin tamamını açıklamaz.'},
+  {id:3,sec:1,
+   reading:'Lucía tiene una amiga italiana que se llama Giulia. Se conocieron hace dos años en un curso de español. Aunque ahora viven en países diferentes, hablan por videollamada casi todos los domingos. A veces practican español juntas, otras veces cocinan la misma receta mientras hablan. La semana pasada decidieron leer el mismo libro y comentar un capítulo cada semana. Para Lucía, esta amistad es muy especial porque Giulia siempre la escucha, le da buenos consejos y la hace reír cuando tiene un mal día.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['Una receta italiana muy famosa','Una amistad a distancia','Un curso intensivo de español','Un viaje por varios países'],
+   ans:1,
+   exp:'Doğru cevap B. Metnin ana fikri Lucía ve Giulia\'nın farklı ülkelerde yaşamalarına rağmen arkadaşlıklarını sürdürmeleridir.<br>A yanlıştır çünkü yemek yapıyorlar ama metin bir tarif hakkında değildir.<br>C çeldiricidir çünkü kursta tanışmışlar, ancak metnin ana konusu kurs değil arkadaşlıktır.<br>D yanlıştır çünkü seyahatten değil, uzaktan iletişimden bahsediliyor.'},
+  {id:4,sec:1,
+   reading:'En el barrio de Ana han abierto una pequeña biblioteca. Antes, muchas personas tenían que ir al centro de la ciudad para estudiar o pedir libros prestados. Ahora los vecinos pueden leer, trabajar con sus ordenadores y participar en actividades culturales cerca de casa. Los sábados por la mañana hay cuentos para niños, y los jueves por la tarde hay un club de lectura para adultos. Ana va dos veces por semana porque le gusta el ambiente tranquilo. Además, ha conocido a personas con los mismos intereses.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['La casa nueva de Ana','Una tienda de ordenadores','Los problemas del centro de la ciudad','Una biblioteca que une al barrio'],
+   ans:3,
+   exp:'Doğru cevap D. Metin yeni açılan kütüphanenin mahalleye katkısını anlatıyor: insanlar kitap alıyor, çalışıyor, etkinliklere katılıyor ve sosyalleşiyor.<br>A yanlıştır çünkü Ana\'nın evi anlatılmıyor.<br>B yanlıştır çünkü bilgisayar kullanımı geçiyor ama burası bilgisayar mağazası değildir.<br>C çeldiricidir çünkü merkeze gitme zorluğu belirtiliyor, fakat ana konu bu problem değil, yeni kütüphanedir.'},
+  {id:5,sec:1,
+   reading:'Cada mañana, antes de abrir su cafetería, Pablo prepara las mesas, limpia la barra y enciende la máquina de café. Su cafetería no es grande, pero tiene muchos clientes habituales. Algunos vienen para desayunar rápido antes del trabajo; otros prefieren sentarse junto a la ventana y leer el periódico. Pablo conoce los gustos de casi todos: café solo para Marta, té con limón para Luis y tostada con tomate para Elena. Lo que más le gusta de su trabajo no es solo preparar bebidas, sino hablar con la gente y crear un lugar agradable para todos.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['Una cafetería sin clientes','El periódico de la mañana','Una máquina de café rota','La cafetería de Pablo y sus clientes'],
+   ans:3,
+   exp:'Doğru cevap D. Metin Pablo\'nun kafesini, sabah hazırlıklarını, düzenli müşterilerini ve onlarla kurduğu ilişkiyi anlatıyor.<br>A yanlıştır çünkü kafede birçok düzenli müşteri var.<br>B çeldiricidir çünkü gazete okuyan müşterilerden biri geçiyor ama ana konu gazete değildir.<br>C yanlıştır çünkü kahve makinesi bozuk değildir; Pablo onu çalıştırıyor.'},
+  {id:6,sec:1,
+   reading:'Elena siempre pensaba que aprender a nadar era imposible para ella. De pequeña tuvo miedo al agua y nunca quiso entrar en una piscina profunda. Este año, una amiga la animó a apuntarse a un curso para adultos. Las primeras clases fueron difíciles: Elena se ponía nerviosa y necesitaba mucho tiempo para relajarse. Pero su profesora fue paciente y le explicó todo paso a paso. Después de varias semanas, Elena pudo cruzar la piscina sin ayuda. Cuando salió del agua, sonrió con orgullo porque había superado un miedo muy antiguo.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['Una profesora que cambia de trabajo','Elena supera su miedo al agua','Las mejores piscinas de la ciudad','Un verano en la playa'],
+   ans:1,
+   exp:'Doğru cevap B. Metnin ana konusu Elena\'nın çocukluktan gelen su korkusunu yenmesi ve yüzmeyi öğrenmesidir.<br>A yanlıştır çünkü öğretmenin iş değiştirmesinden bahsedilmiyor.<br>C çeldiricidir çünkü havuz geçiyor ama metin şehirdeki en iyi havuzlarla ilgili değildir.<br>D yanlıştır çünkü olay plajda değil, yetişkinler için yüzme kursunda geçiyor.'},
+  {id:7,sec:1,
+   reading:'Tomás y su hermana Inés querían hacer un regalo especial para el cumpleaños de su madre. No tenían mucho dinero, así que decidieron preparar algo en casa. Primero, buscaron fotos familiares antiguas. Después, escribieron pequeños textos debajo de cada foto: viajes, celebraciones, momentos divertidos y recuerdos importantes. También cocinaron una tarta sencilla de chocolate. Cuando su madre vio el álbum, se emocionó mucho. Dijo que era el mejor regalo porque no era caro, pero estaba lleno de cariño y recuerdos.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['Una fiesta en un restaurante elegante','El viaje favorito de una familia','Un regalo hecho con recuerdos','Una tienda de regalos baratos'],
+   ans:2,
+   exp:'Doğru cevap C. Metin Tomás ve Inés\'in anneleri için fotoğraflar ve anılarla hazırladığı özel hediyeyi anlatıyor.<br>A yanlıştır çünkü restoran yok, hediye evde hazırlanıyor.<br>B çeldiricidir çünkü albümde seyahat anıları var ama metin tek bir seyahati anlatmıyor.<br>D yanlıştır çünkü bir mağazadan bahsedilmiyor; önemli olan hediyenin manevi değeri.'},
+  {id:8,sec:1,
+   reading:'Sofía trabaja muchas horas delante del ordenador. Al final del día, a menudo siente dolor de espalda y cansancio en los ojos. Por eso, ha empezado a organizar mejor su jornada. Cada hora se levanta cinco minutos, camina un poco y bebe agua. También ha cambiado la silla de su escritorio y ha puesto una lámpara mejor. Al principio pensaba que estas pausas eran una pérdida de tiempo, pero ahora nota que trabaja con más concentración. Además, termina el día menos cansada y con mejor humor.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['Nuevos hábitos para trabajar mejor','Un ordenador muy antiguo','Una oficina sin ventanas','Las vacaciones de Sofía'],
+   ans:0,
+   exp:'Doğru cevap A. Metin Sofía\'nın çalışma düzenini iyileştirmek için edindiği yeni alışkanlıkları anlatıyor: mola vermek, yürümek, su içmek, sandalye ve ışığı değiştirmek.<br>B yanlıştır çünkü bilgisayarın eski olduğundan bahsedilmiyor.<br>C yanlıştır çünkü ofisin pencereleriyle ilgili bilgi yok.<br>D yanlıştır çünkü tatil değil, iş günü ve çalışma alışkanlıkları anlatılıyor.'},
+  {id:9,sec:1,
+   reading:'Raúl acaba de mudarse a un edificio nuevo. Al principio no conocía a nadie y se sentía un poco solo. Una tarde, mientras subía las escaleras, una vecina mayor le pidió ayuda con unas bolsas pesadas. Raúl la ayudó hasta su puerta y hablaron unos minutos. Al día siguiente, la vecina le llevó un plato de comida casera para darle las gracias. Poco a poco, Raúl empezó a saludar a otros vecinos y a participar en pequeñas conversaciones. Ahora se siente más cómodo en el edificio y cree que un simple gesto puede cambiar muchas cosas.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['Un pequeño gesto que crea amistad','Una mudanza muy complicada','Un edificio demasiado caro','Una receta tradicional'],
+   ans:0,
+   exp:'Doğru cevap A. Metnin ana fikri Raúl\'un küçük bir yardım sayesinde komşularıyla iletişim kurmaya başlaması ve kendini daha iyi hissetmesidir.<br>B çeldiricidir çünkü Raúl taşınmış ama taşınma süreci anlatılmıyor.<br>C yanlıştır çünkü binanın pahalı olduğuna dair bilgi yok.<br>D yanlıştır çünkü yemek geçiyor ama metin bir tarif hakkında değildir.'},
+  {id:10,sec:1,
+   reading:'Nuria siempre compraba ropa nueva cuando quería cambiar su estilo. Sin embargo, un día decidió revisar su armario con calma. Encontró chaquetas, camisas y pantalones que casi nunca usaba. En lugar de comprar más, combinó esas prendas de formas diferentes. También llevó algunas piezas a una tienda de segunda mano y regaló otras a una amiga. Después de ordenar todo, se dio cuenta de que no necesitaba tener muchas cosas para vestirse bien. Ahora compra menos, elige mejor y se siente más libre.',
+   q:'Lee el texto y elige el título más adecuado.',
+   opts:['La tienda más cara de la ciudad','Una fiesta de moda elegante','La ropa nueva de Nuria','Cambiar de estilo sin comprar más'],
+   ans:3,
+   exp:'Doğru cevap D. Metin Nuria\'nın yeni kıyafet almadan gardırobunu düzenleyerek ve mevcut kıyafetlerini farklı şekilde kullanarak stilini değiştirmesini anlatıyor.<br>A yanlıştır çünkü pahalı bir mağazadan bahsedilmiyor.<br>B yanlıştır çünkü moda partisi yok.<br>C çeldiricidir çünkü kıyafet konusu var ama Nuria\'nın amacı yeni kıyafet almak değil, daha az tüketmek ve elindekileri değerlendirmektir.'},
+
+  // KISIM 2: BOŞLUK DOLDURMA (11-30)
+  {id:11,sec:2,
+   reading:'Marta vive lejos de su universidad. Cada mañana se levanta a las seis y toma el autobús a las siete. Normalmente llega temprano, pero hoy hay mucho tráfico en la ciudad. Marta mira la hora muchas veces porque tiene un examen importante. Por eso, está un poco nerviosa y piensa: "Espero no llegar tarde". Cuando finalmente baja del autobús, camina rápido hacia la universidad. Tiene solo cinco minutos, __________ consigue entrar antes de que cierre la puerta del aula.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['porque','pero','cuando','aunque'],
+   ans:1,
+   exp:'Doğru cevap B) pero. Cümlede bir zıtlık var: Marta\'nın sadece beş dakikası var, ama yine de sınıfa girmeyi başarıyor. Bu yüzden "pero" uygundur.<br>A) porque "çünkü" anlamına gelir; sebep-sonuç ilişkisi kurar ama burada zıtlık var.<br>C) cuando "-dığı zaman" demektir, zaman bağlacı olur ama anlamı tamamlamaz.<br>D) aunque "her ne kadar" anlamına gelir; kullanılabilir gibi görünse de bu cümle yapısında "aunque consigue" doğal değildir. Burada en net ve A2 seviyesine uygun bağlaç perodur.'},
+  {id:12,sec:2,
+   reading:'Carlos quiere aprender francés porque el próximo verano va a viajar a París con su familia. Cada noche estudia treinta minutos después de cenar. Primero repasa palabras nuevas, luego escucha audios cortos y finalmente escribe frases sencillas en su cuaderno. A veces se equivoca, pero no se desanima. Su profesora siempre dice que aprender un idioma necesita tiempo y práctica. Carlos sabe que todavía no habla muy bien, __________ está mejorando poco a poco.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['tampoco','antes','pero','nunca'],
+   ans:2,
+   exp:'Doğru cevap C) pero. Metinde Carlos\'un hâlâ çok iyi konuşamadığı söyleniyor, ama yavaş yavaş geliştiği belirtiliyor. Burada karşıtlık vardır.<br>A) tampoco "o da değil / ayrıca değil" anlamına gelir, olumsuz ekleme yapar.<br>B) antes "önce" demektir, zaman anlamı verir ama cümleye uymaz.<br>D) nunca "asla" demektir ve anlamı bozar. Doğru bağlaç perodur.'},
+  {id:13,sec:2,
+   reading:'Lucía trabaja en una librería pequeña del centro. Le gusta mucho su trabajo porque puede hablar con personas que aman los libros. Algunos clientes buscan novelas, otros prefieren libros de historia o de cocina. Lucía siempre intenta ayudarles con paciencia. Ayer llegó una señora que no sabía qué comprar para su nieta. Lucía le preguntó la edad de la niña y sus gustos. Después de escucharla, __________ un libro de aventuras con dibujos grandes y una historia divertida.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['compró','leyó','recomendó','abrió'],
+   ans:2,
+   exp:'Doğru cevap C) recomendó. Lucía kitapçıda çalışıyor ve müşteriye yardımcı oluyor. Kadının torunu için kitap aradığını öğrenince ona uygun bir kitap tavsiye ediyor.<br>A) compró "satın aldı" demektir; kitabı alan kişi Lucía değil, müşteri olabilir.<br>B) leyó "okudu" demektir; burada Lucía\'nın kitabı okuduğu anlatılmıyor.<br>D) abrió "açtı" demektir ve bağlama uygun değildir. En mantıklı fiil recomendódur.'},
+  {id:14,sec:2,
+   reading:'El sábado por la mañana, Diego fue al mercado con su madre. Querían comprar fruta, verduras y pan para la semana. En el mercado había muchas personas y todos hablaban con los vendedores. Diego eligió tomates, manzanas y una bolsa de naranjas. Su madre compró queso y aceite de oliva. Después, los dos tomaron un café en una pequeña cafetería cerca del mercado. Fue una mañana sencilla, __________ muy agradable para los dos.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['pero','entonces','desde','nadie'],
+   ans:0,
+   exp:'Doğru cevap A) pero. Cümlede "basit bir sabah" ifadesinden sonra olumlu bir karşıtlık geliyor: basitti ama çok keyifliydi.<br>B) entonces "o zaman / sonra" anlamına gelir, burada doğal değildir.<br>C) desde "-den beri / -den itibaren" anlamına gelir, cümle yapısına uymaz.<br>D) nadie "hiç kimse" demektir ve anlamsal olarak tamamen yanlıştır.'},
+  {id:15,sec:2,
+   reading:'Alicia tiene un perro pequeño que se llama Bruno. Todas las tardes, después del trabajo, lo lleva al parque. Bruno corre, juega con otros perros y busca palos entre los árboles. Alicia también aprovecha ese momento para caminar y descansar un poco de la oficina. A veces escucha música, pero normalmente prefiere mirar el cielo y relajarse. Para ella, ese paseo diario es importante porque la ayuda a sentirse tranquila __________ terminar el día.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['sin','sobre','contra','antes de'],
+   ans:3,
+   exp:'Doğru cevap D) antes de. Cümlede Alicia\'nın gün bitmeden önce rahatladığı anlatılıyor: "günü bitirmeden önce". Bu yüzden antes de terminar el día doğru kullanımdır.<br>A) sin "-siz" demektir; "günü bitirmeden" anlamı verse de burada mastar yapısıyla bu anlam için "sin terminar" gerekir.<br>B) sobre "üzerinde / hakkında" demektir.<br>C) contra "karşı" anlamındadır. Bağlama uyan tek seçenek antes dedir.'},
+  {id:16,sec:2,
+   reading:'En la clase de español, los estudiantes están preparando una presentación sobre sus ciudades favoritas. Cada persona debe hablar durante tres minutos y mostrar algunas fotos. Sara ha elegido Granada porque le encantan sus calles, su historia y sus paisajes. Está un poco nerviosa porque no le gusta hablar delante de todos. Sin embargo, ha practicado varias veces en casa. Su profesora le dice que respire, hable despacio y no lea todo el texto. Sara sabe que, si practica más, __________ sentirse más segura.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['tuvo','puede','fue','hizo'],
+   ans:1,
+   exp:'Doğru cevap B) puede. Cümlede "daha fazla pratik yaparsa kendini daha güvende hissedebilir" anlamı var. Bu nedenle puede sentirse doğru yapıdır.<br>A) tuvo "sahip oldu" geçmiş zamandır ve "sentirse" ile uygun değildir.<br>C) fue "oldu / gitti" anlamındadır, burada yapı bozulur.<br>D) hizo "yaptı" demektir ve "sentirse" fiiliyle kullanılmaz.'},
+  {id:17,sec:2,
+   reading:'Javier y su hermana viven en la misma ciudad, pero no se ven todos los días porque tienen horarios diferentes. Él trabaja por la mañana y ella estudia por la tarde. Por eso, normalmente hablan por teléfono o se envían mensajes. Los domingos, si los dos están libres, comen juntos en casa de sus padres. A Javier le gusta mucho ese momento porque pueden contar lo que han hecho durante la semana y pasar tiempo en familia. Aunque están ocupados, __________ mantener una buena relación.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['olvidan','intentan','rompen','cierran'],
+   ans:1,
+   exp:'Doğru cevap B) intentan. Metinde kardeşlerin yoğun oldukları halde ilişkilerini iyi tutmaya çalıştıkları anlatılıyor. "Intentan mantener una buena relación" = "iyi bir ilişki sürdürmeye çalışıyorlar."<br>A) olvidan "unutuyorlar" demektir ve metnin anlamına ters düşer.<br>C) rompen "kırıyorlar / bozuyorlar" anlamındadır; ilişkiyi bozmak değil, korumak istiyorlar.<br>D) cierran "kapatıyorlar" demektir ve bağlama uymaz.'},
+  {id:18,sec:2,
+   reading:'Marina quiere ahorrar dinero para comprar una bicicleta nueva. Antes gastaba mucho en cafés, ropa y comida fuera de casa. Ahora ha cambiado algunos hábitos. Lleva comida preparada al trabajo, compra solo lo necesario y anota sus gastos en una libreta. Al principio le parecía difícil, pero después de un mes vio que podía guardar más dinero del que pensaba. Todavía no tiene suficiente para la bicicleta, __________ está más cerca de conseguir su objetivo.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['tampoco','nunca','por eso','pero'],
+   ans:3,
+   exp:'Doğru cevap D) pero. Cümlede Marina\'nın henüz yeterli parası olmadığı, ama hedefine yaklaştığı söyleniyor. Bu açık bir karşıtlık ilişkisidir.<br>A) tampoco olumsuz ekleme anlamı verir.<br>B) nunca "asla" demektir, anlamı bozar.<br>C) por eso "bu yüzden" demektir; burada sonuç değil, zıtlık vardır. En uygun bağlaç perodur.'},
+  {id:19,sec:2,
+   reading:'Pablo está aprendiendo a cocinar porque quiere comer de forma más saludable. Antes siempre pedía comida por internet, pero ahora prepara platos sencillos en casa. Su receta favorita es arroz con verduras porque es fácil, barata y rápida. Primero lava las verduras, luego las corta en trozos pequeños y después las cocina con un poco de aceite. Finalmente añade el arroz y un vaso de agua. Pablo no es un cocinero experto, __________ cada semana aprende algo nuevo.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['pero','debajo','hacia','nadie'],
+   ans:0,
+   exp:'Doğru cevap A) pero. "Pablo uzman bir aşçı değil, ama her hafta yeni bir şey öğreniyor." Cümlede zıtlık vardır.<br>B) debajo "altında" demektir, yer bildirir ve bağlama uymaz.<br>C) hacia "-e doğru" anlamındadır.<br>D) nadie "hiç kimse" demektir. Doğru cevap perodur.'},
+  {id:20,sec:2,
+   reading:'Elena vive en un pueblo pequeño cerca del mar. En verano hay muchos turistas, pero en invierno el lugar es muy tranquilo. A Elena le gusta caminar por la playa cuando no hay casi nadie. Dice que el sonido del mar la ayuda a pensar y a descansar. A veces lleva un libro, pero muchas veces solo se sienta en la arena y mira las olas. Para ella, vivir cerca del mar es una suerte porque puede disfrutar de la naturaleza __________ salir de su pueblo.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['hasta','contra','sin','entre'],
+   ans:2,
+   exp:'Doğru cevap C) sin. Cümlede "köyünden çıkmadan doğanın tadını çıkarabilir" anlamı var. Sin salir de su pueblo = "köyünden çıkmadan".<br>A) hasta "-e kadar" anlamındadır.<br>B) contra "karşı" demektir.<br>D) entre "arasında" demektir. Bu cümlede en doğal yapı sin + infinitivodur.'},
+  {id:21,sec:2,
+   reading:'Andrés siempre llegaba tarde a sus clases porque se acostaba muy tarde por la noche. Miraba series, usaba el móvil y no preparaba su mochila antes de dormir. Un día, su profesor habló con él y le explicó que la organización era importante. Desde entonces, Andrés intenta dormir antes, deja la mochila preparada y pone dos alarmas. Ahora llega a clase a tiempo y se siente menos cansado. Ha entendido que cambiar pequeños hábitos __________ mejorar mucho su día.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['fueron','tienen','puede','está'],
+   ans:2,
+   exp:'Doğru cevap C) puede. Cümlede genel bir anlam var: "küçük alışkanlıkları değiştirmek günü çok iyileştirebilir." Bu nedenle puede mejorar doğru yapıdır.<br>A) fueron geçmiş zaman "oldular" anlamındadır, mastar ile uymaz.<br>B) tienen "sahipler" demektir, burada fiil yapısı yanlış olur.<br>D) está "bulunuyor / -yor" anlamındadır ama "mejorar" ile bu şekilde kullanılmaz.'},
+  {id:22,sec:2,
+   reading:'Claudia trabaja en una tienda de ropa. Su trabajo no siempre es fácil porque hay días con muchos clientes y poco tiempo para descansar. Sin embargo, a Claudia le gusta ayudar a las personas a encontrar algo cómodo y bonito. Ayer una clienta necesitaba un vestido para una entrevista de trabajo. Estaba nerviosa y no sabía qué elegir. Claudia le mostró varias opciones y le habló con amabilidad. Al final, la clienta salió de la tienda muy contenta __________ encontró justo lo que necesitaba.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['porque','aunque','mientras','nunca'],
+   ans:0,
+   exp:'Doğru cevap A) porque. Müşterinin mutlu çıkmasının sebebi, tam ihtiyacı olan şeyi bulmasıdır. Bu nedenle sebep bildiren porque kullanılır.<br>B) aunque "her ne kadar" anlamına gelir; zıtlık bildirir ama burada sebep var.<br>C) mientras "iken" demektir, zaman bildirir.<br>D) nunca "asla" anlamındadır ve cümleyi bozar.'},
+  {id:23,sec:2,
+   reading:'Hugo está organizando una cena para sus amigos. Quiere preparar algo sencillo porque no tiene mucha experiencia en la cocina. Ha decidido hacer una ensalada, pasta con tomate y un postre de yogur con fruta. Por la tarde va al supermercado y compra todo lo necesario. Después limpia la casa y pone la mesa con mucho cuidado. Cuando llegan sus amigos, Hugo está un poco nervioso, __________ todos le dicen que la comida está muy rica.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['entonces','debajo','siempre','pero'],
+   ans:3,
+   exp:'Doğru cevap D) pero. Hugo gergin, ama arkadaşları yemeği beğeniyor. Cümlede zıtlık ilişkisi var.<br>A) entonces "o zaman / sonra" demektir, burada anlamı yeterince doğru vermez.<br>B) debajo "altında" anlamına gelir ve ilgisizdir.<br>C) siempre "her zaman" demektir; bağlaç görevi görmez. En uygun cevap perodur.'},
+  {id:24,sec:2,
+   reading:'Paula ha empezado a ir al gimnasio dos veces por semana. Al principio pensaba que no iba a tener tiempo, pero ha organizado mejor sus tardes. Los lunes y miércoles sale del trabajo, va directamente al gimnasio y después vuelve a casa para cenar. No quiere hacer ejercicio para competir, sino para sentirse mejor y tener más energía. Después de un mes, nota que duerme mejor y que está de mejor humor. Paula está contenta porque __________ una rutina saludable.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['perdió','ha creado','cerró','buscaba'],
+   ans:1,
+   exp:'Doğru cevap B) ha creado. Metinde Paula\'nın yeni ve sağlıklı bir rutin oluşturduğu anlatılıyor. "Ha creado una rutina saludable" = "sağlıklı bir rutin oluşturdu."<br>A) perdió "kaybetti" demektir ve bağlama uymaz.<br>C) cerró "kapattı" anlamındadır.<br>D) buscaba "arıyordu" demektir; burada sonuç olarak bir rutin oluşturması anlatılıyor. Doğru cevap ha creadodur.'},
+  {id:25,sec:2,
+   reading:'Sergio vive con dos compañeros de piso. Al principio todo iba bien, pero después empezaron algunos problemas. Una persona dejaba los platos sucios, otra ponía música muy alta por la noche y nadie sacaba la basura. Sergio no quería discutir, así que propuso una reunión. Durante la reunión, hablaron con calma y escribieron una lista de tareas para cada semana. Desde entonces, la convivencia es mucho mejor porque todos saben __________ deben hacer en casa.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['cuánto','qué','dónde','quién'],
+   ans:1,
+   exp:'Doğru cevap B) qué. Cümlede "evde ne yapmaları gerektiğini biliyorlar" anlamı var. Qué deben hacer = "ne yapmaları gerektiği".<br>A) cuánto "ne kadar" demektir; görevlerin miktarı değil, ne olduğu soruluyor.<br>C) dónde "nerede" demektir.<br>D) quién "kim" demektir; burada kişi değil yapılacak şey soruluyor. Doğru cevap quédir.'},
+  {id:26,sec:2,
+   reading:'Isabel tiene una abuela que vive en otro pueblo. Como no puede visitarla cada semana, la llama por teléfono todos los domingos. Hablan de la familia, del tiempo y de las cosas pequeñas de la vida diaria. Su abuela siempre le cuenta historias de cuando era joven. Isabel escucha con atención porque le gusta conocer el pasado de su familia. Aunque las llamadas no son muy largas, son importantes para las dos. Isabel cree que llamar a su abuela es una forma sencilla de __________ cerca.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['venderse','romperse','sentirse','abrirse'],
+   ans:2,
+   exp:'Doğru cevap C) sentirse. Cümlede fiziksel olarak uzak olsalar da duygusal olarak yakın hissetmekten bahsediliyor. Sentirse cerca = "yakın hissetmek".<br>A) venderse "satılmak / kendini satmak" anlamına gelir.<br>B) romperse "kırılmak / bozulmak" demektir.<br>D) abrirse "açılmak" anlamındadır. Bağlama uygun tek seçenek sentirsedir.'},
+  {id:27,sec:2,
+   reading:'Raquel trabaja en una oficina, pero su sueño es abrir una pequeña tienda de flores. Desde hace meses está aprendiendo sobre plantas, precios y atención al cliente. Los fines de semana ayuda a una amiga que tiene una floristería para ganar experiencia. También está ahorrando dinero y buscando un local pequeño en su barrio. Sabe que empezar un negocio no es fácil, __________ está dispuesta a trabajar mucho para conseguirlo.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['pero','durante','debajo','tampoco'],
+   ans:0,
+   exp:'Doğru cevap A) pero. Cümlede "iş kurmanın kolay olmadığını biliyor, ama bunun için çok çalışmaya hazır" anlamı var. Bu nedenle zıtlık bağlacı pero gerekir.<br>B) durante "boyunca" demektir.<br>C) debajo "altında" anlamındadır.<br>D) tampoco "o da değil / ayrıca değil" anlamı verir ve cümleye uymaz.'},
+  {id:28,sec:2,
+   reading:'Nicolás siempre ha sido una persona muy desordenada. Dejaba la ropa en la silla, los libros en la mesa y los papeles en cualquier lugar. Un día no pudo encontrar unos documentos importantes y llegó tarde a una cita. Después de ese problema, decidió cambiar. Compró carpetas, ordenó su escritorio y empezó a preparar sus cosas la noche anterior. Ahora encuentra todo más rápido y se siente menos estresado. Nicolás ha aprendido que el orden puede __________ la vida diaria.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['olvidar','dormir','cerrar','mejorar'],
+   ans:3,
+   exp:'Doğru cevap D) mejorar. Metinde düzenli olmanın Nicolás\'un günlük hayatını kolaylaştırdığı ve stresini azalttığı anlatılıyor. Bu yüzden "el orden puede mejorar la vida diaria" = "düzen günlük hayatı iyileştirebilir."<br>A) olvidar "unutmak" demektir.<br>B) dormir "uyumak" anlamına gelir.<br>C) cerrar "kapatmak" demektir. En uygun fiil mejorardır.'},
+  {id:29,sec:2,
+   reading:'Camila quiere leer más libros este año. Antes decía que no tenía tiempo, pero en realidad pasaba muchas horas mirando videos en el móvil. Ahora ha decidido leer veinte minutos antes de dormir. No elige libros muy difíciles porque quiere disfrutar y crear un hábito. En dos meses ha terminado tres novelas cortas. Camila está sorprendida porque, con poco tiempo cada día, __________ leer mucho más de lo que imaginaba.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['tuvo','fue','hizo','ha podido'],
+   ans:3,
+   exp:'Doğru cevap D) ha podido. Cümlede Camila\'nın az zaman ayırarak düşündüğünden daha fazla okuyabildiği anlatılıyor. Ha podido leer = "okuyabildi / okuyabilmiş oldu."<br>A) tuvo leer şeklinde kullanılamaz; "tener que leer" gibi farklı yapı gerekir.<br>B) fue leer yanlış bir yapıdır.<br>C) hizo leer burada doğal değildir ve anlamı bozuyor. Doğru yapı ha podido leerdir.'},
+  {id:30,sec:2,
+   reading:'Luis vive en una ciudad muy ruidosa. Hay coches, obras y muchas personas en la calle casi todo el día. Antes se sentía cansado y de mal humor cuando llegaba a casa. Un amigo le recomendó pasar más tiempo en lugares tranquilos. Ahora, los sábados por la mañana, Luis va a un parque grande que está cerca del río. Camina despacio, escucha los pájaros y respira aire fresco. Para él, ese momento es importante __________ le ayuda a descansar la mente.',
+   q:'Elige la opción correcta para completar el espacio.',
+   opts:['porque','nunca','contra','antes'],
+   ans:0,
+   exp:'Doğru cevap A) porque. Luis için bu anın önemli olmasının sebebi zihnini dinlendirmesine yardımcı olmasıdır. Bu yüzden sebep bildiren porque kullanılır.<br>B) nunca "asla" demektir ve anlamı bozuyor.<br>C) contra "karşı" anlamındadır.<br>D) antes "önce" demektir, sebep ilişkisi kurmaz. Doğru cevap porquedir.'},
+
+  // KISIM 3: DİNLEME (31-50)
+  {id:31,sec:3,q:'¿De qué tema hablan principalmente en el diálogo?',opts:['De los deportes favoritos','De los restaurantes en España','De la ropa y las compras','De los medios de transporte'],ans:2,exp:'Doğru cevap C. Diyalog boyunca kıyafetlerden, kıyafet alışverişinden, evde ve işte giyilen kıyafetlerden, hediyelerden, tişört ve jeansten bahsediliyor.<br>A yanlıştır çünkü Red Sox takımı geçse de spor ana konu değildir.<br>B yanlıştır çünkü restoranlardan bahsedilmiyor.<br>D yanlıştır çünkü ulaşım konusu yoktur.'},
+  {id:32,sec:3,q:'¿Tiene el hombre una tienda favorita para comprar ropa?',opts:['Sí, siempre compra en la misma tienda.','No, no tiene una tienda favorita.','Sí, solo compra en tiendas españolas.','No compra ropa nunca.'],ans:1,exp:'Doğru cevap B. Adam açıkça "No tengo una tienda favorita" diyor. Yani favori bir mağazası yok.<br>A yanlıştır çünkü hep aynı mağazadan aldığını söylemiyor.<br>C yanlıştır çünkü sadece İspanyol mağazalarından alışveriş yaptığını söylemiyor.<br>D yanlıştır çünkü kıyafet satın aldığından bahsediyor.'},
+  {id:33,sec:3,q:'¿Dónde le gusta comprar ropa?',opts:['En grandes almacenes o outlets','Solo en tiendas pequeñas','En mercados de comida','En tiendas de música'],ans:0,exp:'Doğru cevap A. Adam büyük mağazalara veya outletlere gitmeyi sevdiğini söylüyor çünkü farklı mağazalar arasında seçim yapabiliyor.<br>B yanlıştır çünkü küçük mağazalardan bahsetmiyor.<br>C yanlıştır çünkü yemek pazarıyla ilgili bir bilgi yok.<br>D yanlıştır çünkü müzik mağazası geçmiyor.'},
+  {id:34,sec:3,q:'¿Por qué le gustan los grandes almacenes o outlets?',opts:['Porque están cerca de su casa.','Porque puede elegir entre diferentes tiendas.','Porque solo venden ropa formal.','Porque son tiendas muy antiguas.'],ans:1,exp:'Doğru cevap B. Adam "donde puedo elegir entre diferentes tiendas" diyor. Yani farklı mağazalar arasında seçim yapabildiği için bu yerleri seviyor.<br>A yanlıştır çünkü evine yakın olduğundan bahsetmiyor.<br>C yanlıştır çünkü sadece resmi kıyafet sattıkları söylenmiyor.<br>D yanlıştır çünkü mağazaların eski olmasıyla ilgili bilgi yok.'},
+  {id:35,sec:3,q:'¿Qué tipo de ropa prefiere llevar en casa?',opts:['Ropa elegante','Camisa y corbata','Zapatos formales','Ropa cómoda'],ans:3,exp:'Doğru cevap D. Evde rahat kıyafet giymeyi sevdiğini söylüyor: "Me gusta la ropa cómoda."<br>A yanlıştır çünkü evde şık/resmi kıyafetten bahsetmiyor.<br>B iş kıyafetleriyle ilgilidir, ev kıyafeti değildir.<br>C resmi ayakkabılardan bahsedilmiyor.'},
+  {id:36,sec:3,q:'En España, ¿cómo llaman a la ropa de sport?',opts:['Traje','Vaqueros','Chándal','Corbata'],ans:2,exp:'Doğru cevap C. Adam "En España, la ropa de sport la llamamos chándal" diyor. Yani İspanya\'da spor/rahat kıyafete "chándal" deniyor.<br>A) Traje takım elbise anlamına gelir.<br>B) Vaqueros jean/pantolon anlamında kullanılır.<br>D) Corbata kravat demektir.'},
+  {id:37,sec:3,q:'¿De qué material suele ser la ropa que lleva en casa?',opts:['De lana','De cuero','De seda','De algodón'],ans:3,exp:'Doğru cevap D. Kendisine "¿Y qué material normalmente?" diye soruluyor ve "Normalmente es algodón" cevabını veriyor. Yani genellikle pamuklu kıyafetler giyiyor.<br>A yün, B deri, C ipek anlamındadır; transkriptte bunlar geçmiyor.'},
+  {id:38,sec:3,q:'¿Qué debe llevar normalmente para el trabajo?',opts:['Camiseta y pantalones cortos','Chándal y zapatillas','Camisa, pantalones formales y chaqueta','Solo una camiseta de algodón'],ans:2,exp:'Doğru cevap C. Adam işi gereği genellikle gömlek, resmi pantolon ve ceket giymesi gerektiğini söylüyor.<br>A yanlıştır çünkü tişört ve şorttan bahsetmiyor.<br>B evde giydiği rahat kıyafet tarzıdır, iş kıyafeti değildir.<br>D yanlıştır çünkü sadece tişört giymiyor.'},
+  {id:39,sec:3,q:'¿Qué prenda lleva en algunas ocasiones para el trabajo?',opts:['Corbata','Sombrero','Bufanda','Guantes'],ans:0,exp:'Doğru cevap A. Adam "en algunas ocasiones, corbata" diyor. Yani bazı durumlarda kravat takıyor.<br>B şapka, C atkı, D eldiven anlamındadır; diyalogda geçmiyorlar.'},
+  {id:40,sec:3,q:'¿Qué colores usa normalmente para el trabajo?',opts:['Rojo y amarillo','Azul y gris','Verde y negro','Blanco y naranja'],ans:1,exp:'Doğru cevap B. Adam iş kıyafetlerinde normalde mavi ve gri kullandığını söylüyor: "Normalmente uso azules y grises."<br>A, C ve D şıkları transkriptte geçmeyen renk kombinasyonlarıdır.'},
+  {id:41,sec:3,q:'¿Qué dice sobre la corbata?',opts:['Nunca lleva corbata.','La corbata cambia cada día.','Siempre lleva la misma corbata.','No le gustan las corbatas.'],ans:1,exp:'Doğru cevap B. Adam "La corbata va cambiando cada día" diyor. Yani kravatı her gün değişiyor.<br>A yanlıştır çünkü bazen kravat taktığını söylüyor.<br>C yanlıştır çünkü aynı kravatı her zaman takmıyor.<br>D yanlıştır çünkü kravat sevmediğini söylemiyor.'},
+  {id:42,sec:3,q:'¿A quién compra regalos normalmente?',opts:['A su familia','A sus vecinos','A sus estudiantes','A sus compañeros de trabajo'],ans:0,exp:'Doğru cevap A. Adam "Compro siempre regalos a mi familia" diyor. Yani hediyeleri genellikle ailesi için alıyor.<br>B, C ve D şıklarında verilen kişiler diyalogda hediye aldığı kişiler olarak geçmiyor.'},
+  {id:43,sec:3,q:'¿Cuándo compra normalmente regalos para su familia?',opts:['Cuando va al trabajo','Cuando sale a correr','Cuando compra café','Cuando vuelve a España'],ans:3,exp:'Doğru cevap D. Adam "cuando vuelvo a España" diyor. Yani İspanya\'ya döndüğünde ailesine hediyeler alıyor.<br>A, B ve C diyalogdaki bilgiyle ilgili değildir.'},
+  {id:44,sec:3,q:'¿Qué tipo de regalos compra normalmente para su familia?',opts:['Libros de historia','Entradas para conciertos','Ropa de marcas americanas','Comida española'],ans:2,exp:'Doğru cevap C. Adam ailesine genellikle Amerikan markalarından kıyafet aldığını söylüyor. Çünkü burada daha ucuz olabiliyorlar.<br>A kitaplardan bahsetmiyor.<br>B konser bileti, kendisine hediye edilmesini sevdiği şeyler arasında geçiyor; ailesine aldığı hediye değildir.<br>D İspanyol yemeğinden bahsedilmiyor.'},
+  {id:45,sec:3,q:'¿Por qué compra ropa de marcas americanas?',opts:['Porque no hay ropa en España.','Porque su familia no usa otra ropa.','Porque suele ser más barata allí.','Porque no le gustan los regalos.'],ans:2,exp:'Doğru cevap C. Adam Amerikan markalarının burada genellikle daha ucuz olduğunu söylüyor: "que suelen ser más baratas aquí."<br>A yanlıştır çünkü İspanya\'da kıyafet olmadığını söylemiyor.<br>B yanlıştır çünkü ailesinin sadece o markaları kullandığı söylenmiyor.<br>D yanlıştır çünkü hediye alıyor ve hediyelerden bahsediyor.'},
+  {id:46,sec:3,q:'¿Qué tipo de regalos le gustan a él?',opts:['Solo ropa cara','Zapatos formales','Objetos pequeños para la casa','Experiencias como viajes o entradas'],ans:3,exp:'Doğru cevap D. Adam kendisine deneyim hediye edilmesini sevdiğini söylüyor: seyahatler, konser biletleri veya görmek istediği bir film için biletler.<br>A yanlıştır çünkü pahalı kıyafet istemiyor.<br>B yanlıştır çünkü resmi ayakkabıdan bahsetmiyor.<br>C yanlıştır çünkü ev eşyaları geçmiyor.'},
+  {id:47,sec:3,q:'¿Qué equipo aparece en la camiseta que lleva?',opts:['Los Lakers','Los Red Sox','El Real Madrid','El Barcelona'],ans:1,exp:'Doğru cevap B. Adam tişörtünün Red Sox takımına ait olduğunu söylüyor: "del equipo de los Red Sox."<br>A, C ve D farklı takımlardır; transkriptte geçmiyorlar.'},
+  {id:48,sec:3,q:'¿Cuándo compró la camiseta?',opts:['Hace aproximadamente seis meses','Ayer por la mañana','Hace dos años','La semana pasada'],ans:0,exp:'Doğru cevap A. Adam tişörtü yaklaşık altı ay önce aldığını söylüyor: "la compré hace aproximadamente seis meses."<br>B, C ve D transkriptte verilen zaman bilgisi değildir.'},
+  {id:49,sec:3,q:'¿Dónde compró la camiseta?',opts:['En un kiosco de la calle','En Levi\'s','En una tienda de España','En un supermercado'],ans:0,exp:'Doğru cevap A. Adam tişörtü sokaktaki bir kiosktan aldığını söylüyor.<br>B Levi\'s, jeanleri aldığı yerdir; tişört için doğru değildir.<br>C İspanya\'daki bir mağaza denmiyor.<br>D süpermarket bilgisi yoktur.'},
+  {id:50,sec:3,q:'En España, ¿cómo llaman a los jeans?',opts:['Camisas','Chaquetas','Vaqueros','Corbatas'],ans:2,exp:'Doğru cevap C. Adam "Los jeans en España los llamamos vaqueros" diyor. Yani İspanya\'da jeans için "vaqueros" kelimesi kullanılır.<br>A gömlek, B ceket, D kravat anlamındadır. Bu yüzden doğru cevap vaquerostur.'},
+];
+
+// ── STATE ──
+let studentName = '';
+let answers = {};
+let currentQ = 0;
+let submitted = false;
+
+// ── SCREENS ──
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function startQuiz() {
+  const sel = document.getElementById('name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  currentQ = 0;
+  answers = {};
+  submitted = false;
+  document.getElementById('top-student').textContent = studentName;
+  // Fill writing section
+  document.getElementById('writing-konu').textContent = '📝 Konu: ' + WRITING_CONFIG.konu;
+  document.getElementById('writing-name-display').textContent = studentName;
+  document.getElementById('writing-tema').textContent = WRITING_CONFIG.tema;
+  document.getElementById('writing-yonerge').innerHTML = WRITING_CONFIG.yonerge;
+  document.getElementById('writing-ornekler').innerHTML = WRITING_CONFIG.ornekler;
+  // Rubric
+  let rubHtml = '<thead><tr><th>Kriter</th><th class="pts">Puan</th></tr></thead><tbody>';
+  WRITING_CONFIG.rubric.forEach(r => { rubHtml += `<tr><td>${r[0]}</td><td class="pts">${r[1]}</td></tr>`; });
+  rubHtml += '</tbody>';
+  document.getElementById('writing-rubric').innerHTML = rubHtml;
+  showScreen('quiz');
+  renderQuestion();
+}
+
+function goToConfirm() {
+  document.getElementById('confirm-name-display').textContent = studentName;
+  showScreen('confirm');
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const letters = ['A','B','C','D'];
+  const secNames = {1:'Kısım 1 — Başlık Seçme', 2:'Kısım 2 — Boşluk Doldurma', 3:'Kısım 3 — Dinleme'};
+
+  document.getElementById('prog-section').textContent = secNames[q.sec];
+  document.getElementById('prog-fill').style.width = (Object.keys(answers).length / QUESTIONS.length * 100) + '%';
+  document.getElementById('prog-cur').textContent = currentQ + 1;
+  document.getElementById('nav-center').textContent = (currentQ + 1) + ' / 50';
+  document.getElementById('bb-answered').textContent = Object.keys(answers).length;
+  document.getElementById('btn-prev').disabled = (currentQ === 0);
+
+  const isLast = (currentQ === QUESTIONS.length - 1);
+  const btnNext = document.getElementById('btn-next');
+  if (isLast) {
+    btnNext.textContent = '✔ Teslim Et';
+    btnNext.className = 'btn btn-yellow btn-sm';
+    btnNext.onclick = goToConfirm;
+  } else {
+    btnNext.textContent = 'İleri →';
+    btnNext.className = 'btn btn-pink btn-sm';
+    btnNext.onclick = () => navigate(1);
+  }
+
+  // Audio box for section 3
+  const audioHTML = q.sec === 3 ? `
+    <div class="audio-box">
+      <div class="audio-icon">🎧</div>
+      <div class="audio-text">
+        <p>Dinleme bölümü — ses kaydını dinleyerek soruyu yanıtlayın</p>
+        <a href="${VIMEO_URL}" target="_blank">▶ Sesi Dinle (Vimeo)</a>
+      </div>
+    </div>` : '';
+
+  const readingHTML = q.reading
+    ? `<div class="reading-tag">📖 Metin</div><div class="reading-box">${q.reading}</div><div class="q-sub">${q.q}</div>`
+    : '';
+
+  const optsHTML = q.opts.map((o,i) => {
+    let cls = 'opt-btn';
+    const ua = answers[q.id];
+    if (ua !== undefined) {
+      if (i === q.ans) cls += ' correct';
+      if (i === ua && ua !== q.ans) cls += ' wrong';
+    }
+    const dis = ua !== undefined ? 'disabled' : '';
+    return `<button class="${cls}" ${dis} onclick="answer(${q.id},${i})">
+      <span class="opt-letter">${letters[i]}</span><span>${o}</span>
+    </button>`;
+  }).join('');
+
+  const expShow = answers[q.id] !== undefined ? 'show' : '';
+
+  document.getElementById('q-area').innerHTML = `
+    <div class="section-badge">${secNames[q.sec]}</div>
+    ${audioHTML}
+    <div class="q-card">
+      <div class="q-head">
+        <div class="q-num">${q.id}</div>
+        <div class="q-text">${q.reading ? readingHTML : q.q}</div>
+      </div>
+      <div class="q-opts">${optsHTML}</div>
+      <div class="explanation ${expShow}">
+        <div class="exp-label">💡 Açıklama</div>${q.exp}
+      </div>
+    </div>`;
+}
+
+function navigate(dir) {
+  currentQ = Math.max(0, Math.min(QUESTIONS.length - 1, currentQ + dir));
+  renderQuestion();
+}
+
+function answer(qId, chosen) {
+  if (answers[qId] !== undefined || submitted) return;
+  answers[qId] = chosen;
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const a = answers[q.id];
+    if (a === undefined) return;
+    if (a === q.ans) correct++; else wrong++;
+  });
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent = wrong;
+  renderQuestion();
+}
+
+function updateCharCount() {
+  const len = document.getElementById('writing-input').value.length;
+  document.getElementById('char-count').textContent = len + ' karakter';
+}
+
+async function sendWriting() {
+  const text = document.getElementById('writing-input').value.trim();
+  if (text.length < 20) {
+    alert('Lütfen yazma ödevinizi tamamlayın (en az 20 karakter).');
+    return;
+  }
+  const btn = document.getElementById('btn-send-writing');
+  btn.disabled = true;
+  btn.textContent = '⏳ Gönderiliyor…';
+
+  const now = new Date();
+  const tarih = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      student_name: studentName,
+      lesson: LESSON_NAME,
+      submit_date: tarih,
+      writing_text: text
+    });
+    const st = document.getElementById('send-status');
+    st.className = 'send-status send-ok';
+    st.textContent = '✅ Yazınız başarıyla gönderildi!';
+    st.style.display = 'block';
+    btn.textContent = '✅ Gönderildi';
+    // Now submit quiz
+    setTimeout(() => submitQuiz(), 1200);
+  } catch(e) {
+    const st = document.getElementById('send-status');
+    st.className = 'send-status send-err';
+    st.textContent = '⚠️ Gönderilemedi. Lütfen profeye bildirin.';
+    st.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = '📨 Tekrar Dene';
+  }
+}
+
+function submitQuiz() {
+  submitted = true;
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const a = answers[q.id];
+    if (a === undefined) return;
+    if (a === q.ans) correct++; else wrong++;
+  });
+  const blank = QUESTIONS.length - Object.keys(answers).length;
+  const score = correct * 2;
+
+  document.getElementById('res-name').textContent = studentName;
+  document.getElementById('res-score').innerHTML = score + '<span>/100</span>';
+  document.getElementById('res-pct').textContent = '%' + Math.round(score/100*100) + ' başarı';
+  document.getElementById('res-c').textContent = correct;
+  document.getElementById('res-w').textContent = wrong;
+  document.getElementById('res-b').textContent = blank;
+  showScreen('result');
+  sendToSheets(studentName, score, correct, wrong, blank);
+}
+
+async function sendToSheets(name, score, correct, wrong, blank) {
+  const el = document.getElementById('res-status');
+  try {
+    const now = new Date();
+    const dd = String(now.getDate()).padStart(2,'0');
+    const mm = String(now.getMonth()+1).padStart(2,'0');
+    const yyyy = now.getFullYear();
+    const hh = String(now.getHours()).padStart(2,'0');
+    const min = String(now.getMinutes()).padStart(2,'0');
+    const ss2 = String(now.getSeconds()).padStart(2,'0');
+    const formatted = '✅ '+score+'/100\n✓'+correct+' ✗'+wrong+'\n'+dd+'.'+mm+'.'+yyyy+'\n'+hh+':'+min+':'+ss2;
+    await fetch(APPS_SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ spreadsheetId:SPREADSHEET_ID, sheetName:SHEET_NAME, studentName:name, taskColumn:TASK_COLUMN, score, correct, wrong, blank, formatted })
+    });
+    el.className = 'status-badge status-ok';
+    el.textContent = '✅ Ödev başarıyla kaydedildi!';
+  } catch(e) {
+    el.className = 'status-badge status-error';
+    el.textContent = '⚠️ Kaydedilemedi — Profe\'ye bildirin';
+  }
+}
+
+function reviewAnswers() {
+  showScreen('quiz');
+  const fw = QUESTIONS.findIndex(q => answers[q.id] !== undefined && answers[q.id] !== q.ans);
+  currentQ = fw >= 0 ? fw : 0;
+  renderQuestion();
+}
+
+function goToName() {
+  answers = {}; submitted = false; currentQ = 0;
+  document.getElementById('name-select').value = '';
+  showScreen('name');
+}
+</script>
+</body>
+</html>
