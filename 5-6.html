@@ -141,11 +141,12 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .match-col-title { font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--mid); margin-bottom:8px; text-align:center; }
 .match-item { background:var(--white); border:2px solid var(--c3); border-radius:10px; padding:10px 14px; margin-bottom:7px; font-size:13.5px; font-weight:600; color:var(--dark); cursor:grab; text-align:center; transition:all 0.18s; user-select:none; min-height:42px; display:flex; align-items:center; justify-content:center; }
 .match-item:hover { border-color:var(--c4); background:var(--c1); }
-.match-item.dragging { opacity:0.5; transform:scale(0.97); }
+.match-item.dragging { opacity:0.3; transform:scale(0.95); }
+.match-item.selected-drag { background:var(--c1); border-color:var(--c5); border-width:2.5px; box-shadow:0 0 0 3px rgba(211,90,117,0.25); }
 .match-item.matched-correct { background:#edfaf2; border-color:#8dcca0; color:#276221; cursor:default; }
 .match-item.matched-wrong { background:#fdf0f0; border-color:#e8a0a0; color:#a04040; }
 .drop-zone { background:var(--c1); border:2px dashed var(--c3); border-radius:10px; padding:10px 14px; margin-bottom:7px; font-size:13px; color:var(--mid); text-align:center; min-height:46px; display:flex; align-items:center; justify-content:center; transition:all 0.18s; position:relative; }
-.drop-zone.drag-over { background:rgba(238,132,168,0.1); border-color:var(--c4); border-style:solid; }
+.drop-zone.drag-over { background:rgba(238,132,168,0.18); border-color:var(--c5); border-style:solid; box-shadow:0 0 0 3px rgba(211,90,117,0.2); transform:scale(1.02); }
 .drop-zone.has-item { background:white; border-style:solid; border-color:var(--c2); }
 .drop-zone .dz-label { font-size:11px; color:var(--mid); opacity:0.7; }
 .drop-zone .placed-item { font-size:13.5px; font-weight:600; color:var(--dark); width:100%; text-align:center; cursor:grab; }
@@ -587,7 +588,7 @@ function renderQuestion() {
   } else if (quizMode === 'bosuk') {
     const answered = fillAnswers[q.id] !== undefined;
     const userVal = fillAnswers[q.id] || '';
-    const isCorrect = answered && userVal.trim().toLowerCase() === q.answer.toLowerCase();
+    const isCorrect = answered && isCorrectFill(userVal, q.answer);
     const inputCls = !answered ? 'fill-input' : (isCorrect ? 'fill-input correct-input' : 'fill-input wrong-input');
     const ctxLines = q.context.split('\n').map(l => {
       if (l.includes('________')) return l.replace('________', `<em>________</em>`);
@@ -610,7 +611,8 @@ function renderQuestion() {
           placeholder="Doğru çekimi yazın…" ${answered ? 'disabled' : ''}
           onkeydown="if(event.key==='Enter') checkFill(${q.id})">
         ${!answered ? `<button class="btn btn-gold btn-sm fill-check-btn" onclick="checkFill(${q.id})">✔ Kontrol Et</button>` : ''}
-        ${answered && !isCorrect ? `<div class="fill-answer-show" style="display:block">✅ Doğru cevap: <strong>${q.answer}</strong></div>` : ''}
+        ${answered && isCorrect ? `<div class="fill-answer-show" style="display:block;color:#276221">✅ Doğru! Tebrikler!</div>` : ''}
+        ${answered && !isCorrect ? `<div class="fill-answer-show" style="display:block;color:#a04040">😔 Yanlış yazdın! Doğru cevap: <strong>${q.answer}</strong></div>` : ''}
       </div>
       <div class="explanation ${answered ? 'show' : ''}">
         <div class="exp-label">💡 Açıklama</div>${q.exp}
@@ -673,6 +675,11 @@ function checkFill(qId) {
   renderQuestion();
 }
 
+function isCorrectFill(userVal, answer) {
+  // Birebir eşleşme — tilde ve büyük/küçük harf dahil
+  return userVal.trim() === answer.trim();
+}
+
 // ── MATCHING ──
 let draggedItem = null;
 
@@ -692,8 +699,18 @@ function buildMatchUI() {
     item.dataset.sp = pair.sp;
     item.id = 'sp-' + i;
     item.textContent = pair.sp;
-    item.addEventListener('dragstart', e => { draggedItem = item; item.classList.add('dragging'); });
-    item.addEventListener('dragend', e => item.classList.remove('dragging'));
+    item.addEventListener('dragstart', e => {
+      draggedItem = item;
+      item.classList.add('dragging');
+      // Highlight all other items to show what's left
+      document.querySelectorAll('.match-item').forEach(el => {
+        if (el !== item) el.classList.add('selected-drag');
+      });
+    });
+    item.addEventListener('dragend', e => {
+      item.classList.remove('dragging');
+      document.querySelectorAll('.match-item').forEach(el => el.classList.remove('selected-drag'));
+    });
     spanishCol.appendChild(item);
   });
 
@@ -739,7 +756,7 @@ function addTouchSupport() {
     item.addEventListener('touchstart', e => {
       touchItem = item;
       touchClone = item.cloneNode(true);
-      touchClone.style.cssText = 'position:fixed;opacity:0.8;pointer-events:none;z-index:9999;padding:8px 14px;background:white;border:2px solid var(--c4);border-radius:10px;font-size:13px;font-weight:600;';
+      touchClone.style.cssText = 'position:fixed;opacity:0.9;pointer-events:none;z-index:9999;padding:10px 18px;background:var(--c1);border:2.5px solid var(--c5);border-radius:10px;font-size:14px;font-weight:700;box-shadow:0 4px 16px rgba(211,90,117,0.35);color:var(--dark);';
       document.body.appendChild(touchClone);
     }, {passive:true});
     item.addEventListener('touchmove', e => {
@@ -861,7 +878,7 @@ function submitQuiz() {
   let fillCorrect = 0;
   Q_BOSUK.forEach(q => {
     const a = fillAnswers[q.id];
-    if (a && a.trim().toLowerCase() === q.answer.toLowerCase()) fillCorrect++;
+    if (a && isCorrectFill(a, q.answer)) fillCorrect++;
   });
 
   // blank count
