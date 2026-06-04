@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – H2 7-8. Ders – Pretérito Indefinido</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --c1: #fcedbe; --c2: #f6cf80; --c3: #f7c9d3; --c4: #ee84a8; --c5: #d35a75;
+  --dark: #4a2535; --mid: #8a5060; --white: #ffffff; --green: #6aab7a; --red: #d97070;
+  --radius: 14px;
+}
+body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,#fff8f0 0%,#fff5f8 60%,#fffde8 100%); min-height:100vh; color:var(--dark); }
+.header { background:linear-gradient(135deg,var(--c4),var(--c5)); padding:18px 20px 14px; text-align:center; box-shadow:0 4px 18px rgba(238,132,168,0.4); position:relative; overflow:hidden; }
+.header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.1) 14px,rgba(255,255,255,0.1) 15px); }
+.header-tag { display:inline-block; background:rgba(255,255,255,0.35); border:1.5px solid rgba(255,255,255,0.55); border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; margin-bottom:8px; color:var(--white); position:relative; }
+.header h1 { font-size:clamp(16px,4vw,23px); font-weight:800; color:var(--white); position:relative; text-shadow:0 1px 4px rgba(0,0,0,0.15); }
+.header-sub { font-size:12px; color:rgba(255,255,255,0.85); margin-top:4px; position:relative; }
+.screen { display:none; animation:fadeIn 0.3s ease; }
+.screen.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* NAME */
+.name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
+.name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
+.name-body p { font-size:13px; color:var(--mid); margin-bottom:20px; }
+.name-select { width:100%; padding:13px 16px; font-size:15px; background:var(--white); border:2px solid var(--c3); border-radius:var(--radius); color:var(--dark); appearance:none; cursor:pointer; margin-bottom:14px; font-family:inherit; transition:border-color 0.2s; }
+.name-select:focus { outline:none; border-color:var(--c2); box-shadow:0 0 0 3px rgba(246,207,128,0.25); }
+.info-box { background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); padding:14px 16px; margin-bottom:18px; text-align:left; font-size:13px; line-height:1.75; box-shadow:0 2px 10px rgba(238,132,168,0.12); }
+.ib-row { display:flex; align-items:flex-start; gap:9px; margin-bottom:5px; }
+.ib-row:last-child { margin-bottom:0; }
+.ib-dot { width:8px; height:8px; border-radius:50%; background:var(--c2); flex-shrink:0; margin-top:5px; }
+.ib-hr { height:1px; background:var(--c3); margin:9px 0; }
+
+/* BUTTONS */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 24px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.btn-main { background:linear-gradient(135deg,var(--c4),var(--c5)); color:white; box-shadow:0 4px 12px rgba(211,90,117,0.35); }
+.btn-main:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(211,90,117,0.5); }
+.btn-gold { background:linear-gradient(135deg,var(--c2),#e8b040); color:var(--dark); box-shadow:0 4px 12px rgba(246,207,128,0.4); }
+.btn-gold:hover { transform:translateY(-2px); }
+.btn-outline { background:var(--white); border:2px solid var(--c3); color:var(--dark); }
+.btn-outline:hover { background:var(--c3); }
+.btn-green { background:linear-gradient(135deg,#82e0aa,#27ae60); color:white; box-shadow:0 4px 12px rgba(39,174,96,0.3); }
+.btn-sm { padding:9px 18px; font-size:13px; }
+.btn-full { width:100%; }
+.btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
+
+/* QUIZ */
+.quiz-wrap { max-width:640px; margin:0 auto; padding:16px; }
+.top-bar { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); padding:10px 16px; margin-bottom:12px; gap:8px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(238,132,168,0.12); }
+.top-student { font-size:12px; color:var(--mid); font-weight:600; }
+.top-scores { display:flex; gap:14px; }
+.top-score-item { display:flex; align-items:center; gap:5px; font-size:13px; font-weight:700; }
+.sc-correct { color:var(--green); } .sc-wrong { color:var(--red); }
+.prog-wrap { margin-bottom:14px; }
+.prog-bar { height:7px; background:var(--c3); border-radius:4px; overflow:hidden; }
+.prog-fill { height:100%; background:linear-gradient(90deg,var(--c4),var(--c2)); border-radius:4px; transition:width 0.4s ease; width:0%; }
+.prog-info { display:flex; justify-content:space-between; font-size:11px; color:var(--mid); margin-top:3px; }
+.section-badge { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg,var(--c4),var(--c5)); border-radius:20px; padding:5px 14px; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:white; margin-bottom:10px; box-shadow:0 2px 8px rgba(211,90,117,0.3); }
+.fiiller-box { background:var(--c1); border:2px solid var(--c2); border-radius:var(--radius); padding:13px 16px; margin-bottom:12px; }
+.fiiller-box .fb-title { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a6000; margin-bottom:9px; }
+.fiiller-grid { display:flex; flex-wrap:wrap; gap:7px; }
+.fiil-tag { background:white; border:1.5px solid var(--c4); border-radius:8px; padding:5px 12px; font-size:13px; font-weight:700; color:var(--c5); }
+.aksani-badge { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(90deg,#8e44ad,#6c3483); border-radius:20px; padding:5px 14px; font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:white; margin-bottom:8px; }
+.audio-box { background:linear-gradient(135deg,#f4ecf7,#e8d5f5); border:1.5px solid #c39bd3; border-radius:12px; padding:14px 16px; margin-bottom:12px; }
+.audio-box p { font-size:13px; color:#6c3483; font-weight:600; margin-bottom:8px; }
+.audio-link { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,#8e44ad,#6c3483); color:white; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none; transition:all 0.2s; }
+.audio-link:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(142,68,173,0.4); }
+.q-card { background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(238,132,168,0.15); margin-bottom:12px; }
+.q-head { padding:16px 18px 14px; border-bottom:1px solid var(--c3); display:flex; gap:12px; align-items:flex-start; }
+.q-num { background:linear-gradient(135deg,var(--c4),var(--c5)); color:white; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; flex-shrink:0; margin-top:1px; }
+.q-text { font-size:14.5px; line-height:1.65; flex:1; color:var(--dark); font-weight:500; }
+.reading-box { background:var(--c1); border-left:3px solid var(--c2); border-radius:0 8px 8px 0; padding:10px 14px; margin:8px 0 10px; font-size:13px; line-height:1.75; font-style:italic; color:var(--mid); }
+.q-opts { padding:12px 16px 14px; display:grid; gap:8px; }
+.opt-btn { display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:#fdf8fb; border:1.5px solid var(--c3); border-radius:10px; color:var(--dark); font-size:13.5px; line-height:1.5; cursor:pointer; text-align:left; width:100%; transition:all 0.18s; font-family:inherit; }
+.opt-btn:hover:not(:disabled) { background:var(--c1); border-color:var(--c2); transform:translateX(4px); }
+.opt-btn:disabled { cursor:default; }
+.opt-letter { background:var(--c3); color:var(--dark); border-radius:6px; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; }
+.opt-btn.correct { background:#edfaf2; border-color:#8dcca0; }
+.opt-btn.correct .opt-letter { background:var(--green); color:white; }
+.opt-btn.wrong { background:#fdf0f0; border-color:#e8a0a0; }
+.opt-btn.wrong .opt-letter { background:var(--red); color:white; }
+.explanation { display:none; margin:0 16px 14px; background:var(--c1); border-left:3px solid var(--c2); border-radius:0 8px 8px 0; padding:11px 14px; font-size:13px; line-height:1.7; color:var(--mid); }
+.explanation.show { display:block; }
+.exp-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a6000; margin-bottom:4px; }
+
+/* FILL */
+.fill-input-wrap { padding:14px 16px; }
+.fill-context { font-size:14px; line-height:2; color:var(--dark); margin-bottom:12px; white-space:pre-line; }
+.fill-blank { font-weight:700; color:var(--c5); border-bottom:2px solid var(--c4); padding:0 4px; }
+.fill-input { width:100%; padding:11px 14px; font-size:15px; font-family:inherit; color:var(--dark); background:white; border:2px solid var(--c3); border-radius:10px; transition:border-color 0.2s; }
+.fill-input:focus { outline:none; border-color:var(--c2); box-shadow:0 0 0 3px rgba(246,207,128,0.2); }
+.fill-input.correct-input { background:#edfaf2; border-color:#8dcca0; color:#276221; font-weight:700; }
+.fill-input.wrong-input { background:#fdf0f0; border-color:#e8a0a0; color:#a04040; }
+.fill-feedback { margin-top:8px; font-size:13.5px; font-weight:600; display:none; padding:8px 12px; border-radius:8px; }
+.fill-feedback.ok { display:block; background:#edfaf2; color:#276221; border:1px solid #8dcca0; }
+.fill-feedback.err { display:block; background:#fdf0f0; color:#a04040; border:1px solid #e8a0a0; }
+
+/* NAV */
+.nav-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:4px; margin-bottom:16px; flex-wrap:wrap; }
+.nav-center { font-size:13px; color:var(--mid); font-weight:600; text-align:center; flex:1; }
+.finish-bar { position:sticky; bottom:0; background:rgba(255,248,250,0.97); backdrop-filter:blur(10px); border-top:1.5px solid var(--c3); padding:11px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; box-shadow:0 -4px 14px rgba(238,132,168,0.18); }
+.finish-info { font-size:12px; color:var(--mid); }
+.finish-info strong { color:var(--dark); font-size:14px; }
+
+/* WRITING */
+.writing-wrap { max-width:620px; margin:0 auto; padding:20px 16px; }
+.writing-card { background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(238,132,168,0.15); margin-bottom:16px; }
+.writing-head { background:linear-gradient(135deg,var(--c4),var(--c5)); padding:14px 18px; display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; color:white; }
+.writing-body { padding:20px; font-size:14px; line-height:1.85; color:var(--dark); }
+.writing-body strong { color:var(--c5); }
+.yonerge-box { background:var(--c1); border:1.5px solid var(--c2); border-radius:10px; padding:14px 16px; margin-bottom:14px; font-size:13.5px; line-height:1.8; }
+.yonerge-box .y-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a6000; margin-bottom:6px; }
+.fiil-list { display:flex; flex-wrap:wrap; gap:7px; margin:10px 0; }
+.fiil-chip { background:white; border:1.5px solid var(--c4); border-radius:8px; padding:4px 12px; font-size:13px; font-weight:700; color:var(--c5); }
+.tr-text-box { background:var(--c1); border:1.5px solid var(--c2); border-radius:10px; padding:14px 16px; margin:12px 0; font-size:13.5px; line-height:2; color:var(--dark); }
+.writing-textarea { width:100%; min-height:200px; padding:14px 16px; font-size:14px; line-height:1.8; font-family:inherit; color:var(--dark); background:var(--c1); border:2px solid rgba(246,207,128,0.6); border-radius:10px; resize:vertical; margin-top:12px; transition:border-color 0.2s; }
+.writing-textarea:focus { outline:none; border-color:var(--c2); box-shadow:0 0 0 3px rgba(246,207,128,0.15); }
+.char-count { font-size:11px; color:var(--mid); text-align:right; margin-top:4px; }
+.rubric { width:100%; border-collapse:collapse; margin-top:14px; font-size:13px; }
+.rubric th { background:linear-gradient(90deg,var(--c4),var(--c5)); padding:9px 14px; text-align:left; font-size:11px; letter-spacing:.8px; text-transform:uppercase; color:white; }
+.rubric td { padding:9px 14px; border-bottom:1px solid var(--c3); vertical-align:top; }
+.rubric tr:last-child td { border-bottom:none; font-weight:700; background:rgba(246,207,128,0.15); }
+.rubric tr:nth-child(even) td { background:rgba(247,201,211,0.15); }
+.rubric .pts { text-align:right; color:var(--c5); font-weight:700; white-space:nowrap; }
+.send-status { margin-top:12px; padding:10px 16px; border-radius:8px; font-size:13px; font-weight:600; text-align:center; display:none; }
+.send-ok { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
+.send-err { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
+.writing-nav { display:flex; gap:10px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+
+/* CONFIRM */
+.confirm-wrap { max-width:420px; margin:0 auto; padding:40px 20px; text-align:center; }
+.confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
+.confirm-wrap p { font-size:14px; color:var(--mid); margin-bottom:20px; line-height:1.6; }
+
+/* RESULT */
+.result-wrap { max-width:460px; margin:0 auto; padding:28px 20px; text-align:center; }
+.result-card { background:var(--white); border:1.5px solid var(--c3); border-radius:20px; padding:28px 22px; margin-bottom:14px; box-shadow:0 6px 24px rgba(238,132,168,0.2); }
+.result-emoji { font-size:50px; margin-bottom:10px; }
+.result-name { font-size:14px; color:var(--mid); margin-bottom:3px; }
+.result-title { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:16px; }
+.result-score-big { font-size:62px; font-weight:900; line-height:1; color:var(--dark); }
+.result-score-big span { font-size:24px; font-weight:400; color:var(--mid); }
+.result-pct { font-size:13px; color:var(--mid); margin-top:4px; margin-bottom:18px; }
+.result-stats { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+.rs-item { background:linear-gradient(135deg,var(--c3),var(--c1)); border:1px solid var(--c4); border-radius:12px; padding:11px 16px; min-width:76px; text-align:center; }
+.rs-item .rs-n { font-size:28px; font-weight:800; line-height:1; }
+.rs-item .rs-l { font-size:11px; color:var(--mid); margin-top:3px; }
+.rs-correct .rs-n { color:var(--green); } .rs-wrong .rs-n { color:var(--red); } .rs-blank .rs-n { color:#bbb; }
+.status-badge { display:inline-flex; align-items:center; gap:7px; padding:9px 20px; border-radius:50px; font-size:13px; font-weight:700; margin-bottom:14px; }
+.status-ok { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
+.status-error { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
+.status-pending { background:rgba(246,207,128,0.2); border:1.5px solid rgba(246,207,128,0.5); color:#9a6000; }
+.result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">2. Hafta Ödevi &nbsp;|&nbsp; A2.1 (7-8. Ders)</div>
+  <h1>🇪🇸 A2.1 – H2 7-8. Ders – Pretérito Indefinido</h1>
+  <div class="header-sub">47 soru + Yazma &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+
+<!-- EKRAN 1: AD SEÇİMİ -->
+<div class="screen active" id="screen-name">
+  <div class="name-body">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="name-select" id="name-select">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
+      <option>Ece Turhanoglu</option><option>Esra Ozkaya</option><option>Gulsah Gundogdu</option>
+      <option>Irem Savas</option><option>Kardelen Kuscu</option><option>Oznur Ozdogan Ozer</option>
+      <option>Sevde Ozdemir</option><option>Seyma Kocak</option><option>Zumeyra Dogan</option>
+    </select>
+    <div class="info-box">
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Dinleme (Puerto Rico Aksanı) — Soru 1–20 (30 puan · 1.5p/soru)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> Okuduğunu Anlama — Soru 21–30 (20 puan · 2p/soru)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Boşluk Doldurma — Soru 31–47 (25 puan · 1.5p/soru)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Yazma Bölümü:</strong> Paragraf Çeviri (25 puan)</span></div>
+      <div class="ib-hr"></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--c4)"></div><span><strong>Toplam: 100 puan</strong></span></div>
+    </div>
+    <button class="btn btn-main btn-full" onclick="startQuiz()">▶ Başla</button>
+  </div>
+</div>
+
+<!-- EKRAN 2: QUIZ -->
+<div class="screen" id="screen-quiz">
+  <div class="quiz-wrap">
+    <div class="top-bar">
+      <div class="top-student" id="top-student">—</div>
+      <div class="top-scores">
+        <div class="top-score-item sc-correct">✓ <span id="sc-correct">0</span></div>
+        <div class="top-score-item sc-wrong">✗ <span id="sc-wrong">0</span></div>
+      </div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+      <div class="prog-info">
+        <span id="prog-section">—</span>
+        <span>Soru <span id="prog-cur">1</span> / <span id="prog-total">47</span></span>
+      </div>
+    </div>
+    <div id="q-area"></div>
+    <div class="nav-bar">
+      <button class="btn btn-outline btn-sm" id="btn-prev" onclick="navigate(-1)">← Geri</button>
+      <div class="nav-center" id="nav-center">—</div>
+      <button class="btn btn-main btn-sm" id="btn-next" onclick="navigate(1)">İleri →</button>
+    </div>
+    <div class="finish-bar">
+      <div class="finish-info"><strong id="bb-answered">0</strong> / 47 yanıtlandı</div>
+      <div id="finish-btn-area"></div>
+    </div>
+  </div>
+</div>
+
+<!-- EKRAN 3: YAZMA -->
+<div class="screen" id="screen-writing">
+  <div class="writing-wrap">
+    <div class="writing-card">
+      <div class="writing-head">✍️ &nbsp;Yazma Bölümü &nbsp;<span style="opacity:.8;font-weight:400;font-size:13px">(25 puan)</span></div>
+      <div class="writing-body">
+        <div class="yonerge-box">
+          <div class="y-label">📝 Yönerge</div>
+          <strong>Pretérito Indefinido – Düzensiz Kök Değişimli Fiillerle Paragraf Çeviri Ödevi</strong><br><br>
+          Aşağıdaki Türkçe paragrafı İspanyolcaya çeviriniz. Çevirinizde <strong>Pretérito Indefinido</strong> zamanını kullanınız. Bu paragrafta özellikle <strong>düzensiz kök değişimi olan fiiller</strong> yer almaktadır. Bu nedenle fiillerin köklerine ve şahıs eklerine dikkat ediniz.<br><br>
+          <strong>Özellikle dikkat edilecek fiiller:</strong>
+          <div class="fiil-list">
+            <span class="fiil-chip">estar</span><span class="fiil-chip">tener</span><span class="fiil-chip">poder</span>
+            <span class="fiil-chip">poner</span><span class="fiil-chip">saber</span><span class="fiil-chip">querer</span>
+            <span class="fiil-chip">hacer</span><span class="fiil-chip">venir</span><span class="fiil-chip">decir</span>
+            <span class="fiil-chip">traer</span><span class="fiil-chip">conducir</span><span class="fiil-chip">haber</span>
+          </div>
+          Öznelerin kim olduğuna dikkat ederek fiilleri doğru şekilde çekimleyiniz. Bağlaçları, zaman zarflarını, tildeleri ve büyük-küçük harf kullanımını dikkatli yazınız.
+        </div>
+        <div class="tr-text-box">
+          <strong style="display:block;margin-bottom:8px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--mid)">🇹🇷 Çevrilecek Paragraf:</strong>
+          Dün ben bütün gün evdeydim çünkü çok işim vardı. Sabah masanın üzerine kitaplarımı koydum ve ödevimi yapmaya çalıştım, ama ilk başta soruları anlayamadım. Sonra öğretmenim bana bir mesaj gönderdi ve ne yapmam gerektiğini söyledi. Öğleden sonra arkadaşım Ayşe evime geldi ve bana defterini getirdi. Birlikte çalışmak istedik, ama çok yorulduk. Daha sonra ben doğru cevabı öğrendim ve alıştırmayı yapabildim. Akşam babam arabayı sürdü ve bizi kütüphaneye götürdü. Kütüphanede çok sessiz bir ortam vardı. Sonunda biz iyi bir çalışma yaptık ve eve mutlu döndük.
+        </div>
+        <p style="margin-top:14px"><strong>✏️ İspanyolca çevirinizi aşağıya yazın:</strong></p>
+        <textarea class="writing-textarea" id="writing-input" placeholder="Çevirinizi buraya yazın…" oninput="updateCharCount()"></textarea>
+        <div class="char-count" id="char-count">0 karakter</div>
+        <div class="send-status" id="send-status"></div>
+        <p style="margin-top:18px"><strong>📊 Puanlama Cetveli</strong></p>
+        <table class="rubric">
+          <thead><tr><th>Kriter</th><th class="pts">Puan</th></tr></thead>
+          <tbody>
+            <tr><td>Düzensiz köklü fiillerin doğru çekimi</td><td class="pts">10</td></tr>
+            <tr><td>Özne-fiil uyumu ve şahıs doğruluğu</td><td class="pts">6</td></tr>
+            <tr><td>Zaman zarflarının doğru kullanımı</td><td class="pts">4</td></tr>
+            <tr><td>Tilde ve büyük-küçük harf doğruluğu</td><td class="pts">3</td></tr>
+            <tr><td>Genel akıcılık ve anlaşılırlık</td><td class="pts">2</td></tr>
+            <tr><td><strong>Toplam</strong></td><td class="pts"><strong>25</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="writing-nav">
+      <button class="btn btn-gold" onclick="goToConfirmAfterWriting()">✔ Yazıyı Tamamladım, Teslim Et</button>
+    </div>
+  </div>
+</div>
+
+<!-- EKRAN 4: AD ONAY -->
+<div class="screen" id="screen-confirm">
+  <div class="confirm-wrap">
+    <div style="font-size:48px;margin-bottom:12px">🎯</div>
+    <h2>Son adım — Adınızı onaylayın</h2>
+    <p>Ödevi teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
+    <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
+      <option>Ece Turhanoglu</option><option>Esra Ozkaya</option><option>Gulsah Gundogdu</option>
+      <option>Irem Savas</option><option>Kardelen Kuscu</option><option>Oznur Ozdogan Ozer</option>
+      <option>Sevde Ozdemir</option><option>Seyma Kocak</option><option>Zumeyra Dogan</option>
+    </select>
+    <button class="btn btn-gold btn-full" onclick="confirmAndSubmit()">✔ Ödevi Teslim Et</button>
+  </div>
+</div>
+
+<!-- EKRAN 5: SONUÇ -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap">
+    <div class="result-card">
+      <div class="result-emoji">🇪🇸</div>
+      <div class="result-name" id="res-name">—</div>
+      <div class="result-title">A2.1 · H2 – 7-8. Ders · Pretérito Indefinido</div>
+      <div class="result-score-big" id="res-score">0<span>/75</span></div>
+      <div class="result-pct" id="res-pct"></div>
+      <div class="result-stats">
+        <div class="rs-item rs-correct"><div class="rs-n" id="res-c">0</div><div class="rs-l">Doğru</div></div>
+        <div class="rs-item rs-wrong"><div class="rs-n" id="res-w">0</div><div class="rs-l">Yanlış</div></div>
+        <div class="rs-item rs-blank"><div class="rs-n" id="res-b">0</div><div class="rs-l">Boş</div></div>
+      </div>
+      <div class="status-badge status-pending" id="res-status">⏳ Kaydediliyor…</div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-outline" onclick="goToName()">🔄 Yeniden Başla</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+emailjs.init('xNYEbUQNiWJPvbyoJ');
+const EMAILJS_SERVICE  = 'service_4ee1wh7';
+const EMAILJS_TEMPLATE = 'template_xjyyxhf';
+const APPS_SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
+const SPREADSHEET_ID   = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const SHEET_NAME       = 'A2.1';
+const TASK_COLUMN      = 'H2 – 7-8.Ders';
+const LESSON_NAME      = 'A2.1 H2 – 7-8. Ders';
+const VIMEO_URL        = 'https://vimeo.com/196959775?fl=pl&fe=vl';
+const FIILLER = ['querer','producir','estar','traer','poder','decir','andar','haber','conducir','poner','caber','venir','saber','traducir','hacer','tener','rehacer'];
+
+// ── KISIM 1: DİNLEME (1-20) ──
+const Q_DINLEME = [
+  {id:1,q:'¿De qué tema hablan en el video?',opts:['De la comida','De los viajes','De la familia','De la ropa'],ans:3,exp:'Videoda konuşmanın konusu kıyafetlerdir. Başta "vamos a hablar de la ropa" ifadesi geçiyor. Bu nedenle öğrenci burada genel konuyu anlamalıdır. "La ropa" İspanyolcada "kıyafet" anlamına gelir.'},
+  {id:2,q:'¿A qué tipo de tiendas le gusta ir a Mami para comprar ropa?',opts:['A tiendas muy caras','A tiendas de zapatos','A tiendas que tengan especiales','A tiendas de libros'],ans:2,exp:'Videoda Mami kıyafet alışverişi için genellikle indirim veya özel fırsat olan mağazalara gittiğini söylüyor. Buradaki "especiales" kelimesi, Puerto Rico ve bazı Latin Amerika kullanımlarında "indirimler / özel fiyatlar" anlamında kullanılır.'},
+  {id:3,q:'¿Cuándo prefiere comprar ropa Mami?',opts:['Cuando la ropa es nueva','Cuando hay especiales','Cuando está de viaje','Cuando va con su hermana'],ans:1,exp:'Mami videoda kıyafeti normal fiyatla almadığını, özel fiyat veya indirim olduğunda almayı tercih ettiğini söylüyor. Bu yüzden doğru cevap "cuando hay especiales" olmalıdır. Öğrencinin burada "precios regulares" ifadesini de anlaması gerekir; bu ifade "normal fiyatlar" demektir.'},
+  {id:4,q:'¿Qué dice Mami sobre comprar ropa a precios regulares?',opts:['Nunca compra a precios regulares.','Siempre compra a precios regulares.','Solo compra zapatos a precios regulares.','Compra regalos a precios regulares.'],ans:0,exp:'Videoda Mami açıkça "nunca compro a precios regulares" diyor. Yani normal fiyatlardan alışveriş yapmadığını söylüyor. Burada "nunca" kelimesi "asla / hiçbir zaman" anlamındadır.'},
+  {id:5,q:'¿Qué tipo de ropa usa Mami en casa?',opts:['Ropa de algodón','Ropa formal','Ropa elegante','Ropa deportiva de marca'],ans:0,exp:'Mami videoda evde her zaman pamuklu kıyafetler kullandığını söylüyor. "Algodón" kelimesi "pamuk" anlamına gelir. Bu nedenle doğru cevap "ropa de algodón" seçeneğidir.'},
+  {id:6,q:'¿Cómo prefiere Mami la ropa que usa en casa?',opts:['Muy ajustada','Un poco suelta','Muy elegante','De colores oscuros solamente'],ans:1,exp:'Videoda Mami ev kıyafetlerinin biraz bol olmasını tercih ettiğini söylüyor. Ayrıca İngilizce "loose" kelimesini kullanarak bunu açıklıyor. "Suelta" burada "bol, rahat, vücuda yapışmayan" anlamındadır.'},
+  {id:7,q:'¿Qué tipo de ropa usa Mami para el trabajo?',opts:['Ropa de playa','Ropa deportiva','Ropa profesional','Ropa vieja'],ans:2,exp:'Videoda Mami iş için her zaman profesyonel kıyafet kullandığını söylüyor. Bu ifade, iş ortamına uygun, resmi veya yarı resmi kıyafetler anlamına gelir. Bu yüzden doğru cevap "ropa profesional" seçeneğidir.'},
+  {id:8,q:'¿Qué combinación de ropa menciona Mami para el trabajo?',opts:['Una camiseta y unos mahones','Un vestido y unas sandalias','Una falda y una chaqueta de cuero','Una blusa con un blazer encima'],ans:3,exp:'Mami videoda iş için genellikle içine bluz, üstüne ise blazer giydiğini anlatıyor. "Blusa" kadın bluzu, "blazer" ise ceket tarzı resmi üst giysisidir. Öğrencinin burada kıyafet kombinini yakalaması beklenir.'},
+  {id:9,q:'¿Qué tipo de colores usa Mami en la mayoría de las ocasiones para el trabajo?',opts:['Colores brillantes','Colores con dibujos','Colores fluorescentes','Colores sólidos'],ans:3,exp:'Videoda Mami iş kıyafetlerinde çoğu zaman düz renkler kullandığını söylüyor. "Colores sólidos" desenli olmayan, tek renk kıyafetleri anlatır. Bu nedenle doğru cevap "colores sólidos" olmalıdır.'},
+  {id:10,q:'¿A quién le compra regalos Mami según el video?',opts:['A su hijo, a su hermana y a su vecina','Solo a su jefe','A sus alumnos','A sus compañeros de trabajo'],ans:0,exp:'Videoda Mami hediye aldığı kişilerden bahsederken çocuğuna, kız kardeşine ve komşusuna hediye aldığını söylüyor. Soruda "¿a quién le compra regalos?" denildiği için öğrencinin kişileri ayırt etmesi gerekir.'},
+  {id:11,q:'¿Qué tipo de camisetas le gustan al hijo de Mami?',opts:['Camisetas negras sin dibujo','Camisetas de equipos de fútbol','Polo shirts con signos o dibujos de Puerto Rico','Camisetas de algodón para dormir'],ans:2,exp:'Mami videoda çocuğunun Puerto Rico ile ilgili işaret veya çizim bulunan polo tişörtleri sevdiğini söylüyor. Burada "polo shirts" İngilizceden alınmış şekilde kullanılmıştır ve yakalı tişört anlamına gelir.'},
+  {id:12,q:'¿Qué tipo de cosas le gustan a la hermana de Mami?',opts:['Cosas para el jardín','Cosas personales','Cosas para viajar','Cosas deportivas'],ans:1,exp:'Videoda Mami kız kardeşinin kişisel şeyleri sevdiğini söylüyor. "Cosas personales" kişiye özel, bireysel zevklere hitap eden eşyalar anlamına gelir. Bu yüzden doğru cevap B seçeneğidir.'},
+  {id:13,q:'¿Qué le gusta hacer a la vecina de Mami?',opts:['Leer novelas','Cocinar','Viajar','Comprar ropa'],ans:1,exp:'Videoda Mami komşusunun yemek yapmayı sevdiğini söylüyor. Bu nedenle ona mutfakla ilgili hediyeler aldığını anlatıyor. Burada "le gusta cocinar" ifadesi "yemek yapmayı sever" anlamına gelir.'},
+  {id:14,q:'¿Qué tipo de regalos le compra Mami a su vecina?',opts:['Flores y libros','Ropa profesional','Cosas para la cocina, como sal o condimentos','Polo shirts de Puerto Rico'],ans:2,exp:'Mami videoda komşusuna mutfakla ilgili şeyler aldığını söylüyor. Örnek olarak iyi bir tuz veya iyi bir baharat/çeşni verdiğini belirtiyor. "Condimento" kelimesi "baharat, çeşni" anlamına gelir.'},
+  {id:15,q:'¿Qué regalos le gustan mucho a Mami?',opts:['Zapatos y bolsos','Perfumes caros','Ropa de marca','Flores, libros y detalles para compartir'],ans:3,exp:'Videoda Mami kendisine çiçeklerin, kitapların ve başka biriyle paylaşabileceği deneyimlerin hediye edilmesini sevdiğini söylüyor. Örneğin kahvaltıya veya yemeğe çıkmayı güzel bir hediye olarak görüyor. Burada hediye sadece nesne değil, birlikte vakit geçirmek anlamına da geliyor.'},
+  {id:16,q:'¿Por qué le parece bonito a Mami salir a desayunar o a comer como regalo?',opts:['Porque implica compartir con otra persona.','Porque es más barato que comprar ropa.','Porque no le gustan los regalos materiales.','Porque siempre va sola.'],ans:0,exp:'Mami videoda kahvaltıya veya yemeğe çıkmayı güzel bir hediye olarak açıklıyor çünkü bunun başka biriyle paylaşmak anlamına geldiğini söylüyor. "Compartir" fiili burada "birlikte vakit geçirmek, paylaşmak" anlamındadır.'},
+  {id:17,q:'¿Dónde compró Mami la camisa o blusa que lleva puesta?',opts:['En Macy\'s','En una tienda de zapatos','En un mercado de Puerto Rico','En una tienda de libros'],ans:0,exp:'Videoda Mami üzerindeki gömlek ya da bluzu Macy\'s\'ten aldığını söylüyor. Ayrıca Macy\'s\'in birkaç yıl önce Puerto Rico\'da açıldığını ve bazen çok iyi fiyatları olduğunu belirtiyor.'},
+  {id:18,q:'¿Cuándo compró Mami la blusa que lleva puesta?',opts:['Ayer','Hace una semana','Hace diez años','Hace tres años'],ans:3,exp:'Videoda Mami bluzunu üç yıl önce aldığını söylüyor. Burada "hace tres años" ifadesi "üç yıl önce" anlamına gelir. Öğrencinin geçmiş zamanı anlatan bu zaman ifadesini tanıması önemlidir.'},
+  {id:19,q:'¿Cuánto le costó aproximadamente la blusa a Mami?',opts:['50 dólares','30 dólares','15 dólares','100 dólares'],ans:2,exp:'Mami videoda bluzunun yaklaşık 15 dolara mal olduğunu söylüyor. "Me costó como 15 dólares" ifadesindeki "como" burada "yaklaşık" anlamında kullanılır. Bu yüzden doğru cevap 15 dolardır.'},
+  {id:20,q:'¿Qué dice Mami sobre los pantalones que lleva puestos ahora?',opts:['Son nuevos y muy caros.','Son de algodón, se lavan en máquina y los compró hace unos años.','Son de seda y no se pueden lavar.','Son de colores brillantes y con dibujos.'],ans:1,exp:'Videoda Mami üzerindeki pantolonları birkaç yıl önce aldığını, tamamen pamuklu olduklarını ve makinede yıkanabildiklerini söylüyor. "Lavan en máquina" ifadesi, bu pantolonların çamaşır makinesinde yıkanabildiğini anlatır. Bu nedenle doğru cevap B seçeneğidir.'},
+];
+
+// ── KISIM 2: OKUMA (21-30) ──
+const Q_OKUMA = [
+  {id:21,reading:'Ayer por la mañana, Laura preparó una mochila pequeña y caminó hasta la estación. Allí esperó el autobús durante veinte minutos. Cuando llegó al pueblo, preguntó por una panadería antigua. Una señora le explicó la dirección y Laura anduvo por una calle estrecha. Después, compró pan, queso y una botella de agua. Más tarde, se sentó en una plaza tranquila y escribió algunas notas en su cuaderno. También quiso visitar el pequeño mercado del pueblo, pero no pudo porque la lluvia empezó con mucha fuerza. Entonces regresó a la estación y esperó el autobús de vuelta.',q:'¿Por qué Laura no visitó el pequeño mercado?',opts:['Porque no encontró la panadería.','Porque la lluvia empezó con mucha fuerza.','Porque olvidó su mochila en la estación.','Porque no quiso comprar comida.'],ans:1,exp:'Metinde Laura\'nın küçük pazarı ziyaret etmek istediği ama bunu yapamadığı söyleniyor: "no pudo porque la lluvia empezó con mucha fuerza." Yani yağmur çok şiddetli başladığı için pazara gidemedi. Bu yüzden doğru cevap B.<br>Metindeki önemli düzensiz köklü fiiller: anduvo (andar → anduv-), quiso (querer → quis-), pudo (poder → pud-).'},
+  {id:22,reading:'El sábado pasado, Marcos estudió en casa durante toda la mañana. Primero repasó los verbos regulares y después escribió diez frases en su cuaderno. Al mediodía, su hermana entró en su habitación y le preguntó por una tarea de historia. Marcos supo la respuesta porque revisó sus apuntes el día anterior. Luego explicó el tema con palabras sencillas y su hermana completó la actividad sin problema. Después, Marcos preparó café, ordenó la mesa y terminó sus ejercicios antes de las cinco. Por la noche, llamó a un amigo y comentó que el día resultó productivo.',q:'¿Por qué Marcos ayudó bien a su hermana?',opts:['Porque supo la respuesta gracias a sus apuntes.','Porque compró un libro nuevo.','Porque preguntó al profesor por teléfono.','Porque su hermana preparó café.'],ans:0,exp:'Doğru cevap A. Metinde Marcos\'un cevabı bildiği çünkü bir gün önce notlarını tekrar ettiği anlatılıyor: "supo la respuesta porque revisó sus apuntes el día anterior."<br>Buradaki ana bilgi Marcos\'un notlarını tekrar etmesi ve cevabı bilmesidir. Supo fiili saber → sup- düzensiz köklü fiildir. Diğer seçeneklerdeki bilgiler metinde yoktur.'},
+  {id:23,reading:'El lunes, Ana y Roberto trabajaron en un proyecto de clase. Ana buscó información en internet y Roberto preparó una presentación corta. Al principio, ellos tuvieron problemas porque el ordenador funcionó muy lento. Entonces Roberto puso los documentos en una carpeta nueva y Ana redujo el tamaño de las imágenes. Después, los dos organizaron las diapositivas, revisaron los títulos y completaron la presentación. Más tarde, enviaron el trabajo al profesor y descansaron un poco. Por la tarde, comentaron que la actividad resultó difícil, pero también útil para practicar el tema.',q:'¿Qué hicieron Ana y Roberto para solucionar el problema?',opts:['Compraron otro ordenador para la clase.','Cancelaron la presentación.','Llamaron al profesor inmediatamente.','Roberto puso los documentos en una carpeta y Ana redujo las imágenes.'],ans:3,exp:'Doğru cevap D. Metinde bilgisayar yavaş çalışınca iki çözüm yaptıkları söyleniyor: Roberto belgeleri yeni bir klasöre koydu, Ana ise görsellerin boyutunu küçülttü.<br>Puso fiili poner → pus- kökünden gelir. Redujo fiili ise reducir → reduj- kökünden gelir. Bu iki bilgi doğrudan D seçeneğinde verilmiştir.'},
+  {id:24,reading:'El verano pasado, Clara viajó a una ciudad pequeña cerca del mar. Allí alquiló una habitación sencilla y descansó durante tres días. Una tarde, visitó una tienda de artesanía y conversó con una señora mayor. La señora le contó muchas historias del barrio y después le trajo una caja con fotos antiguas. Clara escuchó con atención, observó las fotos y preguntó por las casas de la zona. Luego quiso comprar una pulsera hecha a mano. Pagó con tarjeta, agradeció la conversación y regresó al hotel muy contenta.',q:'¿Qué le trajo la señora a Clara?',opts:['Una taza de café.','Una guía de la ciudad.','Una caja con fotos antiguas.','Una pulsera hecha a mano.'],ans:2,exp:'Doğru cevap C. Metinde kadın Clara\'ya "una caja con fotos antiguas" getirdi. Yani eski fotoğrafların olduğu bir kutu verdi.<br>Burada trajo fiili traer → traj- düzensiz köklü fiildir. D seçeneğinde geçen bileklik ise Clara\'nın satın almak istediği şeydir; kadının getirdiği şey değildir.'},
+  {id:25,reading:'El miércoles, Pablo preparó una cena para sus amigos. Compró verduras, cortó tomates y cocinó arroz con pollo. También puso la mesa con platos azules y vasos grandes. Sus amigos llegaron a las ocho y todos cenaron juntos. Durante la cena, Pablo dijo que practicó mucho la receta porque la primera preparación resultó mal. Después, los invitados ayudaron en la cocina, lavaron los platos y ordenaron la mesa. Al final de la noche, todos comentaron que la cena resultó muy agradable.',q:'¿Por qué Pablo practicó mucho la receta?',opts:['Porque sus amigos llegaron tarde.','Porque no compró suficientes verduras.','Porque la primera preparación resultó mal.','Porque quiso preparar solamente una ensalada.'],ans:2,exp:'Doğru cevap C. Metinde Pablo\'nun tarifi çok çalışmasının nedeni açıkça verilmiş: "porque la primera preparación resultó mal." Yani ilk deneme kötü sonuçlandığı için tarifi tekrar çalıştı.<br>Burada puso fiili poner → pus- kökünden, dijo fiili ise decir → dij- kökünden gelir.'},
+  {id:26,reading:'El viernes por la tarde, Elena terminó su trabajo y caminó hasta una cafetería tranquila. Allí reservó una mesa cerca de la ventana y esperó a su amiga. Durante la espera, escribió un mensaje, revisó su agenda y tomó un té. Su amiga llegó tarde porque tuvo una reunión larga en la oficina. Elena no protestó; escuchó música suave y esperó media hora más. Cuando su amiga vino, las dos conversaron sobre sus planes para el fin de semana. Después, compartieron un postre y salieron de la cafetería muy tranquilas.',q:'¿Por qué la amiga de Elena llegó tarde?',opts:['Porque olvidó la dirección de la cafetería.','Porque no quiso salir de casa.','Porque perdió su teléfono.','Porque tuvo una reunión larga.'],ans:3,exp:'Doğru cevap D. Metinde arkadaşının geç kalma nedeni "porque tuvo una reunión larga en la oficina" şeklinde verilmiştir. Yani ofiste uzun bir toplantısı olduğu için geç geldi.<br>Burada tuvo fiili tener → tuv- düzensiz köklü fiildir. Vino fiili de venir → vin- düzensiz köklü fiildir.'},
+  {id:27,reading:'El mes pasado, Diego visitó una fábrica de chocolate con su clase. La guía explicó el proceso de producción y mostró varias máquinas. Después, los estudiantes observaron cómo los trabajadores produjeron diferentes tipos de chocolate. Diego quiso probar chocolate negro, pero no pudo porque la actividad de degustación terminó antes de su turno. Al final, compró una tableta pequeña para su madre y escribió un resumen sobre la visita. En el resumen, Diego explicó que la fábrica le pareció interesante y que aprendió muchos detalles sobre la producción.',q:'¿Qué observaron los estudiantes durante la visita?',opts:['Cómo los trabajadores produjeron diferentes tipos de chocolate.','Cómo Diego compró una tableta para su madre.','Cómo la guía preparó una tarea escrita.','Cómo terminó la visita antes de tiempo.'],ans:0,exp:'Doğru cevap A. Metinde öğrencilerin işçilerin farklı çikolata türleri üretmesini gözlemlediği yazıyor: "observaron cómo los trabajadores produjeron diferentes tipos de chocolate."<br>Burada produjeron fiili producir → produj- kökünden gelir. Ayrıca quiso (querer → quis-) ve pudo (poder → pud-) fiilleri de düzensiz köklüdür.'},
+  {id:28,reading:'La semana pasada, Marta organizó una pequeña excursión con sus primos. Preparó bocadillos, llenó dos botellas de agua y guardó una manta en la mochila. Todos caminaron por un sendero fácil y descansaron junto a unos árboles. Más tarde, hallaron un lugar perfecto para comer, pero no cupieron todos en la mesa de madera porque la mesa resultó muy pequeña. Entonces pusieron la manta en el suelo y comieron allí. Después de la comida, conversaron, tomaron fotos y regresaron a casa antes de la tarde.',q:'¿Por qué comieron en el suelo?',opts:['Porque olvidaron los bocadillos.','Porque no cupieron todos en la mesa de madera.','Porque empezó una tormenta fuerte.','Porque quisieron regresar inmediatamente.'],ans:1,exp:'Doğru cevap B. Metinde herkesin ahşap masaya sığmadığı söyleniyor: "no cupieron todos en la mesa de madera." Bu yüzden yere örtü serip orada yemek yediler.<br>Burada cupieron fiili caber → cup- düzensiz köklü fiildir. Pusieron fiili de poner → pus- kökünden gelir.'},
+  {id:29,reading:'El domingo, Julia limpió su habitación y ordenó sus libros. Después, halló una caja vieja debajo de la cama. Dentro de la caja hubo cartas, fotos y pequeños recuerdos de su infancia. Julia revisó una carta de su prima y sonrió mucho. Luego guardó todo otra vez con cuidado. Por la tarde, llamó a su madre y le dijo que halló recuerdos muy bonitos. Su madre escuchó la historia y comentó que esos objetos tuvieron mucho valor emocional para la familia.',q:'¿Qué halló Julia dentro de la caja?',opts:['Ropa nueva y zapatos.','Cartas, fotos y pequeños recuerdos.','Dinero y documentos importantes.','Libros de la universidad.'],ans:1,exp:'Doğru cevap B. Metinde kutunun içinde "cartas, fotos y pequeños recuerdos" olduğu açıkça söyleniyor.<br>Burada hubo fiili haber → hub- düzensiz köklü fiildir. Dijo fiili ise decir → dij- kökünden gelir. Diğer seçeneklerde verilen kıyafet, para, belge veya üniversite kitapları metinde geçmez.'},
+  {id:30,reading:'El jueves, Andrés trabajó en la oficina hasta tarde. Terminó varios documentos y tradujo un correo importante para un cliente extranjero. Después, su jefe le preguntó por una reunión del día siguiente. Andrés dijo que preparó todos los informes y puso las copias en la sala de reuniones. Antes de salir, revisó su escritorio, apagó la computadora y ordenó sus papeles. Luego caminó hasta una parada de autobús y esperó quince minutos. Llegó a casa cansado, pero tranquilo.',q:'¿Qué hizo Andrés con el correo importante?',opts:['Lo borró por error.','Lo mandó a otro cliente.','Lo tradujo para un cliente extranjero.','Lo puso en la sala de reuniones.'],ans:2,exp:'Doğru cevap C. Metinde açıkça "tradujo un correo importante para un cliente extranjero" yazıyor. Yani Andrés önemli bir e-postayı yabancı bir müşteri için çevirdi.<br>Burada tradujo fiili traducir → traduj- kökünden gelir. Ayrıca dijo (decir → dij-) ve puso (poner → pus-) fiilleri de düzensiz köklüdür.'},
+];
+
+// ── KISIM 3: BOŞLUK DOLDURMA (31-47) ──
+const Q_BOSUK = [
+  {id:31,context:'Ayer tuve muchas tareas.\nNo salí con mis amigos.\nYo ________ en casa toda la tarde.',answer:'estuve',exp:'Bu cümlede estar fiili kullanılmalıdır çünkü kişinin bütün öğleden sonra evde "bulunduğu / kaldığı" anlatılıyor. Cümlenin tam anlamı: "Ben bütün öğleden sonra evdeydim / evde kaldım." Özne yo olduğu için fiil 1. tekil şahısta çekilir. Estar fiili Pretérito Indefinido\'da düzensiz kök alır: estuv-. Yo çekiminde sonuna -e gelir.'},
+  {id:32,context:'El lunes Marta no fue a la escuela.\nSu madre llamó a la profesora.\nMarta ________ fiebre por la mañana.',answer:'tuvo',exp:'Bu cümlede tener fiili kullanılmalıdır çünkü Marta\'nın sabah ateşi "olduğu" anlatılıyor. Cümlenin tam anlamı: "Marta\'nın sabah ateşi vardı." Özne Marta / ella olduğu için fiil 3. tekil şahısta çekilir. Tener fiili Pretérito Indefinido\'da düzensiz kök alır: tuv-. Él/ella/usted çekiminde sonuna -o gelir.'},
+  {id:33,context:'Ayer el autobús llegó muy tarde.\nLa estación estaba lejos.\nNosotros ________ mucho hasta la parada.',answer:'anduvimos',exp:'Bu cümlede andar fiili kullanılmalıdır çünkü kişilerin durağa kadar çok "yürüdüğü" anlatılıyor. Cümlenin tam anlamı: "Biz durağa kadar çok yürüdük." Özne nosotros olduğu için fiil 1. çoğul şahısta çekilir. Andar fiili Pretérito Indefinido\'da düzensiz kök alır: anduv-. Nosotros çekiminde sonuna -imos gelir.'},
+  {id:34,context:'El examen fue muy difícil.\nAl principio no entendí la pregunta.\nPero después yo ________ responder correctamente.',answer:'pude',exp:'Bu cümlede poder fiili kullanılmalıdır çünkü kişinin sonunda doğru cevap "verebildiği" anlatılıyor. Cümlenin tam anlamı: "Ama sonra ben doğru cevap verebildim." Özne yo olduğu için fiil 1. tekil şahısta çekilir. Poder fiili Pretérito Indefinido\'da düzensiz kök alır: pud-. Yo çekiminde sonuna -e gelir.'},
+  {id:35,context:'Ayer mi hermano ordenó su habitación.\nSus libros estaban sobre la cama.\nÉl ________ los libros en la mesa.',answer:'puso',exp:'Bu cümlede poner fiili kullanılmalıdır çünkü kardeşin kitapları masanın üzerine "koyduğu" anlatılıyor. Cümlenin tam anlamı: "O, kitapları masanın üzerine koydu." Özne él olduğu için fiil 3. tekil şahısta çekilir. Poner fiili Pretérito Indefinido\'da düzensiz kök alır: pus-. Él/ella/usted çekiminde sonuna -o gelir.'},
+  {id:36,context:'La profesora explicó el resultado ayer.\nYo escuché con mucha atención.\nAl final, yo ________ la respuesta correcta.',answer:'supe',exp:'Bu cümlede saber fiili kullanılmalıdır çünkü kişinin sonunda doğru cevabı "öğrendiği / bildiği" anlatılıyor. Pretérito Indefinido\'da saber, "öğrenmek / farkına varmak" anlamı da taşır. Cümlenin tam anlamı: "Sonunda ben doğru cevabı öğrendim." Özne yo olduğu için fiil 1. tekil şahısta çekilir. Saber fiili düzensiz kök alır: sup-. Yo çekiminde sonuna -e gelir.'},
+  {id:37,context:'Anoche mis amigos organizaron una fiesta.\nYo no quise ir al principio.\nDespués ellos ________ venir a mi casa.',answer:'quisieron',exp:'Bu cümlede querer fiili kullanılmalıdır çünkü arkadaşların daha sonra kişinin evine "gelmek istediği" anlatılıyor. Cümlenin tam anlamı: "Sonra onlar benim evime gelmek istediler." Özne ellos olduğu için fiil 3. çoğul şahısta çekilir. Querer fiili Pretérito Indefinido\'da düzensiz kök alır: quis-. Ellos/ellas/ustedes çekiminde sonuna -ieron gelir.'},
+  {id:38,context:'Ayer fue el cumpleaños de Ana.\nSus padres compraron un pastel grande.\nSu madre ________ una cena especial.',answer:'hizo',exp:'Bu cümlede hacer fiili kullanılmalıdır çünkü annenin özel bir akşam yemeği "yaptığı" anlatılıyor. Cümlenin tam anlamı: "Annesi özel bir akşam yemeği yaptı." Özne su madre / ella olduğu için fiil 3. tekil şahısta çekilir. Hacer fiili Pretérito Indefinido\'da düzensiz kök alır: hic-. Ancak 3. tekil şahısta yazım değişir ve hizo olur.'},
+  {id:39,context:'El sábado pasado hubo una reunión familiar.\nMis tíos llegaron temprano.\nTambién ________ mis primos de Valencia.',answer:'vinieron',exp:'Bu cümlede venir fiili kullanılmalıdır çünkü Valencia\'dan kuzenlerin de "geldiği" anlatılıyor. Cümlenin tam anlamı: "Valencia\'dan kuzenlerim de geldi." Özne mis primos / ellos olduğu için fiil 3. çoğul şahısta çekilir. Venir fiili Pretérito Indefinido\'da düzensiz kök alır: vin-. Ellos/ellas/ustedes çekiminde sonuna -ieron gelir.'},
+  {id:40,context:'Ayer hablé con mi profesora.\nElla escuchó mi problema con paciencia.\nDespués me ________ la verdad.',answer:'dijo',exp:'Bu cümlede decir fiili kullanılmalıdır çünkü öğretmenin kişiye gerçeği "söylediği" anlatılıyor. Cümlenin tam anlamı: "Sonra bana gerçeği söyledi." Özne ella olduğu için fiil 3. tekil şahısta çekilir. Decir fiili Pretérito Indefinido\'da düzensiz kök alır: dij-. 3. tekil şahısta sonuna -o gelir.'},
+  {id:41,context:'Ayer olvidé mi cuaderno en casa.\nMi hermana fue muy amable.\nElla me ________ el cuaderno a la escuela.',answer:'trajo',exp:'Bu cümlede traer fiili kullanılmalıdır çünkü kız kardeşin defteri okula "getirdiği" anlatılıyor. Cümlenin tam anlamı: "O, defteri bana okula getirdi." Özne ella olduğu için fiil 3. tekil şahısta çekilir. Traer fiili Pretérito Indefinido\'da düzensiz kök alır: traj-. Él/ella/usted çekiminde sonuna -o gelir.'},
+  {id:42,context:'Ayer fuimos a otra ciudad.\nEl viaje fue largo pero tranquilo.\nMi padre ________ el coche durante tres horas.',answer:'condujo',exp:'Bu cümlede conducir fiili kullanılmalıdır çünkü babanın arabayı üç saat "sürdüğü" anlatılıyor. Cümlenin tam anlamı: "Babam arabayı üç saat sürdü." Özne mi padre / él olduğu için fiil 3. tekil şahısta çekilir. Conducir fiili Pretérito Indefinido\'da düzensiz kök alır: conduj-. 3. tekil şahısta sonuna -o gelir.'},
+  {id:43,context:'La semana pasada tuvimos un proyecto importante.\nEl equipo trabajó todos los días.\nNosotros ________ un video para la clase.',answer:'produjimos',exp:'Bu cümlede producir fiili kullanılmalıdır çünkü ekibin ders için bir video "ürettiği / hazırladığı" anlatılıyor. Cümlenin tam anlamı: "Biz ders için bir video ürettik / hazırladık." Özne nosotros olduğu için fiil 1. çoğul şahısta çekilir. Producir fiili Pretérito Indefinido\'da düzensiz kök alır: produj-. Nosotros çekiminde sonuna -imos gelir.'},
+  {id:44,context:'En la clase de español leímos un texto corto.\nEl texto estaba en turco.\nDespués nosotros lo ________ al español.',answer:'tradujimos',exp:'Bu cümlede traducir fiili kullanılmalıdır çünkü metnin Türkçeden İspanyolcaya "çevrildiği" anlatılıyor. Cümlenin tam anlamı: "Sonra biz onu İspanyolcaya çevirdik." Özne nosotros olduğu için fiil 1. çoğul şahısta çekilir. Traducir fiili Pretérito Indefinido\'da düzensiz kök alır: traduj-. Nosotros çekiminde sonuna -imos gelir.'},
+  {id:45,context:'Ayer compré muchos libros.\nMi mochila era muy pequeña.\nTodos los libros no ________ en la mochila.',answer:'cupieron',exp:'Bu cümlede caber fiili kullanılmalıdır çünkü bütün kitapların çantaya "sığmadığı" anlatılıyor. Cümlenin tam anlamı: "Bütün kitaplar çantaya sığmadı." Özne todos los libros / ellos olduğu için fiil 3. çoğul şahısta çekilir. Caber fiili Pretérito Indefinido\'da düzensiz kök alır: cup-. Ellos/ellas/ustedes çekiminde sonuna -ieron gelir.'},
+  {id:46,context:'Ayer fue un día muy especial.\nEn la plaza había mucha gente.\nPor la noche ________ un concierto.',answer:'hubo',exp:'Bu cümlede haber fiili kullanılmalıdır çünkü gece bir konser "olduğu / gerçekleştiği" anlatılıyor. Cümlenin tam anlamı: "Gece bir konser oldu." Pretérito Indefinido\'da haber fiili varlık bildirmek için genellikle tekil şekilde kullanılır. Haber düzensiz kök alır: hub-. Bu kullanımda cevap hubo olur.'},
+  {id:47,context:'El estudiante olvidó hacer la tarea.\nLa profesora explicó el problema otra vez.\nDespués él ________ la actividad.',answer:'rehizo',exp:'Bu cümlede rehacer fiili kullanılmalıdır çünkü öğrencinin etkinliği "yeniden yaptığı" anlatılıyor. Cümlenin tam anlamı: "Sonra o etkinliği yeniden yaptı." Özne él olduğu için fiil 3. tekil şahısta çekilir. Rehacer, hacer fiilinden türemiştir ve aynı düzensiz kökü alır: rehic-. Ancak 3. tekil şahısta yazım rehizo olur.'},
+];
+
+// ── STATE ──
+let studentName = '';
+let mcAnswers = {};
+let fillAnswers = {};
+let writingText = '';
+let submitted = false;
+let quizMode = 'dinleme';
+let currentQ = 0;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function startQuiz() {
+  const sel = document.getElementById('name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  mcAnswers = {}; fillAnswers = {}; submitted = false;
+  currentQ = 0; quizMode = 'dinleme';
+  document.getElementById('top-student').textContent = studentName;
+  showScreen('quiz');
+  renderQuestion();
+}
+
+function getQuestions() {
+  if (quizMode === 'dinleme') return Q_DINLEME;
+  if (quizMode === 'okuma')   return Q_OKUMA;
+  return Q_BOSUK;
+}
+
+function renderQuestion() {
+  const letters = ['A','B','C','D'];
+  const qs = getQuestions();
+  const q = qs[currentQ];
+  const total = qs.length;
+
+  const secNames = {dinleme:'Kısım 1 — Dinleme (Puerto Rico Aksanı)', okuma:'Kısım 2 — Okuduğunu Anlama', bosuk:'Kısım 3 — Boşluk Doldurma'};
+  const secName = secNames[quizMode];
+
+  const allAnswered = Object.keys(mcAnswers).length + Object.keys(fillAnswers).length;
+  const grandTotal = Q_DINLEME.length + Q_OKUMA.length + Q_BOSUK.length;
+  document.getElementById('prog-fill').style.width = (allAnswered / grandTotal * 100) + '%';
+  document.getElementById('prog-section').textContent = secName;
+  document.getElementById('prog-cur').textContent = currentQ + 1;
+  document.getElementById('prog-total').textContent = total;
+  document.getElementById('nav-center').textContent = (currentQ + 1) + ' / ' + total;
+  document.getElementById('bb-answered').textContent = allAnswered;
+  document.getElementById('btn-prev').disabled = (currentQ === 0);
+
+  const isLast = (currentQ === total - 1);
+  const btnNext = document.getElementById('btn-next');
+  if (quizMode === 'dinleme' && isLast) {
+    btnNext.textContent = 'Okuma Sorularına →';
+    btnNext.className = 'btn btn-gold btn-sm';
+    btnNext.onclick = () => { quizMode = 'okuma'; currentQ = 0; renderQuestion(); };
+  } else if (quizMode === 'okuma' && isLast) {
+    btnNext.textContent = 'Boşluk Doldurma →';
+    btnNext.className = 'btn btn-gold btn-sm';
+    btnNext.onclick = () => { quizMode = 'bosuk'; currentQ = 0; renderQuestion(); };
+  } else if (quizMode === 'bosuk' && isLast) {
+    btnNext.textContent = '✍️ Yazma Bölümüne Geç →';
+    btnNext.className = 'btn btn-gold btn-sm';
+    btnNext.onclick = () => showScreen('writing');
+  } else {
+    btnNext.textContent = 'İleri →';
+    btnNext.className = 'btn btn-main btn-sm';
+    btnNext.onclick = () => navigate(1);
+  }
+
+  let html = `<div class="section-badge">${secName}</div>`;
+
+  // DİNLEME
+  if (quizMode === 'dinleme') {
+    html += `
+    <div class="aksani-badge">🎙️ PUERTO RICO AKSANI</div>
+    <div class="audio-box">
+      <p>🎧 Aşağıdan videoyu izleyerek soruyu yanıtlayın</p>
+      <a class="audio-link" href="${VIMEO_URL}" target="_blank">▶ Videoyu İzle / Dinle (Vimeo)</a>
+    </div>
+    <div class="q-card">
+      <div class="q-head"><div class="q-num">${q.id}</div><div class="q-text">${q.q}</div></div>
+      <div class="q-opts">
+        ${q.opts.map((o,i) => {
+          let cls='opt-btn'; const ua=mcAnswers[q.id];
+          if(ua!==undefined){if(i===q.ans)cls+=' correct';if(i===ua&&ua!==q.ans)cls+=' wrong';}
+          return `<button class="${cls}" ${ua!==undefined?'disabled':''} onclick="mcAnswer(${q.id},${i})">
+            <span class="opt-letter">${letters[i]}</span><span>${o}</span></button>`;
+        }).join('')}
+      </div>
+      <div class="explanation ${mcAnswers[q.id]!==undefined?'show':''}">
+        <div class="exp-label">💡 Açıklama</div>${q.exp}</div>
+    </div>`;
+  }
+  // OKUMA
+  else if (quizMode === 'okuma') {
+    html += `
+    <div class="q-card">
+      <div class="q-head"><div class="q-num">${q.id}</div>
+        <div class="q-text">
+          <div style="font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin-bottom:6px">📖 Metin</div>
+          <div class="reading-box">${q.reading}</div>
+          <div style="font-weight:600;margin-top:6px">${q.q}</div>
+        </div>
+      </div>
+      <div class="q-opts">
+        ${q.opts.map((o,i) => {
+          let cls='opt-btn'; const ua=mcAnswers[q.id];
+          if(ua!==undefined){if(i===q.ans)cls+=' correct';if(i===ua&&ua!==q.ans)cls+=' wrong';}
+          return `<button class="${cls}" ${ua!==undefined?'disabled':''} onclick="mcAnswer(${q.id},${i})">
+            <span class="opt-letter">${letters[i]}</span><span>${o}</span></button>`;
+        }).join('')}
+      </div>
+      <div class="explanation ${mcAnswers[q.id]!==undefined?'show':''}">
+        <div class="exp-label">💡 Açıklama</div>${q.exp}</div>
+    </div>`;
+  }
+  // BOŞLUK
+  else {
+    const answered = fillAnswers[q.id] !== undefined;
+    const userVal = fillAnswers[q.id] || '';
+    const isCorrect = answered && userVal.trim() === q.answer.trim();
+    const inputCls = !answered ? 'fill-input' : (isCorrect ? 'fill-input correct-input' : 'fill-input wrong-input');
+    const ctxHtml = q.context.split('\n').map(line => {
+      if (line.includes('________')) return line.replace('________', '<span class="fill-blank">________</span>');
+      return line;
+    }).join('<br>');
+
+    html += `
+    <div class="fiiller-box">
+      <div class="fb-title">📋 Kullanılabilecek Fiiller</div>
+      <div class="fiiller-grid">${FIILLER.map(f=>`<span class="fiil-tag">${f}</span>`).join('')}</div>
+    </div>
+    <div class="q-card">
+      <div class="q-head"><div class="q-num">${q.id}</div>
+        <div class="q-text" style="font-size:13px;color:var(--mid);font-weight:600">⚠️ Tildelere ve büyük-küçük harfe dikkat ediniz.</div>
+      </div>
+      <div class="fill-input-wrap">
+        <div class="fill-context">${ctxHtml}</div>
+        <input type="text" class="${inputCls}" id="fill-${q.id}" value="${answered ? userVal : ''}"
+          placeholder="Doğru çekimi yazın…" ${answered?'disabled':''}
+          onkeydown="if(event.key==='Enter')checkFill(${q.id})">
+        ${!answered ? `<button class="btn btn-gold btn-sm" style="margin-top:10px" onclick="checkFill(${q.id})">✔ Kontrol Et</button>` : ''}
+        ${answered && isCorrect  ? `<div class="fill-feedback ok">✅ Doğru! Tebrikler!</div>` : ''}
+        ${answered && !isCorrect ? `<div class="fill-feedback err">😔 Yanlış yazdın! Doğru cevap: <strong>${q.answer}</strong></div>` : ''}
+      </div>
+      <div class="explanation ${answered?'show':''}">
+        <div class="exp-label">💡 Açıklama</div>${q.exp}</div>
+    </div>`;
+  }
+
+  document.getElementById('q-area').innerHTML = html;
+  // update score counter
+  let correct=0,wrong=0;
+  [...Q_DINLEME,...Q_OKUMA].forEach(qq=>{
+    const a=mcAnswers[qq.id]; if(a===undefined)return;
+    if(a===qq.ans)correct++; else wrong++;
+  });
+  document.getElementById('sc-correct').textContent=correct;
+  document.getElementById('sc-wrong').textContent=wrong;
+}
+
+function navigate(dir) {
+  currentQ = Math.max(0, currentQ + dir);
+  renderQuestion();
+}
+
+function mcAnswer(qId, chosen) {
+  if (mcAnswers[qId] !== undefined) return;
+  mcAnswers[qId] = chosen;
+  renderQuestion();
+}
+
+function checkFill(qId) {
+  const inp = document.getElementById('fill-' + qId);
+  if (!inp || !inp.value.trim()) { alert('Lütfen bir cevap yazın.'); return; }
+  fillAnswers[qId] = inp.value.trim();
+  renderQuestion();
+}
+
+function updateCharCount() {
+  document.getElementById('char-count').textContent = document.getElementById('writing-input').value.length + ' karakter';
+}
+
+function goToConfirmAfterWriting() {
+  const text = document.getElementById('writing-input').value.trim();
+  if (text.length < 20) { alert('Lütfen çevirinizi tamamlayın (en az 20 karakter).'); return; }
+  writingText = text;
+  document.getElementById('confirm-name-select').value = studentName;
+  showScreen('confirm');
+}
+
+async function confirmAndSubmit() {
+  const sel = document.getElementById('confirm-name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  const btn = document.querySelector('#screen-confirm .btn-gold');
+  btn.disabled = true; btn.textContent = '⏳ Gönderiliyor…';
+  const now = new Date();
+  const tarih = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
+  try {
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      student_name: studentName, lesson: LESSON_NAME,
+      submit_date: tarih, writing_text: writingText
+    });
+    submitQuiz();
+  } catch(e) {
+    btn.disabled = false; btn.textContent = '✔ Ödevi Teslim Et';
+    alert('Yazı gönderilemedi. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.');
+  }
+}
+
+function submitQuiz() {
+  submitted = true;
+  // Scores
+  let dinleme=0, okuma=0, fillCorrect=0;
+  Q_DINLEME.forEach(q => { if(mcAnswers[q.id]===q.ans) dinleme++; });
+  Q_OKUMA.forEach(q => { if(mcAnswers[q.id]===q.ans) okuma++; });
+  Q_BOSUK.forEach(q => { const a=fillAnswers[q.id]; if(a && a.trim()===q.answer.trim()) fillCorrect++; });
+
+  const dinlemeScore = dinleme * 1.5;
+  const okumaScore   = okuma   * 2;
+  const fillScore    = fillCorrect * 1.5;
+  const score = Math.round(dinlemeScore + okumaScore + fillScore);
+
+  const correct = dinleme + okuma + fillCorrect;
+  const fillWrong = Q_BOSUK.filter(q => fillAnswers[q.id]!==undefined && fillAnswers[q.id].trim()!==q.answer.trim()).length;
+  const mcWrong = [...Q_DINLEME,...Q_OKUMA].filter(q => mcAnswers[q.id]!==undefined && mcAnswers[q.id]!==q.ans).length;
+  const wrong = mcWrong + fillWrong;
+  const blank = [...Q_DINLEME,...Q_OKUMA].filter(q=>mcAnswers[q.id]===undefined).length + Q_BOSUK.filter(q=>fillAnswers[q.id]===undefined).length;
+
+  document.getElementById('res-name').textContent = studentName;
+  document.getElementById('res-score').innerHTML = score + '<span>/75</span>';
+  document.getElementById('res-pct').textContent = 'Soru puanı: ' + score + '/75 · Yazma ayrıca değerlendirilir';
+  document.getElementById('res-c').textContent = correct;
+  document.getElementById('res-w').textContent = wrong;
+  document.getElementById('res-b').textContent = blank;
+  showScreen('result');
+  sendToSheets(studentName, score, correct, wrong, blank);
+}
+
+async function sendToSheets(name, score, correct, wrong, blank) {
+  const el = document.getElementById('res-status');
+  try {
+    const now = new Date();
+    const dd=String(now.getDate()).padStart(2,'0'), mm=String(now.getMonth()+1).padStart(2,'0'), yyyy=now.getFullYear();
+    const hh=String(now.getHours()).padStart(2,'0'), min=String(now.getMinutes()).padStart(2,'0'), ss2=String(now.getSeconds()).padStart(2,'0');
+    const formatted = '✅ '+score+'/75\n✓'+correct+' ✗'+wrong+'\n'+dd+'.'+mm+'.'+yyyy+'\n'+hh+':'+min+':'+ss2;
+    await fetch(APPS_SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ spreadsheetId:SPREADSHEET_ID, sheetName:SHEET_NAME, studentName:name, taskColumn:TASK_COLUMN, score, correct, wrong, blank, formatted })
+    });
+    el.className = 'status-badge status-ok';
+    el.textContent = '✅ Ödev başarıyla kaydedildi!';
+  } catch(e) {
+    el.className = 'status-badge status-error';
+    el.textContent = '⚠️ Kaydedilemedi — Profe\'ye bildirin';
+  }
+}
+
+function goToName() {
+  mcAnswers={}; fillAnswers={}; submitted=false; currentQ=0; quizMode='dinleme';
+  document.getElementById('name-select').value='';
+  showScreen('name');
+}
+</script>
+</body>
+</html>
