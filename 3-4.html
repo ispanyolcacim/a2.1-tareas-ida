@@ -226,7 +226,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
     <div class="finish-bar">
       <div class="finish-info"><strong id="bb-answered">0</strong> / 50 soru yanıtlandı</div>
-      <button class="btn btn-yellow" onclick="goToConfirm()">✔ Ödevi Teslim Et</button>
+      <button class="btn btn-yellow" onclick="showScreen('writing')">✍️ Yazma Bölümüne Geç</button>
     </div>
   </div>
 </div>
@@ -235,14 +235,24 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 <div class="screen" id="screen-confirm">
   <div class="confirm-wrap">
     <div style="font-size:48px;margin-bottom:12px">🎯</div>
-    <h2>Teslim etmeden önce onaylayın</h2>
-    <p>Ödevi teslim eden öğrencinin adı doğru mu?</p>
-    <div class="confirm-name-box" id="confirm-name-display">—</div>
-    <p style="font-size:13px;color:var(--mid);margin-bottom:20px">Eğer bu sizin adınız değilse geri dönüp değiştirebilirsiniz.</p>
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-outline" onclick="showScreen('quiz');renderQuestion()">← Geri Dön</button>
-      <button class="btn btn-yellow" onclick="showScreen('writing')">✍️ Evet, Yazma Bölümüne Geç</button>
-    </div>
+    <h2>Son adım — Adınızı onaylayın</h2>
+    <p>Ödevi teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
+    <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option>
+      <option>Begum Senturk</option>
+      <option>Didem Dundar</option>
+      <option>Ece Turhanoglu</option>
+      <option>Esra Ozkaya</option>
+      <option>Gulsah Gundogdu</option>
+      <option>Irem Savas</option>
+      <option>Kardelen Kuscu</option>
+      <option>Oznur Ozdogan Ozer</option>
+      <option>Sevde Ozdemir</option>
+      <option>Seyma Kocak</option>
+      <option>Zumeyra Dogan</option>
+    </select>
+    <button class="btn btn-yellow btn-full" onclick="confirmAndSubmit()">✔ Ödevi Teslim Et</button>
   </div>
 </div>
 
@@ -272,7 +282,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
     <div class="writing-nav">
       <button class="btn btn-outline" onclick="showScreen('confirm')">← Geri</button>
-      <button class="btn btn-green" id="btn-send-writing" onclick="sendWriting()">📨 Yazıyı Gönder ve Teslim Et</button>
+      <button class="btn btn-yellow" id="btn-send-writing" onclick="goToConfirmAfterWriting()">✔ Yazıyı Tamamladım, Teslim Et</button>
     </div>
   </div>
 </div>
@@ -618,9 +628,9 @@ function renderQuestion() {
   const isLast = (currentQ === QUESTIONS.length - 1);
   const btnNext = document.getElementById('btn-next');
   if (isLast) {
-    btnNext.textContent = '✔ Teslim Et';
-    btnNext.className = 'btn btn-yellow btn-sm';
-    btnNext.onclick = goToConfirm;
+    btnNext.textContent = '✍️ Yazma Bölümüne Geç →';
+    btnNext.className = 'btn btn-purple btn-sm';
+    btnNext.onclick = () => showScreen('writing');
   } else {
     btnNext.textContent = 'İleri →';
     btnNext.className = 'btn btn-pink btn-sm';
@@ -695,13 +705,27 @@ function updateCharCount() {
   document.getElementById('char-count').textContent = len + ' karakter';
 }
 
-async function sendWriting() {
+let writingText = '';
+
+function goToConfirmAfterWriting() {
   const text = document.getElementById('writing-input').value.trim();
   if (text.length < 20) {
     alert('Lütfen yazma ödevinizi tamamlayın (en az 20 karakter).');
     return;
   }
-  const btn = document.getElementById('btn-send-writing');
+  writingText = text;
+  // Confirm ekranında başta seçilen adı otomatik seç
+  const sel = document.getElementById('confirm-name-select');
+  sel.value = studentName;
+  showScreen('confirm');
+}
+
+async function confirmAndSubmit() {
+  const sel = document.getElementById('confirm-name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+
+  const btn = document.querySelector('#screen-confirm .btn-yellow');
   btn.disabled = true;
   btn.textContent = '⏳ Gönderiliyor…';
 
@@ -713,22 +737,13 @@ async function sendWriting() {
       student_name: studentName,
       lesson: LESSON_NAME,
       submit_date: tarih,
-      writing_text: text
+      writing_text: writingText
     });
-    const st = document.getElementById('send-status');
-    st.className = 'send-status send-ok';
-    st.textContent = '✅ Yazınız başarıyla gönderildi!';
-    st.style.display = 'block';
-    btn.textContent = '✅ Gönderildi';
-    // Now submit quiz
-    setTimeout(() => submitQuiz(), 1200);
+    submitQuiz();
   } catch(e) {
-    const st = document.getElementById('send-status');
-    st.className = 'send-status send-err';
-    st.textContent = '⚠️ Gönderilemedi. Lütfen profeye bildirin.';
-    st.style.display = 'block';
     btn.disabled = false;
-    btn.textContent = '📨 Tekrar Dene';
+    btn.textContent = '✔ Ödevi Teslim Et';
+    alert('Yazı gönderilemedi. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.');
   }
 }
 
