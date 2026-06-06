@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – H3 9-10. Ders – Pretérito Indefinido Çekim</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --c1:#fcedbe; --c2:#f6cf80; --c3:#f7c9d3; --c4:#ee84a8; --c5:#d35a75;
+  --dark:#4a2535; --mid:#8a5060; --white:#ffffff; --green:#6aab7a; --red:#d97070;
+  --radius:14px;
+}
+body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,#fff8f0 0%,#fff5f8 60%,#fffde8 100%); min-height:100vh; color:var(--dark); }
+
+.header { background:linear-gradient(135deg,var(--c4),var(--c5)); padding:18px 20px 14px; text-align:center; box-shadow:0 4px 18px rgba(238,132,168,0.4); position:relative; overflow:hidden; }
+.header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.1) 14px,rgba(255,255,255,0.1) 15px); }
+.header-tag { display:inline-block; background:rgba(255,255,255,0.35); border:1.5px solid rgba(255,255,255,0.55); border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; margin-bottom:8px; color:var(--white); position:relative; }
+.header h1 { font-size:clamp(16px,4vw,23px); font-weight:800; color:var(--white); position:relative; }
+.header-sub { font-size:12px; color:rgba(255,255,255,0.85); margin-top:4px; position:relative; }
+
+.screen { display:none; animation:fadeIn 0.3s ease; }
+.screen.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* NAME */
+.name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
+.name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
+.name-body p { font-size:13px; color:var(--mid); margin-bottom:20px; }
+.name-select { width:100%; padding:13px 16px; font-size:15px; background:var(--white); border:2px solid var(--c3); border-radius:var(--radius); color:var(--dark); appearance:none; cursor:pointer; margin-bottom:14px; font-family:inherit; }
+.name-select:focus { outline:none; border-color:var(--c2); box-shadow:0 0 0 3px rgba(246,207,128,0.25); }
+.info-box { background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); padding:14px 16px; margin-bottom:18px; text-align:left; font-size:13px; line-height:1.75; }
+.ib-row { display:flex; align-items:flex-start; gap:9px; margin-bottom:5px; }
+.ib-row:last-child { margin-bottom:0; }
+.ib-dot { width:8px; height:8px; border-radius:50%; background:var(--c2); flex-shrink:0; margin-top:5px; }
+.ib-hr { height:1px; background:var(--c3); margin:9px 0; }
+
+/* BUTTONS */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 24px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.btn-main { background:linear-gradient(135deg,var(--c4),var(--c5)); color:white; box-shadow:0 4px 12px rgba(211,90,117,0.35); }
+.btn-main:hover { transform:translateY(-2px); }
+.btn-gold { background:linear-gradient(135deg,var(--c2),#e8b040); color:var(--dark); box-shadow:0 4px 12px rgba(246,207,128,0.4); }
+.btn-gold:hover { transform:translateY(-2px); }
+.btn-outline { background:var(--white); border:2px solid var(--c3); color:var(--dark); }
+.btn-outline:hover { background:var(--c3); }
+.btn-sm { padding:9px 18px; font-size:13px; }
+.btn-full { width:100%; }
+.btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
+
+/* QUIZ */
+.quiz-wrap { max-width:640px; margin:0 auto; padding:16px; }
+.top-bar { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); padding:10px 16px; margin-bottom:12px; gap:8px; flex-wrap:wrap; }
+.top-student { font-size:12px; color:var(--mid); font-weight:600; }
+.top-scores { display:flex; gap:14px; }
+.score-item { display:flex; align-items:center; gap:5px; font-size:13px; font-weight:700; }
+.sc-correct { color:var(--green); } .sc-wrong { color:var(--red); }
+
+.prog-wrap { margin-bottom:14px; }
+.prog-bar { height:7px; background:var(--c3); border-radius:4px; overflow:hidden; }
+.prog-fill { height:100%; background:linear-gradient(90deg,var(--c4),var(--c2)); border-radius:4px; transition:width 0.4s ease; width:0%; }
+.prog-info { display:flex; justify-content:space-between; font-size:11px; color:var(--mid); margin-top:3px; }
+
+/* Warning box */
+.warning-box {
+  background:linear-gradient(135deg,rgba(238,132,168,0.12),rgba(246,207,128,0.12));
+  border:1.5px solid var(--c3);
+  border-left:4px solid var(--c4);
+  border-radius:0 var(--radius) var(--radius) 0;
+  padding:12px 16px;
+  margin-bottom:12px;
+  font-size:12.5px;
+  line-height:1.75;
+  color:var(--dark);
+}
+.warning-box .w-title { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--c5); margin-bottom:5px; }
+.warning-box code { background:rgba(238,132,168,0.2); border-radius:4px; padding:2px 7px; font-size:12px; font-family:monospace; color:var(--dark); font-weight:700; }
+
+/* Question card */
+.q-card { background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(238,132,168,0.12); margin-bottom:12px; }
+.q-head { padding:16px 18px 14px; border-bottom:1px solid var(--c3); display:flex; gap:12px; align-items:flex-start; }
+.q-num { background:linear-gradient(135deg,var(--c4),var(--c5)); color:white; width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; flex-shrink:0; margin-top:1px; }
+.q-content { flex:1; }
+.q-verb { font-size:20px; font-weight:800; color:var(--dark); margin-bottom:4px; font-style:italic; }
+.q-meaning { font-size:13px; color:var(--mid); }
+.q-task { font-size:13px; color:var(--c5); font-weight:600; margin-top:6px; }
+
+.fill-wrap { padding:14px 16px 16px; }
+.fill-input {
+  width:100%; padding:12px 16px; font-size:14px; font-family:'Courier New',monospace;
+  color:var(--dark); background:var(--c1); border:2px solid var(--c3);
+  border-radius:10px; transition:border-color 0.2s; letter-spacing:0.3px;
+}
+.fill-input:focus { outline:none; border-color:var(--c2); box-shadow:0 0 0 3px rgba(246,207,128,0.2); }
+.fill-input.correct-input { background:#edfaf2; border-color:#8dcca0; color:#276221; font-weight:700; }
+.fill-input.wrong-input   { background:#fdf0f0; border-color:#e8a0a0; color:#a04040; }
+.fill-feedback { margin-top:9px; font-size:13.5px; font-weight:600; display:none; padding:9px 14px; border-radius:8px; line-height:1.6; }
+.fill-feedback.ok  { display:block; background:#edfaf2; color:#276221; border:1px solid #8dcca0; }
+.fill-feedback.err { display:block; background:#fdf0f0; color:#a04040; border:1px solid #e8a0a0; }
+.fill-feedback .correct-ans { font-family:'Courier New',monospace; font-size:13px; }
+.check-btn-wrap { margin-top:10px; }
+
+/* Conjugation table (shown after answer) */
+.conj-table { width:100%; border-collapse:collapse; margin-top:12px; font-size:13px; }
+.conj-table th { background:linear-gradient(90deg,var(--c3),var(--c4)); color:var(--dark); padding:7px 12px; text-align:left; font-size:11px; letter-spacing:.8px; text-transform:uppercase; }
+.conj-table td { padding:7px 12px; border-bottom:1px solid var(--c3); }
+.conj-table tr:last-child td { border-bottom:none; }
+.conj-table tr:nth-child(even) td { background:rgba(247,201,211,0.15); }
+.conj-table .pronoun { color:var(--mid); font-size:12px; }
+.conj-table .form { font-family:'Courier New',monospace; font-weight:700; color:var(--dark); }
+
+/* NAV */
+.nav-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:4px; margin-bottom:16px; flex-wrap:wrap; }
+.nav-center { font-size:13px; color:var(--mid); font-weight:600; text-align:center; flex:1; }
+.finish-bar { position:sticky; bottom:0; background:rgba(255,248,250,0.97); backdrop-filter:blur(10px); border-top:1.5px solid var(--c3); padding:11px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; box-shadow:0 -4px 14px rgba(238,132,168,0.18); }
+.finish-info { font-size:12px; color:var(--mid); }
+.finish-info strong { color:var(--dark); font-size:14px; }
+
+/* CONFIRM */
+.confirm-wrap { max-width:440px; margin:0 auto; padding:40px 20px; text-align:center; }
+.confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
+.confirm-wrap p { font-size:14px; color:var(--mid); margin-bottom:20px; line-height:1.6; }
+.not-submitted-badge {
+  background:rgba(211,90,117,0.12); border:2px solid var(--c4);
+  border-radius:var(--radius); padding:14px 18px; margin-bottom:20px;
+  font-size:14px; font-weight:700; color:var(--c5);
+  display:flex; align-items:center; justify-content:center; gap:8px;
+}
+
+/* RESULT */
+.result-wrap { max-width:460px; margin:0 auto; padding:28px 20px; text-align:center; }
+.result-card { background:var(--white); border:1.5px solid var(--c3); border-radius:20px; padding:28px 22px; margin-bottom:14px; box-shadow:0 6px 24px rgba(238,132,168,0.2); }
+.result-emoji { font-size:50px; margin-bottom:10px; }
+.result-name { font-size:14px; color:var(--mid); margin-bottom:3px; }
+.result-title { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:16px; }
+.result-score-big { font-size:62px; font-weight:900; line-height:1; color:var(--dark); }
+.result-score-big span { font-size:24px; font-weight:400; color:var(--mid); }
+.result-pct { font-size:13px; color:var(--mid); margin-top:4px; margin-bottom:18px; }
+.result-stats { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+.rs-item { background:linear-gradient(135deg,var(--c3),var(--c1)); border:1px solid var(--c4); border-radius:12px; padding:11px 16px; min-width:76px; text-align:center; }
+.rs-item .rs-n { font-size:28px; font-weight:800; line-height:1; }
+.rs-item .rs-l { font-size:11px; color:var(--mid); margin-top:3px; }
+.rs-correct .rs-n { color:var(--green); } .rs-wrong .rs-n { color:var(--red); } .rs-blank .rs-n { color:#bbb; }
+.status-badge { display:inline-flex; align-items:center; gap:7px; padding:9px 20px; border-radius:50px; font-size:13px; font-weight:700; margin-bottom:14px; }
+.status-ok      { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4);  color:#3a7a4a; }
+.status-error   { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4);  color:#a04040; }
+.status-pending { background:rgba(246,207,128,0.2);  border:1.5px solid rgba(246,207,128,0.5);  color:#9a6000; }
+.result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">3. Hafta Ödevi &nbsp;|&nbsp; A2.1 (9-10. Ders)</div>
+  <h1>🇪🇸 A2.1 – H3 9-10. Ders – Pretérito Indefinido Çekim</h1>
+  <div class="header-sub">100 soru &nbsp;•&nbsp; Fiil Çekimi &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+
+<!-- EKRAN 1: AD SEÇİMİ -->
+<div class="screen active" id="screen-name">
+  <div class="name-body">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="name-select" id="name-select">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
+      <option>Ece Turhanoglu</option><option>Esra Ozkaya</option><option>Gulsah Gundogdu</option>
+      <option>Irem Savas</option><option>Kardelen Kuscu</option><option>Oznur Ozdogan Ozer</option>
+      <option>Sevde Ozdemir</option><option>Seyma Kocak</option><option>Zumeyra Dogan</option>
+    </select>
+    <div class="info-box">
+      <div class="ib-row"><div class="ib-dot"></div><span>100 fiili Pretérito Indefinido'da 6 özneye göre çekeceksiniz.</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span>Her soru <strong>1 puan</strong> — Toplam <strong>100 puan</strong></span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span>Cevaplarınızı <strong>virgül ve boşluk</strong> ile ayırın.</span></div>
+      <div class="ib-hr"></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--c5)"></div><span>Tildeler zorunludur — eksik tilde yanlış sayılır!</span></div>
+    </div>
+    <button class="btn btn-main btn-full" onclick="startQuiz()">▶ Başla</button>
+  </div>
+</div>
+
+<!-- EKRAN 2: QUIZ -->
+<div class="screen" id="screen-quiz">
+  <div class="quiz-wrap">
+    <div class="top-bar">
+      <div class="top-student" id="top-student">—</div>
+      <div class="top-scores">
+        <div class="score-item sc-correct">✓ <span id="sc-correct">0</span></div>
+        <div class="score-item sc-wrong">✗ <span id="sc-wrong">0</span></div>
+      </div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+      <div class="prog-info">
+        <span>Pretérito Indefinido — Fiil Çekimi</span>
+        <span>Soru <span id="prog-cur">1</span> / 100</span>
+      </div>
+    </div>
+
+    <!-- Sabit uyarı kutusu -->
+    <div class="warning-box">
+      <div class="w-title">⚠️ Cevap Formatı</div>
+      Özneleri kullanmayınız. Her çekimi <strong>virgül ve boşluk</strong> ile ayırın.<br>
+      <strong>Örnek:</strong> <code>hablo, hablas, habla, hablamos, habláis, hablan</code><br>
+      Tildelere dikkat ediniz — eksik tilde <strong>yanlış</strong> sayılır.
+    </div>
+
+    <div id="q-area"></div>
+
+    <div class="nav-bar">
+      <button class="btn btn-outline btn-sm" id="btn-prev" onclick="navigate(-1)">← Geri</button>
+      <div class="nav-center" id="nav-center">1 / 100</div>
+      <button class="btn btn-main btn-sm" id="btn-next" onclick="navigate(1)">İleri →</button>
+    </div>
+    <div class="finish-bar">
+      <div class="finish-info"><strong id="bb-answered">0</strong> / 100 yanıtlandı</div>
+      <button class="btn btn-gold" onclick="goToConfirm()">✔ Ödevi Teslim Et</button>
+    </div>
+  </div>
+</div>
+
+<!-- EKRAN 3: AD ONAY + TESLİM EDİLMEDİ -->
+<div class="screen" id="screen-confirm">
+  <div class="confirm-wrap">
+    <div style="font-size:48px;margin-bottom:12px">📋</div>
+    <h2>Ödevi Teslim Et</h2>
+    <div class="not-submitted-badge">⚠️ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ</div>
+    <p>Teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
+    <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
+      <option>Ece Turhanoglu</option><option>Esra Ozkaya</option><option>Gulsah Gundogdu</option>
+      <option>Irem Savas</option><option>Kardelen Kuscu</option><option>Oznur Ozdogan Ozer</option>
+      <option>Sevde Ozdemir</option><option>Seyma Kocak</option><option>Zumeyra Dogan</option>
+    </select>
+    <button class="btn btn-gold btn-full" onclick="confirmAndSubmit()">✔ Evet, Teslim Et</button>
+  </div>
+</div>
+
+<!-- EKRAN 4: SONUÇ -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap">
+    <div class="result-card">
+      <div class="result-emoji">🇪🇸</div>
+      <div class="result-name" id="res-name">—</div>
+      <div class="result-title">A2.1 · H3 – 9-10. Ders · Pretérito Indefinido</div>
+      <div class="result-score-big" id="res-score">0<span>/100</span></div>
+      <div class="result-pct" id="res-pct"></div>
+      <div class="result-stats">
+        <div class="rs-item rs-correct"><div class="rs-n" id="res-c">0</div><div class="rs-l">Doğru</div></div>
+        <div class="rs-item rs-wrong"><div class="rs-n" id="res-w">0</div><div class="rs-l">Yanlış</div></div>
+        <div class="rs-item rs-blank"><div class="rs-n" id="res-b">0</div><div class="rs-l">Boş</div></div>
+      </div>
+      <div class="status-badge status-pending" id="res-status">⏳ Kaydediliyor…</div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-outline" onclick="reviewAnswers()">🔍 Yanlışları Gör</button>
+      <button class="btn btn-outline" onclick="goToName()">🔄 Yeniden Başla</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
+const SPREADSHEET_ID  = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const SHEET_NAME      = 'A2.1';
+const TASK_COLUMN     = 'H3 – 9-10.Ders';
+
+const PRONOUNS = ['yo','tú','él/ella','nosotros','vosotros','ellos/ellas'];
+
+const QUESTIONS = [
+  {id:1,  verb:'llamar',    meaning:'aramak / seslenmek',   answer:'llamé, llamaste, llamó, llamamos, llamasteis, llamaron'},
+  {id:2,  verb:'ayudar',    meaning:'yardım etmek',         answer:'ayudé, ayudaste, ayudó, ayudamos, ayudasteis, ayudaron'},
+  {id:3,  verb:'esperar',   meaning:'beklemek / ummak',     answer:'esperé, esperaste, esperó, esperamos, esperasteis, esperaron'},
+  {id:4,  verb:'preguntar', meaning:'sormak',               answer:'pregunté, preguntaste, preguntó, preguntamos, preguntasteis, preguntaron'},
+  {id:5,  verb:'contestar', meaning:'cevaplamak',           answer:'contesté, contestaste, contestó, contestamos, contestasteis, contestaron'},
+  {id:6,  verb:'terminar',  meaning:'bitirmek',             answer:'terminé, terminaste, terminó, terminamos, terminasteis, terminaron'},
+  {id:7,  verb:'empezar',   meaning:'başlamak',             answer:'empecé, empezaste, empezó, empezamos, empezasteis, empezaron'},
+  {id:8,  verb:'usar',      meaning:'kullanmak',            answer:'usé, usaste, usó, usamos, usasteis, usaron'},
+  {id:9,  verb:'lavar',     meaning:'yıkamak',              answer:'lavé, lavaste, lavó, lavamos, lavasteis, lavaron'},
+  {id:10, verb:'caminar',   meaning:'yürümek',              answer:'caminé, caminaste, caminó, caminamos, caminasteis, caminaron'},
+  {id:11, verb:'cenar',     meaning:'akşam yemeği yemek',   answer:'cené, cenaste, cenó, cenamos, cenasteis, cenaron'},
+  {id:12, verb:'desayunar', meaning:'kahvaltı yapmak',      answer:'desayuné, desayunaste, desayunó, desayunamos, desayunasteis, desayunaron'},
+  {id:13, verb:'alquilar',  meaning:'kiralamak',            answer:'alquilé, alquilaste, alquiló, alquilamos, alquilasteis, alquilaron'},
+  {id:14, verb:'entrar',    meaning:'girmek',               answer:'entré, entraste, entró, entramos, entrasteis, entraron'},
+  {id:15, verb:'trabajar',  meaning:'çalışmak',             answer:'trabajé, trabajaste, trabajó, trabajamos, trabajasteis, trabajaron'},
+  {id:16, verb:'vender',    meaning:'satmak',               answer:'vendí, vendiste, vendió, vendimos, vendisteis, vendieron'},
+  {id:17, verb:'correr',    meaning:'koşmak',               answer:'corrí, corriste, corrió, corrimos, corristeis, corrieron'},
+  {id:18, verb:'leer',      meaning:'okumak',               answer:'leí, leíste, leyó, leímos, leísteis, leyeron'},
+  {id:19, verb:'subir',     meaning:'çıkmak / binmek',      answer:'subí, subiste, subió, subimos, subisteis, subieron'},
+  {id:20, verb:'decidir',   meaning:'karar vermek',         answer:'decidí, decidiste, decidió, decidimos, decidisteis, decidieron'},
+  {id:21, verb:'rehacer',   meaning:'yeniden yapmak',       answer:'rehice, rehiciste, rehizo, rehicimos, rehicisteis, rehicieron'},
+  {id:22, verb:'descomponer',meaning:'bozmak / parçalarına ayırmak',answer:'descompuse, descompusiste, descompuso, descompusimos, descompusisteis, descompusieron'},
+  {id:23, verb:'anteponer', meaning:'öne koymak',           answer:'antepuse, antepusiste, antepuso, antepusimos, antepusisteis, antepusieron'},
+  {id:24, verb:'posponer',  meaning:'ertelemek',            answer:'pospuse, pospusiste, pospuso, pospusimos, pospusisteis, pospusieron'},
+  {id:25, verb:'recomponer',meaning:'yeniden düzenlemek',   answer:'recompuse, recompusiste, recompuso, recompusimos, recompusisteis, recompusieron'},
+  {id:26, verb:'entreponer',meaning:'araya koymak',         answer:'entrepuse, entrepusiste, entrepuso, entrepusimos, entrepusisteis, entrepusieron'},
+  {id:27, verb:'prever',    meaning:'önceden görmek / öngörmek',answer:'preví, previste, previó, previmos, previsteis, previeron'},
+  {id:28, verb:'convenir',  meaning:'uygun olmak / anlaşmak',answer:'convine, conviniste, convino, convinimos, convinisteis, convinieron'},
+  {id:29, verb:'intervenir',meaning:'müdahale etmek',       answer:'intervine, interviniste, intervino, intervinimos, intervinisteis, intervinieron'},
+  {id:30, verb:'prevenir',  meaning:'önlemek',              answer:'previne, previniste, previno, previnimos, previnisteis, previnieron'},
+  {id:31, verb:'provenir',  meaning:'kaynaklanmak',         answer:'provine, proviniste, provino, provinimos, provinisteis, provinieron'},
+  {id:32, verb:'sobrevenir',meaning:'aniden ortaya çıkmak', answer:'sobrevine, sobreviniste, sobrevino, sobrevinimos, sobrevinisteis, sobrevinieron'},
+  {id:33, verb:'mantener',  meaning:'korumak / sürdürmek',  answer:'mantuve, mantuviste, mantuvo, mantuvimos, mantuvisteis, mantuvieron'},
+  {id:34, verb:'abstenerse',meaning:'kaçınmak',             answer:'me abstuve, te abstuviste, se abstuvo, nos abstuvimos, os abstuvisteis, se abstuvieron'},
+  {id:35, verb:'atenerse',  meaning:'bağlı kalmak',         answer:'me atuve, te atuviste, se atuvo, nos atuvimos, os atuvisteis, se atuvieron'},
+  {id:36, verb:'detenerse', meaning:'durmak',               answer:'me detuve, te detuviste, se detuvo, nos detuvimos, os detuvisteis, se detuvieron'},
+  {id:37, verb:'entretener',meaning:'eğlendirmek / oyalamak',answer:'entretuve, entretuviste, entretuvo, entretuvimos, entretuvisteis, entretuvieron'},
+  {id:38, verb:'obtener',   meaning:'elde etmek',           answer:'obtuve, obtuviste, obtuvo, obtuvimos, obtuvisteis, obtuvieron'},
+  {id:39, verb:'sostener',  meaning:'tutmak / savunmak',    answer:'sostuve, sostuviste, sostuvo, sostuvimos, sostuvisteis, sostuvieron'},
+  {id:40, verb:'retener',   meaning:'tutmak / alıkoymak',   answer:'retuve, retuviste, retuvo, retuvimos, retuvisteis, retuvieron'},
+  {id:41, verb:'dar',       meaning:'vermek',               answer:'di, diste, dio, dimos, disteis, dieron'},
+  {id:42, verb:'ser',       meaning:'olmak',                answer:'fui, fuiste, fue, fuimos, fuisteis, fueron'},
+  {id:43, verb:'ir',        meaning:'gitmek',               answer:'fui, fuiste, fue, fuimos, fuisteis, fueron'},
+  {id:44, verb:'advertir',  meaning:'uyarmak / fark etmek', answer:'advertí, advertiste, advirtió, advertimos, advertisteis, advirtieron'},
+  {id:45, verb:'asentir',   meaning:'onaylamak',            answer:'asentí, asentiste, asintió, asentimos, asentisteis, asintieron'},
+  {id:46, verb:'consentir', meaning:'izin vermek / razı olmak',answer:'consentí, consentiste, consintió, consentimos, consentisteis, consintieron'},
+  {id:47, verb:'convertir', meaning:'dönüştürmek',          answer:'convertí, convertiste, convirtió, convertimos, convertisteis, convirtieron'},
+  {id:48, verb:'hervir',    meaning:'kaynamak',             answer:'herví, herviste, hirvió, hervimos, hervisteis, hirvieron'},
+  {id:49, verb:'invertir',  meaning:'yatırım yapmak / ters çevirmek',answer:'invertí, invertiste, invirtió, invertimos, invertisteis, invirtieron'},
+  {id:50, verb:'mentir',    meaning:'yalan söylemek',       answer:'mentí, mentiste, mintió, mentimos, mentisteis, mintieron'},
+  {id:51, verb:'sugerir',   meaning:'önermek',              answer:'sugerí, sugeriste, sugirió, sugerimos, sugeristeis, sugirieron'},
+  {id:52, verb:'referir',   meaning:'aktarmak / bahsetmek', answer:'referí, referiste, refirió, referimos, referisteis, refirieron'},
+  {id:53, verb:'conferir',  meaning:'vermek / bahşetmek',   answer:'conferí, conferiste, confirió, conferimos, conferisteis, confirieron'},
+  {id:54, verb:'diferir',   meaning:'farklı olmak / ertelemek',answer:'diferí, diferiste, difirió, diferimos, diferisteis, difirieron'},
+  {id:55, verb:'inferir',   meaning:'sonuç çıkarmak',       answer:'inferí, inferiste, infirió, inferimos, inferisteis, infirieron'},
+  {id:56, verb:'perseguir', meaning:'takip etmek / kovalamak',answer:'perseguí, perseguiste, persiguió, perseguimos, perseguisteis, persiguieron'},
+  {id:57, verb:'proseguir', meaning:'devam etmek',          answer:'proseguí, proseguiste, prosiguió, proseguimos, proseguisteis, prosiguieron'},
+  {id:58, verb:'requerir',  meaning:'gerektirmek',          answer:'requerí, requeriste, requirió, requerimos, requeristeis, requirieron'},
+  {id:59, verb:'sentir',    meaning:'hissetmek',            answer:'sentí, sentiste, sintió, sentimos, sentisteis, sintieron'},
+  {id:60, verb:'dormir',    meaning:'uyumak',               answer:'dormí, dormiste, durmió, dormimos, dormisteis, durmieron'},
+  {id:61, verb:'morir',     meaning:'ölmek',                answer:'morí, moriste, murió, morimos, moristeis, murieron'},
+  {id:62, verb:'pedir',     meaning:'istemek / rica etmek', answer:'pedí, pediste, pidió, pedimos, pedisteis, pidieron'},
+  {id:63, verb:'seguir',    meaning:'takip etmek / devam etmek',answer:'seguí, seguiste, siguió, seguimos, seguisteis, siguieron'},
+  {id:64, verb:'recaer',    meaning:'tekrar düşmek / nüksetmek',answer:'recaí, recaíste, recayó, recaímos, recaísteis, recayeron'},
+  {id:65, verb:'decaer',    meaning:'zayıflamak / düşüşe geçmek',answer:'decaí, decaíste, decayó, decaímos, decaísteis, decayeron'},
+  {id:66, verb:'sobreseer', meaning:'dava düşürmek',        answer:'sobreseí, sobreseíste, sobreseyó, sobreseímos, sobreseísteis, sobreseyeron'},
+  {id:67, verb:'releer',    meaning:'yeniden okumak',       answer:'releí, releíste, releyó, releímos, releísteis, releyeron'},
+  {id:68, verb:'poseer',    meaning:'sahip olmak',          answer:'poseí, poseíste, poseyó, poseímos, poseísteis, poseyeron'},
+  {id:69, verb:'atraer',    meaning:'çekmek / cezbetmek',   answer:'atraje, atrajiste, atrajo, atrajimos, atrajisteis, atrajeron'},
+  {id:70, verb:'contraer',  meaning:'kasılmak / üstlenmek', answer:'contraje, contrajiste, contrajo, contrajimos, contrajisteis, contrajeron'},
+  {id:71, verb:'distraer',  meaning:'dikkatini dağıtmak',   answer:'distraje, distrajiste, distrajo, distrajimos, distrajisteis, distrajeron'},
+  {id:72, verb:'retraer',   meaning:'geri çekmek',          answer:'retraje, retrajiste, retrajo, retrajimos, retrajisteis, retrajeron'},
+  {id:73, verb:'sustraer',  meaning:'çıkarmak / çalmak',    answer:'sustraje, sustrajiste, sustrajo, sustrajimos, sustrajisteis, sustrajeron'},
+  {id:74, verb:'contribuir',meaning:'katkıda bulunmak',     answer:'contribuí, contribuiste, contribuyó, contribuimos, contribuisteis, contribuyeron'},
+  {id:75, verb:'atribuir',  meaning:'atfetmek',             answer:'atribuí, atribuiste, atribuyó, atribuimos, atribuisteis, atribuyeron'},
+  {id:76, verb:'distribuir',meaning:'dağıtmak',             answer:'distribuí, distribuiste, distribuyó, distribuimos, distribuisteis, distribuyeron'},
+  {id:77, verb:'retribuir', meaning:'karşılığını vermek',   answer:'retribuí, retribuiste, retribuyó, retribuimos, retribuisteis, retribuyeron'},
+  {id:78, verb:'fluir',     meaning:'akmak',                answer:'fluí, fluiste, fluyó, fluimos, fluisteis, fluyeron'},
+  {id:79, verb:'confluir',  meaning:'birleşmek',            answer:'confluí, confluiste, confluyó, confluimos, confluisteis, confluyeron'},
+  {id:80, verb:'obstruir',  meaning:'engellemek',           answer:'obstruí, obstruiste, obstruyó, obstruimos, obstruisteis, obstruyeron'},
+  {id:81, verb:'instruir',  meaning:'eğitmek / bilgilendirmek',answer:'instruí, instruiste, instruyó, instruimos, instruisteis, instruyeron'},
+  {id:82, verb:'disminuir', meaning:'azaltmak',             answer:'disminuí, disminuiste, disminuyó, disminuimos, disminuisteis, disminuyeron'},
+  {id:83, verb:'excluir',   meaning:'hariç tutmak',         answer:'excluí, excluiste, excluyó, excluimos, excluisteis, excluyeron'},
+  {id:84, verb:'acercarse', meaning:'yaklaşmak',            answer:'me acerqué, te acercaste, se acercó, nos acercamos, os acercasteis, se acercaron'},
+  {id:85, verb:'arrancar',  meaning:'koparmak / çalıştırmak',answer:'arranqué, arrancaste, arrancó, arrancamos, arrancasteis, arrancaron'},
+  {id:86, verb:'brincar',   meaning:'zıplamak',             answer:'brinqué, brincaste, brincó, brincamos, brincasteis, brincaron'},
+  {id:87, verb:'colocar',   meaning:'yerleştirmek',         answer:'coloqué, colocaste, colocó, colocamos, colocasteis, colocaron'},
+  {id:88, verb:'comunicar', meaning:'iletişim kurmak',      answer:'comuniqué, comunicaste, comunicó, comunicamos, comunicasteis, comunicaron'},
+  {id:89, verb:'dedicar',   meaning:'adamak / ayırmak',     answer:'dediqué, dedicaste, dedicó, dedicamos, dedicasteis, dedicaron'},
+  {id:90, verb:'equivocar', meaning:'yanılmak',             answer:'equivoqué, equivocaste, equivocó, equivocamos, equivocasteis, equivocaron'},
+  {id:91, verb:'fabricar',  meaning:'üretmek',              answer:'fabriqué, fabricaste, fabricó, fabricamos, fabricasteis, fabricaron'},
+  {id:92, verb:'indicar',   meaning:'belirtmek',            answer:'indiqué, indicaste, indicó, indicamos, indicasteis, indicaron'},
+  {id:93, verb:'justificar',meaning:'haklı çıkarmak',       answer:'justifiqué, justificaste, justificó, justificamos, justificasteis, justificaron'},
+  {id:94, verb:'castigar',  meaning:'cezalandırmak',        answer:'castigué, castigaste, castigó, castigamos, castigasteis, castigaron'},
+  {id:95, verb:'colgar',    meaning:'asmak',                answer:'colgué, colgaste, colgó, colgamos, colgasteis, colgaron'},
+  {id:96, verb:'investigar',meaning:'araştırmak',           answer:'investigué, investigaste, investigó, investigamos, investigasteis, investigaron'},
+  {id:97, verb:'obligar',   meaning:'zorlamak',             answer:'obligué, obligaste, obligó, obligamos, obligasteis, obligaron'},
+  {id:98, verb:'pegar',     meaning:'yapıştırmak / vurmak', answer:'pegué, pegaste, pegó, pegamos, pegasteis, pegaron'},
+  {id:99, verb:'regar',     meaning:'sulamak',              answer:'regué, regaste, regó, regamos, regasteis, regaron'},
+  {id:100,verb:'rogar',     meaning:'rica etmek / yalvarmak',answer:'rogué, rogaste, rogó, rogamos, rogasteis, rogaron'},
+];
+
+// ── STATE ──
+let studentName = '';
+let answers = {};   // { id: 'user text' }
+let currentQ = 0;
+let submitted = false;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function startQuiz() {
+  const sel = document.getElementById('name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  answers = {}; submitted = false; currentQ = 0;
+  document.getElementById('top-student').textContent = studentName;
+  showScreen('quiz');
+  renderQuestion();
+}
+
+function normalizeAnswer(s) {
+  return s.trim().replace(/\s+/g, ' ');
+}
+
+function checkAnswer(qId) {
+  const q = QUESTIONS.find(x => x.id === qId);
+  const inp = document.getElementById('fill-' + qId);
+  if (!inp || !inp.value.trim()) { alert('Lütfen cevabınızı yazın.'); return; }
+  answers[qId] = normalizeAnswer(inp.value);
+  renderQuestion();
+}
+
+function isCorrect(qId) {
+  const q = QUESTIONS.find(x => x.id === qId);
+  const a = answers[qId];
+  if (!a) return false;
+  return normalizeAnswer(a) === normalizeAnswer(q.answer);
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const answered = answers[q.id] !== undefined;
+  const correct  = answered && isCorrect(q.id);
+  const userVal  = answers[q.id] || '';
+
+  // Progress
+  const totalAnswered = Object.keys(answers).length;
+  document.getElementById('prog-fill').style.width = (totalAnswered / 100 * 100) + '%';
+  document.getElementById('prog-cur').textContent = currentQ + 1;
+  document.getElementById('nav-center').textContent = (currentQ + 1) + ' / 100';
+  document.getElementById('bb-answered').textContent = totalAnswered;
+  document.getElementById('btn-prev').disabled = (currentQ === 0);
+
+  const isLast = (currentQ === 99);
+  const btnNext = document.getElementById('btn-next');
+  if (isLast) {
+    btnNext.textContent = '✔ Teslim Et';
+    btnNext.className = 'btn btn-gold btn-sm';
+    btnNext.onclick = goToConfirm;
+  } else {
+    btnNext.textContent = 'İleri →';
+    btnNext.className = 'btn btn-main btn-sm';
+    btnNext.onclick = () => navigate(1);
+  }
+
+  // Build conjugation table from answer
+  const forms = q.answer.split(', ');
+  const tableRows = PRONOUNS.map((p, i) => `
+    <tr>
+      <td class="pronoun">${p}</td>
+      <td class="form">${forms[i] || '—'}</td>
+    </tr>`).join('');
+
+  const inputCls = !answered ? 'fill-input' : (correct ? 'fill-input correct-input' : 'fill-input wrong-input');
+
+  document.getElementById('q-area').innerHTML = `
+    <div class="q-card">
+      <div class="q-head">
+        <div class="q-num">${q.id}</div>
+        <div class="q-content">
+          <div class="q-verb">${q.verb}</div>
+          <div class="q-meaning">${q.meaning}</div>
+          <div class="q-task">Pretérito Indefinido — 6 özneye göre çekin</div>
+        </div>
+      </div>
+      <div class="fill-wrap">
+        <input type="text" class="${inputCls}" id="fill-${q.id}"
+          value="${answered ? userVal : ''}"
+          placeholder="çekim1, çekim2, çekim3, çekim4, çekim5, çekim6"
+          ${answered ? 'disabled' : ''}
+          onkeydown="if(event.key==='Enter') checkAnswer(${q.id})">
+
+        ${!answered ? `
+          <div class="check-btn-wrap">
+            <button class="btn btn-gold btn-sm" onclick="checkAnswer(${q.id})">✔ Kontrol Et</button>
+          </div>` : ''}
+
+        ${answered && correct ? `
+          <div class="fill-feedback ok">✅ Doğru! Tebrikler!</div>` : ''}
+
+        ${answered && !correct ? `
+          <div class="fill-feedback err">
+            😔 Yanlış yazdın!<br>
+            <span style="font-size:12px;opacity:.8">Doğru cevap:</span><br>
+            <span class="correct-ans">${q.answer}</span>
+          </div>` : ''}
+
+        ${answered ? `
+          <table class="conj-table" style="margin-top:14px">
+            <thead><tr><th>Özne</th><th>Çekim</th></tr></thead>
+            <tbody>${tableRows}</tbody>
+          </table>` : ''}
+      </div>
+    </div>`;
+
+  // Update score counters
+  let correct2 = 0, wrong = 0;
+  Object.keys(answers).forEach(id => {
+    if (isCorrect(parseInt(id))) correct2++; else wrong++;
+  });
+  document.getElementById('sc-correct').textContent = correct2;
+  document.getElementById('sc-wrong').textContent   = wrong;
+}
+
+function navigate(dir) {
+  currentQ = Math.max(0, Math.min(99, currentQ + dir));
+  renderQuestion();
+}
+
+function goToConfirm() {
+  document.getElementById('confirm-name-select').value = studentName;
+  showScreen('confirm');
+}
+
+function confirmAndSubmit() {
+  const sel = document.getElementById('confirm-name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  const btn = document.querySelector('#screen-confirm .btn-gold');
+  btn.disabled = true; btn.textContent = '⏳ Kaydediliyor…';
+  submitQuiz();
+}
+
+function submitQuiz() {
+  submitted = true;
+  let correctCount = 0, wrongCount = 0;
+  QUESTIONS.forEach(q => {
+    const a = answers[q.id];
+    if (a === undefined) return;
+    if (isCorrect(q.id)) correctCount++; else wrongCount++;
+  });
+  const blank = QUESTIONS.filter(q => answers[q.id] === undefined).length;
+  const score = correctCount;
+
+  document.getElementById('res-name').textContent = studentName;
+  document.getElementById('res-score').innerHTML  = score + '<span>/100</span>';
+  document.getElementById('res-pct').textContent  = '%' + score + ' başarı';
+  document.getElementById('res-c').textContent    = correctCount;
+  document.getElementById('res-w').textContent    = wrongCount;
+  document.getElementById('res-b').textContent    = blank;
+  showScreen('result');
+  sendToSheets(studentName, score, correctCount, wrongCount, blank);
+}
+
+async function sendToSheets(name, score, correct, wrong, blank) {
+  const el = document.getElementById('res-status');
+  try {
+    const now = new Date();
+    const dd  = String(now.getDate()).padStart(2,'0');
+    const mm  = String(now.getMonth()+1).padStart(2,'0');
+    const yyyy= now.getFullYear();
+    const hh  = String(now.getHours()).padStart(2,'0');
+    const min = String(now.getMinutes()).padStart(2,'0');
+    const ss2 = String(now.getSeconds()).padStart(2,'0');
+    const formatted = '✅ '+score+'/100\n✓'+correct+' ✗'+wrong+'\n'+dd+'.'+mm+'.'+yyyy+'\n'+hh+':'+min+':'+ss2;
+    await fetch(APPS_SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ spreadsheetId:SPREADSHEET_ID, sheetName:SHEET_NAME, studentName:name, taskColumn:TASK_COLUMN, score, correct, wrong, blank, formatted })
+    });
+    el.className = 'status-badge status-ok';
+    el.textContent = '✅ Ödev başarıyla kaydedildi!';
+  } catch(e) {
+    el.className = 'status-badge status-error';
+    el.textContent = '⚠️ Kaydedilemedi — Profe\'ye bildirin';
+  }
+}
+
+function reviewAnswers() {
+  showScreen('quiz');
+  const firstWrong = QUESTIONS.findIndex(q => answers[q.id] !== undefined && !isCorrect(q.id));
+  currentQ = firstWrong >= 0 ? firstWrong : 0;
+  renderQuestion();
+}
+
+function goToName() {
+  answers = {}; submitted = false; currentQ = 0;
+  document.getElementById('name-select').value = '';
+  showScreen('name');
+}
+</script>
+</body>
+</html>
