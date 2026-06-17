@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – Ders İçi Etkinlik – Un fin de semana en el pueblo de mi abuela</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --pink1:#F6C4C3; --pink2:#F8DBD8; --pink3:#FAAED2;
+  --yellow:#F8CE5B; --cream:#FFFFE0;
+  --dark:#5a3a3a; --mid:#8a6060; --white:#ffffff;
+  --green:#6aab7a; --red:#d97070; --radius:12px;
+}
+body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,#fff5f5 0%,#fffde8 60%,#fff0f8 100%); min-height:100vh; color:var(--dark); }
+
+/* HEADER */
+.header { background:linear-gradient(135deg,var(--pink1),var(--pink3)); padding:16px 20px 12px; text-align:center; box-shadow:0 4px 18px rgba(246,196,195,0.45); position:relative; overflow:hidden; }
+.header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.13) 14px,rgba(255,255,255,0.13) 15px); }
+.header-tag { display:inline-block; background:rgba(255,255,255,0.4); border:1.5px solid rgba(255,255,255,0.6); border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; margin-bottom:7px; color:var(--dark); position:relative; }
+.header h1 { font-size:clamp(15px,3.5vw,21px); font-weight:800; color:var(--dark); position:relative; }
+.header-sub { font-size:12px; color:var(--mid); margin-top:4px; position:relative; }
+
+/* MAIN LAYOUT */
+.main { max-width:1100px; margin:0 auto; padding:18px 12px 40px; }
+
+/* METIN */
+.metin-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 16px rgba(246,196,195,0.18); margin-bottom:20px; }
+.metin-head { background:linear-gradient(90deg,var(--pink1),var(--pink3)); padding:12px 20px; display:flex; align-items:center; gap:10px; }
+.metin-head .mh-badge { background:rgba(255,255,255,0.35); border:1px solid rgba(255,255,255,0.5); border-radius:15px; font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; padding:2px 10px; color:var(--dark); }
+.metin-head .mh-title { font-size:16px; font-weight:800; color:var(--dark); }
+.metin-body { padding:20px 24px; font-size:14px; line-height:1.95; color:var(--dark); column-count:2; column-gap:28px; column-rule:1px solid var(--pink2); }
+@media(max-width:680px) { .metin-body { column-count:1; } }
+.metin-body p { margin-bottom:10px; text-align:justify; }
+.metin-body p:last-child { margin-bottom:0; }
+
+/* SCORE BAR */
+.score-bar { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:10px 18px; margin-bottom:16px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; box-shadow:0 2px 8px rgba(246,196,195,0.15); }
+.score-bar .sb-title { font-size:13px; font-weight:700; color:var(--dark); }
+.score-bar .sb-scores { display:flex; gap:16px; }
+.sb-item { display:flex; align-items:center; gap:5px; font-size:13px; font-weight:700; }
+.sb-correct { color:var(--green); } .sb-wrong { color:var(--red); }
+.prog-bar-wrap { height:6px; background:var(--pink2); border-radius:3px; overflow:hidden; flex:1; min-width:80px; }
+.prog-bar-fill { height:100%; background:linear-gradient(90deg,var(--pink1),var(--yellow)); border-radius:3px; transition:width 0.4s; width:0%; }
+
+/* QUESTIONS GRID */
+.questions-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:760px) { .questions-grid { grid-template-columns:1fr; } }
+
+/* QUESTION CARD */
+.q-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; box-shadow:0 2px 10px rgba(246,196,195,0.15); transition:box-shadow 0.2s; }
+.q-card.answered { border-color:rgba(246,196,195,0.5); }
+.q-head { padding:12px 14px 10px; border-bottom:1px solid var(--pink2); display:flex; gap:10px; align-items:flex-start; }
+.q-num { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); width:27px; height:27px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:800; flex-shrink:0; margin-top:1px; }
+.q-text { font-size:13.5px; line-height:1.55; flex:1; color:var(--dark); font-weight:500; }
+.q-opts { padding:10px 12px 12px; display:grid; gap:7px; }
+.opt-btn { display:flex; align-items:flex-start; gap:8px; padding:9px 12px; background:#fdf8fb; border:1.5px solid var(--pink2); border-radius:8px; color:var(--dark); font-size:13px; line-height:1.45; cursor:pointer; text-align:left; width:100%; transition:all 0.17s; font-family:inherit; }
+.opt-btn:hover:not(:disabled) { background:var(--cream); border-color:var(--yellow); transform:translateX(3px); }
+.opt-btn:disabled { cursor:default; }
+.opt-letter { background:var(--pink2); color:var(--dark); border-radius:5px; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:800; flex-shrink:0; margin-top:1px; }
+.opt-btn.correct { background:#edfaf2; border-color:#8dcca0; }
+.opt-btn.correct .opt-letter { background:var(--green); color:white; }
+.opt-btn.wrong   { background:#fdf0f0; border-color:#e8a0a0; }
+.opt-btn.wrong   .opt-letter { background:var(--red); color:white; }
+
+/* EXPLANATION */
+.explanation { display:none; margin:0 12px 12px; background:var(--cream); border-left:3px solid var(--yellow); border-radius:0 7px 7px 0; padding:9px 13px; font-size:12.5px; line-height:1.7; color:var(--mid); }
+.explanation.show { display:block; }
+.exp-label { font-size:9.5px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a7000; margin-bottom:3px; }
+
+/* RESULT */
+.result-banner { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:18px 22px; margin-top:20px; text-align:center; box-shadow:0 3px 14px rgba(246,196,195,0.2); display:none; }
+.result-banner.show { display:block; }
+.result-banner .rb-score { font-size:52px; font-weight:900; color:var(--dark); line-height:1; }
+.result-banner .rb-score span { font-size:22px; font-weight:400; color:var(--mid); }
+.result-banner .rb-label { font-size:13px; color:var(--mid); margin-top:4px; margin-bottom:14px; }
+.result-banner .rb-stats { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+.rb-stat { background:linear-gradient(135deg,var(--pink2),var(--cream)); border:1px solid var(--pink1); border-radius:10px; padding:10px 16px; min-width:72px; text-align:center; }
+.rb-stat .rs-n { font-size:26px; font-weight:800; line-height:1; }
+.rb-stat .rs-l { font-size:11px; color:var(--mid); margin-top:2px; }
+.rs-correct .rs-n { color:var(--green); } .rs-wrong .rs-n { color:var(--red); } .rs-blank .rs-n { color:#bbb; }
+
+/* RESET BTN */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:11px 22px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; margin-top:14px; }
+.btn-pink { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); }
+.btn-pink:hover { transform:translateY(-2px); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">Ders İçi Etkinlik &nbsp;|&nbsp; A2.1</div>
+  <h1>🇪🇸 Un fin de semana en el pueblo de mi abuela</h1>
+  <div class="header-sub">Okuma Anlama &nbsp;•&nbsp; 20 Soru &nbsp;•&nbsp; Pretérito Indefinido &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+
+<div class="main">
+
+  <!-- METİN -->
+  <div class="metin-card">
+    <div class="metin-head">
+      <span class="mh-badge">📖 Texto</span>
+      <span class="mh-title">Un fin de semana en el pueblo de mi abuela</span>
+    </div>
+    <div class="metin-body">
+      <p>El mes pasado, Marcos viajó al pueblo de su abuela con su hermana Clara. Los dos salieron de la ciudad el sábado por la mañana porque quisieron pasar un fin de semana tranquilo lejos del ruido, del tráfico y del trabajo. Marcos estuvo muy ocupado durante las últimas semanas y Clara también necesitó descansar un poco. Por eso, decidieron visitar a su abuela, que vivió muchos años en un pueblo pequeño cerca de las montañas.</p>
+      <p>El viaje empezó temprano. Marcos preparó una mochila con ropa cómoda, una chaqueta, un libro y algunos regalos para su abuela. Clara llevó una caja de galletas y unas flores. Antes de salir, desayunaron rápido en casa y después tomaron un autobús desde la estación central. El autobús salió a las ocho y media y el viaje duró casi tres horas.</p>
+      <p>Durante el camino, Marcos miró por la ventana y vio muchos campos verdes, casas pequeñas y animales cerca de la carretera. Clara escuchó música un rato, pero después guardó el teléfono porque quiso disfrutar del paisaje. Los dos hablaron de su infancia y recordaron los veranos que pasaron en el pueblo cuando eran niños. Marcos se rió mucho porque recordó una vez en la que se cayó al río mientras jugaba con sus primos.</p>
+      <p>Cuando llegaron al pueblo, su abuela Carmen los esperó en la parada del autobús. Llevó un vestido azul y una bolsa pequeña. Al verlos, sonrió mucho y los abrazó con cariño. Marcos le dio los regalos y Clara le entregó las flores. La abuela se emocionó un poco porque no vio a sus nietos durante varios meses.</p>
+      <p>Después, caminaron juntos hasta la casa. La casa de la abuela estaba al final de una calle tranquila, cerca de una plaza pequeña. Tenía paredes blancas, ventanas verdes y muchas macetas en la entrada. Cuando entraron, Marcos sintió el olor de la comida. Su abuela preparó sopa, pollo con verduras y una tarta de manzana. Clara dijo que la casa olió igual que en su infancia.</p>
+      <p>Al mediodía, comieron los tres en la cocina. La comida estuvo deliciosa y todos hablaron mucho. La abuela contó historias antiguas sobre el pueblo, sobre sus vecinos y sobre la familia. Marcos escuchó con atención porque quiso conocer mejor la historia de sus padres y abuelos. Clara hizo algunas preguntas y escribió varios nombres en una libreta para no olvidarlos.</p>
+      <p>Después de comer, salieron a caminar por el pueblo. Primero visitaron la plaza principal. Allí vieron una fuente antigua, algunos bancos y una pequeña iglesia. Cerca de la plaza, encontraron a un vecino de la abuela. El hombre saludó a Carmen y habló con ellos unos minutos. Les contó que el pueblo cambió mucho en los últimos años porque muchos jóvenes se fueron a vivir a la ciudad.</p>
+      <p>Luego, fueron al mercado local. Aunque era pequeño, tuvo muchos productos frescos: frutas, verduras, queso, pan y miel. Clara compró un frasco de miel para llevar a casa y Marcos compró queso para sus padres. La abuela no compró nada porque dijo que ya tenía todo lo necesario en casa. Sin embargo, saludó a casi todas las personas del mercado.</p>
+      <p>Más tarde, caminaron hasta el río. El camino fue un poco largo, pero muy bonito. Pasaron por un puente de madera, vieron árboles altos y escucharon el sonido del agua. Marcos quiso hacer fotos, así que sacó su cámara y fotografió el paisaje. Clara se sentó en una piedra grande y descansó unos minutos. La abuela les explicó que, cuando era joven, fue muchas veces a ese río con sus hermanos.</p>
+      <p>A las cinco de la tarde, volvieron a la casa porque empezó a hacer frío. La abuela preparó chocolate caliente y todos se sentaron en el salón. Marcos miró unas fotos antiguas que estaban en una caja. En una foto vio a su padre cuando era niño, con una bicicleta roja. Clara encontró una foto de su abuela cuando tenía veinte años y dijo que estaba muy elegante.</p>
+      <p>Por la noche, cenaron algo sencillo: pan, queso, tomate y una tortilla. Después de cenar, no vieron la televisión. En lugar de eso, hablaron durante mucho tiempo. La abuela contó cómo conoció a su esposo y cómo fue su primera casa. Marcos y Clara escucharon en silencio porque la historia fue muy bonita. Antes de dormir, Clara dijo que ese día fue más especial de lo que imaginó.</p>
+      <p>El domingo por la mañana, Marcos se despertó temprano y salió al jardín. El aire estaba limpio y los pájaros cantaron cerca de los árboles. Clara también salió después de unos minutos. Los dos ayudaron a su abuela a regar las plantas y a recoger algunas manzanas. Luego, prepararon juntos el desayuno. Esta vez, Marcos hizo café y Clara puso pan, mantequilla y fruta en la mesa.</p>
+      <p>Después del desayuno, ordenaron un poco la casa. Marcos limpió la mesa, Clara lavó algunos platos y la abuela guardó las cosas en la cocina. Aunque la abuela dijo que no era necesario ayudar, los dos quisieron hacer algo por ella. Después, se sentaron otra vez en el jardín y hablaron de la próxima visita.</p>
+      <p>Al mediodía, llegó la hora de volver a la ciudad. La abuela preparó una bolsa con pan, manzanas y un poco de queso para el viaje. En la parada del autobús, los abrazó otra vez y les pidió que volvieran pronto. Clara prometió llamarla más a menudo y Marcos dijo que quería regresar el mes siguiente.</p>
+      <p>Cuando el autobús salió del pueblo, Marcos miró por la ventana y se sintió un poco triste, pero también tranquilo. Comprendió que aquel fin de semana no fue solo una visita familiar. Fue una oportunidad para descansar, escuchar historias, recordar la infancia y valorar el tiempo con su abuela. Para Marcos y Clara, ese viaje fue sencillo, pero muy importante.</p>
+    </div>
+  </div>
+
+  <!-- SCORE BAR -->
+  <div class="score-bar">
+    <div class="sb-title">📝 Sorular — 20 soru · 5 puan/soru · 100 puan</div>
+    <div class="prog-bar-wrap"><div class="prog-bar-fill" id="prog-fill"></div></div>
+    <div class="sb-scores">
+      <div class="sb-item sb-correct">✓ <span id="sc-correct">0</span></div>
+      <div class="sb-item sb-wrong">✗ <span id="sc-wrong">0</span></div>
+      <div class="sb-item" style="color:var(--mid)">◌ <span id="sc-left">20</span></div>
+    </div>
+  </div>
+
+  <!-- SORULAR -->
+  <div class="questions-grid" id="questions-grid"></div>
+
+  <!-- SONUÇ -->
+  <div class="result-banner" id="result-banner">
+    <div class="rb-score" id="rb-score">0<span>/100</span></div>
+    <div class="rb-label" id="rb-label"></div>
+    <div class="rb-stats">
+      <div class="rb-stat rs-correct"><div class="rs-n" id="rb-correct">0</div><div class="rs-l">Doğru</div></div>
+      <div class="rb-stat rs-wrong">  <div class="rs-n" id="rb-wrong">0</div>  <div class="rs-l">Yanlış</div></div>
+      <div class="rb-stat rs-blank">  <div class="rs-n" id="rb-blank">0</div>  <div class="rs-l">Boş</div></div>
+    </div>
+    <button class="btn btn-pink" onclick="resetAll()">🔄 Yeniden Dene</button>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  {id:1,q:'¿Por qué Marcos y Clara viajaron al pueblo de su abuela?',opts:['Porque quisieron comprar una casa en el pueblo.','Porque quisieron pasar un fin de semana tranquilo lejos del ruido y del trabajo.','Porque tuvieron una reunión de trabajo cerca de las montañas.','Porque su abuela tuvo que ir a la ciudad.'],ans:1,exp:'Doğru cevap B\'dir. Metinde Marcos ve Clara\'nın şehir gürültüsünden, trafikten ve işten uzak, sakin bir hafta sonu geçirmek istedikleri için köye gittikleri söylenir.\nA seçeneği yanlıştır çünkü ev satın alma amacı yoktur.\nC seçeneği yanlıştır çünkü iş toplantısı için değil, dinlenmek için giderler.\nD seçeneği yanlıştır çünkü büyükanne şehre gitmez; onlar büyükannenin köyüne gider.'},
+  {id:2,q:'¿Cuándo salieron Marcos y Clara de la ciudad?',opts:['El sábado por la mañana.','El viernes por la noche.','El domingo al mediodía.','El lunes temprano.'],ans:0,exp:'Doğru cevap A\'dır. Metinde "salieron de la ciudad el sábado por la mañana" ifadesi açıkça geçer.\nB seçeneği yanlıştır çünkü cuma gecesi yola çıkmadılar.\nC seçeneği yanlıştır çünkü pazar öğle vakti dönüş zamanıdır.\nD seçeneği metinde hiç yoktur.'},
+  {id:3,q:'¿Qué llevó Clara para su abuela?',opts:['Una chaqueta y un libro.','Una bicicleta roja.','Una caja de galletas y unas flores.','Un frasco de miel y queso.'],ans:2,exp:'Doğru cevap C\'dir. Clara\'nın bir kutu kurabiye ve çiçek götürdüğü belirtilir.\nA seçeneği Marcos\'un çantasına koyduğu eşyalarla ilgilidir.\nB seçeneği eski bir fotoğrafta görülen bisiklettir.\nD seçeneği pazardan alınan ürünlerdir; Clara bal alır ama bu başlangıçta büyükannesine götürdüğü şey değildir.'},
+  {id:4,q:'¿Cuánto duró el viaje en autobús?',opts:['Una hora.','Dos horas.','Cinco horas.','Casi tres horas.'],ans:3,exp:'Doğru cevap D\'dir. Metinde otobüs yolculuğunun neredeyse üç saat sürdüğü söylenir.\nA, B ve C seçenekleri metindeki süreyle uyuşmaz. Özellikle B seçeneği yakın bir tahmin gibi görünse de doğru değildir.'},
+  {id:5,q:'¿Qué hicieron Marcos y Clara durante el camino?',opts:['Durmieron todo el viaje.','Trabajaron con sus ordenadores.','Hablaron de su infancia y recordaron los veranos en el pueblo.','Compraron comida en la carretera.'],ans:2,exp:'Doğru cevap C\'dir. Yol boyunca çocukluklarından ve köyde geçirdikleri yazlardan konuştular.\nA seçeneği yanlıştır çünkü tüm yol boyunca uyumadılar.\nB seçeneği yanlıştır çünkü çalışmadılar.\nD seçeneği metinde geçmez.'},
+  {id:6,q:'¿Quién esperó a Marcos y Clara en la parada del autobús?',opts:['Su padre.','Un vecino del pueblo.','Su prima.','Su abuela Carmen.'],ans:3,exp:'Doğru cevap D\'dir. Otobüs durağında onları büyükanneleri Carmen bekler.\nA seçeneği yanlıştır çünkü babaları orada değildir.\nB seçeneği yanıltıcıdır çünkü daha sonra bir komşuyla karşılaşırlar ama durakta bekleyen kişi komşu değildir.\nC seçeneği metinde yoktur.'},
+  {id:7,q:'¿Por qué la abuela se emocionó un poco?',opts:['Porque perdió el autobús.','Porque no vio a sus nietos durante varios meses.','Porque no le gustaron las flores.','Porque tuvo que vender su casa.'],ans:1,exp:'Doğru cevap B\'dir. Büyükanne torunlarını birkaç aydır görmediği için duygulanır.\nA seçeneği yanlıştır çünkü otobüsü kaçırmaz.\nC seçeneği yanlıştır çünkü çiçekleri beğenmediğine dair bir bilgi yoktur.\nD seçeneği metinde hiç geçmez.'},
+  {id:8,q:'¿Cómo era la casa de la abuela?',opts:['Tenía paredes blancas, ventanas verdes y muchas macetas en la entrada.','Era un apartamento grande en el centro de la ciudad.','Tenía paredes rojas y ventanas azules.','Estaba lejos de una calle tranquila y cerca del tráfico.'],ans:0,exp:'Doğru cevap A\'dır. Evin beyaz duvarları, yeşil pencereleri ve girişte çok sayıda saksısı olduğu anlatılır.\nB seçeneği yanlıştır çünkü ev şehir merkezindeki apartman değildir.\nC seçeneği renkleri değiştirir.\nD seçeneği yanlıştır çünkü ev sakin bir sokağın sonundadır, trafik yanında değildir.'},
+  {id:9,q:'¿Qué preparó la abuela para comer?',opts:['Sopa, pollo con verduras y una tarta de manzana.','Pan, queso, tomate y tortilla.','Café, mantequilla y fruta.','Frutas, verduras, queso y miel.'],ans:0,exp:'Doğru cevap A\'dır. Büyükanne öğle yemeği için çorba, sebzeli tavuk ve elmalı turta hazırlar.\nB seçeneği akşam yemeğine aittir.\nC seçeneği pazar sabahı kahvaltısıyla ilgilidir.\nD seçeneği pazarda görülen ürünlerdir.'},
+  {id:10,q:'¿Por qué Marcos escuchó con atención las historias de su abuela?',opts:['Porque quiso escribir una novela sobre el pueblo.','Porque no entendió nada de la conversación.','Porque Clara le pidió silencio.','Porque quiso conocer mejor la historia de sus padres y abuelos.'],ans:3,exp:'Doğru cevap D\'dir. Marcos, ailesinin geçmişini daha iyi tanımak istediği için büyükannesinin hikâyelerini dikkatle dinler.\nA seçeneği metinde yoktur.\nB seçeneği yanlıştır çünkü anlamadığı söylenmez.\nC seçeneği de metinde geçmez.'},
+  {id:11,q:'¿Qué vieron en la plaza principal?',opts:['Un río, un puente y muchos árboles.','Una fuente antigua, algunos bancos y una pequeña iglesia.','Una estación central y un autobús.','Una casa con ventanas verdes.'],ans:1,exp:'Doğru cevap B\'dir. Ana meydanda eski bir çeşme, bazı banklar ve küçük bir kilise gördüler.\nA seçeneği nehir yolundaki manzarayla ilgilidir.\nC seçeneği yolculuk başlangıcıyla ilgilidir.\nD seçeneği büyükannenin evini anlatır.'},
+  {id:12,q:'¿Qué les contó el vecino de la abuela?',opts:['Que el mercado estaba cerrado.','Que la abuela quería mudarse a la ciudad.','Que el pueblo cambió mucho porque muchos jóvenes se fueron a vivir a la ciudad.','Que Marcos y Clara no podían visitar el río.'],ans:2,exp:'Doğru cevap C\'dir. Komşu, birçok gencin şehre taşınması nedeniyle köyün son yıllarda çok değiştiğini anlatır.\nA seçeneği yanlıştır çünkü pazar kapalı değildir.\nB seçeneği metinde yoktur.\nD seçeneği de yanlıştır çünkü nehre giderler.'},
+  {id:13,q:'¿Qué compró Clara en el mercado local?',opts:['Queso para sus padres.','Una bicicleta roja.','Una chaqueta nueva.','Un frasco de miel.'],ans:3,exp:'Doğru cevap D\'dir. Clara pazardan bir kavanoz bal alır.\nA seçeneği Marcos\'un aldığı şeydir; Marcos ailesi için peynir alır.\nB seçeneği eski fotoğrafta görülen bisiklettir.\nC seçeneği metinde alışveriş olarak geçmez.'},
+  {id:14,q:'¿Por qué la abuela no compró nada en el mercado?',opts:['Porque el mercado fue muy caro.','Porque dijo que ya tenía todo lo necesario en casa.','Porque perdió su bolsa pequeña.','Porque no conoció a nadie en el mercado.'],ans:1,exp:'Doğru cevap B\'dir. Büyükanne evde gerekli her şeyin olduğunu söylediği için pazardan bir şey almaz.\nA seçeneği yanlıştır çünkü pazarın pahalı olduğu söylenmez.\nC seçeneği metinde yoktur.\nD seçeneği yanlıştır çünkü pazardaki neredeyse herkesi selamlar.'},
+  {id:15,q:'¿Qué hizo Marcos cerca del río?',opts:['Sacó su cámara y fotografió el paisaje.','Nadó en el río con sus primos.','Se cayó al río otra vez.','Compró manzanas para el viaje.'],ans:0,exp:'Doğru cevap A\'dır. Marcos nehir yakınında fotoğraf çekmek ister ve manzarayı fotoğraflar.\nB seçeneği çocukluk anısıyla karıştırmak için verilmiştir; o gün nehirde yüzmez.\nC seçeneği yanlıştır çünkü tekrar düşmez, sadece geçmişte düştüğünü hatırlar.\nD seçeneği dönüş öncesinde büyükannenin hazırladığı çantayla ilgilidir.'},
+  {id:16,q:'¿Por qué volvieron a la casa a las cinco de la tarde?',opts:['Porque empezó a llover mucho.','Porque tuvieron que tomar el autobús.','Porque empezó a hacer frío.','Porque el mercado cerró temprano.'],ans:2,exp:'Doğru cevap C\'dir. Saat beşte eve dönerler çünkü hava soğumaya başlar.\nA seçeneği yanlıştır çünkü yağmur bilgisi yoktur.\nB seçeneği pazar günü dönüşle ilgilidir.\nD seçeneği metindeki neden değildir.'},
+  {id:17,q:'¿Qué encontraron Marcos y Clara en las fotos antiguas?',opts:['Una foto del mercado local.','Una foto de su padre cuando era niño y una foto de su abuela joven.','Una foto del autobús y de la estación central.','Una foto de Clara en la ciudad.'],ans:1,exp:'Doğru cevap B\'dir. Marcos babasını çocukken kırmızı bisikletle görür; Clara ise büyükannesinin yirmi yaşındaki fotoğrafını bulur.\nA, C ve D seçenekleri metindeki eski fotoğraflarla ilgili değildir.'},
+  {id:18,q:'¿Qué hicieron después de cenar el sábado por la noche?',opts:['Hablaron durante mucho tiempo y escucharon la historia de la abuela.','Vieron la televisión hasta muy tarde.','Salieron otra vez al mercado.','Prepararon las mochilas para volver inmediatamente.'],ans:0,exp:'Doğru cevap A\'dır. Akşam yemeğinden sonra televizyon izlemediler; uzun süre konuştular ve büyükannenin hikâyelerini dinlediler.\nB seçeneği özellikle çeldiricidir çünkü metinde televizyon izlemedikleri özellikle söylenir.\nC seçeneği yanlıştır çünkü gece pazara gitmezler.\nD seçeneği metinde yoktur.'},
+  {id:19,q:'¿Qué hicieron el domingo por la mañana?',opts:['Fueron directamente a la ciudad.','Durmieron hasta el mediodía.','Compraron flores para la abuela.','Ayudaron a regar las plantas y a recoger algunas manzanas.'],ans:3,exp:'Doğru cevap D\'dir. Pazar sabahı Marcos ve Clara bahçede büyükannelerine yardım eder; bitkileri sularlar ve bazı elmaları toplarlar.\nA seçeneği yanlıştır çünkü hemen şehre dönmezler.\nB seçeneği yanlıştır çünkü Marcos erken uyanır.\nC seçeneği cumartesi gelişte Clara\'nın getirdiği çiçeklerle karıştırılabilir.'},
+  {id:20,q:'¿Qué comprendió Marcos al final del viaje?',opts:['Que el pueblo fue aburrido y no quiso volver.','Que aquel fin de semana no fue solo una visita familiar, sino una oportunidad para descansar y valorar el tiempo con su abuela.','Que Clara no disfrutó del viaje.','Que la ciudad fue más tranquila que el pueblo.'],ans:1,exp:'Doğru cevap B\'dir. Metnin sonunda Marcos bu hafta sonunun sadece bir aile ziyareti olmadığını; dinlenmek, hikâyeler dinlemek, çocukluğu hatırlamak ve büyükannesiyle vakit geçirmenin değerini anlamak için bir fırsat olduğunu fark eder.\nA seçeneği yanlıştır çünkü köyü sıkıcı bulmaz.\nC seçeneği yanlıştır çünkü Clara da günü özel bulur.\nD seçeneği metindeki genel duyguya aykırıdır; köy daha sakin bir yer olarak sunulur.'},
+];
+
+const letters = ['A','B','C','D'];
+let answers = {};
+
+function buildQuestions() {
+  const grid = document.getElementById('questions-grid');
+  QUESTIONS.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = 'card-' + q.id;
+    card.innerHTML = `
+      <div class="q-head">
+        <div class="q-num">${q.id}</div>
+        <div class="q-text">${q.q}</div>
+      </div>
+      <div class="q-opts" id="opts-${q.id}">
+        ${q.opts.map((o,i) => `
+          <button class="opt-btn" onclick="answer(${q.id},${i})">
+            <span class="opt-letter">${letters[i]}</span>
+            <span>${o}</span>
+          </button>`).join('')}
+      </div>
+      <div class="explanation" id="exp-${q.id}">
+        <div class="exp-label">💡 Açıklama</div>
+        ${q.exp.replace(/\n/g,'<br>')}
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function answer(qId, chosen) {
+  if (answers[qId] !== undefined) return;
+  answers[qId] = chosen;
+  const q = QUESTIONS.find(x => x.id === qId);
+  // Style options
+  for (let i = 0; i < q.opts.length; i++) {
+    const btn = document.querySelector(`#opts-${qId} .opt-btn:nth-child(${i+1})`);
+    btn.disabled = true;
+    if (i === q.ans) btn.classList.add('correct');
+    else if (i === chosen && chosen !== q.ans) btn.classList.add('wrong');
+  }
+  document.getElementById('exp-' + qId).classList.add('show');
+  document.getElementById('card-' + qId).classList.add('answered');
+  updateHUD();
+  checkAllAnswered();
+}
+
+function updateHUD() {
+  let correct = 0, wrong = 0;
+  const answered = Object.keys(answers).length;
+  QUESTIONS.forEach(q => {
+    const a = answers[q.id]; if (a === undefined) return;
+    if (a === q.ans) correct++; else wrong++;
+  });
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent   = wrong;
+  document.getElementById('sc-left').textContent    = QUESTIONS.length - answered;
+  document.getElementById('prog-fill').style.width  = (answered / QUESTIONS.length * 100) + '%';
+}
+
+function checkAllAnswered() {
+  if (Object.keys(answers).length < QUESTIONS.length) return;
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(q => {
+    const a = answers[q.id];
+    if (a === q.ans) correct++; else wrong++;
+  });
+  const blank = 0;
+  const score = correct * 5;
+  document.getElementById('rb-score').innerHTML = score + '<span>/100</span>';
+  document.getElementById('rb-label').textContent = '%' + score + ' başarı · ' + correct + ' doğru · ' + wrong + ' yanlış';
+  document.getElementById('rb-correct').textContent = correct;
+  document.getElementById('rb-wrong').textContent   = wrong;
+  document.getElementById('rb-blank').textContent   = blank;
+  const banner = document.getElementById('result-banner');
+  banner.classList.add('show');
+  banner.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+
+function resetAll() {
+  answers = {};
+  document.getElementById('questions-grid').innerHTML = '';
+  document.getElementById('result-banner').classList.remove('show');
+  document.getElementById('sc-correct').textContent = '0';
+  document.getElementById('sc-wrong').textContent   = '0';
+  document.getElementById('sc-left').textContent    = '20';
+  document.getElementById('prog-fill').style.width  = '0%';
+  buildQuestions();
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+
+buildQuestions();
+</script>
+</body>
+</html>
