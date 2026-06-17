@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – H3 11-12. Ders – Yazma Ödevi</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --pink1:#F6C4C3; --pink2:#F8DBD8; --pink3:#FAAED2;
+  --yellow:#F8CE5B; --cream:#FFFFE0;
+  --dark:#5a3a3a; --mid:#8a6060; --white:#ffffff;
+  --green:#6aab7a; --red:#d97070; --radius:14px;
+}
+body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,#fff5f5 0%,#fffde8 60%,#fff0f8 100%); min-height:100vh; color:var(--dark); }
+
+.header { background:linear-gradient(135deg,var(--pink1),var(--pink3)); padding:18px 20px 14px; text-align:center; box-shadow:0 4px 18px rgba(246,196,195,0.45); position:relative; overflow:hidden; }
+.header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.13) 14px,rgba(255,255,255,0.13) 15px); }
+.header-tag { display:inline-block; background:rgba(255,255,255,0.4); border:1.5px solid rgba(255,255,255,0.6); border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; margin-bottom:8px; color:var(--dark); position:relative; }
+.header h1 { font-size:clamp(16px,4vw,23px); font-weight:800; color:var(--dark); position:relative; text-shadow:0 1px 4px rgba(255,255,255,0.5); }
+.header-sub { font-size:12px; color:var(--mid); margin-top:4px; position:relative; }
+
+.screen { display:none; animation:fadeIn 0.3s ease; }
+.screen.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* NAME */
+.name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
+.name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
+.name-body p  { font-size:13px; color:var(--mid); margin-bottom:20px; }
+.name-select { width:100%; padding:13px 16px; font-size:15px; background:var(--white); border:2px solid var(--pink1); border-radius:var(--radius); color:var(--dark); appearance:none; cursor:pointer; margin-bottom:14px; font-family:inherit; transition:border-color 0.2s; }
+.name-select:focus { outline:none; border-color:var(--yellow); box-shadow:0 0 0 3px rgba(248,206,91,0.2); }
+.info-box { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:14px 16px; margin-bottom:18px; text-align:left; font-size:13px; line-height:1.75; box-shadow:0 2px 10px rgba(246,196,195,0.18); }
+.ib-row { display:flex; align-items:flex-start; gap:9px; margin-bottom:5px; }
+.ib-row:last-child { margin-bottom:0; }
+.ib-dot { width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; margin-top:5px; }
+.ib-hr { height:1px; background:var(--pink2); margin:9px 0; }
+
+/* BUTTONS */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 24px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.btn-pink   { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); box-shadow:0 4px 12px rgba(246,196,195,0.45); }
+.btn-pink:hover   { transform:translateY(-2px); }
+.btn-yellow { background:linear-gradient(135deg,var(--yellow),#e8b84b); color:var(--dark); box-shadow:0 4px 12px rgba(248,206,91,0.4); }
+.btn-yellow:hover { transform:translateY(-2px); }
+.btn-outline { background:var(--white); border:2px solid var(--pink1); color:var(--dark); }
+.btn-outline:hover { background:var(--pink2); }
+.btn-full { width:100%; }
+.btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
+
+/* WRITING */
+.writing-wrap { max-width:680px; margin:0 auto; padding:20px 16px; }
+
+.writing-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(246,196,195,0.2); margin-bottom:14px; }
+.writing-head { background:linear-gradient(135deg,var(--pink1),var(--pink3)); padding:14px 18px; display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; color:var(--dark); }
+.writing-body { padding:20px; font-size:14px; line-height:1.85; color:var(--dark); }
+
+.konu-box { background:linear-gradient(135deg,rgba(246,196,195,0.2),rgba(250,174,210,0.15)); border:1.5px solid var(--pink1); border-radius:10px; padding:14px 18px; margin-bottom:16px; }
+.konu-box .kb-title { font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--mid); margin-bottom:8px; }
+.konu-box .kb-name { font-size:18px; font-weight:800; color:var(--dark); margin-bottom:4px; }
+.konu-box .kb-sub { font-size:13px; color:var(--mid); }
+
+.section-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; margin-bottom:12px; }
+.section-head { background:linear-gradient(90deg,var(--pink2),rgba(250,174,210,0.3)); padding:10px 16px; font-size:12px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:var(--mid); display:flex; align-items:center; gap:8px; }
+.section-body { padding:14px 16px; font-size:13.5px; line-height:1.8; color:var(--dark); }
+.section-body p { margin-bottom:8px; }
+.section-body p:last-child { margin-bottom:0; }
+.section-body ul { margin:6px 0 6px 18px; }
+.section-body li { margin-bottom:5px; }
+.section-body strong { color:#6c3483; }
+
+.highlight-box { background:var(--cream); border-left:3px solid var(--yellow); border-radius:0 8px 8px 0; padding:11px 15px; margin:10px 0; font-size:13px; line-height:1.7; }
+.highlight-box .hl-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a7000; margin-bottom:5px; }
+
+.verb-grid { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.verb-chip { background:white; border:1.5px solid var(--pink1); border-radius:7px; padding:4px 11px; font-size:12.5px; font-weight:600; color:var(--dark); font-style:italic; }
+
+.time-grid { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.time-chip { background:var(--cream); border:1.5px solid var(--yellow); border-radius:7px; padding:4px 11px; font-size:12.5px; font-weight:600; color:#7a6000; }
+
+/* Textarea */
+.textarea-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; margin-bottom:14px; }
+.textarea-head { background:linear-gradient(135deg,var(--pink1),var(--pink3)); padding:12px 16px; font-weight:700; font-size:14px; color:var(--dark); }
+.textarea-body { padding:16px; }
+.writing-textarea { width:100%; min-height:280px; padding:14px 16px; font-size:14px; line-height:1.85; font-family:inherit; color:var(--dark); background:var(--cream); border:2px solid rgba(248,206,91,0.5); border-radius:10px; resize:vertical; transition:border-color 0.2s; }
+.writing-textarea:focus { outline:none; border-color:var(--yellow); box-shadow:0 0 0 3px rgba(248,206,91,0.15); }
+.char-count { font-size:11px; color:var(--mid); text-align:right; margin-top:5px; }
+.send-status { margin-top:12px; padding:10px 16px; border-radius:8px; font-size:13px; font-weight:600; text-align:center; display:none; }
+.send-ok  { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
+.send-err { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
+
+/* Rubric */
+.rubric { width:100%; border-collapse:collapse; font-size:13px; }
+.rubric th { background:linear-gradient(90deg,var(--pink1),var(--pink3)); padding:9px 14px; text-align:left; font-size:11px; letter-spacing:.8px; text-transform:uppercase; color:var(--dark); }
+.rubric td { padding:9px 14px; border-bottom:1px solid var(--pink2); vertical-align:top; line-height:1.5; }
+.rubric tr:last-child td { border-bottom:none; font-weight:700; background:rgba(248,206,91,0.12); }
+.rubric tr:nth-child(even) td { background:rgba(248,219,216,0.2); }
+.rubric .pts { text-align:right; color:#9a7000; font-weight:700; white-space:nowrap; }
+
+.writing-nav { display:flex; gap:10px; justify-content:center; margin-top:6px; flex-wrap:wrap; }
+
+/* CONFIRM */
+.confirm-wrap { max-width:420px; margin:0 auto; padding:40px 20px; text-align:center; }
+.confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
+.confirm-wrap p  { font-size:14px; color:var(--mid); margin-bottom:20px; line-height:1.6; }
+
+/* RESULT */
+.result-wrap { max-width:440px; margin:0 auto; padding:28px 20px; text-align:center; }
+.result-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:20px; padding:28px 22px; margin-bottom:14px; box-shadow:0 6px 24px rgba(246,196,195,0.3); }
+.result-emoji { font-size:50px; margin-bottom:10px; }
+.result-name  { font-size:14px; color:var(--mid); margin-bottom:3px; }
+.result-title { font-size:15px; font-weight:700; color:var(--dark); margin-bottom:16px; }
+.status-badge { display:inline-flex; align-items:center; gap:7px; padding:9px 20px; border-radius:50px; font-size:13px; font-weight:700; margin-bottom:14px; }
+.status-ok      { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
+.status-error   { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
+.status-pending { background:rgba(248,206,91,0.18); border:1.5px solid rgba(248,206,91,0.45); color:#9a7000; }
+.result-note { font-size:13px; color:var(--mid); line-height:1.7; margin-top:8px; }
+.result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">3. Hafta Ödevi &nbsp;|&nbsp; A2.1 (11-12. Ders)</div>
+  <h1>🇪🇸 A2.1 – H3 11-12. Ders – Yazma Ödevi</h1>
+  <div class="header-sub">Mi autobiografía &nbsp;•&nbsp; Pretérito Indefinido &nbsp;•&nbsp; 100 puan &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+
+<!-- EKRAN 1: AD SEÇİMİ -->
+<div class="screen active" id="screen-name">
+  <div class="name-body">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="name-select" id="name-select">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option>
+      <option>Begum Senturk</option>
+      <option>Didem Dundar</option>
+      <option>Ebru Ozgen</option>
+      <option>Ece Turhanoglu</option>
+      <option>Esra Ozkaya</option>
+      <option>Gulsah Gundogdu</option>
+      <option>Irem Savas</option>
+      <option>Kardelen Kuscu</option>
+      <option>Oznur Ozdogan Ozer</option>
+      <option>Sevde Ozdemir</option>
+      <option>Seyma Kocak</option>
+      <option>Zumeyra Dogan</option>
+    </select>
+    <div class="info-box">
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Konu:</strong> Mi autobiografía — kendi hayatınızı otobiyografik bir metin içinde anlatacaksınız.</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Dil bilgisi odağı:</strong> Pretérito Indefinido</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span>Metniniz <strong>en az 50 cümle</strong> olmalıdır.</span></div>
+      <div class="ib-hr"></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--pink3)"></div><span>Toplam <strong>100 puan</strong> — Yazınız Profe Hazel'e iletilecektir.</span></div>
+    </div>
+    <button class="btn btn-pink btn-full" onclick="startWriting()">▶ Başla</button>
+  </div>
+</div>
+
+<!-- EKRAN 2: YAZMA -->
+<div class="screen" id="screen-writing">
+  <div class="writing-wrap">
+
+    <!-- Konu başlığı -->
+    <div class="writing-card">
+      <div class="writing-head">✍️ &nbsp;Yazma Ödevi &nbsp;<span style="opacity:.7;font-weight:400;font-size:13px">(100 puan)</span></div>
+      <div class="writing-body">
+        <div class="konu-box">
+          <div class="kb-title">📝 Ödev Adı &nbsp;·&nbsp; A2.1 3. Hafta 11-12. Ders</div>
+          <div class="kb-name">Mi autobiografía</div>
+          <div class="kb-sub">Pretérito Indefinido &nbsp;•&nbsp; Öğrenci: <span id="writing-name-display">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Yönerge -->
+    <div class="section-card">
+      <div class="section-head">🧾 Yönerge</div>
+      <div class="section-body">
+        <p>Bu bölümde kendi hayatınızı anlatan bir <strong>otobiyografi</strong> yazmanız istenmektedir.</p>
+        <p>Metninizde özellikle <strong>Pretérito Indefinido</strong> zamanını kullanınız. Çocukluğunuzdan bugüne kadar hayatınızda tamamlanmış önemli olayları anlatınız.</p>
+        <p>Metniniz <strong>en az 50 cümleden</strong> oluşmalıdır. Cümleleriniz sadece ayrı ayrı bilgiler vermemeli; metinde doğal bir akış olmalıdır. Olayları mümkün olduğunca <strong>kronolojik sıraya</strong> göre anlatmaya çalışınız.</p>
+        <p>Sadece kendinizden değil; <strong>ailenizden, hayatınızda önemli etkisi olan kişilerden</strong> ve onların sizin hayatınızı etkileyen davranışlarından da akışa uygun şekilde bahsediniz.</p>
+        <p style="margin-top:10px"><strong>Metninizde aşağıdaki konulardan bahsedebilirsiniz:</strong></p>
+        <ul>
+          <li>Nerede ve ne zaman doğdunuz?</li>
+          <li>Çocukluğunuz nerede geçti?</li>
+          <li>Ailenizle ilgili geçmişte önemli bir anınız var mı?</li>
+          <li>Aileniz hayatınızı nasıl etkiledi?</li>
+          <li>Hayatınızda size destek olan veya sizi etkileyen kişiler kimlerdi?</li>
+          <li>Bu kişiler sizin için ne yaptı?</li>
+          <li>Hangi okullarda okudunuz?</li>
+          <li>Geçmişte hangi şehirlerde yaşadınız?</li>
+          <li>Hangi şehirlere veya ülkelere gittiniz?</li>
+          <li>Hayatınızda önemli bir karar aldınız mı?</li>
+          <li>Ne zaman üniversiteye / işe başladınız?</li>
+          <li>Sizi mutlu eden, etkileyen veya değiştiren bir olay yaşadınız mı?</li>
+          <li>Bugüne kadar hayatınızda unutamadığınız bir deneyim oldu mu?</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Zaman zarfları -->
+    <div class="section-card">
+      <div class="section-head">⏳ Zaman Zarfları Kullanımı</div>
+      <div class="section-body">
+        <p>Metninizde mutlaka <strong>zaman zarfları / zaman ifadeleri</strong> kullanınız.</p>
+        <div class="time-grid">
+          <span class="time-chip">ayer</span>
+          <span class="time-chip">anteayer</span>
+          <span class="time-chip">la semana pasada</span>
+          <span class="time-chip">el mes pasado</span>
+          <span class="time-chip">el año pasado</span>
+          <span class="time-chip">en 2010</span>
+          <span class="time-chip">hace cinco años</span>
+          <span class="time-chip">cuando era niño/a</span>
+          <span class="time-chip">cuando tenía diez años</span>
+          <span class="time-chip">después</span>
+          <span class="time-chip">más tarde</span>
+          <span class="time-chip">al final</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Faydalı fiiller -->
+    <div class="section-card">
+      <div class="section-head">📚 Otobiyografide İşinize Yarayabilecek Fiiller</div>
+      <div class="section-body">
+        <p>Aşağıdaki fiillerin <strong>Pretérito Indefinido</strong> çekimlerini kullanmaya dikkat ediniz.</p>
+        <div class="verb-grid">
+          <span class="verb-chip">nacer</span><span class="verb-chip">vivir</span><span class="verb-chip">crecer</span>
+          <span class="verb-chip">estudiar</span><span class="verb-chip">empezar</span><span class="verb-chip">terminar</span>
+          <span class="verb-chip">entrar</span><span class="verb-chip">viajar</span><span class="verb-chip">visitar</span>
+          <span class="verb-chip">conocer</span><span class="verb-chip">aprender</span><span class="verb-chip">trabajar</span>
+          <span class="verb-chip">decidir</span><span class="verb-chip">cambiar</span><span class="verb-chip">mudarse</span>
+          <span class="verb-chip">recordar</span><span class="verb-chip">pasar</span><span class="verb-chip">hacer</span>
+          <span class="verb-chip">tener</span><span class="verb-chip">ir</span><span class="verb-chip">ser</span>
+          <span class="verb-chip">estar</span><span class="verb-chip">volver</span><span class="verb-chip">llegar</span>
+          <span class="verb-chip">recibir</span><span class="verb-chip">descubrir</span><span class="verb-chip">elegir</span>
+          <span class="verb-chip">ayudar</span><span class="verb-chip">compartir</span><span class="verb-chip">apoyar</span>
+          <span class="verb-chip">enseñar</span><span class="verb-chip">cuidar</span><span class="verb-chip">influir</span>
+          <span class="verb-chip">acompañar</span><span class="verb-chip">motivar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dikkat edilecekler -->
+    <div class="section-card">
+      <div class="section-head">📌 Dikkat Edilmesi Gerekenler</div>
+      <div class="section-body">
+        <ul>
+          <li>Metniniz <strong>en az 50 cümle</strong> olmalıdır.</li>
+          <li>Metinde özellikle <strong>Pretérito Indefinido</strong> kullanılmalıdır.</li>
+          <li><strong>En az 15 farklı</strong> Pretérito Indefinido fiili kullanınız.</li>
+          <li><strong>En az 10 farklı</strong> zaman zarfı / zaman ifadesi kullanınız.</li>
+          <li>Sadece kendinizden değil, <strong>ailenizden ve hayatınızda önemli etkisi olan kişilerden</strong> de bahsediniz.</li>
+          <li>Bu kişilerin sizin hayatınızda ne yaptığını ve sizi nasıl etkilediğini anlatınız.</li>
+          <li>Metninizde olaylar arasında <strong>doğal bir akış</strong> olmalıdır.</li>
+          <li>Cümleleriniz açık, anlamlı ve birbiriyle bağlantılı olmalıdır.</li>
+          <li>Sadece olayları listelemeyiniz; olaylar arasında <strong>neden-sonuç veya zaman bağlantısı</strong> kurunuz.</li>
+          <li>Türkçeden birebir çeviri yapmamaya, <strong>İspanyolca cümle yapısına</strong> dikkat etmeye çalışınız.</li>
+          <li>Giriş, gelişme ve sonuç bölümleri olmalıdır.</li>
+          <li>Formal ve düzgün bir dil kullanınız.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Yazı kutusu -->
+    <div class="textarea-card">
+      <div class="textarea-head">✏️ Otobiyografinizi buraya yazın</div>
+      <div class="textarea-body">
+        <textarea class="writing-textarea" id="writing-input"
+          placeholder="Mi autobiografía&#10;&#10;Nací en... Cuando era niño/a..."
+          oninput="updateCharCount()"></textarea>
+        <div class="char-count" id="char-count">0 karakter</div>
+        <div class="send-status" id="send-status"></div>
+      </div>
+    </div>
+
+    <!-- Puanlama cetveli -->
+    <div class="section-card">
+      <div class="section-head">📊 Puanlama Cetveli — 100 Puan</div>
+      <div class="section-body" style="padding:0">
+        <table class="rubric">
+          <thead><tr><th>Kriter</th><th class="pts">Puan</th></tr></thead>
+          <tbody>
+            <tr><td>Metin otobiyografi konusuna uygundur.</td><td class="pts">10</td></tr>
+            <tr><td>Metin en az 50 cümleden oluşmuştur.</td><td class="pts">10</td></tr>
+            <tr><td>Giriş, gelişme ve sonuç düzeni vardır.</td><td class="pts">10</td></tr>
+            <tr><td>Pretérito Indefinido doğru ve yeterli şekilde kullanılmıştır.</td><td class="pts">20</td></tr>
+            <tr><td>En az 15 farklı Pretérito Indefinido fiili kullanılmıştır.</td><td class="pts">10</td></tr>
+            <tr><td>Zaman zarfları / zaman ifadeleri doğru ve uygun kullanılmıştır.</td><td class="pts">10</td></tr>
+            <tr><td>Aile ve hayatında etkisi olan kişiler metne akışa uygun şekilde dahil edilmiştir.</td><td class="pts">10</td></tr>
+            <tr><td>Metinde olaylar arasında doğal akış ve bağlantı vardır.</td><td class="pts">10</td></tr>
+            <tr><td>Cümleler açık, anlamlı ve A2.1 seviyesine uygundur.</td><td class="pts">5</td></tr>
+            <tr><td>Yazım, noktalama ve genel dil doğruluğuna dikkat edilmiştir.</td><td class="pts">5</td></tr>
+            <tr><td><strong>Toplam</strong></td><td class="pts"><strong>100</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="writing-nav">
+      <button class="btn btn-yellow" onclick="goToConfirm()">✔ Yazıyı Tamamladım, Teslim Et</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- EKRAN 3: AD ONAY -->
+<div class="screen" id="screen-confirm">
+  <div class="confirm-wrap">
+    <div style="font-size:48px;margin-bottom:12px">🎯</div>
+    <h2>Son adım — Adınızı onaylayın</h2>
+    <p>Ödevi göndermeden önce listeden adınızı seçin ve onaylayın.</p>
+    <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option>
+      <option>Begum Senturk</option>
+      <option>Didem Dundar</option>
+      <option>Ebru Ozgen</option>
+      <option>Ece Turhanoglu</option>
+      <option>Esra Ozkaya</option>
+      <option>Gulsah Gundogdu</option>
+      <option>Irem Savas</option>
+      <option>Kardelen Kuscu</option>
+      <option>Oznur Ozdogan Ozer</option>
+      <option>Sevde Ozdemir</option>
+      <option>Seyma Kocak</option>
+      <option>Zumeyra Dogan</option>
+    </select>
+    <button class="btn btn-yellow btn-full" onclick="confirmAndSubmit()">✔ Ödevi Teslim Et</button>
+  </div>
+</div>
+
+<!-- EKRAN 4: SONUÇ -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap">
+    <div class="result-card">
+      <div class="result-emoji">🇪🇸</div>
+      <div class="result-name" id="res-name">—</div>
+      <div class="result-title">A2.1 · H3 – 11-12. Ders · Mi autobiografía</div>
+      <div class="status-badge status-pending" id="res-status">⏳ Gönderiliyor…</div>
+      <p class="result-note">Otobiyografiniz Profe Hazel'e iletildi. 🎉<br>Puanınız değerlendirme sonrasında bildirilecektir.</p>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-outline" onclick="goToName()">🔄 Yeniden Başla</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+emailjs.init('xNYEbUQNiWJPvbyoJ');
+const EMAILJS_SERVICE  = 'service_4ee1wh7';
+const EMAILJS_TEMPLATE = 'template_xjyyxhf';
+const LESSON_NAME      = 'A2.1 H3 – 11-12. Ders (Mi autobiografía)';
+
+let studentName = '';
+let writingText = '';
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function startWriting() {
+  const sel = document.getElementById('name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  document.getElementById('writing-name-display').textContent = studentName;
+  showScreen('writing');
+}
+
+function updateCharCount() {
+  const val = document.getElementById('writing-input').value;
+  const chars = val.length;
+  const sentences = val.split(/[.!?]+/).filter(s => s.trim().length > 3).length;
+  document.getElementById('char-count').textContent = chars + ' karakter · yaklaşık ' + sentences + ' cümle';
+}
+
+function goToConfirm() {
+  const text = document.getElementById('writing-input').value.trim();
+  if (text.length < 50) { alert('Lütfen otobiyografinizi yazın (en az 50 karakter).'); return; }
+  writingText = text;
+  document.getElementById('confirm-name-select').value = studentName;
+  showScreen('confirm');
+}
+
+async function confirmAndSubmit() {
+  const sel = document.getElementById('confirm-name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+
+  const btn = document.querySelector('#screen-confirm .btn-yellow');
+  btn.disabled = true;
+  btn.textContent = '⏳ Gönderiliyor…';
+
+  const now   = new Date();
+  const tarih = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
+
+  try {
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      student_name: studentName,
+      lesson:       LESSON_NAME,
+      submit_date:  tarih,
+      writing_text: writingText
+    });
+    showScreen('result');
+    document.getElementById('res-name').textContent = studentName;
+    document.getElementById('res-status').className = 'status-badge status-ok';
+    document.getElementById('res-status').textContent = '✅ Otobiyografiniz başarıyla gönderildi!';
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = '✔ Ödevi Teslim Et';
+    alert('Gönderilemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.');
+  }
+}
+
+function goToName() {
+  studentName = ''; writingText = '';
+  document.getElementById('name-select').value = '';
+  document.getElementById('writing-input').value = '';
+  document.getElementById('char-count').textContent = '0 karakter · yaklaşık 0 cümle';
+  showScreen('name');
+}
+</script>
+</body>
+</html>
