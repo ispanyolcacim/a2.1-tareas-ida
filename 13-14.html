@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – H4 13-14. Ders</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --pink1:#F6C4C3; --pink2:#F8DBD8; --pink3:#FAAED2;
+  --yellow:#F8CE5B; --cream:#FFFFE0;
+  --dark:#5a3a3a; --mid:#8a6060; --white:#ffffff;
+  --green:#6aab7a; --red:#d97070; --radius:14px;
+}
+body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,#fff5f5 0%,#fffde8 60%,#fff0f8 100%); min-height:100vh; color:var(--dark); }
+
+.header { background:linear-gradient(135deg,var(--pink1),var(--pink3)); padding:18px 20px 14px; text-align:center; box-shadow:0 4px 18px rgba(246,196,195,0.45); position:relative; overflow:hidden; }
+.header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.13) 14px,rgba(255,255,255,0.13) 15px); }
+.header-tag { display:inline-block; background:rgba(255,255,255,0.4); border:1.5px solid rgba(255,255,255,0.6); border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; margin-bottom:8px; color:var(--dark); position:relative; }
+.header h1 { font-size:clamp(16px,4vw,23px); font-weight:800; color:var(--dark); position:relative; }
+.header-sub { font-size:12px; color:var(--mid); margin-top:4px; position:relative; }
+
+.screen { display:none; animation:fadeIn 0.3s ease; }
+.screen.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* NAME */
+.name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
+.name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
+.name-body p  { font-size:13px; color:var(--mid); margin-bottom:20px; }
+.name-select { width:100%; padding:13px 16px; font-size:15px; background:var(--white); border:2px solid var(--pink1); border-radius:var(--radius); color:var(--dark); appearance:none; cursor:pointer; margin-bottom:14px; font-family:inherit; }
+.name-select:focus { outline:none; border-color:var(--yellow); box-shadow:0 0 0 3px rgba(248,206,91,0.2); }
+.info-box { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:14px 16px; margin-bottom:18px; text-align:left; font-size:13px; line-height:1.75; }
+.ib-row { display:flex; align-items:flex-start; gap:9px; margin-bottom:5px; }
+.ib-row:last-child { margin-bottom:0; }
+.ib-dot { width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; margin-top:5px; }
+.ib-hr { height:1px; background:var(--pink2); margin:9px 0; }
+
+/* BUTTONS */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 24px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.btn-pink   { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); box-shadow:0 4px 12px rgba(246,196,195,0.45); }
+.btn-pink:hover   { transform:translateY(-2px); }
+.btn-yellow { background:linear-gradient(135deg,var(--yellow),#e8b84b); color:var(--dark); box-shadow:0 4px 12px rgba(248,206,91,0.4); }
+.btn-yellow:hover { transform:translateY(-2px); }
+.btn-outline { background:var(--white); border:2px solid var(--pink1); color:var(--dark); }
+.btn-outline:hover { background:var(--pink2); }
+.btn-sm   { padding:9px 18px; font-size:13px; }
+.btn-full { width:100%; }
+.btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
+
+/* QUIZ */
+.quiz-wrap { max-width:660px; margin:0 auto; padding:16px; }
+.top-bar { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:10px 16px; margin-bottom:12px; gap:8px; flex-wrap:wrap; }
+.top-student { font-size:12px; color:var(--mid); font-weight:600; }
+.top-scores  { display:flex; gap:14px; }
+.top-score-item { display:flex; align-items:center; gap:5px; font-size:13px; font-weight:700; }
+.sc-correct { color:var(--green); } .sc-wrong { color:var(--red); }
+.prog-wrap { margin-bottom:14px; }
+.prog-bar  { height:7px; background:var(--pink2); border-radius:4px; overflow:hidden; }
+.prog-fill { height:100%; background:linear-gradient(90deg,var(--pink1),var(--yellow)); border-radius:4px; transition:width 0.4s ease; width:0%; }
+.prog-info { display:flex; justify-content:space-between; font-size:11px; color:var(--mid); margin-top:3px; }
+
+.section-badge { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg,var(--pink1),var(--pink3)); border-radius:20px; padding:5px 14px; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--dark); margin-bottom:10px; box-shadow:0 2px 8px rgba(246,196,195,0.3); }
+
+/* Metin kutusu */
+.metin-card { background:var(--cream); border:1.5px solid var(--yellow); border-radius:var(--radius); padding:16px 18px; margin-bottom:12px; font-size:13px; line-height:1.85; color:var(--dark); }
+.metin-card .metin-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a7000; margin-bottom:8px; }
+.metin-card .metin-title { font-size:15px; font-weight:800; color:var(--dark); margin-bottom:10px; }
+
+/* Question card */
+.q-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(246,196,195,0.15); margin-bottom:12px; }
+.q-head { padding:16px 18px 14px; border-bottom:1px solid var(--pink2); display:flex; gap:12px; align-items:flex-start; }
+.q-num { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; flex-shrink:0; margin-top:1px; }
+.q-text { font-size:14.5px; line-height:1.65; flex:1; color:var(--dark); font-weight:500; }
+.q-tr-sentence { background:linear-gradient(135deg,rgba(246,196,195,0.15),rgba(250,174,210,0.1)); border-left:3px solid var(--pink3); border-radius:0 8px 8px 0; padding:10px 14px; margin-bottom:10px; font-size:14px; font-weight:600; color:var(--dark); line-height:1.6; }
+
+.q-opts { padding:12px 16px 14px; display:grid; gap:8px; }
+.opt-btn { display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:#fdf8fb; border:1.5px solid var(--pink2); border-radius:10px; color:var(--dark); font-size:13px; line-height:1.5; cursor:pointer; text-align:left; width:100%; transition:all 0.18s; font-family:inherit; }
+.opt-btn:hover:not(:disabled) { background:var(--cream); border-color:var(--yellow); transform:translateX(4px); }
+.opt-btn:disabled { cursor:default; }
+.opt-letter { background:var(--pink2); color:var(--dark); border-radius:6px; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; }
+.opt-btn.correct { background:#edfaf2; border-color:#8dcca0; }
+.opt-btn.correct .opt-letter { background:var(--green); color:white; }
+.opt-btn.wrong   { background:#fdf0f0; border-color:#e8a0a0; }
+.opt-btn.wrong   .opt-letter { background:var(--red); color:white; }
+
+.explanation { display:none; margin:0 16px 14px; background:var(--cream); border-left:3px solid var(--yellow); border-radius:0 8px 8px 0; padding:11px 14px; font-size:13px; line-height:1.7; color:var(--mid); }
+.explanation.show { display:block; }
+.exp-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a7000; margin-bottom:4px; }
+
+/* NAV */
+.nav-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:4px; margin-bottom:16px; flex-wrap:wrap; }
+.nav-center { font-size:13px; color:var(--mid); font-weight:600; text-align:center; flex:1; }
+.finish-bar { position:sticky; bottom:0; background:rgba(255,249,249,0.97); backdrop-filter:blur(10px); border-top:1.5px solid var(--pink2); padding:11px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; box-shadow:0 -4px 14px rgba(246,196,195,0.22); }
+.finish-info { font-size:12px; color:var(--mid); }
+.finish-info strong { color:var(--dark); font-size:14px; }
+
+/* CONFIRM */
+.confirm-wrap { max-width:420px; margin:0 auto; padding:40px 20px; text-align:center; }
+.confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
+.confirm-wrap p  { font-size:14px; color:var(--mid); margin-bottom:20px; line-height:1.6; }
+.not-submitted { background:rgba(211,90,117,0.1); border:2px solid var(--pink3); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; font-size:14px; font-weight:700; color:var(--pink3); }
+
+/* RESULT */
+.result-wrap { max-width:460px; margin:0 auto; padding:28px 20px; text-align:center; }
+.result-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:20px; padding:28px 22px; margin-bottom:14px; box-shadow:0 6px 24px rgba(246,196,195,0.3); }
+.result-emoji { font-size:50px; margin-bottom:10px; }
+.result-name  { font-size:14px; color:var(--mid); margin-bottom:3px; }
+.result-title { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:16px; }
+.result-score-big { font-size:62px; font-weight:900; line-height:1; color:var(--dark); }
+.result-score-big span { font-size:24px; font-weight:400; color:var(--mid); }
+.result-pct { font-size:13px; color:var(--mid); margin-top:4px; margin-bottom:18px; }
+.result-stats { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+.rs-item { background:linear-gradient(135deg,var(--pink2),var(--cream)); border:1px solid var(--pink1); border-radius:12px; padding:11px 16px; min-width:76px; text-align:center; }
+.rs-item .rs-n { font-size:28px; font-weight:800; line-height:1; }
+.rs-item .rs-l { font-size:11px; color:var(--mid); margin-top:3px; }
+.rs-correct .rs-n { color:var(--green); } .rs-wrong .rs-n { color:var(--red); } .rs-blank .rs-n { color:#bbb; }
+.status-badge { display:inline-flex; align-items:center; gap:7px; padding:9px 20px; border-radius:50px; font-size:13px; font-weight:700; margin-bottom:14px; }
+.status-ok      { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
+.status-error   { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
+.status-pending { background:rgba(248,206,91,0.18); border:1.5px solid rgba(248,206,91,0.45); color:#9a7000; }
+.result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+
+/* Breakdown */
+.score-breakdown { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+.breakdown-row { display:flex; justify-content:space-between; align-items:center; background:rgba(248,219,216,0.2); border:1px solid var(--pink2); border-radius:8px; padding:8px 14px; font-size:13px; }
+.breakdown-row .br-label { color:var(--mid); }
+.breakdown-row .br-score { font-weight:700; color:var(--dark); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-tag">4. Hafta Ödevi &nbsp;|&nbsp; A2.1 (13-14. Ders)</div>
+  <h1>🇪🇸 A2.1 – H4 13-14. Ders</h1>
+  <div class="header-sub">50 soru &nbsp;•&nbsp; Okuma · Çeviri · Yol Gösterici İfadeler &nbsp;•&nbsp; 100 puan &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+
+<!-- EKRAN 1: AD SEÇİMİ -->
+<div class="screen active" id="screen-name">
+  <div class="name-body">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="name-select" id="name-select">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
+      <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
+      <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
+      <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
+      <option>Zumeyra Dogan</option>
+    </select>
+    <div class="info-box">
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Okuma Çalışması — Soru 1–20 (40 puan · 2p/soru)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> YDS Tarzı Çeviri — Soru 21–40 (40 puan · 2p/soru)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Yol Gösterici İfadeler — Soru 41–50 (20 puan · 2p/soru)</span></div>
+      <div class="ib-hr"></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--pink3)"></div><span>Toplam <strong>100 puan</strong></span></div>
+    </div>
+    <button class="btn btn-pink btn-full" onclick="startQuiz()">▶ Başla</button>
+  </div>
+</div>
+
+<!-- EKRAN 2: QUIZ -->
+<div class="screen" id="screen-quiz">
+  <div class="quiz-wrap">
+    <div class="top-bar">
+      <div class="top-student" id="top-student">—</div>
+      <div class="top-scores">
+        <div class="top-score-item sc-correct">✓ <span id="sc-correct">0</span></div>
+        <div class="top-score-item sc-wrong">✗ <span id="sc-wrong">0</span></div>
+      </div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+      <div class="prog-info">
+        <span id="prog-section">—</span>
+        <span>Soru <span id="prog-cur">1</span> / 50</span>
+      </div>
+    </div>
+    <div id="q-area"></div>
+    <div class="nav-bar">
+      <button class="btn btn-outline btn-sm" id="btn-prev" onclick="navigate(-1)">← Geri</button>
+      <div class="nav-center" id="nav-center">1 / 50</div>
+      <button class="btn btn-pink btn-sm" id="btn-next" onclick="navigate(1)">İleri →</button>
+    </div>
+    <div class="finish-bar">
+      <div class="finish-info"><strong id="bb-answered">0</strong> / 50 yanıtlandı</div>
+      <button class="btn btn-yellow" onclick="goToConfirm()">✔ Ödevi Teslim Et</button>
+    </div>
+  </div>
+</div>
+
+<!-- EKRAN 3: ONAY -->
+<div class="screen" id="screen-confirm">
+  <div class="confirm-wrap">
+    <div style="font-size:48px;margin-bottom:12px">🎯</div>
+    <h2>Ödevi Teslim Et</h2>
+    <div class="not-submitted">⚠️ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ</div>
+    <p>Teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
+    <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
+      <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
+      <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
+      <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
+      <option>Zumeyra Dogan</option>
+    </select>
+    <button class="btn btn-yellow btn-full" onclick="confirmAndSubmit()">✔ Evet, Teslim Et</button>
+  </div>
+</div>
+
+<!-- EKRAN 4: SONUÇ -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap">
+    <div class="result-card">
+      <div class="result-emoji">🇪🇸</div>
+      <div class="result-name" id="res-name">—</div>
+      <div class="result-title">A2.1 · H4 – 13-14. Ders</div>
+      <div class="result-score-big" id="res-score">0<span>/100</span></div>
+      <div class="result-pct" id="res-pct"></div>
+      <div class="score-breakdown">
+        <div class="breakdown-row"><span class="br-label">📖 Okuma (1-20)</span><span class="br-score" id="br-okuma">0 / 40</span></div>
+        <div class="breakdown-row"><span class="br-label">🔤 Çeviri (21-40)</span><span class="br-score" id="br-ceviri">0 / 40</span></div>
+        <div class="breakdown-row"><span class="br-label">🌟 Yol Gösterici (41-50)</span><span class="br-score" id="br-yol">0 / 20</span></div>
+      </div>
+      <div class="result-stats">
+        <div class="rs-item rs-correct"><div class="rs-n" id="res-c">0</div><div class="rs-l">Doğru</div></div>
+        <div class="rs-item rs-wrong">  <div class="rs-n" id="res-w">0</div><div class="rs-l">Yanlış</div></div>
+        <div class="rs-item rs-blank">  <div class="rs-n" id="res-b">0</div><div class="rs-l">Boş</div></div>
+      </div>
+      <div class="status-badge status-pending" id="res-status">⏳ Kaydediliyor…</div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-outline" onclick="reviewAnswers()">🔍 Yanlışları Gör</button>
+      <button class="btn btn-outline" onclick="goToName()">🔄 Yeniden Başla</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
+const SPREADSHEET_ID  = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const SHEET_NAME      = 'A2.1';
+const TASK_COLUMN     = 'H4 – 13-14.Ders';
+
+const METIN = `El sábado pasado, Laura se levantó muy temprano porque tuvo un día muy importante. Esa mañana no fue a trabajar, pero salió de casa a las ocho porque quiso visitar Madrid con su prima Ana. Ana llegó de Valencia el viernes por la noche y se quedó en la casa de Laura durante el fin de semana.
+
+Primero, Laura preparó el desayuno. Puso pan, queso, fruta y café en la mesa. Ana se despertó un poco tarde porque el viaje fue largo y estuvo muy cansada. Cuando Ana entró en la cocina, sonrió y dijo: "¡Qué bonito desayuno! Muchas gracias."
+
+Las dos desayunaron juntas y hablaron de sus planes. Laura quiso enseñarle a Ana los lugares más famosos de la ciudad. Ana ya conoció Madrid cuando era niña, pero no recordó muchas cosas. Por eso, las dos decidieron hacer un recorrido tranquilo por el centro.
+
+Después del desayuno, salieron de casa y tomaron el metro. En el metro, vieron a muchas personas: estudiantes, turistas, familias y trabajadores. Laura explicó algunas palabras nuevas a Ana porque Ana también estudió español durante unos meses, pero todavía tuvo dificultades con algunas expresiones.
+
+A las diez, llegaron a la Puerta del Sol. Allí hicieron muchas fotos y caminaron lentamente por la plaza. Ana miró los edificios y dijo que la ciudad fue más grande y más ruidosa de lo que imaginó. Laura se rió y respondió que Madrid siempre tuvo mucha energía, especialmente los fines de semana.
+
+Luego, caminaron hasta la Plaza Mayor. Allí encontraron un grupo de músicos que tocó canciones alegres. Muchas personas se pararon para escuchar. Ana grabó un video corto con su teléfono y Laura compró una postal para su madre. También entraron en una pequeña tienda de recuerdos, pero no compraron muchas cosas porque los precios fueron un poco altos.
+
+Al mediodía, las dos tuvieron hambre. Buscaron un restaurante cerca del mercado y eligieron un lugar pequeño, pero muy bonito. Laura pidió una tortilla española y Ana pidió una ensalada con pollo. También compartieron unas croquetas. La comida estuvo deliciosa, pero el servicio fue un poco lento porque había muchos clientes. Mientras esperaron, hablaron de su infancia, de su familia y de algunos viajes antiguos.
+
+Después de comer, fueron al Parque del Retiro. El tiempo fue perfecto: hizo sol, pero no hizo demasiado calor. En el parque caminaron cerca del lago, vieron barcos pequeños y descansaron en un banco. Ana dijo que ese lugar le gustó mucho porque fue más tranquilo que el centro. Laura estuvo de acuerdo y le contó que, cuando necesitó descansar, muchas veces fue al Retiro para leer o caminar.
+
+Más tarde, visitaron un museo. No tuvieron mucho tiempo, por eso no vieron todas las salas. Sin embargo, observaron algunos cuadros importantes y leyeron la información principal. Ana no entendió todas las descripciones, pero Laura le explicó varias ideas con palabras sencillas.
+
+A las seis de la tarde, empezaron a sentirse cansadas. Decidieron tomar un café antes de volver a casa. Entraron en una cafetería pequeña, cerca de una calle tranquila. Ana pidió un café con leche y Laura pidió un té. Allí descansaron casi una hora. También revisaron las fotos del día y eligieron las mejores para mandarlas a la familia.
+
+Cuando salieron de la cafetería, empezó a llover un poco. No tuvieron paraguas, así que caminaron rápido hasta la estación de metro. Durante el camino, Ana se mojó los zapatos y se quejó un poco, pero después se rió porque la situación fue divertida.
+
+Finalmente, llegaron a casa a las ocho y media. Ana llamó a su madre y le contó todo lo que hicieron durante el día. Laura preparó una cena sencilla: sopa, pan y fruta. Después de cenar, vieron una película, pero Ana se durmió antes del final.
+
+Antes de acostarse, Laura miró las fotos otra vez y pensó que el día fue especial. No hicieron nada extraordinario, pero compartieron tiempo juntas, caminaron por lugares bonitos y recordaron momentos importantes de su familia. Para Laura, ese sábado no fue solo un día turístico; fue un día de conversación, cariño y recuerdos.`;
+
+const QUESTIONS = [
+  // ── KISIM 1: OKUMA (1-20) ──
+  {id:1,sec:1,q:'¿Por qué Laura se levantó muy temprano el sábado pasado?',opts:['Porque tuvo que ir a trabajar muy temprano.','Porque tuvo un día importante y quiso visitar Madrid con Ana.','Porque Ana salió de Valencia por la mañana.','Porque quiso preparar una cena especial.'],ans:1,exp:'Metinde Laura\'nın cumartesi sabahı çok erken kalktığı çünkü önemli bir günü olduğu ve kuzeni Ana ile Madrid\'i gezmek istediği söyleniyor. A seçeneği yanıltıcıdır çünkü o sabah işe gitmedi. C seçeneği yanlıştır çünkü Ana Valencia\'dan cuma gecesi geldi. D seçeneği ise metnin sonunda geçen akşam yemeğiyle ilgilidir, sabah erken kalkma nedeni değildir.'},
+  {id:2,sec:1,q:'¿Cuándo llegó Ana a la casa de Laura?',opts:['El viernes por la noche.','El sábado por la mañana.','El domingo por la tarde.','El sábado a las ocho.'],ans:0,exp:'Metinde "Ana llegó de Valencia el viernes por la noche" ifadesi açıkça geçiyor. B ve D seçenekleri Laura\'nın cumartesi günü evden çıkmasıyla ilgilidir. C seçeneği metinde hiç geçmez.'},
+  {id:3,sec:1,q:'¿Qué puso Laura en la mesa para el desayuno?',opts:['Pan, huevos, leche y té.','Café, sopa, fruta y pollo.','Queso, ensalada, pan y café.','Pan, queso, fruta y café.'],ans:3,exp:'Metinde Laura\'nın kahvaltı için masaya "pan, queso, fruta y café" koyduğu yazıyor. Diğer seçeneklerde metinde kahvaltıyla ilgili geçmeyen yiyecekler vardır. Örneğin sopa akşam yemeğinde geçer, ensalada öğle yemeğinde Ana\'nın siparişidir.'},
+  {id:4,sec:1,q:'¿Por qué Ana se despertó un poco tarde?',opts:['Porque vio una película hasta muy tarde.','Porque no quiso desayunar con Laura.','Porque el viaje fue largo y estuvo muy cansada.','Porque salió a caminar por Madrid.'],ans:2,exp:'Ana\'nın geç uyanma nedeni metinde doğrudan verilir: yolculuk uzun sürmüştür ve Ana çok yorulmuştur. A seçeneğinde film izleme bilgisi metnin sonunda vardır ama bu Ana\'nın sabah geç uyanma nedeni değildir. B ve D seçenekleri metne aykırıdır.'},
+  {id:5,sec:1,q:'¿Qué decidieron hacer Laura y Ana después de hablar de sus planes?',opts:['Decidieron quedarse en casa todo el día.','Decidieron visitar Valencia juntas.','Decidieron hacer un recorrido tranquilo por el centro.','Decidieron ir directamente al museo.'],ans:2,exp:'Metinde Ana\'nın Madrid\'i çocukken tanıdığı ama çok şey hatırlamadığı söyleniyor. Bu yüzden iki kişi merkezde sakin bir gezi yapmaya karar veriyor. A seçeneği yanlıştır çünkü evde kalmıyorlar. B seçeneği şehir olarak yanlıştır. D seçeneği ise daha sonra yapılan bir etkinliktir.'},
+  {id:6,sec:1,q:'¿Qué hicieron después del desayuno?',opts:['Fueron al mercado para comer.','Compraron regalos para toda la familia.','Volvieron a dormir porque estaban cansadas.','Salieron de casa y tomaron el metro.'],ans:3,exp:'Kahvaltıdan sonra evden çıktılar ve metroya bindiler. A seçeneği öğle yemeği öncesiyle karıştırılabilir ama kahvaltıdan hemen sonra pazar yakınında restoran aramadılar. B seçeneğinde "tüm aileye hediyeler" bilgisi yoktur. C ise metne tamamen aykırıdır.'},
+  {id:7,sec:1,q:'¿Por qué Laura explicó algunas palabras nuevas a Ana?',opts:['Porque Ana no sabía leer en español.','Porque Ana estudió español, pero tuvo dificultades con algunas expresiones.','Porque Ana nunca estudió español.','Porque Ana quiso enseñar español a Laura.'],ans:1,exp:'Metinde Ana\'nın birkaç ay İspanyolca çalıştığı ama hâlâ bazı ifadelerde zorlandığı belirtilir. Bu nedenle Laura ona bazı kelimeleri açıklar. A seçeneği abartılı ve yanlış; Ana\'nın okuyamadığı söylenmiyor. C seçeneği yanlıştır çünkü Ana İspanyolca çalışmıştır. D seçeneğinde roller ters çevrilmiştir.'},
+  {id:8,sec:1,q:'¿Qué hicieron Laura y Ana en la Puerta del Sol?',opts:['Hicieron muchas fotos y caminaron lentamente por la plaza.','Compraron una postal y entraron en un museo.','Comieron tortilla española y croquetas.','Esperaron la lluvia en una cafetería.'],ans:0,exp:'Puerta del Sol\'da fotoğraf çektiler ve meydanda yavaş yavaş yürüdüler. B seçeneğinde geçen postal Plaza Mayor bölümünde alınır, müze ise daha sonra ziyaret edilir. C öğle yemeğini, D ise günün sonlarına doğru kafeden çıkınca başlayan yağmuru anlatır.'},
+  {id:9,sec:1,q:'¿Qué pensó Ana sobre Madrid cuando miró los edificios?',opts:['Que la ciudad fue más grande y más ruidosa de lo que imaginó.','Que la ciudad fue pequeña y silenciosa.','Que Madrid fue igual que Valencia.','Que no había muchas personas en las calles.'],ans:0,exp:'Ana binalara bakınca Madrid\'in hayal ettiğinden daha büyük ve daha gürültülü olduğunu söyler. B seçeneği bunun tam tersidir. C seçeneği metinde yoktur. D seçeneği de yanlıştır çünkü metroda ve meydanlarda birçok insan vardır.'},
+  {id:10,sec:1,q:'¿Qué encontraron en la Plaza Mayor?',opts:['Un restaurante vacío.','Una estación de metro muy antigua.','Un grupo de músicos que tocó canciones alegres.','Una exposición de fotografías familiares.'],ans:2,exp:'Plaza Mayor\'da neşeli şarkılar çalan bir müzisyen grubu gördüler. A seçeneği yanlıştır çünkü restoran daha sonra, pazar yakınında aranır. B ve D seçenekleri metinde bulunmaz.'},
+  {id:11,sec:1,q:'¿Por qué Laura y Ana no compraron muchas cosas en la tienda de recuerdos?',opts:['Porque no encontraron la tienda.','Porque la tienda estaba cerrada.','Porque no les gustaron los recuerdos.','Porque los precios fueron un poco altos.'],ans:3,exp:'Metinde küçük bir hediyelik eşya dükkânına girdikleri ama fiyatlar biraz yüksek olduğu için çok şey almadıkları söylenir. A ve B seçenekleri yanlıştır çünkü dükkâna gerçekten girerler. C seçeneği metinde belirtilmez; beğenmedikleri için değil, fiyatlardan dolayı çok şey almazlar.'},
+  {id:12,sec:1,q:'¿Qué comieron al mediodía?',opts:['Sopa, pan y fruta.','Tortilla española, ensalada con pollo y croquetas.','Café con leche, té y pasteles.','Pan, queso, fruta y café.'],ans:1,exp:'Öğle yemeğinde Laura tortilla española, Ana tavuklu salata sipariş eder ve birlikte kroket paylaşırlar. D seçeneği kahvaltıya aittir. A seçeneği akşam yemeğinde geçer. C seçeneği ise kafede içilen içeceklerle ilişkilidir ama öğle yemeği değildir.'},
+  {id:13,sec:1,q:'¿Por qué el servicio del restaurante fue un poco lento?',opts:['Porque la comida no estuvo deliciosa.','Porque había muchos clientes.','Porque Laura y Ana llegaron muy tarde.','Porque el restaurante estaba cerrado.'],ans:1,exp:'Yemek güzeldir ama servis yavaştır çünkü restoranda çok müşteri vardır. A seçeneği yanlıştır çünkü yemek lezzetliydi. C seçeneği metinde yoktur. D seçeneği de mantıksızdır çünkü restoranda yemek yerler.'},
+  {id:14,sec:1,q:'¿Por qué Ana dijo que le gustó mucho el Parque del Retiro?',opts:['Porque allí compró regalos para su madre.','Porque allí vio todas las salas del museo.','Porque allí tomó un café con leche.','Porque fue más tranquilo que el centro.'],ans:3,exp:'Ana Parque del Retiro\'yu çok sevdiğini söyler çünkü orası merkeze göre daha sakindir. A seçeneği postal alma olayıyla karıştırılabilir ama bu Plaza Mayor bölümündedir. B müzeyle ilgilidir ve zaten tüm salonları görmediler. C ise kafede geçen bir olaydır.'},
+  {id:15,sec:1,q:'¿Qué hicieron Laura y Ana en el museo?',opts:['Observaron algunos cuadros importantes y leyeron la información principal.','Vieron todas las salas y pasaron muchas horas allí.','Compraron muchas postales para la familia.','Escucharon a un grupo de músicos.'],ans:0,exp:'Müzede bazı önemli tabloları gördüler ve temel bilgileri okudular. B seçeneği özellikle şaşırtmalıdır çünkü metinde çok zamanları olmadığı ve tüm salonları görmedikleri söylenir. C ve D seçenekleri başka bölümlerdeki olaylarla ilgilidir.'},
+  {id:16,sec:1,q:'¿Qué hicieron a las seis de la tarde?',opts:['Volvieron directamente a casa sin descansar.','Fueron otra vez a la Puerta del Sol.','Decidieron tomar un café antes de volver a casa.','Empezaron a preparar la cena.'],ans:2,exp:'Saat altıda yorulmaya başladılar ve eve dönmeden önce kahve içmeye karar verdiler. A seçeneği yanlıştır çünkü doğrudan eve dönmezler. B seçeneği metinde yoktur. D seçeneği daha sonra, eve geldikten sonra olur.'},
+  {id:17,sec:1,q:'¿Qué hicieron en la cafetería?',opts:['Vieron una película hasta el final.','Compraron recuerdos y postales.','Descansaron, revisaron las fotos y eligieron las mejores.','Llamaron a la madre de Laura.'],ans:2,exp:'Kafede neredeyse bir saat dinlendiler, günün fotoğraflarına baktılar ve aileye göndermek için en iyilerini seçtiler. A seçeneği evdeki filmle ilgilidir. B Plaza Mayor\'daki dükkânla ilgilidir. D seçeneği yanlıştır çünkü Ana annesini eve döndükten sonra arar.'},
+  {id:18,sec:1,q:'¿Qué pasó cuando salieron de la cafetería?',opts:['Empezó a llover un poco.','Encontraron otro restaurante.','Tomaron un barco pequeño en el lago.','Entraron otra vez en el museo.'],ans:0,exp:'Kafeden çıktıklarında hafif yağmur başlar. B, C ve D seçenekleri günün farklı bölümleriyle karıştırmak için verilmiştir ama bu anda gerçekleşmez.'},
+  {id:19,sec:1,q:'¿Por qué caminaron rápido hasta la estación de metro?',opts:['Porque tuvieron que comprar más recuerdos.','Porque Ana perdió su teléfono.','Porque el museo iba a cerrar.','Porque no tuvieron paraguas y empezó a llover.'],ans:3,exp:'Yağmur başlayınca ve şemsiyeleri olmadığı için metro istasyonuna hızlı yürüdüler. A, B ve C seçenekleri metinde yoktur. Özellikle B seçeneği dikkat dağıtıcıdır çünkü Ana telefonuyla video çekmişti ama telefonunu kaybettiğine dair bilgi yoktur.'},
+  {id:20,sec:1,q:'¿Por qué Laura pensó que ese sábado fue especial?',opts:['Porque hicieron un viaje extraordinario a Valencia.','Porque compartieron tiempo juntas, conversaron y recordaron momentos familiares.','Porque compraron muchos regalos caros.','Porque Ana terminó una película antes de dormir.'],ans:1,exp:'Metnin sonunda Laura için bu günün sadece turistik bir gün olmadığı, sohbet, sevgi ve aile anılarıyla özel olduğu anlatılır. A seçeneği yanlıştır çünkü Valencia\'ya gitmediler; Ana Valencia\'dan geldi. C seçeneği yanlıştır çünkü çok hediye almadılar. D seçeneği de yanlıştır çünkü Ana film bitmeden uyudu.'},
+
+  // ── KISIM 2: ÇEVİRİ (21-40) ──
+  {id:21,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nLaura geçen cumartesi çok erken kalktı çünkü kuzeniyle Madrid\'i gezmek istedi.',opts:['Laura se levanta muy temprano el sábado pasado porque quiere visitar Madrid con su prima.','Laura se levantó muy temprano el sábado pasado porque quiso visitar Madrid con su prima.','Laura se levantó muy temprano el sábado pasado porque quiere visitar Madrid con su prima.','Laura se levantaba muy temprano el sábado pasado porque quiso visitar Madrid con su prima.'],ans:1,exp:'Doğru cevap B\'dir çünkü cümlede "geçen cumartesi" tamamlanmış geçmiş zamanı gösterir. Bu nedenle se levantó ve quiso fiilleri Pretérito Indefinido ile kullanılmalıdır.\nA seçeneği yanlıştır çünkü se levanta ve quiere geniş zamandır.\nC seçeneği yanlıştır çünkü ilk fiil doğru olsa da quiere geniş zamandır.\nD seçeneği yanlıştır çünkü se levantaba Pretérito Imperfecto\'dur; burada alışkanlık değil, belirli bir günde tamamlanmış bir olay anlatılır.'},
+  {id:22,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nAna Valencia\'dan cuma gecesi geldi ve hafta sonu Laura\'nın evinde kaldı.',opts:['Ana llegó de Valencia el viernes por la mañana y se quedó en la casa de Laura durante la semana.','Ana venía de Valencia el viernes por la noche y se quedó en la casa de Laura durante el fin de semana.','Ana llegó de Valencia el viernes por la noche y se quedó en la casa de Laura durante el fin de semana.','Ana llegó a Valencia el viernes por la noche y se quedó en la casa de Laura durante el fin de semana.'],ans:2,exp:'Doğru cevap C\'dir. "Valencia\'dan geldi" ifadesi llegó de Valencia şeklindedir. "Cuma gecesi" = el viernes por la noche, "hafta sonu boyunca" = durante el fin de semana.\nA seçeneği yanlıştır çünkü "cuma sabahı" ve "hafta boyunca" anlamı verir.\nB seçeneği yanlıştır çünkü venía imperfecto\'dur; burada tamamlanmış bir geliş eylemi vardır.\nD seçeneği yanlıştır çünkü llegó a Valencia "Valencia\'ya geldi" demektir; cümlede ise Valencia\'dan geldiği söylenir.'},
+  {id:23,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nLaura kahvaltı hazırladı ve masaya ekmek, peynir, meyve ve kahve koydu.',opts:['Laura preparó el desayuno y puso pan, queso, fruta y café en la mesa.','Laura preparaba el desayuno y ponía pan, queso, fruta y café en la mesa.','Laura preparó la cena y puso pan, queso, fruta y café en la mesa.','Laura prepara el desayuno y pone pan, queso, fruta y café en la mesa.'],ans:0,exp:'Doğru cevap A\'dır. "Hazırladı" = preparó, "koydu" = puso. Her iki fiil de tamamlanmış geçmiş olay anlattığı için Pretérito Indefinido kullanılır.\nB seçeneği yanlıştır çünkü preparaba / ponía imperfecto\'dur; bu yapı alışkanlık veya arka plan anlatımı verir.\nC seçeneği yanlıştır çünkü la cena akşam yemeğidir; cümlede kahvaltı vardır.\nD seçeneği yanlıştır çünkü prepara / pone geniş zamandır.'},
+  {id:24,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nAna yolculuk uzun sürdüğü için biraz geç uyandı.',opts:['Ana se despertó temprano porque el viaje fue corto.','Ana se despierta un poco tarde porque el viaje es largo.','Ana se despertaba un poco tarde porque el viaje fue largo.','Ana se despertó un poco tarde porque el viaje fue largo.'],ans:3,exp:'Doğru cevap D\'dir. "Uyandı" = se despertó, "yolculuk uzun sürdü" = el viaje fue largo. İki olay da geçmişte tamamlanmıştır.\nA seçeneği yanlıştır çünkü "erken uyandı" ve "yolculuk kısa sürdü" diyerek anlamı değiştirir.\nB seçeneği yanlıştır çünkü geniş zaman kullanılmıştır.\nC seçeneği yanlıştır çünkü se despertaba imperfecto\'dur; burada bir alışkanlık değil, tek bir sabah yaşanan olay vardır.'},
+  {id:25,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nİki kuzen kahvaltıdan sonra evden çıktı ve metroya bindi.',opts:['Las dos primas salieron de casa antes del desayuno y tomaron el metro.','Las dos primas salen de casa después del desayuno y toman el metro.','Las dos primas salieron de casa después de la cena y tomaron el metro.','Las dos primas salieron de casa después del desayuno y tomaron el metro.'],ans:3,exp:'Doğru cevap D\'dir. "Kahvaltıdan sonra" = después del desayuno, "evden çıktı" = salieron de casa, "metroya bindi" = tomaron el metro.\nA seçeneği yanlıştır çünkü "kahvaltıdan önce" anlamı verir.\nB seçeneği yanlıştır çünkü salen / toman geniş zamandır.\nC seçeneği yanlıştır çünkü "kahvaltıdan sonra" yerine "akşam yemeğinden sonra" anlamı verilmiştir.'},
+  {id:26,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nMetroda birçok insan gördüler: öğrenciler, turistler, aileler ve çalışanlar.',opts:['En el metro vieron a muchas personas: estudiantes, turistas, familias y trabajadores.','En el metro ven a muchas personas: estudiantes, turistas, familias y trabajadores.','En el metro vieron muchas casas, estudiantes, turistas y trabajadores.','En el metro veían a muchas personas: estudiantes, turistas, familias y trabajadores.'],ans:0,exp:'Doğru cevap A\'dır. "Gördüler" fiili geçmişte tamamlanmış bir eylemdir ve vieron kullanılır. Liste de metindeki anlamla uyumludur.\nB seçeneği yanlıştır çünkü ven geniş zamandır.\nC seçeneği yanlıştır çünkü "personas" yerine "casas" yani evler denmiştir; anlam bozulur.\nD seçeneği yanlıştır çünkü veían imperfecto\'dur; burada genel bir arka plan değil, belirli bir anda gerçekleşen görme eylemi vardır.'},
+  {id:27,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nAna bazı ifadelerde zorlandığı için Laura ona yeni kelimeler açıkladı.',opts:['Laura explicó algunas palabras nuevas a Ana porque Ana no quiso estudiar español.','Laura explica algunas palabras nuevas a Ana porque Ana tiene dificultades con algunas expresiones.','Laura explicó algunas palabras nuevas a Ana porque Ana tuvo dificultades con algunas expresiones.','Ana explicó algunas palabras nuevas a Laura porque Laura tuvo dificultades con algunas expresiones.'],ans:2,exp:'Doğru cevap C\'dir. Cümlede geçmişte gerçekleşen iki durum vardır: Laura açıkladı (explicó) ve Ana zorlandı (tuvo dificultades).\nA seçeneği yanlıştır çünkü Ana\'nın İspanyolca çalışmak istemediği söylenmiyor.\nB seçeneği yanlıştır çünkü geniş zaman kullanılmıştır.\nD seçeneği yanlıştır çünkü özne-nesne değişmiştir; açıklayan kişi Laura\'dır, Ana değildir.'},
+  {id:28,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nPuerta del Sol\'da çok fotoğraf çektiler ve meydanda yavaşça yürüdüler.',opts:['En la Puerta del Sol compraron muchas fotos y caminaron lentamente por la plaza.','En la Puerta del Sol hicieron muchas fotos y caminaron lentamente por la plaza.','En la Plaza Mayor hicieron muchas fotos y caminaron lentamente por la plaza.','En la Puerta del Sol hicieron muchas fotos y corrieron rápidamente por la plaza.'],ans:1,exp:'Doğru cevap B\'dir. "Fotoğraf çekmek" İspanyolcada hacer fotos şeklindedir. "Yavaşça yürüdüler" = caminaron lentamente.\nA seçeneği yanlıştır çünkü compraron muchas fotos "çok fotoğraf satın aldılar" demektir.\nC seçeneği yanlıştır çünkü yer değişmiştir; cümlede Puerta del Sol vardır.\nD seçeneği yanlıştır çünkü "yavaşça yürüdüler" yerine "hızlıca koştular" anlamı verilmiştir.'},
+  {id:29,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nAna, Madrid\'in hayal ettiğinden daha büyük ve daha gürültülü olduğunu söyledi.',opts:['Ana dijo que Madrid fue más pequeño y más tranquilo de lo que imaginó.','Ana dijo que Madrid fue más grande y más ruidoso de lo que imaginó.','Ana dice que Madrid es más grande y más ruidoso de lo que imagina.','Ana dijo que Valencia fue más grande y más ruidosa de lo que imaginó.'],ans:1,exp:'Doğru cevap B\'dir. "Daha büyük" = más grande, "daha gürültülü" = más ruidoso. Ayrıca ana fiil geçmiştedir: dijo.\nA seçeneği yanlıştır çünkü "daha küçük ve daha sakin" diyerek anlamı tersine çevirir.\nC seçeneği yanlıştır çünkü geniş zaman kullanılmıştır.\nD seçeneği yanlıştır çünkü Madrid yerine Valencia denmiştir.'},
+  {id:30,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nPlaza Mayor\'da neşeli şarkılar çalan bir müzisyen grubu buldular.',opts:['En la Plaza Mayor buscaron un restaurante pequeño y bonito.','En la Puerta del Sol encontraron un grupo de músicos que tocó canciones alegres.','En la Plaza Mayor encontraron una familia que cantó canciones tristes.','En la Plaza Mayor encontraron un grupo de músicos que tocó canciones alegres.'],ans:3,exp:'Doğru cevap D\'dir. "Buldular" = encontraron, "bir müzisyen grubu" = un grupo de músicos, "neşeli şarkılar çalan" = que tocó canciones alegres.\nA seçeneği yanlıştır çünkü restoran arama olayı öğle yemeği bölümüne aittir.\nB seçeneği yanlıştır çünkü yer Puerta del Sol değil, Plaza Mayor\'dur.\nC seçeneği yanlıştır çünkü "müzisyen grubu" yerine "aile", "neşeli" yerine "üzgün" denmiştir.'},
+  {id:31,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nLaura annesi için bir kartpostal aldı, ama çok fazla şey satın almadılar.',opts:['Laura compró una postal para su madre, pero no compraron muchas cosas.','Laura compró una postal para Ana, pero compraron muchas cosas.','Laura compra una postal para su madre, pero no compra muchas cosas.','Laura compró una postal para su madre porque compraron muchas cosas.'],ans:0,exp:'Doğru cevap A\'dır. "Aldı" = compró, "çok fazla şey satın almadılar" = no compraron muchas cosas.\nB seçeneği yanlıştır çünkü kartpostal Ana için değil, Laura\'nın annesi içindir. Ayrıca "çok şey aldılar" diyerek anlamı değiştirir.\nC seçeneği yanlıştır çünkü geniş zaman kullanır.\nD seçeneği yanlıştır çünkü "ama" yerine "çünkü" anlamı verir; sebep-sonuç ilişkisi bozulur.'},
+  {id:32,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nÖğle vakti acıktılar ve pazarın yakınında küçük bir restoran seçtiler.',opts:['Al mediodía tuvieron sueño y eligieron un hotel cerca del mercado.','Por la noche tuvieron hambre y eligieron un restaurante pequeño cerca del mercado.','Al mediodía tuvieron hambre y eligieron un restaurante pequeño cerca del mercado.','Al mediodía tienen hambre y eligen un restaurante pequeño cerca del mercado.'],ans:2,exp:'Doğru cevap C\'dir. "Öğle vakti" = al mediodía, "acıktılar" = tuvieron hambre, "küçük bir restoran seçtiler" = eligieron un restaurante pequeño.\nA seçeneği yanlıştır çünkü "acıktılar" yerine "uykuları geldi", "restoran" yerine "otel" denmiştir.\nB seçeneği yanlıştır çünkü "öğle vakti" yerine "gece" denmiştir.\nD seçeneği yanlıştır çünkü geniş zaman kullanılmıştır.'},
+  {id:33,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nYemek lezzetliydi, fakat servis biraz yavaştı çünkü çok müşteri vardı.',opts:['La comida estuvo mala, pero el servicio fue rápido porque había pocos clientes.','La comida está deliciosa, pero el servicio es un poco lento porque hay muchos clientes.','La comida fue deliciosa, pero el restaurante estuvo cerrado porque había muchos clientes.','La comida estuvo deliciosa, pero el servicio fue un poco lento porque había muchos clientes.'],ans:3,exp:'Doğru cevap D\'dir. "Yemek lezzetliydi" = la comida estuvo deliciosa, "servis biraz yavaştı" = el servicio fue un poco lento, "çok müşteri vardı" = había muchos clientes.\nA seçeneği yanlıştır çünkü yemek kötü, servis hızlı ve müşteri az denmiştir; anlam tamamen değişmiştir.\nB seçeneği yanlıştır çünkü geniş zaman kullanılmıştır.\nC seçeneği yanlıştır çünkü restoranın kapalı olduğu söylenmez; ayrıca kapalı olsaydı yemek yiyemezlerdi.'},
+  {id:34,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nYemekten sonra Retiro Parkı\'na gittiler ve gölün yakınında yürüdüler.',opts:['Antes de comer fueron al Parque del Retiro y caminaron cerca del lago.','Después de comer fueron al Parque del Retiro y caminaron cerca del lago.','Después de comer fueron al museo y caminaron cerca del lago.','Después de cenar fueron al Parque del Retiro y caminaron cerca del mercado.'],ans:1,exp:'Doğru cevap B\'dir. "Yemekten sonra" = después de comer, "Retiro Parkı\'na gittiler" = fueron al Parque del Retiro, "gölün yakınında yürüdüler" = caminaron cerca del lago.\nA seçeneği yanlıştır çünkü "yemekten önce" anlamı verir.\nC seçeneği yanlıştır çünkü Retiro Parkı yerine müze denmiştir.\nD seçeneği yanlıştır çünkü "yemekten sonra" yerine "akşam yemeğinden sonra" ve "göl" yerine "pazar" denmiştir.'},
+  {id:35,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nAna, parkın merkezden daha sakin olduğu için orayı çok sevdiğini söyledi.',opts:['Ana dijo que ese lugar le gustó mucho porque fue más tranquilo que el centro.','Ana dijo que ese lugar no le gustó porque fue más ruidoso que el centro.','Ana dice que ese lugar le gusta mucho porque es más tranquilo que el centro.','Ana dijo que el centro le gustó mucho porque fue más tranquilo que el parque.'],ans:0,exp:'Doğru cevap A\'dır. Cümlede Ana\'nın geçmişte söylediği bir görüş vardır: Ana dijo que... "Orayı çok sevdi" = ese lugar le gustó mucho, "merkezden daha sakindi" = fue más tranquilo que el centro.\nB seçeneği yanlıştır çünkü "sevmedi" ve "daha gürültülüydü" diyerek anlamı tersine çevirir.\nC seçeneği yanlıştır çünkü geniş zaman kullanılmıştır.\nD seçeneği yanlıştır çünkü karşılaştırma ters kurulmuştur; park merkezden daha sakindir, merkez parktan daha sakin değildir.'},
+  {id:36,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nMüzede bütün salonları görmediler çünkü çok zamanları yoktu.',opts:['En el museo vieron todas las salas porque tuvieron mucho tiempo.','En el museo no vieron todos los cuadros porque no les gustó la visita.','En el museo no vieron todas las salas porque no tuvieron mucho tiempo.','En el museo no ven todas las salas porque no tienen mucho tiempo.'],ans:2,exp:'Doğru cevap C\'dir. "Bütün salonları görmediler" = no vieron todas las salas, "çok zamanları yoktu" = no tuvieron mucho tiempo.\nA seçeneği yanlıştır çünkü bütün salonları gördüklerini ve çok zamanları olduğunu söyler.\nB seçeneği yanlıştır çünkü "salonlar" yerine "tablolar" denmiştir ve sebep olarak "ziyareti sevmemeleri" verilmiştir.\nD seçeneği yanlıştır çünkü geniş zaman kullanılmıştır.'},
+  {id:37,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nAna bütün açıklamaları anlamadı, ama Laura ona bazı fikirleri basit kelimelerle açıkladı.',opts:['Ana entendió todas las descripciones, pero Laura no le explicó nada.','Ana no entendió todas las descripciones, pero Laura le explicó algunas ideas con palabras sencillas.','Ana no entiende todas las descripciones, pero Laura le explica algunas ideas con palabras sencillas.','Laura no entendió todas las descripciones, pero Ana le explicó algunas ideas con palabras sencillas.'],ans:1,exp:'Doğru cevap B\'dir. "Ana bütün açıklamaları anlamadı" = Ana no entendió todas las descripciones, "Laura ona bazı fikirleri basit kelimelerle açıkladı" = Laura le explicó algunas ideas con palabras sencillas.\nA seçeneği yanlıştır çünkü Ana\'nın tüm açıklamaları anladığını ve Laura\'nın hiçbir şey açıklamadığını söyler.\nC seçeneği yanlıştır çünkü geniş zaman kullanır.\nD seçeneği yanlıştır çünkü özne değişmiştir; açıklayan Laura\'dır, Ana değildir.'},
+  {id:38,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nSaat altıda yorulmaya başladılar ve eve dönmeden önce kahve içmeye karar verdiler.',opts:['A las seis de la tarde empezaron a sentirse cansadas y decidieron tomar un café antes de volver a casa.','A las seis de la mañana empezaron a sentirse cansadas y decidieron volver a Valencia.','A las ocho y media empezaron a sentirse cansadas y decidieron preparar la cena.','A las seis de la tarde empiezan a sentirse cansadas y deciden tomar un café antes de volver a casa.'],ans:0,exp:'Doğru cevap A\'dır. "Saat altıda" = a las seis de la tarde, "yorulmaya başladılar" = empezaron a sentirse cansadas, "karar verdiler" = decidieron.\nB seçeneği yanlıştır çünkü "sabah altı" ve "Valencia\'ya dönmek" anlamı verir.\nC seçeneği yanlıştır çünkü saat ve eylemler değişmiştir.\nD seçeneği yanlıştır çünkü geniş zaman kullanılmıştır.'},
+  {id:39,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nKafeden çıktıklarında biraz yağmur başladı ve şemsiyeleri olmadığı için hızlı yürüdüler.',opts:['Cuando entraron en la cafetería, empezó a llover un poco y caminaron lentamente porque tuvieron paraguas.','Cuando salieron del museo, empezó a llover mucho y tomaron un taxi porque no tuvieron paraguas.','Cuando salieron de la cafetería, hizo sol y caminaron rápido porque tuvieron paraguas.','Cuando salieron de la cafetería, empezó a llover un poco y caminaron rápido porque no tuvieron paraguas.'],ans:3,exp:'Doğru cevap D\'dir. "Kafeden çıktıklarında" = cuando salieron de la cafetería, "biraz yağmur başladı" = empezó a llover un poco, "şemsiyeleri olmadığı için hızlı yürüdüler" = caminaron rápido porque no tuvieron paraguas.\nA seçeneği yanlıştır çünkü kafeden çıktıklarında değil, kafeye girdiklerinde diyor; ayrıca şemsiyeleri olduğunu söylüyor.\nB seçeneği yanlıştır çünkü müzeden çıkmak, çok yağmur yağması ve taksiye binmek metindeki anlam değildir.\nC seçeneği yanlıştır çünkü güneşli olduğunu ve şemsiyeleri olduğunu söyler.'},
+  {id:40,sec:2,q:'Aşağıdaki cümlenin İspanyolca çevirisi hangisidir?\n\nLaura için o gün sadece turistik bir gün değil, sohbet ve aile anılarıyla dolu özel bir gündü.',opts:['Para Laura, ese día fue solo un día turístico porque no habló con Ana ni recordó nada.','Para Laura, ese día no fue especial porque caminaron por lugares aburridos.','Para Laura, ese día no fue solo un día turístico; fue un día de conversación y recuerdos familiares.','Para Ana, ese día fue solo un día turístico; no fue un día de conversación ni de recuerdos familiares.'],ans:2,exp:'Doğru cevap C\'dir. Cümlede Laura için günün sadece turistik olmadığı, aynı zamanda konuşma ve aile anılarıyla özel olduğu anlatılır. No fue solo...; fue... yapısı Türkçedeki "sadece ... değil, ... idi" anlamını doğru verir.\nA seçeneği yanlıştır çünkü günün sadece turistik olduğunu ve konuşmadıklarını söyler; bu metnin tam tersidir.\nB seçeneği yanlıştır çünkü günün özel olmadığı ve yerlerin sıkıcı olduğu söylenir; metinde böyle bir anlam yoktur.\nD seçeneği yanlıştır çünkü özne Laura yerine Ana yapılmıştır ve anlam olumsuza çevrilmiştir.'},
+
+  // ── KISIM 3: YOL GÖSTERİCİ İFADELER (41-50) ──
+  {id:41,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\nayer – lo más importante – voy a contar – por ejemplo – al final',opts:['bugün – en önemli şey – anlatmak istiyorum – mesela – sonunda','dün – bence – açıklamak istiyorum – çünkü – ilk olarak','dün – en önemli şey – anlatacağım / anlatmak istiyorum – örneğin – sonunda','geçen hafta – en önemli şey – anlatacağım – ancak – daha sonra'],ans:2,exp:'Doğru cevap C\'dir.\nayer "dün", lo más importante "en önemli şey", voy a contar "anlatacağım / anlatmak istiyorum", por ejemplo "örneğin", al final ise "sonunda" anlamına gelir.\nA seçeneği yanlıştır çünkü ayer "bugün" değil, "dün" demektir.\nB seçeneği yanlıştır çünkü lo más importante "bence" değildir; "en önemli şey" anlamına gelir. Ayrıca por ejemplo "çünkü" değildir.\nD seçeneği yanlıştır çünkü ayer "geçen hafta" değildir ve por ejemplo "ancak" anlamına gelmez.'},
+  {id:42,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\nprimero – después – luego – finalmente – en conclusión',opts:['sonra – ilk olarak – daha sonra – sonuç olarak – bazen','ilk olarak – sonra – ardından / daha sonra – son olarak – sonuç olarak','ilk olarak – çünkü – sonra – örneğin – sonuç olarak','bugün – dün – geçen hafta – sonunda – bence'],ans:1,exp:'Doğru cevap B\'dir.\nBu ifadeler metinde olayları sıraya koymak için kullanılır. primero "ilk olarak", después "sonra", luego "ardından / daha sonra", finalmente "son olarak", en conclusión ise "sonuç olarak" anlamına gelir.\nA seçeneği yanlıştır çünkü primero "sonra" değil, "ilk olarak" demektir.\nC seçeneği yanlıştır çünkü después "çünkü" değildir; finalmente de "örneğin" anlamına gelmez.\nD seçeneği yanlıştır çünkü verilen ifadeler zaman zarflarıyla karıştırılmıştır.'},
+  {id:43,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\nen mi opinión – creo que – pienso que – para mí – me parece que',opts:['benim fikrime göre – sanırım / düşünüyorum ki – düşünüyorum ki – bana göre – bana öyle geliyor ki','sonuç olarak – çünkü – örneğin – sonra – bugün','benim fikrime göre – ancak – bu yüzden – her zaman – hiçbir zaman','ilk olarak – anlatacağım – en önemli şey – bazen – sonunda'],ans:0,exp:'Doğru cevap A\'dır.\nBu ifadeler kişisel görüş belirtmek için kullanılır. en mi opinión "benim fikrime göre", creo que "sanırım / düşünüyorum ki", pienso que "düşünüyorum ki", para mí "bana göre", me parece que ise "bana öyle geliyor ki" anlamına gelir.\nB seçeneği yanlıştır çünkü ifadeler görüş bildirme değil, bağlaç ve zaman ifadeleriyle karıştırılmıştır.\nC seçeneği yanlıştır çünkü creo que "ancak" değildir; pienso que "bu yüzden" anlamına gelmez.\nD seçeneği yanlıştır çünkü bu seçenek metin sıralama ifadeleriyle ilgilidir, görüş bildirme ifadeleriyle değil.'},
+  {id:44,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\nporque – por eso – sin embargo – pero – además – también',opts:['örneğin – sonra – çünkü – ama – en sonunda – asla','çünkü – ayrıca – ancak – bu yüzden – da/de – bazen','bu yüzden – çünkü – ama – ancak – ayrıca – sonra','çünkü – bu yüzden – ancak / bununla birlikte – ama – ayrıca – ayrıca / de-da'],ans:3,exp:'Doğru cevap D\'dir.\nporque "çünkü", por eso "bu yüzden", sin embargo "ancak / bununla birlikte", pero "ama", además "ayrıca", también ise "ayrıca / de-da" anlamına gelir.\nA seçeneği yanlıştır çünkü porque "örneğin" değildir.\nB seçeneği yanlıştır çünkü por eso "ayrıca" değil, "bu yüzden" demektir. Ayrıca también "bazen" değildir.\nC seçeneği yanlıştır çünkü ilk iki ifade yer değiştirmiştir; porque "çünkü", por eso "bu yüzden" olmalıdır.'},
+  {id:45,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\nhoy – ayer – anoche – esta semana – la semana pasada – el mes pasado',opts:['bugün – dün – dün gece – bu hafta – geçen hafta – geçen ay','dün – bugün – bu gece – geçen hafta – bu hafta – geçen ay','bugün – yarın – dün gece – bu ay – geçen yıl – geçen hafta','şimdi – dün – akşam – her hafta – geçen ay – bu ay'],ans:0,exp:'Doğru cevap A\'dır.\nBunlar zaman zarflarıdır. hoy "bugün", ayer "dün", anoche "dün gece", esta semana "bu hafta", la semana pasada "geçen hafta", el mes pasado ise "geçen ay" anlamına gelir.\nB seçeneği yanlıştır çünkü hoy ve ayer yer değiştirmiştir.\nC seçeneği yanlıştır çünkü ayer "yarın" değildir; la semana pasada da "geçen yıl" anlamına gelmez.\nD seçeneği yanlıştır çünkü hoy "şimdi" değil "bugün" demektir; ayrıca esta semana "her hafta" değildir.'},
+  {id:46,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\nme gusta… porque – no me gusta… porque – por un lado – por otro lado – en definitiva',opts:['hoşuma gitmiyor çünkü – hoşuma gidiyor çünkü – sonuç olarak – bir yandan – öte yandan','hoşuma gidiyor çünkü – örneğin – bir yandan – ama – ilk olarak','bence – bana göre – çünkü – bu yüzden – sonunda','hoşuma gidiyor çünkü – hoşuma gitmiyor çünkü – bir yandan – öte yandan – sonuç olarak / özetle'],ans:3,exp:'Doğru cevap D\'dir.\nme gusta… porque "hoşuma gidiyor çünkü", no me gusta… porque "hoşuma gitmiyor çünkü", por un lado "bir yandan", por otro lado "öte yandan", en definitiva ise "sonuç olarak / özetle" anlamına gelir.\nA seçeneği yanlıştır çünkü ilk iki ifade ters verilmiştir.\nB seçeneği yanlıştır çünkü no me gusta… porque eksiktir ve yanlış karşılık verilmiştir.\nC seçeneği yanlıştır çünkü bu ifadeler görüş belirtme ve neden açıklama yapılarıdır; verilen Türkçe karşılıklar sıralamaya uymaz.'},
+  {id:47,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\nquiero hablar de – me gustaría explicar – voy a contar – para empezar – en primer lugar',opts:['anlatacağım – ilk olarak – açıklamak isterim – hakkında konuşmak istiyorum – sonuç olarak','örneğin – çünkü – anlatmak istiyorum – sonunda – daha sonra','hakkında konuşmak istiyorum – açıklamak isterim – anlatacağım / anlatmak istiyorum – başlamak için – ilk olarak','açıklamak istemiyorum – konuşacağım – dinlemek istiyorum – sonra – geçen hafta'],ans:2,exp:'Doğru cevap C\'dir.\nBu ifadeler özellikle yazının giriş bölümünde kullanılabilir. quiero hablar de "hakkında konuşmak istiyorum", me gustaría explicar "açıklamak isterim", voy a contar "anlatacağım / anlatmak istiyorum", para empezar "başlamak için", en primer lugar ise "ilk olarak" anlamına gelir.\nA seçeneği yanlıştır çünkü ifadelerin sırası karışıktır ve en primer lugar "sonuç olarak" değildir.\nB seçeneği yanlıştır çünkü birçok ifade yanlış bağlaçlarla eşleştirilmiştir.\nD seçeneği yanlıştır çünkü bazı anlamlar olumsuzlaştırılmıştır; örneğin me gustaría explicar "açıklamak istemiyorum" değildir.'},
+  {id:48,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\nnormalmente – a veces – siempre – nunca – de repente',opts:['bazen – normalde – asla – her zaman – sonunda','normalde – bazen – her zaman – asla / hiçbir zaman – aniden','bugün – dün – her zaman – asla – geçen hafta','normalde – sonra – bazen – hiçbir zaman – sonuç olarak'],ans:1,exp:'Doğru cevap B\'dir.\nnormalmente "normalde", a veces "bazen", siempre "her zaman", nunca "asla / hiçbir zaman", de repente ise "aniden" anlamına gelir.\nA seçeneği yanlıştır çünkü normalmente ve a veces yer değiştirmiştir; ayrıca de repente "sonunda" değildir.\nC seçeneği yanlıştır çünkü normalmente "bugün", a veces "dün" değildir.\nD seçeneği yanlıştır çünkü a veces "sonra" değildir ve de repente "sonuç olarak" anlamına gelmez.'},
+  {id:49,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\npor ejemplo – entonces – luego – después – más tarde – al final',opts:['çünkü – bu yüzden – sonra – örneğin – sonunda – daha sonra','örneğin – o zaman / bunun üzerine – ardından – sonra – daha sonra – sonunda','örneğin – ancak – çünkü – bu yüzden – dün – bugün','sonra – örneğin – sonunda – daha sonra – ilk olarak – çünkü'],ans:1,exp:'Doğru cevap B\'dir.\npor ejemplo "örneğin", entonces "o zaman / bunun üzerine", luego "ardından", después "sonra", más tarde "daha sonra", al final ise "sonunda" anlamına gelir.\nA seçeneği yanlıştır çünkü por ejemplo "çünkü" değildir ve sıralama tamamen bozulmuştur.\nC seçeneği yanlıştır çünkü entonces "ancak", luego "çünkü" anlamına gelmez.\nD seçeneği yanlıştır çünkü ilk iki ifade yer değiştirmiştir ve al final "çünkü" değildir.'},
+  {id:50,sec:3,q:'Aşağıdaki ifadelerin doğru Türkçe karşılığı hangi seçenekte sırasıyla verilmiştir?\n\nen resumen – para terminar – finalmente – en conclusión – al final',opts:['özetle – bitirmek için / son olarak – son olarak – sonuç olarak – sonunda','sonunda – ilk olarak – çünkü – ama – özetle','özetle – çünkü – son olarak – örneğin – dün','sonuç olarak – sonra – her zaman – hiçbir zaman – başlamak için'],ans:0,exp:'Doğru cevap A\'dır.\nBu ifadeler genellikle yazının sonuç bölümünde kullanılır. en resumen "özetle", para terminar "bitirmek için / son olarak", finalmente "son olarak", en conclusión "sonuç olarak", al final ise "sonunda" anlamına gelir.\nB seçeneği yanlıştır çünkü en resumen "sonunda" değil, "özetle" demektir.\nC seçeneği yanlıştır çünkü para terminar "çünkü" değildir ve en conclusión "örneğin" anlamına gelmez.\nD seçeneği yanlıştır çünkü sonuç ifadeleri zaman ve sıklık zarflarıyla karıştırılmıştır.'},
+];
+
+// STATE
+let studentName = '';
+let answers = {};
+let currentQ = 0;
+let submitted = false;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function startQuiz() {
+  const sel = document.getElementById('name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  answers = {}; submitted = false; currentQ = 0;
+  document.getElementById('top-student').textContent = studentName;
+  showScreen('quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const letters = ['A','B','C','D'];
+  const secNames = {1:'Kısım 1 — Okuma Çalışması', 2:'Kısım 2 — YDS Tarzı Çeviri', 3:'Kısım 3 — Yol Gösterici İfadeler'};
+
+  // Progress
+  const answered = Object.keys(answers).length;
+  document.getElementById('prog-fill').style.width = (answered / 50 * 100) + '%';
+  document.getElementById('prog-section').textContent = secNames[q.sec];
+  document.getElementById('prog-cur').textContent = currentQ + 1;
+  document.getElementById('nav-center').textContent = (currentQ + 1) + ' / 50';
+  document.getElementById('bb-answered').textContent = answered;
+  document.getElementById('btn-prev').disabled = (currentQ === 0);
+
+  const isLast = (currentQ === 49);
+  const btnNext = document.getElementById('btn-next');
+  if (isLast) {
+    btnNext.textContent = '✔ Teslim Et';
+    btnNext.className = 'btn btn-yellow btn-sm';
+    btnNext.onclick = goToConfirm;
+  } else {
+    btnNext.textContent = 'İleri →';
+    btnNext.className = 'btn btn-pink btn-sm';
+    btnNext.onclick = () => navigate(1);
+  }
+
+  // Score
+  let correct = 0, wrong = 0;
+  QUESTIONS.forEach(qq => {
+    const a = answers[qq.id]; if (a === undefined) return;
+    if (a === qq.ans) correct++; else wrong++;
+  });
+  document.getElementById('sc-correct').textContent = correct;
+  document.getElementById('sc-wrong').textContent   = wrong;
+
+  // Metin (sadece kısım 1)
+  const metinHTML = q.sec === 1 ? `
+    <div class="metin-card">
+      <div class="metin-label">📖 Texto</div>
+      <div class="metin-title">Un día diferente en Madrid</div>
+      <div style="max-height:220px;overflow-y:auto;font-size:12.5px;line-height:1.8;white-space:pre-line">${METIN}</div>
+    </div>` : '';
+
+  // Çeviri sorusu formatı
+  const qLines = q.q.split('\n');
+  const qMain  = qLines[0];
+  const qSentence = qLines[1] ? `<div class="q-tr-sentence">${qLines[1]}</div>` : '';
+
+  const optsHTML = q.opts.map((o,i) => {
+    let cls = 'opt-btn';
+    const ua = answers[q.id];
+    if (ua !== undefined) {
+      if (i === q.ans) cls += ' correct';
+      if (i === ua && ua !== q.ans) cls += ' wrong';
+    }
+    return `<button class="${cls}" ${ua !== undefined ? 'disabled' : ''} onclick="answer(${q.id},${i})">
+      <span class="opt-letter">${letters[i]}</span><span>${o}</span></button>`;
+  }).join('');
+
+  const expShow = answers[q.id] !== undefined ? 'show' : '';
+
+  document.getElementById('q-area').innerHTML = `
+    <div class="section-badge">${secNames[q.sec]}</div>
+    ${metinHTML}
+    <div class="q-card">
+      <div class="q-head">
+        <div class="q-num">${q.id}</div>
+        <div class="q-text">
+          ${qMain}
+          ${qSentence}
+        </div>
+      </div>
+      <div class="q-opts">${optsHTML}</div>
+      <div class="explanation ${expShow}">
+        <div class="exp-label">💡 Açıklama</div>
+        ${q.exp.replace(/\n/g,'<br>')}
+      </div>
+    </div>`;
+}
+
+function navigate(dir) {
+  currentQ = Math.max(0, Math.min(49, currentQ + dir));
+  renderQuestion();
+}
+
+function answer(qId, chosen) {
+  if (answers[qId] !== undefined || submitted) return;
+  answers[qId] = chosen;
+  renderQuestion();
+}
+
+function goToConfirm() {
+  document.getElementById('confirm-name-select').value = studentName;
+  showScreen('confirm');
+}
+
+function confirmAndSubmit() {
+  const sel = document.getElementById('confirm-name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  const btn = document.querySelector('#screen-confirm .btn-yellow');
+  btn.disabled = true; btn.textContent = '⏳ Kaydediliyor…';
+  submitQuiz();
+}
+
+function submitQuiz() {
+  submitted = true;
+
+  let okuma=0, ceviri=0, yol=0;
+  QUESTIONS.forEach(q => {
+    const a = answers[q.id]; if (a === undefined) return;
+    if (a === q.ans) {
+      if (q.sec === 1) okuma++;
+      else if (q.sec === 2) ceviri++;
+      else yol++;
+    }
+  });
+
+  const okumaScore  = okuma  * 2;
+  const ceviriScore = ceviri * 2;
+  const yolScore    = yol    * 2;
+  const score       = okumaScore + ceviriScore + yolScore;
+
+  const correct = okuma + ceviri + yol;
+  const wrong   = QUESTIONS.filter(q => answers[q.id] !== undefined && answers[q.id] !== q.ans).length;
+  const blank   = QUESTIONS.filter(q => answers[q.id] === undefined).length;
+
+  document.getElementById('res-name').textContent   = studentName;
+  document.getElementById('res-score').innerHTML    = score + '<span>/100</span>';
+  document.getElementById('res-pct').textContent    = '%' + score + ' başarı';
+  document.getElementById('res-c').textContent      = correct;
+  document.getElementById('res-w').textContent      = wrong;
+  document.getElementById('res-b').textContent      = blank;
+  document.getElementById('br-okuma').textContent   = okumaScore  + ' / 40';
+  document.getElementById('br-ceviri').textContent  = ceviriScore + ' / 40';
+  document.getElementById('br-yol').textContent     = yolScore    + ' / 20';
+
+  showScreen('result');
+  sendToSheets(studentName, score, correct, wrong, blank);
+}
+
+async function sendToSheets(name, score, correct, wrong, blank) {
+  const el = document.getElementById('res-status');
+  try {
+    const now = new Date();
+    const dd=String(now.getDate()).padStart(2,'0'), mm=String(now.getMonth()+1).padStart(2,'0'), yyyy=now.getFullYear();
+    const hh=String(now.getHours()).padStart(2,'0'), min=String(now.getMinutes()).padStart(2,'0'), ss2=String(now.getSeconds()).padStart(2,'0');
+    const formatted = '✅ '+score+'/100\n✓'+correct+' ✗'+wrong+'\n'+dd+'.'+mm+'.'+yyyy+'\n'+hh+':'+min+':'+ss2;
+    await fetch(APPS_SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ spreadsheetId:SPREADSHEET_ID, sheetName:SHEET_NAME, studentName:name, taskColumn:TASK_COLUMN, score, correct, wrong, blank, formatted })
+    });
+    el.className = 'status-badge status-ok';
+    el.textContent = '✅ Ödev başarıyla kaydedildi!';
+  } catch(e) {
+    el.className = 'status-badge status-error';
+    el.textContent = '⚠️ Kaydedilemedi — Profe\'ye bildirin';
+  }
+}
+
+function reviewAnswers() {
+  showScreen('quiz');
+  const fw = QUESTIONS.findIndex(q => answers[q.id] !== undefined && answers[q.id] !== q.ans);
+  currentQ = fw >= 0 ? fw : 0;
+  renderQuestion();
+}
+
+function goToName() {
+  answers={}; submitted=false; currentQ=0;
+  document.getElementById('name-select').value='';
+  showScreen('name');
+}
+</script>
+</body>
+</html>
