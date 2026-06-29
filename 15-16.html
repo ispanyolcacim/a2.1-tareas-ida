@@ -701,16 +701,26 @@ function goToConfirm() {
 }
 
 function confirmAndSubmit() {
-  const sel = document.getElementById('confirm-name-select');
-  if (!sel.value) { alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!'); return; }
-  studentName = sel.value;
-  const btn = document.querySelector('#screen-confirm .btn-gold');
-  btn.disabled = true; btn.textContent = '\u23f3 Kaydediliyor\u2026';
-  submitQuiz();
+  try {
+    const sel = document.getElementById('confirm-name-select');
+    if (!sel || !sel.value) { alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!'); return; }
+    studentName = sel.value;
+    const btn = document.querySelector('#screen-confirm .btn-gold');
+    if (btn) { btn.disabled = true; btn.textContent = '\u23f3 Kaydediliyor\u2026'; }
+    submitQuiz();
+  } catch (err) {
+    console.error('confirmAndSubmit error:', err);
+    alert('Bir hata olu\u015ftu: ' + err.message + '\\nL\u00fctfen sayfay\u0131 yenileyip tekrar deneyin.');
+    const btn = document.querySelector('#screen-confirm .btn-gold');
+    if (btn) { btn.disabled = false; btn.textContent = '\u2714 Evet, Teslim Et'; }
+  }
 }
 
 function submitQuiz() {
   submitted = true;
+  if (!Array.isArray(matchScores) || matchScores.length < 5) {
+    matchScores = [matchScores[0]||0, matchScores[1]||0, matchScores[2]||0, matchScores[3]||0, matchScores[4]||0];
+  }
 
   // TF score
   let tfCorrect = 0;
