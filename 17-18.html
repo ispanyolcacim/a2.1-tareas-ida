@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A2.1 – H5 17-18. Ders – Pretérito Imperfecto</title>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--c1:#fcedbe;--c2:#f6cf80;--c3:#f7c9d3;--c4:#ee84a8;--c5:#d35a75;--dark:#4a2535;--mid:#8a5060;--white:#fff;--green:#6aab7a;--red:#d97070;--r:14px}
 body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0,#fff5f8 60%,#fffde8);min-height:100vh;color:var(--dark)}
 .header{background:linear-gradient(135deg,var(--c4),var(--c5));padding:18px 20px 14px;text-align:center;box-shadow:0 4px 18px rgba(238,132,168,.4);position:relative;overflow:hidden}
@@ -15,86 +14,85 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 .header-sub{font-size:12px;color:rgba(255,255,255,.85);margin-top:4px;position:relative}
 .screen{display:none;animation:fi .3s ease}.screen.active{display:block}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.name-body{max-width:420px;margin:0 auto;padding:32px 20px;text-align:center}
-.name-body h2{font-size:20px;color:var(--dark);margin-bottom:5px}
-.name-body p{font-size:13px;color:var(--mid);margin-bottom:20px}
+.nb{max-width:420px;margin:0 auto;padding:32px 20px;text-align:center}
+.nb h2{font-size:20px;color:var(--dark);margin-bottom:5px}
+.nb p{font-size:13px;color:var(--mid);margin-bottom:20px}
 .sel{width:100%;padding:13px 16px;font-size:15px;background:#fff;border:2px solid var(--c3);border-radius:var(--r);color:var(--dark);appearance:none;cursor:pointer;margin-bottom:14px;font-family:inherit}
 .sel:focus{outline:none;border-color:var(--c2)}
-.info-box{background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);padding:14px 16px;margin-bottom:18px;text-align:left;font-size:13px;line-height:1.75}
-.ib-row{display:flex;align-items:flex-start;gap:9px;margin-bottom:5px}
-.ib-dot{width:8px;height:8px;border-radius:50%;background:var(--c2);flex-shrink:0;margin-top:5px}
-.ib-hr{height:1px;background:var(--c3);margin:9px 0}
+.ib{background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);padding:14px 16px;margin-bottom:18px;text-align:left;font-size:13px;line-height:1.75}
+.ibr{display:flex;align-items:flex-start;gap:9px;margin-bottom:5px}
+.ibd{width:8px;height:8px;border-radius:50%;background:var(--c2);flex-shrink:0;margin-top:5px}
+.ibh{height:1px;background:var(--c3);margin:9px 0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 24px;border:none;border-radius:var(--r);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
-.btn-main{background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;box-shadow:0 4px 12px rgba(211,90,117,.35)}
-.btn-main:hover{transform:translateY(-2px)}
-.btn-gold{background:linear-gradient(135deg,var(--c2),#e8b040);color:var(--dark);box-shadow:0 4px 12px rgba(246,207,128,.4)}
-.btn-gold:hover{transform:translateY(-2px)}
-.btn-outline{background:#fff;border:2px solid var(--c3);color:var(--dark)}
-.btn-outline:hover{background:var(--c3)}
-.btn-sm{padding:9px 18px;font-size:13px}
-.btn-full{width:100%}
+.bm{background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;box-shadow:0 4px 12px rgba(211,90,117,.35)}
+.bm:hover{transform:translateY(-2px)}
+.bg{background:linear-gradient(135deg,var(--c2),#e8b040);color:var(--dark);box-shadow:0 4px 12px rgba(246,207,128,.4)}
+.bg:hover{transform:translateY(-2px)}
+.bo{background:#fff;border:2px solid var(--c3);color:var(--dark)}
+.bo:hover{background:var(--c3)}
+.bs{padding:9px 18px;font-size:13px}
+.bf{width:100%}
 .btn:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
-.qwrap{max-width:660px;margin:0 auto;padding:16px}
-.top-bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);padding:10px 16px;margin-bottom:12px;gap:8px;flex-wrap:wrap}
-.top-st{font-size:12px;color:var(--mid);font-weight:600}
-.top-sc{display:flex;gap:14px}
-.sc-it{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700}
-.sc-ok{color:var(--green)}.sc-er{color:var(--red)}
-.pgwrap{margin-bottom:14px}
-.pgbar{height:7px;background:var(--c3);border-radius:4px;overflow:hidden}
-.pgfill{height:100%;background:linear-gradient(90deg,var(--c4),var(--c2));border-radius:4px;transition:width .4s;width:0%}
-.pginfo{display:flex;justify-content:space-between;font-size:11px;color:var(--mid);margin-top:3px}
-.sec-badge{display:inline-flex;align-items:center;background:linear-gradient(90deg,var(--c4),var(--c5));border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:10px;box-shadow:0 2px 8px rgba(211,90,117,.3)}
-.qcard{background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);overflow:hidden;box-shadow:0 3px 14px rgba(238,132,168,.15);margin-bottom:12px}
-.qhead{padding:16px 18px 14px;border-bottom:1px solid var(--c3);display:flex;gap:12px;align-items:flex-start}
-.qnum{background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;margin-top:1px}
-.qtext{font-size:14.5px;line-height:1.65;flex:1;color:var(--dark);font-weight:500}
-.rdbox{background:var(--c1);border-left:3px solid var(--c2);border-radius:0 8px 8px 0;padding:12px 16px;margin:0 16px 12px;font-size:13px;line-height:1.9;color:var(--dark)}
-.trbox{background:#f0f8ff;border-left:3px solid #85c1e9;border-radius:0 8px 8px 0;padding:10px 14px;margin:0 16px 10px;font-size:12px;line-height:1.75;color:#1a3a5c;font-style:italic}
-.trlbl{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#1a5276;margin-bottom:4px;font-style:normal}
-.qopts{padding:12px 16px 14px;display:grid;gap:8px}
-.obtn{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#fdf8fb;border:1.5px solid var(--c3);border-radius:10px;color:var(--dark);font-size:13.5px;line-height:1.5;cursor:pointer;text-align:left;width:100%;transition:all .18s;font-family:inherit}
-.obtn:hover:not(:disabled){background:var(--c1);border-color:var(--c2);transform:translateX(4px)}
-.obtn:disabled{cursor:default}
-.oltr{background:var(--c3);color:var(--dark);border-radius:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
-.obtn.ok{background:#edfaf2;border-color:#8dcca0}
-.obtn.ok .oltr{background:var(--green);color:#fff}
-.obtn.er{background:#fdf0f0;border-color:#e8a0a0}
-.obtn.er .oltr{background:var(--red);color:#fff}
-.expl{display:none;margin:0 16px 14px;background:var(--c1);border-left:3px solid var(--c2);border-radius:0 8px 8px 0;padding:11px 14px;font-size:13px;line-height:1.75;color:var(--mid)}
-.expl.show{display:block}
-.explbl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#9a6000;margin-bottom:4px}
-.navbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;margin-bottom:16px;flex-wrap:wrap}
-.navctr{font-size:13px;color:var(--mid);font-weight:600;text-align:center;flex:1}
-.finbar{position:sticky;bottom:0;background:rgba(255,248,250,.97);backdrop-filter:blur(10px);border-top:1.5px solid var(--c3);padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;box-shadow:0 -4px 14px rgba(238,132,168,.18)}
-.fininfo{font-size:12px;color:var(--mid)}
-.fininfo strong{color:var(--dark);font-size:14px}
-.cfwrap{max-width:420px;margin:0 auto;padding:40px 20px;text-align:center}
-.cfwrap h2{font-size:22px;color:var(--dark);margin-bottom:8px}
-.cfwrap p{font-size:14px;color:var(--mid);margin-bottom:20px;line-height:1.6}
-.not-sub{background:rgba(211,90,117,.1);border:2px solid var(--c4);border-radius:var(--r);padding:14px 18px;margin-bottom:20px;font-size:14px;font-weight:700;color:var(--c5)}
-.rswrap{max-width:460px;margin:0 auto;padding:28px 20px;text-align:center}
-.rscard{background:#fff;border:1.5px solid var(--c3);border-radius:20px;padding:28px 22px;margin-bottom:14px;box-shadow:0 6px 24px rgba(238,132,168,.2)}
-.rsemoji{font-size:50px;margin-bottom:10px}
-.rsnm{font-size:14px;color:var(--mid);margin-bottom:3px}
-.rstitle{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:16px}
-.rsbig{font-size:62px;font-weight:900;line-height:1;color:var(--dark)}
-.rsbig span{font-size:24px;font-weight:400;color:var(--mid)}
-.rspct{font-size:13px;color:var(--mid);margin-top:4px;margin-bottom:18px}
-.rsstats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.rsit{background:linear-gradient(135deg,var(--c3),var(--c1));border:1px solid var(--c4);border-radius:12px;padding:11px 16px;min-width:76px;text-align:center}
-.rsit .rsn{font-size:28px;font-weight:800;line-height:1}
-.rsit .rsl{font-size:11px;color:var(--mid);margin-top:3px}
-.rsok .rsn{color:var(--green)}.rser .rsn{color:var(--red)}.rsbl .rsn{color:#bbb}
-.bdown{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
-.bdrow{display:flex;justify-content:space-between;align-items:center;background:rgba(248,219,216,.2);border:1px solid var(--c3);border-radius:8px;padding:8px 14px;font-size:13px}
-.bdlbl{color:var(--mid)}.bdscore{font-weight:700;color:var(--dark)}
-.stbadge{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;margin-bottom:14px}
-.st-ok{background:rgba(106,171,122,.15);border:1.5px solid rgba(106,171,122,.4);color:#3a7a4a}
-.st-er{background:rgba(217,112,112,.15);border:1.5px solid rgba(217,112,112,.4);color:#a04040}
-.st-pnd{background:rgba(246,207,128,.2);border:1.5px solid rgba(246,207,128,.5);color:#9a6000}
-.rsact{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
-</style>
+.qw{max-width:660px;margin:0 auto;padding:16px}
+.tb{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);padding:10px 16px;margin-bottom:12px;gap:8px;flex-wrap:wrap}
+.ts{font-size:12px;color:var(--mid);font-weight:600}
+.tsc{display:flex;gap:14px}
+.si{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700}
+.sok{color:var(--green)}.ser{color:var(--red)}
+.pgw{margin-bottom:14px}
+.pgb{height:7px;background:var(--c3);border-radius:4px;overflow:hidden}
+.pgf{height:100%;background:linear-gradient(90deg,var(--c4),var(--c2));border-radius:4px;transition:width .4s;width:0%}
+.pgi{display:flex;justify-content:space-between;font-size:11px;color:var(--mid);margin-top:3px}
+.sb{display:inline-flex;align-items:center;background:linear-gradient(90deg,var(--c4),var(--c5));border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:10px;box-shadow:0 2px 8px rgba(211,90,117,.3)}
+.qc{background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);overflow:hidden;box-shadow:0 3px 14px rgba(238,132,168,.15);margin-bottom:12px}
+.qh{padding:16px 18px 14px;border-bottom:1px solid var(--c3);display:flex;gap:12px;align-items:flex-start}
+.qn{background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;margin-top:1px}
+.qt{font-size:14.5px;line-height:1.65;flex:1;color:var(--dark);font-weight:500}
+.rb{background:var(--c1);border-left:3px solid var(--c2);border-radius:0 8px 8px 0;padding:12px 16px;margin:0 16px 12px;font-size:13px;line-height:1.9;color:var(--dark)}
+.trb{background:#f0f8ff;border-left:3px solid #85c1e9;border-radius:0 8px 8px 0;padding:10px 14px;margin:0 16px 10px;font-size:12px;line-height:1.75;color:#1a3a5c;font-style:italic}
+.trl{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#1a5276;margin-bottom:4px;font-style:normal}
+.qo{padding:12px 16px 14px;display:grid;gap:8px}
+.ob{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#fdf8fb;border:1.5px solid var(--c3);border-radius:10px;color:var(--dark);font-size:13.5px;line-height:1.5;cursor:pointer;text-align:left;width:100%;transition:all .18s;font-family:inherit}
+.ob:hover:not(:disabled){background:var(--c1);border-color:var(--c2);transform:translateX(4px)}
+.ob:disabled{cursor:default}
+.ol{background:var(--c3);color:var(--dark);border-radius:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.ob.ok{background:#edfaf2;border-color:#8dcca0}
+.ob.ok .ol{background:var(--green);color:#fff}
+.ob.er{background:#fdf0f0;border-color:#e8a0a0}
+.ob.er .ol{background:var(--red);color:#fff}
+.ex{display:none;margin:0 16px 14px;background:var(--c1);border-left:3px solid var(--c2);border-radius:0 8px 8px 0;padding:11px 14px;font-size:13px;line-height:1.75;color:var(--mid)}
+.ex.show{display:block}
+.exl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#9a6000;margin-bottom:4px}
+.nv{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;margin-bottom:16px;flex-wrap:wrap}
+.nc{font-size:13px;color:var(--mid);font-weight:600;text-align:center;flex:1}
+.fb{position:sticky;bottom:0;background:rgba(255,248,250,.97);backdrop-filter:blur(10px);border-top:1.5px solid var(--c3);padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;box-shadow:0 -4px 14px rgba(238,132,168,.18)}
+.fi{font-size:12px;color:var(--mid)}
+.fi strong{color:var(--dark);font-size:14px}
+.cfw{max-width:420px;margin:0 auto;padding:40px 20px;text-align:center}
+.cfw h2{font-size:22px;color:var(--dark);margin-bottom:8px}
+.cfw p{font-size:14px;color:var(--mid);margin-bottom:20px;line-height:1.6}
+.ns{background:rgba(211,90,117,.1);border:2px solid var(--c4);border-radius:var(--r);padding:14px 18px;margin-bottom:20px;font-size:14px;font-weight:700;color:var(--c5)}
+.rw{max-width:460px;margin:0 auto;padding:28px 20px;text-align:center}
+.rc{background:#fff;border:1.5px solid var(--c3);border-radius:20px;padding:28px 22px;margin-bottom:14px;box-shadow:0 6px 24px rgba(238,132,168,.2)}
+.re{font-size:50px;margin-bottom:10px}
+.rn{font-size:14px;color:var(--mid);margin-bottom:3px}
+.rt{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:16px}
+.rbig{font-size:62px;font-weight:900;line-height:1;color:var(--dark)}
+.rbig span{font-size:24px;font-weight:400;color:var(--mid)}
+.rp{font-size:13px;color:var(--mid);margin-top:4px;margin-bottom:18px}
+.rst{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.ri{background:linear-gradient(135deg,var(--c3),var(--c1));border:1px solid var(--c4);border-radius:12px;padding:11px 16px;min-width:76px;text-align:center}
+.ri .rnum{font-size:28px;font-weight:800;line-height:1}
+.ri .rl{font-size:11px;color:var(--mid);margin-top:3px}
+.rok .rnum{color:var(--green)}.rer .rnum{color:var(--red)}.rbl .rnum{color:#bbb}
+.bd{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.bdr{display:flex;justify-content:space-between;align-items:center;background:rgba(248,219,216,.2);border:1px solid var(--c3);border-radius:8px;padding:8px 14px;font-size:13px}
+.bdl{color:var(--mid)}.bds{font-weight:700;color:var(--dark)}
+.stb{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;margin-bottom:14px}
+.stok{background:rgba(106,171,122,.15);border:1.5px solid rgba(106,171,122,.4);color:#3a7a4a}
+.ster{background:rgba(217,112,112,.15);border:1.5px solid rgba(217,112,112,.4);color:#a04040}
+.stpnd{background:rgba(246,207,128,.2);border:1.5px solid rgba(246,207,128,.5);color:#9a6000}
+.ra{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}</style>
 </head>
 <body>
 <div class="header">
@@ -103,9 +101,8 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
   <div class="header-sub">50 soru &nbsp;•&nbsp; Okuma · Kullanım · Çekim &nbsp;•&nbsp; 100 puan &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
 </div>
 
-<!-- AD SEÇİMİ -->
 <div class="screen active" id="sc-name">
-  <div class="name-body">
+  <div class="nb">
     <h2>📚 Adınızı seçin</h2>
     <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
     <select class="sel" id="name-sel">
@@ -114,52 +111,49 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
       <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
       <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
       <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option>
-    </select>
-    <div class="info-box">
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Okuma (Çoktan Seçmeli) — 1–20. Sorular (40 puan · 2p/soru)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> Hangi Kullanıma Girer? — 21–35. Sorular (30 puan · 2p/soru)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Doğru Çekimi Seç — 36–50. Sorular (30 puan · 2p/soru)</span></div>
-      <div class="ib-hr"></div>
-      <div class="ib-row"><div class="ib-dot" style="background:var(--c4)"></div><span><strong>Toplam: 100 puan</strong></span></div>
+      <option>Zumeyra Dogan</option></select>
+    <div class="ib">
+      <div class="ibr"><div class="ibd"></div><span><strong>Kısım 1:</strong> Okuma (Çoktan Seçmeli) — 1–20. Sorular (40 puan · 2p/soru)</span></div>
+      <div class="ibr"><div class="ibd"></div><span><strong>Kısım 2:</strong> Hangi Kullanıma Girer? — 21–35. Sorular (30 puan · 2p/soru)</span></div>
+      <div class="ibr"><div class="ibd"></div><span><strong>Kısım 3:</strong> Doğru Çekimi Seç — 36–50. Sorular (30 puan · 2p/soru)</span></div>
+      <div class="ibh"></div>
+      <div class="ibr"><div class="ibd" style="background:var(--c4)"></div><span><strong>Toplam: 100 puan</strong></span></div>
     </div>
-    <button class="btn btn-main btn-full" onclick="startQuiz()">▶ Başla</button>
+    <button class="btn bm bf" onclick="startQuiz()">▶ Başla</button>
   </div>
 </div>
 
-<!-- QUIZ -->
 <div class="screen" id="sc-quiz">
-  <div class="qwrap">
-    <div class="top-bar">
-      <div class="top-st" id="top-st">—</div>
-      <div class="top-sc">
-        <div class="sc-it sc-ok">✓ <span id="sc-ok">0</span></div>
-        <div class="sc-it sc-er">✗ <span id="sc-er">0</span></div>
+  <div class="qw">
+    <div class="tb">
+      <div class="ts" id="top-st">—</div>
+      <div class="tsc">
+        <div class="si sok">✓ <span id="sc-ok">0</span></div>
+        <div class="si ser">✗ <span id="sc-er">0</span></div>
       </div>
     </div>
-    <div class="pgwrap">
-      <div class="pgbar"><div class="pgfill" id="pgfill"></div></div>
-      <div class="pginfo"><span id="pg-sec">—</span><span>Soru <span id="pg-cur">1</span> / 50</span></div>
+    <div class="pgw">
+      <div class="pgb"><div class="pgf" id="pgf"></div></div>
+      <div class="pgi"><span id="pg-sec">—</span><span>Soru <span id="pg-cur">1</span> / 50</span></div>
     </div>
     <div id="q-area"></div>
-    <div class="navbar">
-      <button class="btn btn-outline btn-sm" id="btn-prev" onclick="nav(-1)">← Geri</button>
-      <div class="navctr" id="nav-ctr">1 / 50</div>
-      <button class="btn btn-main btn-sm" id="btn-next" onclick="nav(1)">İleri →</button>
+    <div class="nv">
+      <button class="btn bo bs" id="btn-prev" onclick="nav(-1)">← Geri</button>
+      <div class="nc" id="nav-ctr">1 / 50</div>
+      <button class="btn bm bs" id="btn-next" onclick="nav(1)">İleri →</button>
     </div>
-    <div class="finbar">
-      <div class="fininfo"><strong id="fin-ans">0</strong> / 50 yanıtlandı</div>
-      <button class="btn btn-gold" onclick="goConfirm()">✔ Ödevi Teslim Et</button>
+    <div class="fb">
+      <div class="fi"><strong id="fin-ans">0</strong> / 50 yanıtlandı</div>
+      <button class="btn bg" onclick="goConfirm()">✔ Ödevi Teslim Et</button>
     </div>
   </div>
 </div>
 
-<!-- ONAY -->
 <div class="screen" id="sc-confirm">
-  <div class="cfwrap">
+  <div class="cfw">
     <div style="font-size:48px;margin-bottom:12px">📋</div>
     <h2>Ödevi Teslim Et</h2>
-    <div class="not-sub">⚠️ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ</div>
+    <div class="ns">⚠️ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ</div>
     <p>Teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
     <select class="sel" id="cf-sel" style="margin-bottom:16px">
       <option value="">-- Adınızı Seçin --</option>
@@ -167,36 +161,32 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
       <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
       <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
       <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option>
-    </select>
-    <button class="btn btn-gold btn-full" id="cf-btn" onclick="confirmSubmit()">✔ Evet, Teslim Et</button>
+      <option>Zumeyra Dogan</option></select>
+    <button class="btn bg bf" id="cf-btn" onclick="confirmSubmit()">✔ Evet, Teslim Et</button>
   </div>
 </div>
 
-<!-- SONUÇ -->
 <div class="screen" id="sc-result">
-  <div class="rswrap">
-    <div class="rscard">
-      <div class="rsemoji">🇪🇸</div>
-      <div class="rsnm" id="rs-name">—</div>
-      <div class="rstitle">A2.1 · H5 – 17-18. Ders · Pretérito Imperfecto</div>
-      <div class="rsbig" id="rs-score">0<span>/100</span></div>
-      <div class="rspct" id="rs-pct"></div>
-      <div class="bdown">
-        <div class="bdrow"><span class="bdlbl">📖 Okuma (1–20)</span><span class="bdscore" id="br1">0 / 40</span></div>
-        <div class="bdrow"><span class="bdlbl">🔍 Kullanım (21–35)</span><span class="bdscore" id="br2">0 / 30</span></div>
-        <div class="bdrow"><span class="bdlbl">✏️ Doğru Çekim (36–50)</span><span class="bdscore" id="br3">0 / 30</span></div>
+  <div class="rw">
+    <div class="rc">
+      <div class="re">🇪🇸</div>
+      <div class="rn" id="rs-name">—</div>
+      <div class="rt">A2.1 · H5 – 17-18. Ders · Pretérito Imperfecto</div>
+      <div class="rbig" id="rs-score">0<span>/100</span></div>
+      <div class="rp" id="rs-pct"></div>
+      <div class="bd">
+        <div class="bdr"><span class="bdl">📖 Okuma (1–20)</span><span class="bds" id="br1">0 / 40</span></div>
+        <div class="bdr"><span class="bdl">🔍 Kullanım (21–35)</span><span class="bds" id="br2">0 / 30</span></div>
+        <div class="bdr"><span class="bdl">✏️ Doğru Çekim (36–50)</span><span class="bds" id="br3">0 / 30</span></div>
       </div>
-      <div class="rsstats">
-        <div class="rsit rsok"><div class="rsn" id="rs-c">0</div><div class="rsl">Doğru</div></div>
-        <div class="rsit rser"><div class="rsn" id="rs-w">0</div><div class="rsl">Yanlış</div></div>
-        <div class="rsit rsbl"><div class="rsn" id="rs-b">0</div><div class="rsl">Boş</div></div>
+      <div class="rst">
+        <div class="ri rok"><div class="rnum" id="rs-c">0</div><div class="rl">Doğru</div></div>
+        <div class="ri rer"><div class="rnum" id="rs-w">0</div><div class="rl">Yanlış</div></div>
+        <div class="ri rbl"><div class="rnum" id="rs-b">0</div><div class="rl">Boş</div></div>
       </div>
-      <div class="stbadge st-pnd" id="rs-status">⏳ Kaydediliyor…</div>
+      <div class="stb stpnd" id="rs-status">⏳ Kaydediliyor…</div>
     </div>
-    <div class="rsact">
-      <button class="btn btn-outline" onclick="goName()">🔄 Yeniden Başla</button>
-    </div>
+    <div class="ra"><button class="btn bo" onclick="goName()">🔄 Yeniden Başla</button></div>
   </div>
 </div>
 
@@ -204,351 +194,58 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 const ASU='https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
 const SID='1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
 const SHN='A2.1';
-const TCL='H5 \u2013 17-18.Ders';
+const TCL='H5 – 17-18.Ders';
 const LTR=['A','B','C','D'];
+const QS=[{"id": 1, "sec": 1, "rd": "Cuando Ana era niña, pasaba los veranos en casa de sus abuelos. La casa estaba cerca del mar y tenía un jardín muy grande. Cada mañana, Ana desayunaba con su abuela y después salía a jugar. En aquella época, ella no vivía en una ciudad grande; ______ en un pueblo pequeño y tranquilo. Allí conocía a todos los vecinos y se sentía muy feliz.", "tr": "Ana çocukken yazları büyükanne ve büyükbabasının evinde geçirirdi. Ev denize yakındı ve çok büyük bir bahçesi vardı. Her sabah Ana büyükannesiyle kahvaltı eder, sonra oyun oynamaya çıkardı. O dönemde büyük bir şehirde yaşamıyordu; küçük ve sakin bir köyde yaşıyordu. Orada bütün komşuları tanırdı ve kendini çok mutlu hissederdi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["vivía", "vivió", "vive", "ha vivido"], "ans": 0, "exp": "Burada geçmişteki bir durumdan ve yaşam koşulundan bahsediyoruz. O dönemde nerede yaşıyordu sorusunun cevabı geçmişin arka plan bilgisidir. Bu yüzden Pretérito Imperfecto kullanılır: vivía."}, {"id": 2, "sec": 1, "rd": "Cuando éramos estudiantes, nuestros días eran muy organizados. Por la mañana teníamos clases y por la tarde hacíamos los deberes. Después de estudiar, muchas veces salíamos juntos. Los viernes por la noche, mis amigos y yo ______ al cine porque nos gustaba ver películas españolas. Era una rutina muy bonita para todos.", "tr": "Öğrenciyken günlerimiz çok düzenliydi. Sabahları derslerimiz olurdu ve öğleden sonra ödev yapardık. Ders çalıştıktan sonra çoğu zaman birlikte dışarı çıkardık. Cuma geceleri arkadaşlarımla sinemaya giderdik çünkü İspanyol filmleri izlemeyi severdik. Bu hepimiz için çok güzel bir rutindi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["fuimos", "vamos", "hemos ido", "íbamos"], "ans": 3, "exp": "Los viernes por la noche ifadesi geçmişte tekrar eden bir alışkanlığı anlatıyor. Türkçeye giderdik diye çevrilir. Bu yüzden ir fiilinin imperfecto çekimi gerekir: íbamos."}, {"id": 3, "sec": 1, "rd": "La casa de mi tía estaba en una calle muy tranquila. Tenía dos pisos, muchas ventanas y una cocina luminosa. En el salón había fotos antiguas de la familia. Para mí, esa casa ______ muy especial porque allí pasábamos muchas reuniones familiares. Cada visita era como una pequeña fiesta.", "tr": "Teyzemin evi çok sakin bir sokaktaydı. İki katı, çok penceresi ve aydınlık bir mutfağı vardı. Salonda ailenin eski fotoğrafları vardı. Benim için o ev çok özeldi çünkü orada birçok aile buluşması yapardık. Her ziyaret küçük bir bayram gibiydi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["fue", "era", "es", "ha sido"], "ans": 1, "exp": "Burada geçmişteki bir yerin özelliği ve tasviri anlatılıyor. O ev nasıldı sorusuna cevap veriyoruz. Tasvirlerde Pretérito Imperfecto kullanılır: era."}, {"id": 4, "sec": 1, "rd": "El invierno pasado, mi hermano estudiaba en Salamanca. Todos los días salía temprano de casa y caminaba hasta la universidad. Por las mañanas, el cielo estaba gris y las calles estaban casi vacías. En esa ciudad, durante enero, ______ mucho frío y la gente llevaba abrigos gruesos. Aun así, a mi hermano le gustaba vivir allí.", "tr": "Geçen kış kardeşim Salamanca'da okuyordu. Her gün evden erken çıkıyor ve üniversiteye kadar yürüyordu. Sabahları gökyüzü griydi ve sokaklar neredeyse boştu. O şehirde ocak ayında çok soğuk olurdu ve insanlar kalın montlar giyerdi. Buna rağmen kardeşim orada yaşamayı seviyordu.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["hizo", "hace", "hacía", "ha hecho"], "ans": 2, "exp": "Hava durumu geçmişte bir arka plan ve tasvir olarak veriliyor. Hava nasıldı sorusunda imperfecto kullanılır. Bu yüzden doğru yapı: hacía frío."}, {"id": 5, "sec": 1, "rd": "Cuando mi hermana empezó la escuela, toda la familia estaba muy emocionada. Ella llevaba una mochila rosa y hablaba mucho de sus nuevos amigos. En ese momento, todavía era muy pequeña. Mi hermana ______ seis años, pero parecía muy responsable para su edad. Siempre preparaba sus cosas la noche anterior.", "tr": "Kız kardeşim okula başladığında bütün aile çok heyecanlıydı. Pembe bir çanta taşıyordu ve yeni arkadaşlarından çok bahsediyordu. O zamanlar hâlâ çok küçüktü. Kız kardeşim altı yaşındaydı ama yaşına göre çok sorumlu görünüyordu. Her zaman eşyalarını bir gece önceden hazırlardı.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["tuvo", "tiene", "tenía", "ha tenido"], "ans": 2, "exp": "Geçmişte yaş söylemek için genellikle Pretérito Imperfecto kullanılır. Çünkü yaş, o dönemin arka plan bilgisidir. Bu yüzden doğru cevap: tenía."}, {"id": 6, "sec": 1, "rd": "De pequeños, mis primos y yo pasábamos mucho tiempo juntos. Después de comer, íbamos al salón de la casa de mi abuela. Allí nos sentábamos en el suelo y hablábamos durante horas. Por las tardes, siempre ______ dibujos animados en la televisión. Era una costumbre que todos recordamos con cariño.", "tr": "Küçükken kuzenlerimle çok zaman geçirirdik. Yemekten sonra büyükannemin evindeki salona giderdik. Orada yere oturur ve saatlerce konuşurduk. Öğleden sonraları her zaman televizyonda çizgi film izlerdik. Bu, hepimizin sevgiyle hatırladığı bir alışkanlıktı.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["vimos", "veíamos", "vemos", "hemos visto"], "ans": 1, "exp": "Siempre ve por las tardes geçmişte tekrar eden bir alışkanlığı gösterir. Türkçeye izlerdik diye çevrilir. Ver fiilinin imperfecto çekimi: veíamos."}, {"id": 7, "sec": 1, "rd": "Ayer por la noche, todos estaban en casa. Mi padre leía el periódico, mi hermana hablaba por teléfono y yo hacía la tarea. En la cocina, mi madre ______ la cena mientras escuchaba música. La casa olía muy bien y todos teníamos hambre.", "tr": "Dün gece herkes evdeydi. Babam gazete okuyordu, kız kardeşim telefonda konuşuyordu ve ben ödev yapıyordum. Mutfakta annem müzik dinlerken akşam yemeğini hazırlıyordu. Ev çok güzel kokuyordu ve hepimiz acıkmıştık.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["preparó", "prepara", "ha preparado", "preparaba"], "ans": 3, "exp": "Burada geçmişte devam eden bir eylem anlatılıyor: annem o sırada yemek hazırlıyordu. Mientras escuchaba música ifadesi de aynı anda devam eden iki geçmiş eylemi gösterir. Bu yüzden preparaba kullanılır."}, {"id": 8, "sec": 1, "rd": "Cuando mis amigos eran niños, vivían en el mismo barrio. Después de la escuela, dejaban las mochilas en casa y salían rápidamente a la calle. No tenían móviles ni videojuegos modernos. Casi todos los días, ellos ______ al fútbol en el parque hasta la hora de cenar. Para ellos, esa era la mejor parte del día.", "tr": "Arkadaşlarım çocukken aynı mahallede yaşarlardı. Okuldan sonra çantalarını eve bırakır ve hızlıca sokağa çıkarlardı. Telefonları ya da modern video oyunları yoktu. Neredeyse her gün akşam yemeği saatine kadar parkta futbol oynarlardı. Onlar için günün en güzel kısmı buydu.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["jugaban", "jugaron", "juegan", "han jugado"], "ans": 0, "exp": "Casi todos los días geçmişte düzenli tekrar eden bir alışkanlığı anlatır. Bu nedenle oynadılar değil, oynarlardı anlamı gerekir. Doğru cevap: jugaban."}, {"id": 9, "sec": 1, "rd": "Antes de mudarse a Madrid, Clara vivía en una ciudad pequeña. Su vida era más tranquila y conocía a muchas personas del barrio. Por la mañana trabajaba en una librería y por la tarde descansaba en casa. Los sábados, Clara ______ con sus amigas a tomar café. Siempre hablaban de libros, viajes y planes futuros.", "tr": "Madrid'e taşınmadan önce Clara küçük bir şehirde yaşıyordu. Hayatı daha sakindi ve mahalleden birçok kişiyi tanıyordu. Sabahları bir kitapçıda çalışırdı ve öğleden sonra evde dinlenirdi. Cumartesileri Clara arkadaşlarıyla kahve içmeye çıkardı. Her zaman kitaplardan, seyahatlerden ve gelecek planlarından konuşurlardı.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["salía", "salió", "sale", "ha salido"], "ans": 0, "exp": "Los sábados geçmişte tekrar eden bir rutini gösteriyor. Bu yüzden Pretérito Imperfecto kullanılır. Salía anlamı: çıkardı."}, {"id": 10, "sec": 1, "rd": "El colegio de mi infancia era bastante antiguo. Las aulas eran grandes, pero los muebles no eran modernos. En el patio siempre se escuchaban las voces de los niños. En la entrada del colegio, ______ un árbol enorme donde todos esperábamos a nuestros padres. Ese lugar era muy importante para nosotros.", "tr": "Çocukluğumdaki okul oldukça eskiydi. Sınıflar büyüktü ama mobilyalar modern değildi. Bahçede her zaman çocukların sesleri duyulurdu. Okulun girişinde, anne babalarımızı beklediğimiz devasa bir ağaç vardı. O yer bizim için çok önemliydi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["tuvo", "tiene", "había", "hubo"], "ans": 2, "exp": "Geçmişte bir yerde bir şeyin varlığını anlatırken tasvir anlamında había kullanılır. Bir ağaç vardı anlamı için: había un árbol."}, {"id": 11, "sec": 1, "rd": "Cuando mi abuelo era joven, no usaba internet ni teléfono móvil. Para comunicarse con sus amigos, escribía cartas largas. También compraba periódicos cada mañana para conocer las noticias. Por las noches, ______ novelas históricas en una silla cerca de la ventana. Decía que leer le ayudaba a imaginar otros mundos.", "tr": "Dedem gençken internet ya da cep telefonu kullanmazdı. Arkadaşlarıyla iletişim kurmak için uzun mektuplar yazardı. Ayrıca haberleri öğrenmek için her sabah gazete alırdı. Geceleri pencerenin yanındaki bir sandalyede tarihî romanlar okurdu. Okumanın ona başka dünyalar hayal etmesine yardım ettiğini söylerdi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["leyó", "leía", "lee", "ha leído"], "ans": 1, "exp": "Burada geçmişteki alışkanlık anlatılıyor. Por las noches düzenli tekrar eden bir eylemi gösterir. Bu yüzden leía kullanılır."}, {"id": 12, "sec": 1, "rd": "Cuando estudiabas en la universidad, tu vida era muy diferente. Te levantabas temprano, tomabas café y después ibas a clase. A veces no tenías mucho tiempo libre porque había muchos exámenes. Durante esos años, tú ______ en una cafetería los fines de semana para ganar dinero. Era una etapa cansada, pero útil.", "tr": "Üniversitede okurken hayatın çok farklıydı. Erken kalkardın, kahve içerdin ve sonra derse giderdin. Bazen çok boş zamanın olmazdı çünkü çok sınav vardı. O yıllarda para kazanmak için hafta sonları bir kafede çalışırdın. Yorucu ama faydalı bir dönemdi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["trabajaste", "trabajas", "has trabajado", "trabajabas"], "ans": 3, "exp": "Durante esos años geçmişte belli bir dönem boyunca devam eden bir durumu anlatıyor. Ayrıca bu bir alışkanlık ve rutin. Bu yüzden trabajabas doğru cevaptır."}, {"id": 13, "sec": 1, "rd": "Mis primeros profesores fueron muy importantes para mí. En la escuela primaria, aprendíamos muchas cosas nuevas cada día. Las clases empezaban temprano y terminaban al mediodía. Mis profesores ______ muy pacientes y siempre explicaban los temas con calma. Gracias a ellos, me gustaba mucho estudiar.", "tr": "İlk öğretmenlerim benim için çok önemliydi. İlkokulda her gün birçok yeni şey öğrenirdik. Dersler erken başlar ve öğlen biterdi. Öğretmenlerim çok sabırlıydı ve konuları her zaman sakin bir şekilde anlatırlardı. Onlar sayesinde ders çalışmayı çok severdim.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["fueron", "son", "han sido", "eran"], "ans": 3, "exp": "Burada öğretmenlerin geçmişteki karakter özelliği ve tasviri anlatılıyor. Kişi tasvirlerinde imperfecto kullanılır. Doğru cevap: eran."}, {"id": 14, "sec": 1, "rd": "Cuando vivía en Barcelona, mi rutina era bastante activa. Por la mañana trabajaba en una oficina cerca de la playa. Después del trabajo, me gustaba caminar por la ciudad. Casi todas las tardes, ______ a una pequeña biblioteca para leer o estudiar español. Ese lugar era silencioso y muy cómodo.", "tr": "Barcelona'da yaşarken rutinim oldukça hareketliydi. Sabahları plaja yakın bir ofiste çalışırdım. İşten sonra şehirde yürümeyi severdim. Neredeyse her öğleden sonra okumak ya da İspanyolca çalışmak için küçük bir kütüphaneye giderdim. Orası sessiz ve çok rahattı.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["iba", "fui", "voy", "he ido"], "ans": 0, "exp": "Casi todas las tardes geçmişte tekrar eden alışkanlığı anlatır. Giderdim anlamı için ir fiilinin imperfecto çekimi kullanılır: iba."}, {"id": 15, "sec": 1, "rd": "El día de la excursión, todos los estudiantes estaban muy contentos. Llevaban mochilas, bocadillos y botellas de agua. El profesor explicaba las reglas antes de salir. Aunque era primavera, por la mañana ______ bastante frío y algunos estudiantes llevaban chaquetas. Después, el tiempo mejoró.", "tr": "Gezi günü bütün öğrenciler çok mutluydu. Sırt çantaları, sandviçleri ve su şişeleri vardı. Öğretmen çıkmadan önce kuralları açıklıyordu. İlkbahar olmasına rağmen sabah oldukça soğuktu ve bazı öğrenciler ceket giyiyordu. Sonra hava düzeldi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["hizo", "hace", "hacía", "ha hecho"], "ans": 2, "exp": "Geçmişte hava durumunu arka plan olarak anlatıyoruz. Hava soğuktu ifadesi için imperfecto kullanılır: hacía frío."}, {"id": 16, "sec": 1, "rd": "Cuando mis padres eran jóvenes, no tenían muchas oportunidades para viajar. Trabajaban mucho y ahorraban dinero poco a poco. Sin embargo, los domingos descansaban en casa. Por la tarde, ellos ______ películas antiguas en la televisión y hablaban de sus sueños. Eran momentos sencillos, pero felices.", "tr": "Annemle babam gençken seyahat etmek için çok fırsatları yoktu. Çok çalışırlardı ve yavaş yavaş para biriktirirlerdi. Ancak pazar günleri evde dinlenirlerdi. Öğleden sonra televizyonda eski filmler izler ve hayallerinden konuşurlardı. Basit ama mutlu anlardı.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["vieron", "veían", "ven", "han visto"], "ans": 1, "exp": "Los domingos ve por la tarde geçmişteki tekrar eden rutini gösterir. Bu yüzden veían kullanılır."}, {"id": 17, "sec": 1, "rd": "Cuando empezamos a aprender español, todo nos parecía difícil. No entendíamos bien los verbos y necesitábamos repetir mucho. Pero la profesora explicaba con paciencia y nosotros estudiábamos en casa. Al principio, nosotros ______ hablar perfectamente, pero sabíamos que necesitábamos tiempo. Poco a poco mejoramos.", "tr": "İspanyolca öğrenmeye başladığımızda her şey bize zor geliyordu. Fiilleri iyi anlamıyorduk ve çok tekrar etmemiz gerekiyordu. Ama öğretmen sabırla açıklıyordu ve biz evde çalışıyorduk. Başta mükemmel konuşmak istiyorduk ama zamana ihtiyacımız olduğunu biliyorduk. Yavaş yavaş geliştik.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["quisimos", "queríamos", "queremos", "hemos querido"], "ans": 1, "exp": "Burada geçmişteki istek ve durum anlatılıyor. İstiyorduk anlamı için imperfecto kullanılır. Doğru cevap: queríamos."}, {"id": 18, "sec": 1, "rd": "Cuando vivía cerca del parque, mi rutina era muy saludable. Me levantaba temprano y preparaba un desayuno ligero. Después, salía de casa con ropa cómoda. Cada mañana, ______ durante una hora entre los árboles y escuchaba música tranquila. Esa costumbre me daba mucha energía.", "tr": "Parkın yakınında yaşarken rutinim çok sağlıklıydı. Erken kalkardım ve hafif bir kahvaltı hazırlardım. Sonra rahat kıyafetlerle evden çıkardım. Her sabah ağaçların arasında bir saat yürür ve sakin müzik dinlerdim. Bu alışkanlık bana çok enerji verirdi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["caminé", "camino", "caminaba", "he caminado"], "ans": 2, "exp": "Cada mañana geçmişte düzenli yapılan bir eylemi anlatır. Türkçede yürürdüm anlamı vardır. Bu yüzden caminaba doğru cevaptır."}, {"id": 19, "sec": 1, "rd": "Ayer a las siete de la tarde, todos estábamos ocupados en casa. Mi hermano hacía la tarea en su habitación y mi padre hablaba con un vecino. Yo buscaba mis libros porque tenía clase al día siguiente. En la cocina, mi madre ______ un pastel para la cena familiar. El ambiente era muy agradable.", "tr": "Dün akşam saat yedide evde herkes meşguldü. Kardeşim odasında ödev yapıyordu ve babam bir komşuyla konuşuyordu. Ben kitaplarımı arıyordum çünkü ertesi gün dersim vardı. Mutfakta annem aile yemeği için bir pasta hazırlıyordu. Ortam çok güzeldi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["estaba preparando", "preparó", "prepara", "ha preparado"], "ans": 0, "exp": "Burada geçmişte belirli bir anda devam eden eylem anlatılıyor. Hazırlıyordu anlamı için estar+gerundio yapısının imperfecto hali kullanılır: estaba preparando."}, {"id": 20, "sec": 1, "rd": "Antes, en nuestra escuela no había tanta tecnología. Los profesores escribían todo en la pizarra y los estudiantes copiaban en sus cuadernos. Las clases eran más lentas, pero aprendíamos con mucha atención. En aquella época, los alumnos no ______ tabletas; usaban libros, lápices y diccionarios. Era una forma diferente de estudiar.", "tr": "Eskiden okulumuzda bu kadar teknoloji yoktu. Öğretmenler her şeyi tahtaya yazardı ve öğrenciler defterlerine geçirirdi. Dersler daha yavaştı ama büyük bir dikkatle öğrenirdik. O dönemde öğrenciler tablet kullanmazdı; kitap, kalem ve sözlük kullanırlardı. Bu farklı bir çalışma biçimiydi.", "q": "Metindeki boşluğa hangi seçenek gelmelidir?", "opts": ["usaron", "usan", "han usado", "usaban"], "ans": 3, "exp": "En aquella época geçmişteki genel bir dönemi anlatır. Burada geçmişteki alışkanlık ve durumdan bahsediyoruz. Kullanmazlardı anlamı için imperfecto gerekir: usaban."}, {"id": 21, "sec": 2, "q": "\"A las ocho de la noche, mi hermana estudiaba en su habitación.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişte tek seferlik tamamlanmış olay", "Geçmişte alışkanlık / rutin", "Geçmişte devam eden eylem", "Şu an için nezaket ifadesi"], "ans": 2, "exp": "Bu cümlede estudiaba fiili geçmişte belirli bir anda devam eden bir eylemi anlatır. A las ocho de la noche yani akşam saat sekizde ifadesi bize geçmişteki belirli bir anı gösterir. O anda kız kardeşin ders çalışma eylemi devam etmekte olan bir süreç gibi anlatılmıştır. Türkçeye şöyle çevrilir: Akşam saat sekizde kız kardeşim odasında ders çalışıyordu. Buradaki sihirli anlam -yordu anlamıdır. Bu yüzden kullanım alanı: geçmişte devam eden eylem."}, {"id": 22, "sec": 2, "q": "\"La casa de mis abuelos era muy grande y tenía un jardín precioso.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişin tanımı / tasviri / fotoğraf karesi", "Geçmişte alışkanlık / rutin", "Geçmişte devam eden eylem", "Şu an için nezaket ifadesi"], "ans": 0, "exp": "Bu cümlede era ve tenía fiilleri geçmişteki bir evin nasıl olduğunu anlatır. La casa era muy grande anlamı: Ev çok büyüktü. Tenía un jardín precioso anlamı: Güzel bir bahçesi vardı. Yani cümle bize geçmişten bir fotoğraf karesi gösterir. Türkçedeki sihirli anlam -idi / vardı anlamıdır. Bu yüzden kullanım alanı: geçmişin tanımı / tasviri / fotoğraf karesi."}, {"id": 23, "sec": 2, "q": "\"Quería hablar con usted un momento, por favor.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişte alışkanlık / rutin", "Geçmişin tanımı / tasviri", "Geçmişte devam eden eylem", "Şu an için nezaket ifadesi"], "ans": 3, "exp": "Bu cümlede quería fiili normal bir geçmiş zaman anlamından çok, nezaket amacıyla kullanılmıştır. Kişi burada şu anda karşısındaki kişiye daha nazik ve yumuşak bir şekilde isteğini söylemektir. Quería hablar con usted daha kibar ve yumuşak duyulur. Türkçeye: Sizinle bir dakika konuşmak istiyordum, lütfen. Bu yüzden kullanım alanı: içinde bulunulan anda nezaket kullanımı."}, {"id": 24, "sec": 2, "q": "\"Cuando era niño, jugaba al fútbol todos los días después de la escuela.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişin tanımı / tasviri / fotoğraf karesi", "Geçmişte alışkanlık / rutin", "Şu an için nezaket ifadesi", "Geçmişte tek seferlik tamamlanmış olay"], "ans": 1, "exp": "Bu cümlede jugaba fiili geçmişte düzenli olarak yapılan bir eylemi anlatır. Cuando era niño ifadesi çocukken anlamına gelir. Todos los días ise her gün demektir. Türkçeye: Çocukken okuldan sonra her gün futbol oynardım. Burada imperfecto Türkçedeki -ardı / -erdi anlamını verir. Bu yüzden kullanım alanı: geçmişte alışkanlık / rutin."}, {"id": 25, "sec": 2, "q": "\"Antes mi madre preparaba el desayuno temprano y nosotros comíamos juntos.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişte devam eden eylem", "Geçmişte alışkanlık / rutin", "Geçmişin tasviri", "Şu an için nezaket ifadesi"], "ans": 1, "exp": "Bu cümlede preparaba ve comíamos fiilleri geçmişte tekrar eden aile rutinini anlatır. Antes yani eskiden ifadesi, geçmişte düzenli yapılan bir alışkanlığa işaret eder. Türkçeye: Eskiden annem kahvaltıyı erken hazırlardı ve biz birlikte yemek yerdik. Bu yüzden kullanım alanı: geçmişte alışkanlık / rutin."}, {"id": 26, "sec": 2, "q": "\"Mientras todos dormían, mi padre leía un libro en el salón.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişin tanımı / tasviri", "Şu an için nezaket ifadesi", "Geçmişte devam eden eylem", "Geçmişte tek seferlik tamamlanmış olay"], "ans": 2, "exp": "Bu cümlede dormían ve leía fiilleri geçmişte aynı anda devam eden eylemleri anlatır. Mientras kelimesi -iken anlamına gelir ve çoğu zaman devam eden iki eylemi bağlar. Türkçeye: Herkes uyurken babam salonda kitap okuyordu. Burada imperfecto'nun sihirli anlamı -yordu anlamıdır. Bu yüzden kullanım alanı: geçmişte devam eden eylem."}, {"id": 27, "sec": 2, "q": "\"El cielo estaba gris y hacía mucho viento.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişin tanımı / tasviri / fotoğraf karesi", "Geçmişte alışkanlık / rutin", "Geçmişte devam eden eylem", "Şu an için nezaket ifadesi"], "ans": 0, "exp": "Bu cümlede estaba ve hacía fiilleri geçmişteki hava durumunu ve ortamı anlatır. Gökyüzünün gri olması ve rüzgâr olması, geçmişteki ortamın arka plan bilgisidir. Türkçeye: Gökyüzü griydi ve çok rüzgâr vardı. Buradaki sihirli anlam -idi / vardı anlamıdır. Bu yüzden kullanım alanı: geçmişin tanımı / tasviri / fotoğraf karesi."}, {"id": 28, "sec": 2, "q": "\"Llamaba para confirmar la cita de mañana.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişte alışkanlık / rutin", "Geçmişte devam eden eylem", "Geçmişin tanımı / tasviri", "Şu an için nezaket ifadesi"], "ans": 3, "exp": "Bu cümlede llamaba fiili, telefonda nazik bir giriş yapmak için kullanılmıştır. Şu anda arama sebebini daha kibar bir şekilde ifade ediyor. Türkçeye: Yarınki randevuyu teyit etmek için arıyordum. Bu yüzden kullanım alanı: içinde bulunulan anda nezaket kullanımı."}, {"id": 29, "sec": 2, "q": "\"Venía a pedir información sobre el curso de español.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişte tamamlanmış olay", "Geçmişte alışkanlık / rutin", "Geçmişte devam eden eylem", "Şu an için nezaket ifadesi"], "ans": 3, "exp": "Bu cümlede venía fiili nezaket amacıyla kullanılmıştır. Burada amaç, şu anda bir bilgi istemeyi daha kibar şekilde ifade etmektir. Venía a pedir información daha nazik duyulur. Türkçeye: İspanyolca kursu hakkında bilgi almak istiyordum. Bu yüzden kullanım alanı: içinde bulunulan anda nezaket kullanımı."}, {"id": 30, "sec": 2, "q": "\"La profesora era muy paciente y explicaba todo con calma.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişin tanımı / tasviri / fotoğraf karesi", "Geçmişte tek seferlik tamamlanmış olay", "Şu an için nezaket ifadesi", "Geçmişte devam eden eylem"], "ans": 0, "exp": "Bu cümlede era ve explicaba geçmişteki bir öğretmenin genel özelliğini ve davranış biçimini anlatır. Era muy paciente anlamı: Çok sabırlıydı. Explicaba todo con calma anlamı: Her şeyi sakin bir şekilde açıklardı. Türkçedeki sihirli anlam -idi / -ardı şeklindedir. Bu yüzden kullanım alanı: geçmişin tanımı / tasviri / fotoğraf karesi."}, {"id": 31, "sec": 2, "q": "\"Cuando entré en la cocina, mi abuela cocinaba sopa.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişte alışkanlık / rutin", "Şu an için nezaket ifadesi", "Geçmişte devam eden eylem", "Geçmişin tanımı / tasviri"], "ans": 2, "exp": "Bu cümlede cocinaba fiili geçmişte devam eden bir eylemi anlatır. Cuando entré en la cocina yani mutfağa girdiğimde ifadesi geçmişte kısa ve tamamlanmış bir olayı gösterir. Ancak büyükannenin çorba yapması o anda zaten devam eden bir eylemdir. Ben mutfağa girdim: kısa olay. Büyükannem çorba yapıyordu: devam eden eylem. Türkçeye: Mutfağa girdiğimde büyükannem çorba yapıyordu. Bu yüzden kullanım alanı: geçmişte devam eden eylem."}, {"id": 32, "sec": 2, "q": "\"De pequeños, mis primos y yo visitábamos a nuestros abuelos cada verano.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişin tanımı / tasviri", "Geçmişte alışkanlık / rutin", "Geçmişte devam eden eylem", "Şu an için nezaket ifadesi"], "ans": 1, "exp": "Bu cümlede visitábamos fiili geçmişte düzenli olarak yapılan bir eylemi anlatır. De pequeños yani küçükken ifadesi geçmişteki bir dönemi gösterir. Cada verano yani her yaz ifadesi ise bu eylemin bir kez değil, düzenli olarak tekrarlandığını gösterir. Türkçeye: Küçükken kuzenlerimle her yaz büyükanne ve büyükbabamızı ziyaret ederdik. Bu yüzden kullanım alanı: geçmişte alışkanlık / rutin."}, {"id": 33, "sec": 2, "q": "\"Había mucha gente en la plaza y las calles estaban llenas de luces.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişin tanımı / tasviri / fotoğraf karesi", "Geçmişte alışkanlık / rutin", "Geçmişte devam eden eylem", "Şu an için nezaket ifadesi"], "ans": 0, "exp": "Bu cümlede había ve estaban geçmişteki bir ortamı tarif eder. Había mucha gente anlamı: Çok insan vardı. Las calles estaban llenas de luces anlamı: Sokaklar ışıklarla doluydu. Burada bir olayın gerçekleşme sırası değil, geçmişteki sahnenin nasıl göründüğü anlatılır. Türkçedeki sihirli anlam -idi / vardı anlamıdır. Bu yüzden kullanım alanı: geçmişin tanımı / tasviri / fotoğraf karesi."}, {"id": 34, "sec": 2, "q": "\"Antes no usábamos internet para hacer los deberes.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişte devam eden eylem", "Geçmişte alışkanlık / rutin", "Şu an için nezaket ifadesi", "Geçmişin tanımı / tasviri"], "ans": 1, "exp": "Bu cümlede usábamos fiili geçmişteki genel bir alışkanlığı anlatır. Antes yani eskiden ifadesi çok önemli bir ipucudur. Genel olarak geçmişte ödev yapmak için internet kullanma alışkanlığımız yoktu diyoruz. Türkçeye: Eskiden ödevleri yapmak için internet kullanmazdık. Bu yüzden kullanım alanı: geçmişte alışkanlık / rutin."}, {"id": 35, "sec": 2, "q": "\"Quería preguntarte algo importante.\"\nBu cümlede imperfecto hangi nedenle kullanılmıştır?", "opts": ["Geçmişte tek seferlik tamamlanmış olay", "Geçmişin tanımı / tasviri", "Geçmişte alışkanlık / rutin", "Şu an için nezaket ifadesi"], "ans": 3, "exp": "Bu cümlede quería fiili nezaket amacıyla kullanılmıştır. Asıl amaç, şu anda karşısındaki kişiye daha nazik bir şekilde yaklaşmaktır. Quería preguntarte algo importante daha yumuşak, daha kibar ve daha doğal bir giriş cümlesidir. Türkçeye: Sana önemli bir şey sormak istiyordum. Bu yüzden kullanım alanı: içinde bulunulan anda nezaket kullanımı."}, {"id": 36, "sec": 3, "q": "Ayer, mientras mi madre ______ la cena, nosotros pusimos la mesa.", "opts": ["preparó", "prepara", "preparaba", "ha preparado"], "ans": 2, "exp": "Bu cümlede mientras kelimesi çok önemli bir ipucudur. Mientras -iken anlamına gelir ve genellikle geçmişte devam eden bir eylemi anlatırken kullanılır. Mi madre preparaba la cena: Annem yemeği hazırlıyordu. Nosotros pusimos la mesa: Biz masayı kurduk. Annenin yemek hazırlaması arka planda devam eden bir süreçtir. Bizim masayı kurmamız ise tamamlanmış, kısa bir olaydır. Bu yüzden yemek hazırlama eylemi için imperfecto gerekir: preparaba. A şıkkı preparó olmaz çünkü burada annenin yemeği hazırlama süreci devam ederken başka bir olay gerçekleşiyor. B şıkkı prepara olmaz çünkü presente zamandır. D şıkkı ha preparado olmaz çünkü ayer ile geçmişteki belirli bir sahne anlatılıyor. Doğru cevap: preparaba"}, {"id": 37, "sec": 3, "q": "Cuando yo era pequeño, todos los veranos ______ a casa de mis abuelos.", "opts": ["fui", "voy", "he ido", "iba"], "ans": 3, "exp": "Bu cümlede todos los veranos ifadesi çok önemlidir. Her yaz demektir ve geçmişte tekrar eden bir alışkanlığı anlatır. Cümle şu anlama gelir: Küçükken her yaz büyükanne ve büyükbabamın evine giderdim. Burada bir kez gitmekten bahsetmiyoruz. Çocukluk döneminde düzenli olarak yapılan bir eylemden bahsediyoruz. Bu yüzden imperfecto kullanılır: iba. A şıkkı fui olmaz çünkü pretérito indefinido geçmişte tek seferlik tamamlanmış bir gitme eylemini anlatır. B şıkkı voy olmaz çünkü presente zamandır. C şıkkı he ido olmaz çünkü pretérito perfecto yapısıdır. Doğru cevap: iba"}, {"id": 38, "sec": 3, "q": "El sábado pasado, primero desayuné con mi familia y después ______ al mercado.", "opts": ["iba", "voy", "fui", "he ido"], "ans": 2, "exp": "Bu cümlede olaylar sırayla anlatılıyor: Önce ailemle kahvaltı yaptım. Sonra pazara gittim. Bu tür sıralı, tamamlanmış geçmiş olaylarda pretérito indefinido kullanılır. Cümle şu anlama gelir: Geçen cumartesi önce ailemle kahvaltı yaptım, sonra pazara gittim. C şıkkı fui doğru cevaptır çünkü gittim anlamında tamamlanmış bir geçmiş eylemi anlatır. A şıkkı iba olmaz çünkü imperfecto gidiyordum / giderdim anlamı verir; burada tek bir cumartesi günü yapılan tamamlanmış bir olay var. B şıkkı voy olmaz çünkü presente zamandır. D şıkkı he ido olmaz çünkü el sábado pasado belirli ve bitmiş bir geçmiş zaman ifadesidir. Doğru cevap: fui"}, {"id": 39, "sec": 3, "q": "Cuando llegamos al restaurante, la camarera ______ las mesas.", "opts": ["limpiaba", "limpió", "limpia", "ha limpiado"], "ans": 0, "exp": "Bu cümlede biz restorana geldiğimizde bir sahne anlatılıyor. Bizim restorana gelmemiz kısa ve tamamlanmış bir olaydır: llegamos. Ama garsonun masaları temizlemesi o sırada devam eden bir eylemdir. Cümle şu anlama gelir: Restorana vardığımızda garson masaları temizliyordu. Bu durumda arka planda devam eden eylem için imperfecto kullanılır: limpiaba. B şıkkı limpió olmaz çünkü bu, garsonun masaları temizleme eylemini tamamlanmış bir olay gibi anlatır. C şıkkı limpia olmaz çünkü presente zamandır. D şıkkı ha limpiado olmaz çünkü pretérito perfecto yapısıdır. Doğru cevap: limpiaba"}, {"id": 40, "sec": 3, "q": "Anoche vimos una película y después ______ sobre la historia durante una hora.", "opts": ["hablábamos", "hablamos", "hablamos todos los días", "hablaban"], "ans": 1, "exp": "Bu cümlede geçmişte tamamlanmış iki olay sırayla anlatılıyor: Film izledik. Sonra hikâye hakkında bir saat konuştuk. Konuşma eylemi geçmişte başlamış ve bitmiş bir olay olarak anlatılıyor. Cümle şu anlama gelir: Dün gece bir film izledik ve sonra hikâye hakkında bir saat konuştuk. A şıkkı hablábamos olmaz çünkü imperfecto daha çok konuşuyorduk / konuşurduk anlamı verir; burada tamamlanmış bir olay var. C şıkkı hablamos todos los días olmaz çünkü yapısal olarak cümleye uymaz. D şıkkı hablaban olmaz çünkü özne uyumu yanlıştır; cümlede özne nosotros olduğu için hablamos gerekir. Doğru cevap: hablamos"}, {"id": 41, "sec": 3, "q": "Antes, mis padres ______ cartas porque no usaban mensajes de texto.", "opts": ["escribieron", "escribían", "escriben", "han escrito"], "ans": 1, "exp": "Bu cümlede antes kelimesi çok güçlü bir ipucudur. Eskiden anlamına gelir ve çoğu zaman geçmişteki alışkanlıklarda imperfecto kullanılır. Cümlede anlatılan şey şudur: Eskiden annemle babam mektup yazarlardı çünkü mesaj kullanmazlardı. Burada tek bir mektup yazma olayından bahsedilmiyor. Geçmişte genel olarak var olan bir alışkanlık anlatılıyor. Bu yüzden imperfecto gerekir: escribían. A şıkkı escribieron olmaz çünkü pretérito indefinido tek seferlik bir mektup yazma olayını anlatır. C şıkkı escriben olmaz çünkü presente zamandır. D şıkkı han escrito olmaz çünkü pretérito perfecto yapısıdır. Doğru cevap: escribían"}, {"id": 42, "sec": 3, "q": "El año pasado, mi hermano ______ un coche nuevo y empezó a ir al trabajo en coche.", "opts": ["compró", "compraba", "compra", "ha comprado"], "ans": 0, "exp": "Bu cümlede comprar un coche nuevo yani yeni bir araba satın almak tek seferlik ve tamamlanmış bir olaydır. Ayrıca cümlede el año pasado yani geçen yıl deniyor. Bu belirli ve bitmiş bir geçmiş zaman ifadesidir. Cümle şu anlama gelir: Geçen yıl kardeşim yeni bir araba aldı ve işe arabayla gitmeye başladı. Bu yüzden pretérito indefinido kullanılır: compró. B şıkkı compraba olmaz çünkü imperfecto alıyordu / alırdı anlamı verir; araba satın almak burada tek seferlik tamamlanmış bir olaydır. C şıkkı compra olmaz çünkü presente zamandır. D şıkkı ha comprado olmaz çünkü el año pasado gibi tamamlanmış ve belirli bir geçmiş zaman ifadesi var. Doğru cevap: compró"}, {"id": 43, "sec": 3, "q": "Ayer por la tarde, mientras los niños ______ en el jardín, empezó a llover.", "opts": ["jugaron", "juegan", "han jugado", "jugaban"], "ans": 3, "exp": "Bu cümlede yine mientras kelimesi var. -iken anlamına gelir ve geçmişte devam eden bir eylemi anlatır. Cümlede iki olay vardır: Çocuklar bahçede oynuyordu. Yağmur başladı. Çocukların oyun oynaması arka planda devam eden eylemdir. Yağmurun başlaması ise kısa, ani ve tamamlanmış olaydır. Bu yüzden çocukların oynama eylemi için imperfecto kullanılır: jugaban. A şıkkı jugaron olmaz çünkü bu, çocukların oynama eylemini tamamlanmış bir olay gibi anlatır; ama burada oynadılar değil, oynuyorlardı anlamı gerekir. B şıkkı juegan olmaz çünkü presente zamandır. C şıkkı han jugado olmaz çünkü pretérito perfecto yapısıdır. Doğru cevap: jugaban"}, {"id": 44, "sec": 3, "q": "Cuando entré en la clase, todos los estudiantes ______ en silencio.", "opts": ["estudiaron", "estudian", "estudiaban", "han estudiado"], "ans": 2, "exp": "Bu cümlede ben sınıfa girdiğimde ifadesi kısa ve tamamlanmış bir olayı gösterir: entré. Ama öğrencilerin sessizce ders çalışması, o anda devam eden bir eylemdir. Cümle şu anlama gelir: Sınıfa girdiğimde bütün öğrenciler sessizce ders çalışıyordu. Bu tür yapılarda genellikle şu mantık vardır: Kısa olay → pretérito indefinido / Arka planda devam eden eylem → pretérito imperfecto. Bu yüzden doğru cevap estudiaban olur. A şıkkı estudiaron olmaz çünkü çalıştılar anlamı verir ve eylemi tamamlanmış gösterir. B şıkkı estudian olmaz çünkü presente zamandır. D şıkkı han estudiado olmaz çünkü pretérito perfecto yapısıdır. Doğru cevap: estudiaban"}, {"id": 45, "sec": 3, "q": "De niña, Clara siempre ______ con su muñeca favorita antes de dormir.", "opts": ["jugó", "juega", "jugaba", "ha jugado"], "ans": 2, "exp": "Bu cümlede iki önemli ipucu var: De niña anlamı: çocukken / Siempre anlamı: her zaman. Bu iki ifade birlikte geçmişteki bir alışkanlığı anlatır. Cümle şu anlama gelir: Clara çocukken uyumadan önce her zaman en sevdiği bebeğiyle oynardı. Bu yüzden imperfecto kullanılır: jugaba. A şıkkı jugó olmaz çünkü pretérito indefinido tek seferlik veya tamamlanmış bir oynama olayını anlatır. B şıkkı juega olmaz çünkü presente zamandır. D şıkkı ha jugado olmaz çünkü pretérito perfecto yapısıdır. Doğru cevap: jugaba"}, {"id": 46, "sec": 3, "q": "Ayer llegué tarde a casa porque ______ mucho tráfico en la ciudad.", "opts": ["hubo", "hay", "ha habido", "había"], "ans": 3, "exp": "Bu cümlede había mucho tráfico ifadesi geçmişteki bir durumun veya ortamın arka planını anlatır. Trafik, benim geç kalmamın gerçekleştiği ortamı açıklıyor. Cümle şu anlama gelir: Dün eve geç geldim çünkü şehirde çok trafik vardı. Burada trafik bir anda olup biten bir olay gibi değil, geçmişteki genel durum ve arka plan olarak anlatılıyor. Bu yüzden imperfecto kullanılır: había. A şıkkı hubo bazı durumlarda kullanılabilir ama burada trafik vardı yani ortamın durumu anlatılıyor. B şıkkı hay olmaz çünkü presente zamandır. C şıkkı ha habido olmaz çünkü pretérito perfecto yapısıdır. Doğru cevap: había"}, {"id": 47, "sec": 3, "q": "El lunes pasado, Marta ______ tres correos importantes antes de salir de la oficina.", "opts": ["escribía", "escribió", "escribe", "ha escrito"], "ans": 1, "exp": "Bu cümlede el lunes pasado yani geçen pazartesi ifadesi belirli ve tamamlanmış bir geçmiş zamanı gösterir. Ayrıca tres correos importantes yani üç önemli e-posta ifadesi eylemi sınırlandırır. Kaç tane yazdığı belli: üç tane. Cümle şu anlama gelir: Geçen pazartesi Marta ofisten çıkmadan önce üç önemli e-posta yazdı. Bu yüzden eylem tamamlanmış bir olay olarak anlatılır ve pretérito indefinido kullanılır: escribió. A şıkkı escribía olmaz çünkü imperfecto yazıyordu / yazardı anlamı verir; burada üç e-posta yazma işi tamamlanmış. C şıkkı escribe olmaz çünkü presente zamandır. D şıkkı ha escrito olmaz çünkü el lunes pasado belirli ve bitmiş bir geçmiş zamandır. Doğru cevap: escribió"}, {"id": 48, "sec": 3, "q": "Cuando vivíamos en Sevilla, mis hermanos y yo ______ al parque cada tarde.", "opts": ["íbamos", "fuimos", "vamos", "hemos ido"], "ans": 0, "exp": "Bu cümlede cuando vivíamos en Sevilla geçmişteki bir dönemi anlatır. Cada tarde ise her öğleden sonra demektir ve tekrar eden bir alışkanlığı gösterir. Cümle şu anlama gelir: Sevilla'da yaşarken kardeşlerimle her öğleden sonra parka giderdik. Burada bir kez parka gitmekten bahsedilmiyor. Sevilla'da yaşadığımız dönem boyunca tekrar eden bir rutin anlatılıyor. Bu yüzden imperfecto gerekir: íbamos. B şıkkı fuimos olmaz çünkü pretérito indefinido tek seferlik tamamlanmış bir gitme olayını anlatır. C şıkkı vamos olmaz çünkü presente zamandır. D şıkkı hemos ido olmaz çünkü pretérito perfecto yapısıdır. Doğru cevap: íbamos"}, {"id": 49, "sec": 3, "q": "Anoche, cuando sonó el teléfono, yo ______ en el sofá.", "opts": ["dormía", "dormí", "duermo", "he dormido"], "ans": 0, "exp": "Bu cümlede telefonun çalması kısa, ani ve tamamlanmış bir olaydır: sonó. Ama benim kanepede uyuyor olmam o sırada devam eden bir durumdur. Cümle şu anlama gelir: Dün gece telefon çaldığında ben kanepede uyuyordum. Bu yapıda genellikle bir eylem başka bir devam eden eylemi böler: Devam eden eylem → dormía / Kısa olay → sonó. Bu yüzden doğru cevap dormía olur. B şıkkı dormí olmaz çünkü uyudum anlamı verir ve eylemi tamamlanmış bir bütün olarak anlatır. C şıkkı duermo olmaz çünkü presente zamandır. D şıkkı he dormido olmaz çünkü pretérito perfecto yapısıdır. Doğru cevap: dormía"}, {"id": 50, "sec": 3, "q": "El mes pasado, mis amigos y yo ______ un viaje a Valencia.", "opts": ["hacíamos", "hacemos", "hicimos", "hemos hecho"], "ans": 2, "exp": "Bu cümlede el mes pasado yani geçen ay ifadesi belirli ve tamamlanmış bir geçmiş zamanı anlatır. Cümle şu anlama gelir: Geçen ay arkadaşlarımla Valencia'ya bir gezi yaptık. Bu yüzden pretérito indefinido kullanılır: hicimos. A şıkkı hacíamos olmaz çünkü imperfecto yapıyorduk / yapardık anlamı verir; burada düzenli bir alışkanlık yok, belirli bir zamanda tamamlanmış bir gezi var. B şıkkı hacemos olmaz çünkü presente zamandır. D şıkkı hemos hecho olmaz çünkü el mes pasado kullanıldığı için zaman tamamlanmış ve geçmişte kalmıştır. Doğru cevap: hicimos"}];
 
-const QS=[
-// ── KISIM 1: OKUMA (1-20) ──
-{id:1,sec:1,
- rd:'Cuando Ana era ni\u00f1a, pasaba los veranos en casa de sus abuelos. La casa estaba cerca del mar y ten\u00eda un jard\u00edn muy grande. Cada ma\u00f1ana, Ana desayunaba con su abuela y despu\u00e9s sal\u00eda a jugar. En aquella \u00e9poca, ella no viv\u00eda en una ciudad grande; ______ en un pueblo peque\u00f1o y tranquilo. All\u00ed conoc\u00eda a todos los vecinos y se sent\u00eda muy feliz.',
- tr:'Ana \u00e7ocukken yazlar\u0131 b\u00fcy\u00fckanne ve b\u00fcy\u00fckhababas\u0131n\u0131n evinde ge\u00e7irirdi. Ev denize yak\u0131nd\u0131 ve \u00e7ok b\u00fcy\u00fck bir bah\u00e7esi vard\u0131. Her sabah Ana b\u00fcy\u00fckannesizle kahvalt\u0131 eder, sonra oyun oynamaya \u00e7\u0131kard\u0131. O d\u00f6nemde b\u00fcy\u00fck bir \u015fehirde ya\u015fam\u0131yordu; k\u00fc\u00e7\u00fck ve sakin bir k\u00f6yde ya\u015f\u0131yordu. Orada b\u00fchin kom\u015fular\u0131 tan\u0131rd\u0131 ve kendini \u00e7ok mutlu hissederdi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['viv\u00eda','vivi\u00f3','vive','ha vivido'],ans:0,
- exp:'Burada ge\u00e7mi\u015fteki bir durumdan ve ya\u015fam ko\u015fulundan bahsediyoruz. "O d\u00f6nemde nerede ya\u015f\u0131yordu?" sorusunun cevab\u0131 ge\u00e7mi\u015fin arka plan bilgisidir. Bu y\u00fczden Pret\u00e9rito Imperfecto kullan\u0131l\u0131r: viv\u00eda.'},
-
-{id:2,sec:1,
- rd:'Cuando \u00e9ramos estudiantes, nuestros d\u00edas eran muy organizados. Por la ma\u00f1ana ten\u00edamos clases y por la tarde hac\u00edamos los deberes. Despu\u00e9s de estudiar, muchas veces sal\u00edamos juntos. Los viernes por la noche, mis amigos y yo ______ al cine porque nos gustaba ver pel\u00edculas espa\u00f1olas. Era una rutina muy bonita para todos.',
- tr:'\u00d6\u011frenciyken g\u00fcnlerimiz \u00e7ok d\u00fczenliydi. Sabahlar\u0131 derslerimiz olurdu ve \u00f6\u011fleden sonra \u00f6dev yapar\u0131d\u0131k. Ders \u00e7al\u0131\u015ft\u0131ktan sonra \u00e7o\u011fu zaman birlikte d\u0131\u015far\u0131 \u00e7\u0131kard\u0131k. Cuma geceleri arkada\u015flar\u0131mla sinemaya giderdik \u00e7\u00fcnk\u00fc \u0130spanyol filmleri izlemeyi severdik. Bu hepimiz i\u00e7in \u00e7ok g\u00fczel bir rutindi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['fuimos','vamos','hemos ido','\u00edbamos'],ans:3,
- exp:'"Los viernes por la noche" ifadesi ge\u00e7mi\u015fte tekrar eden bir al\u0131\u015fkanl\u0131\u011f\u0131 anlat\u0131yor. T\u00fcrk\u00e7eye "giderdik" diye \u00e7evrilir. Bu y\u00fczden ir fiilinin imperfecto \u00e7ekimi gerekir: \u00edbamos.'},
-
-{id:3,sec:1,
- rd:'La casa de mi t\u00eda estaba en una calle muy tranquila. Ten\u00eda dos pisos, muchas ventanas y una cocina luminosa. En el sal\u00f3n hab\u00eda fotos antiguas de la familia. Para m\u00ed, esa casa ______ muy especial porque all\u00ed pas\u00e1bamos muchas reuniones familiares. Cada visita era como una peque\u00f1a fiesta.',
- tr:'Teyzemin evi \u00e7ok sakin bir sokakt\u0131. \u0130ki kat\u0131, \u00e7ok penceresi ve ayd\u0131nl\u0131k bir mutfa\u011f\u0131 vard\u0131. Salonda ailenin eski foto\u011fraflar\u0131 vard\u0131. Benim i\u00e7in o ev \u00e7ok \u00f6zeldi \u00e7\u00fcnk\u00fc orada bir\u00e7ok aile bulu\u015fmas\u0131 yapard\u0131k. Her ziyaret k\u00fc\u00e7\u00fck bir bayram gibiydi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['fue','era','es','ha sido'],ans:1,
- exp:'Burada ge\u00e7mi\u015fteki bir yerin \u00f6zelli\u011fi/tasviri anlat\u0131l\u0131yor. "O ev nas\u0131ld\u0131?" sorusuna cevap veriyoruz. Tasvirlerde Pret\u00e9rito Imperfecto kullan\u0131l\u0131r: era.'},
-
-{id:4,sec:1,
- rd:'El invierno pasado, mi hermano estudiaba en Salamanca. Todos los d\u00edas sal\u00eda temprano de casa y caminaba hasta la universidad. Por las ma\u00f1anas, el cielo estaba gris y las calles estaban casi vac\u00edas. En esa ciudad, durante enero, ______ mucho fr\u00edo y la gente llevaba abrigos gruesos. Aun as\u00ed, a mi hermano le gustaba vivir all\u00ed.',
- tr:'Ge\u00e7en k\u0131\u015f karde\u015fim Salamanca\'da okuyordu. Her g\u00fcn evden erken \u00e7\u0131k\u0131yor ve \u00fcniversiteye kadar y\u00fcr\u00fcyordu. Sabahlar\u0131 g\u00f6ky\u00fcz\u00fc griydi ve sokaklar neredeyse bo\u015ftu. O \u015fehirde ocak ay\u0131nda \u00e7ok so\u011fuk olurdu ve insanlar kal\u0131n montlar giyerdi. Buna ra\u011fmen karde\u015fim orada ya\u015famay\u0131 seviyordu.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['hizo','hace','hac\u00eda','ha hecho'],ans:2,
- exp:'Hava durumu ge\u00e7mi\u015fte bir arka plan/tasvir olarak veriliyor. "Hava nas\u0131ld\u0131?" sorusunda imperfecto kullan\u0131l\u0131r. Bu y\u00fczden do\u011fru yap\u0131: hac\u00eda fr\u00edo.'},
-
-{id:5,sec:1,
- rd:'Cuando mi hermana empez\u00f3 la escuela, toda la familia estaba muy emocionada. Ella llevaba una mochila rosa y hablaba mucho de sus nuevos amigos. En ese momento, todav\u00eda era muy peque\u00f1a. Mi hermana ______ seis a\u00f1os, pero parec\u00eda muy responsable para su edad. Siempre preparaba sus cosas la noche anterior.',
- tr:'K\u0131z karde\u015fim okula ba\u015flad\u0131\u011f\u0131nda b\u00fchin aile \u00e7ok heyecanl\u0131yd\u0131. Pembe bir \u00e7anta ta\u015f\u0131yordu ve yeni arkada\u015flar\u0131ndan \u00e7ok bahsediyordu. O zamanlar h\u00e2l\u00e2 \u00e7ok k\u00fc\u00e7\u00fck\u00f6. K\u0131z karde\u015fim alt\u0131 ya\u015f\u0131ndayd\u0131 ama ya\u015f\u0131na g\u00f6re \u00e7ok sorumlu g\u00f6r\u00fcn\u00fcyordu. Her zaman e\u015fyalar\u0131n\u0131 bir gece \u00f6nceden haz\u0131rlard\u0131.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['tuvo','tiene','ten\u00eda','ha tenido'],ans:2,
- exp:'Ge\u00e7mi\u015fte ya\u015f s\u00f6ylemek i\u00e7in genellikle Pret\u00e9rito Imperfecto kullan\u0131l\u0131r. \u00c7\u00fcnk\u00fc ya\u015f, o d\u00f6nemin arka plan bilgisidir. Bu y\u00fczden do\u011fru cevap: ten\u00eda.'},
-
-{id:6,sec:1,
- rd:'De peque\u00f1os, mis primos y yo pas\u00e1bamos mucho tiempo juntos. Despu\u00e9s de comer, \u00edbamos al sal\u00f3n de la casa de mi abuela. All\u00ed nos sent\u00e1bamos en el suelo y habl\u00e1bamos durante horas. Por las tardes, siempre ______ dibujos animados en la televisi\u00f3n. Era una costumbre que todos recordamos con cari\u00f1o.',
- tr:'K\u00fc\u00e7\u00fckken kuzenlerimle \u00e7ok zaman ge\u00e7irirdik. Yemekten sonra b\u00fcy\u00fckannemin evindeki salona giderdik. Orada yere oturur ve saatlerce konu\u015furduk. \u00d6\u011fleden sonralar\u0131 her zaman televizyonda \u00e7izgi film izlerdik. Bu, hepimizin sevgiyle hat\u0131rlad\u0131\u011f\u0131 bir al\u0131\u015fkanl\u0131kt\u0131.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['vimos','ve\u00edamos','vemos','hemos visto'],ans:1,
- exp:'"Siempre" ve "por las tardes" ge\u00e7mi\u015fte tekrar eden bir al\u0131\u015fkanl\u0131\u011f\u0131 g\u00f6sterir. T\u00fcrk\u00e7eye "izlerdik" diye \u00e7evrilir. Ver fiilinin imperfecto \u00e7ekimi: ve\u00edamos.'},
-
-{id:7,sec:1,
- rd:'Ayer por la noche, todos estaban en casa. Mi padre le\u00eda el peri\u00f3dico, mi hermana hablaba por tel\u00e9fono y yo hac\u00eda la tarea. En la cocina, mi madre ______ la cena mientras escuchaba m\u00fasica. La casa ol\u00eda muy bien y todos ten\u00edamos hambre.',
- tr:'D\u00fcn gece herkes evdeydi. Babam gazete okuyordu, k\u0131z karde\u015fim telefonda konu\u015fuyordu ve ben \u00f6dev yap\u0131yordum. Mutfakta annem m\u00fczik dinlerken ak\u015fam yeme\u011fini haz\u0131rl\u0131yordu. Ev \u00e7ok g\u00fczel kokuyordu ve hepimiz ac\u0131km\u0131\u015ft\u0131k.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['prepar\u00f3','prepara','ha preparado','preparaba'],ans:3,
- exp:'Burada ge\u00e7mi\u015fte devam eden bir eylem anlat\u0131l\u0131yor: annem o s\u0131rada yemek haz\u0131rl\u0131yordu. "Mientras escuchaba m\u00fasica" ifadesi de ayn\u0131 anda devam eden iki ge\u00e7mi\u015f eylemi g\u00f6sterir. Bu y\u00fczden preparaba kullan\u0131l\u0131r.'},
-
-{id:8,sec:1,
- rd:'Cuando mis amigos eran ni\u00f1os, viv\u00edan en el mismo barrio. Despu\u00e9s de la escuela, dejaban las mochilas en casa y sal\u00edan r\u00e1pidamente a la calle. No ten\u00edan m\u00f3viles ni videojuegos modernos. Casi todos los d\u00edas, ellos ______ al f\u00fatbol en el parque hasta la hora de cenar. Para ellos, esa era la mejor parte del d\u00eda.',
- tr:'Arkada\u015flar\u0131m \u00e7ocukken ayn\u0131 mahallede ya\u015farlard\u0131. Okuldan sonra \u00e7antalar\u0131n\u0131 eve b\u0131rak\u0131r ve h\u0131zl\u0131ca soka\u011fa \u00e7\u0131karlard\u0131. Telefonlar\u0131 ya da modern video oyunlar\u0131 yoktu. Neredeyse her g\u00fcn ak\u015fam yeme\u011fi saatine kadar parkta futbol oynarlard\u0131. Onlar i\u00e7in g\u00fcn\u00fcn en g\u00fczel k\u0131sm\u0131 buydu.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['jugaban','jugaron','juegan','han jugado'],ans:0,
- exp:'"Casi todos los d\u00edas" ge\u00e7mi\u015fte d\u00fczenly tekrar eden bir al\u0131\u015fkanl\u0131\u011f\u0131 anlat\u0131r. Bu nedenle "oynad\u0131lar" de\u011fil, "oynarlard\u0131" anlam\u0131 gerekir. Do\u011fru cevap: jugaban.'},
-
-{id:9,sec:1,
- rd:'Antes de mudarse a Madrid, Clara viv\u00eda en una ciudad peque\u00f1a. Su vida era m\u00e1s tranquila y conoc\u00eda a muchas personas del barrio. Por la ma\u00f1ana trabajaba en una librer\u00eda y por la tarde descansaba en casa. Los s\u00e1bados, Clara ______ con sus amigas a tomar caf\u00e9. Siempre hablaban de libros, viajes y planes futuros.',
- tr:'Madrid\'e ta\u015f\u0131nmadan \u00f6nce Clara k\u00fc\u00e7\u00fck bir \u015fehirde ya\u015f\u0131yordu. Hayat\u0131 daha sakindi ve mahalleden bir\u00e7ok ki\u015fiyi tan\u0131yordu. Sabahlar\u0131 bir kitap\u00e7\u0131da \u00e7al\u0131\u015f\u0131rd\u0131 ve \u00f6\u011fleden sonra evde dinlenirdi. Cumartesiler Clara arkada\u015flar\u0131yla kahve i\u00e7meye \u00e7\u0131kard\u0131. Her zaman kitaplardan, seyahatlerden ve gelecek planlar\u0131ndan konu\u015furlard\u0131.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['sal\u00eda','sali\u00f3','sale','ha salido'],ans:0,
- exp:'"Los s\u00e1bados" ge\u00e7mi\u015fte tekrar eden bir rutini g\u00f6steriyor. Bu y\u00fczden Pret\u00e9rito Imperfecto kullan\u0131l\u0131r. "Sal\u00eda" \u2192 "\u00e7\u0131kard\u0131".'},
-
-{id:10,sec:1,
- rd:'El colegio de mi infancia era bastante antiguo. Las aulas eran grandes, pero los muebles no eran modernos. En el patio siempre se escuchaban las voces de los ni\u00f1os. En la entrada del colegio, ______ un \u00e1rbol enorme donde todos esper\u00e1bamos a nuestros padres. Ese lugar era muy importante para nosotros.',
- tr:'\u00c7ocuklu\u011fumdaki okul olduk\u00e7a eskiydi. S\u0131n\u0131flar b\u00fcy\u00fct\u00fc ama mobilyalar modern de\u011fildi. Bah\u00e7ede her zaman \u00e7ocuklar\u0131n sesleri duyulurdu. Okulun giri\u015finde, anne babalar\u0131m\u0131z\u0131 bekledi\u011fimiz devasa bir a\u011fa\u00e7 vard\u0131. O yer bizim i\u00e7in \u00e7ok \u00f6nemliydi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['tuvo','tiene','hab\u00eda','hubo'],ans:2,
- exp:'Ge\u00e7mi\u015fte bir yerde bir \u015feyin varl\u0131\u011f\u0131n\u0131 anlat\u0131rken tasvir anlam\u0131nda hab\u00eda kullan\u0131l\u0131r. "Bir a\u011fa\u00e7 vard\u0131" \u2192 hab\u00eda un \u00e1rbol.'},
-
-{id:11,sec:1,
- rd:'Cuando mi abuelo era joven, no usaba internet ni tel\u00e9fono m\u00f3vil. Para comunicarse con sus amigos, escrib\u00eda cartas largas. Tambi\u00e9n compraba peri\u00f3dicos cada ma\u00f1ana para conocer las noticias. Por las noches, ______ novelas hist\u00f3ricas en una silla cerca de la ventana. Dec\u00eda que leer le ayudaba a imaginar otros mundos.',
- tr:'Dedem gen\u00e7ken internet ya da cep telefonu kullanmazd\u0131. Arkada\u015flar\u0131yla ileti\u015fim kurmak i\u00e7in uzun mektuplar yazard\u0131. Ayr\u0131ca haberleri \u00f6\u011frenmek i\u00e7in her sabah gazete al\u0131rd\u0131. Geceleri pencerenin yan\u0131ndaki bir sandalyede tarih\u00ee romanlar okurdu. Okuyman\u0131n ona ba\u015fka d\u00fcnyalar hayal etmesine yard\u0131m etti\u011fini s\u00f6ylerdi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['ley\u00f3','le\u00eda','lee','ha le\u00eddo'],ans:1,
- exp:'Burada ge\u00e7mi\u015fteki al\u0131\u015fkanl\u0131k anlat\u0131l\u0131yor. "Por las noches" d\u00fczenly tekrar eden bir eylemi g\u00f6sterir. Bu y\u00fczden le\u00eda kullan\u0131l\u0131r.'},
-
-{id:12,sec:1,
- rd:'Cuando estudiabas en la universidad, tu vida era muy diferente. Te levantabas temprano, tomabas caf\u00e9 y despu\u00e9s ibas a clase. A veces no ten\u00edas mucho tiempo libre porque hab\u00eda muchos ex\u00e1menes. Durante esos a\u00f1os, t\u00fa ______ en una cafeter\u00eda los fines de semana para ganar dinero. Era una etapa cansada, pero \u00fatil.',
- tr:'\u00dcniversitede okurken hayat\u0131n \u00e7ok farkl\u0131yd\u0131. Erken kalkard\u0131n, kahve i\u00e7erdin ve sonra derse giderdin. Bazen \u00e7ok bo\u015f zaman\u0131n olmazd\u0131 \u00e7\u00fcnk\u00fc \u00e7ok s\u0131nav vard\u0131. O y\u0131llarda para kazanmak i\u00e7in hafta sonlar\u0131 bir kafede \u00e7al\u0131\u015f\u0131rd\u0131n. Yorucu ama faydal\u0131 bir d\u00f6nemdi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['trabajaste','trabajas','has trabajado','trabajabas'],ans:3,
- exp:'"Durante esos a\u00f1os" ge\u00e7mi\u015fte belli bir d\u00f6nem boyunca devam eden bir durumu anlat\u0131yor. Ayr\u0131ca bu bir al\u0131\u015fkanl\u0131k/rutin. Bu y\u00fczden trabajabas do\u011fru cevapd\u0131r.'},
-
-{id:13,sec:1,
- rd:'Mis primeros profesores fueron muy importantes para m\u00ed. En la escuela primaria, aprend\u00edamos muchas cosas nuevas cada d\u00eda. Las clases empezaban temprano y terminaban al mediod\u00eda. Mis profesores ______ muy pacientes y siempre explicaban los temas con calma. Gracias a ellos, me gustaba mucho estudiar.',
- tr:'\u0130lk \u00f6\u011fretmenlerim benim i\u00e7in \u00e7ok \u00f6nemliydi. \u0130lkokulda her g\u00fcn bir\u00e7ok yeni \u015fey \u00f6\u011frenirdik. Dersler erken ba\u015flar ve \u00f6\u011flen biterdi. \u00d6\u011fretmenlerim \u00e7ok sabr\u0131yd\u0131 ve konular\u0131 her zaman sakin bir \u015fekilde anlat\u0131rlard\u0131. Onlar sayesinde ders \u00e7al\u0131\u015fmay\u0131 \u00e7ok severdim.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['fueron','son','han sido','eran'],ans:3,
- exp:'Burada \u00f6\u011fretmenlerin ge\u00e7mi\u015fteki karakter \u00f6zelli\u011fi/tasviri anlat\u0131l\u0131yor. Ki\u015fi tasvirlerinde imperfecto kullan\u0131l\u0131r. Do\u011fru cevap: eran.'},
-
-{id:14,sec:1,
- rd:'Cuando viv\u00eda en Barcelona, mi rutina era bastante activa. Por la ma\u00f1ana trabajaba en una oficina cerca de la playa. Despu\u00e9s del trabajo, me gustaba caminar por la ciudad. Casi todas las tardes, ______ a una peque\u00f1a biblioteca para leer o estudiar espa\u00f1ol. Ese lugar era silencioso y muy c\u00f3modo.',
- tr:'Barcelona\'da ya\u015farken rutinim olduk\u00e7a hareketliydi. Sabahlar\u0131 plaja yak\u0131n bir ofiste \u00e7al\u0131\u015f\u0131rd\u0131m. \u0130\u015ften sonra \u015fehirde y\u00fcr\u00fcmeyi severdim. Neredeyse her \u00f6\u011fleden sonra okumak ya da \u0130spanyolca \u00e7al\u0131\u015fmak i\u00e7in k\u00fc\u00e7\u00fck bir k\u00fct\u00fcphaneye giderdim. Oras\u0131 sessiz ve \u00e7ok rahatt\u0131.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['iba','fui','voy','he ido'],ans:0,
- exp:'"Casi todas las tardes" ge\u00e7mi\u015fte tekrar eden al\u0131\u015fkanl\u0131\u011f\u0131 anlat\u0131r. "Giderdim" anlam\u0131 i\u00e7in ir fiilinin imperfecto \u00e7ekimi kullan\u0131l\u0131r: iba.'},
-
-{id:15,sec:1,
- rd:'El d\u00eda de la excursi\u00f3n, todos los estudiantes estaban muy contentos. Llevaban mochilas, bocadillos y botellas de agua. El profesor explicaba las reglas antes de salir. Aunque era primavera, por la ma\u00f1ana ______ bastante fr\u00edo y algunos estudiantes llevaban chaquetas. Despu\u00e9s, el tiempo mejor\u00f3.',
- tr:'Gezi g\u00fcn\u00fc b\u00fchin \u00f6\u011frenciler \u00e7ok mutluydu. S\u0131rt \u00e7antalar\u0131, sandvi\u00e7leri ve su \u015fi\u015feleri vard\u0131. \u00d6\u011fretmen \u00e7\u0131kmadan \u00f6nce kurallar\u0131 a\u00e7\u0131kl\u0131yordu. \u0130lkbahar olmas\u0131na ra\u011fmen sabah olduk\u00e7a so\u011fuktu ve baz\u0131 \u00f6\u011frenciler ceket giyiyordu. Sonra hava d\u00fceldi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['hizo','hace','hac\u00eda','ha hecho'],ans:2,
- exp:'Ge\u00e7mi\u015fte hava durumunu arka plan olarak anlat\u0131yoruz. "Hava so\u011fuktu" ifadesi i\u00e7in imperfecto kullan\u0131l\u0131r: hac\u00eda fr\u00edo.'},
-
-{id:16,sec:1,
- rd:'Cuando mis padres eran j\u00f3venes, no ten\u00edan muchas oportunidades para viajar. Trabajaban mucho y ahorraban dinero poco a poco. Sin embargo, los domingos descansaban en casa. Por la tarde, ellos ______ pel\u00edculas antiguas en la televisi\u00f3n y hablaban de sus sue\u00f1os. Eran momentos sencillos, pero felices.',
- tr:'Annemle babam gen\u00e7ken seyahat etmek i\u00e7in \u00e7ok f\u0131rsatlar\u0131 yoktu. \u00c7ok \u00e7al\u0131\u015f\u0131rlard\u0131 ve yava\u015f yava\u015f para biriktirirlerdi. Ancak pazar g\u00fcnleri evde dinlenirlerdi. \u00d6\u011fleden sonra televizyonda eski filmler izler ve hayallerinden konu\u015furlard\u0131. Basit ama mutlu anlard\u0131.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['vieron','ve\u00edan','ven','han visto'],ans:1,
- exp:'"Los domingos" ve "por la tarde" ge\u00e7mi\u015fteki tekrar eden rutini g\u00f6sterir. Bu y\u00fczden ve\u00edan kullan\u0131l\u0131r.'},
-
-{id:17,sec:1,
- rd:'Cuando empezamos a aprender espa\u00f1ol, todo nos parec\u00eda dif\u00edcil. No entend\u00edamos bien los verbos y necesit\u00e1bamos repetir mucho. Pero la profesora explicaba con paciencia y nosotros estudi\u00e1bamos en casa. Al principio, nosotros ______ hablar perfectamente, pero sab\u00edamos que necesit\u00e1bamos tiempo. Poco a poco mejoramos.',
- tr:'\u0130spanyolca \u00f6\u011frenmeye ba\u015flad\u0131\u011f\u0131m\u0131zda her \u015fey bize zor geliyordu. Fiilleri iyi anlam\u0131yorduk ve \u00e7ok tekrar etmemiz gerekiyordu. Ama \u00f6\u011fretmen sabr\u0131la a\u00e7\u0131kl\u0131yordu ve biz evde \u00e7al\u0131\u015f\u0131yorduk. Ba\u015fta m\u00fckemmel konu\u015fmak istiyorduk ama zamana ihtiyac\u0131m\u0131z oldu\u011funu biliyorduk. Yava\u015f yava\u015f geli\u015ftik.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['quisimos','quer\u00edamos','queremos','hemos querido'],ans:1,
- exp:'Burada ge\u00e7mi\u015fteki istek/durum anlat\u0131l\u0131yor. "\u0130stiyorduk" anlam\u0131 i\u00e7in imperfecto kullan\u0131l\u0131r. Do\u011fru cevap: quer\u00edamos.'},
-
-{id:18,sec:1,
- rd:'Cuando viv\u00eda cerca del parque, mi rutina era muy saludable. Me levantaba temprano y preparaba un desayuno ligero. Despu\u00e9s, sal\u00eda de casa con ropa c\u00f3moda. Cada ma\u00f1ana, ______ durante una hora entre los \u00e1rboles y escuchaba m\u00fasica tranquila. Esa costumbre me daba mucha energ\u00eda.',
- tr:'Park\u0131n yak\u0131n\u0131nda ya\u015farken rutinim \u00e7ok sa\u011fl\u0131kl\u0131yd\u0131. Erken kalkard\u0131m ve hafif bir kahvalt\u0131 haz\u0131rlard\u0131m. Sonra rahat k\u0131yafetlerle evden \u00e7\u0131kard\u0131m. Her sabah a\u011fa\u00e7lar\u0131n aras\u0131nda bir saat y\u00fcr\u00fcr ve sakin m\u00fczik dinlerdim. Bu al\u0131\u015fkanl\u0131k bana \u00e7ok enerji verirdi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['camin\u00e9','camino','caminaba','he caminado'],ans:2,
- exp:'"Cada ma\u00f1ana" ge\u00e7mi\u015fte d\u00fczenly yap\u0131lan bir eylemi anlat\u0131r. T\u00fcrk\u00e7ede "y\u00fcr\u00fcrd\u00fcm" anlam\u0131 vard\u0131r. Bu y\u00fczden caminaba do\u011fru cevapd\u0131r.'},
-
-{id:19,sec:1,
- rd:'Ayer a las siete de la tarde, todos est\u00e1bamos ocupados en casa. Mi hermano hac\u00eda la tarea en su habitaci\u00f3n y mi padre hablaba con un vecino. Yo buscaba mis libros porque ten\u00eda clase al d\u00eda siguiente. En la cocina, mi madre ______ un pastel para la cena familiar. El ambiente era muy agradable.',
- tr:'D\u00fcn ak\u015fam saat yedide evde herkes me\u015fgul\u00fc\u00dc. Karde\u015fim odas\u0131nda \u00f6dev yap\u0131yordu ve babam bir kom\u015fuyla konu\u015fuyordu. Ben kitaplar\u0131m\u0131 ar\u0131yordum \u00e7\u00fcnk\u00fc ertesi g\u00fcn dersim vard\u0131. Mutfakta annem aile yeme\u011fi i\u00e7in bir pasta haz\u0131rl\u0131yordu. Ortam \u00e7ok g\u00fczeldi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['estaba preparando','prepar\u00f3','prepara','ha preparado'],ans:0,
- exp:'Burada ge\u00e7mi\u015fte belirli bir anda devam eden eylem anlat\u0131l\u0131yor. "Haz\u0131rl\u0131yordu" anlam\u0131 i\u00e7in estar + gerundio yap\u0131s\u0131n\u0131n imperfecto hali kullan\u0131l\u0131r: estaba preparando.'},
-
-{id:20,sec:1,
- rd:'Antes, en nuestra escuela no hab\u00eda tanta tecnolog\u00eda. Los profesores escrib\u00edan todo en la pizarra y los estudiantes copiaban en sus cuadernos. Las clases eran m\u00e1s lentas, pero apren\u00eddamos con mucha atenci\u00f3n. En aquella \u00e9poca, los alumnos no ______ tabletas; usaban libros, l\u00e1pices y diccionarios. Era una forma diferente de estudiar.',
- tr:'Eskiden okulumuzda bu kadar teknoloji yoktu. \u00d6\u011fretmenler her \u015feyi tahtaya yazard\u0131 ve \u00f6\u011frenciler defterlerine ge\u00e7irirdi. Dersler daha yava\u015ft\u0131 ama b\u00fcy\u00fck bir dikkatle \u00f6\u011frenirdik. O d\u00f6nemde \u00f6\u011frenciler tablet kullanmazd\u0131; kitap, kalem ve s\u00f6zl\u00fck kullan\u0131rlard\u0131. Bu farkl\u0131 bir \u00e7al\u0131\u015fma bi\u00e7imiydi.',
- q:'Metindeki bo\u015flu\u011fa hangi se\u00e7enek gelmelidir?',
- opts:['usaron','usan','han usado','usaban'],ans:3,
- exp:'"En aquella \u00e9poca" ge\u00e7mi\u015fteki genel bir d\u00f6nemi anlat\u0131r. Burada ge\u00e7mi\u015fteki al\u0131\u015fkanl\u0131k ve durumdan bahsediyoruz. "Kullanmazlard\u0131" anlam\u0131 i\u00e7in imperfecto gerekir: usaban.'},
-
-// ── KISIM 2: KULLANIM (21-35) ──
-{id:21,sec:2,
- q:'"A las ocho de la noche, mi hermana estudiaba en su habitaci\u00f3n."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fte tek seferlik tamamlanm\u0131\u015f olay','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','Ge\u00e7mi\u015fte devam eden eylem','\u015eu an i\u00e7in nezaket ifadesi'],ans:2,
- exp:'Bu c\u00fcmlede estudiaba fiili ge\u00e7mi\u015fte belirli bir anda devam eden bir eylemi anlat\u0131r. "A las ocho de la noche" yani "ak\u015fam saat sekizde" ifadesi bize ge\u00e7mi\u015fteki belirli bir an\u0131 g\u00f6sterir. O anda k\u0131z karde\u015fin ders \u00e7al\u0131\u015fma eylemi bitmi\u015f, tamamlanm\u0131\u015f bir olay gibi de\u011fil; devam etmekte olan bir s\u00fcre\u00e7 gibi anlat\u0131lm\u0131\u015ft\u0131r. T\u00fcrk\u00e7eye \u015f\u00f6yle \u00e7evrilir: "Ak\u015fam saat sekizde k\u0131z karde\u015fim odas\u0131nda ders \u00e7al\u0131\u015f\u0131yordu." Buradaki sihirli anlam -yordu anlam\u0131d\u0131r. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fte devam eden eylem.'},
-
-{id:22,sec:2,
- q:'"La casa de mis abuelos era muy grande y ten\u00eda un jard\u00edn precioso."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri / foto\u011fraf karesi','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','Ge\u00e7mi\u015fte devam eden eylem','\u015eu an i\u00e7in nezaket ifadesi'],ans:0,
- exp:'Bu c\u00fcmlede era ve ten\u00eda fiilleri ge\u00e7mi\u015fteki bir evin nas\u0131l oldu\u011funu anlat\u0131r. La casa era muy grande \u2192 Ev \u00e7ok b\u00fcy\u00fkt\u00fc. Ten\u00eda un jard\u00edn precioso \u2192 G\u00fczel bir bah\u00e7esi vard\u0131. Yani c\u00fcmle bize ge\u00e7mi\u015ften bir foto\u011fraf karesi g\u00f6sterir. T\u00fcrk\u00e7edeki sihirli anlam -idi / vard\u0131 anlam\u0131d\u0131r. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri / foto\u011fraf karesi.'},
-
-{id:23,sec:2,
- q:'"Quer\u00eda hablar con usted un momento, por favor."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri','Ge\u00e7mi\u015fte devam eden eylem','\u015eu an i\u00e7in nezaket ifadesi'],ans:3,
- exp:'Bu c\u00fcmlede quer\u00eda fiili normal bir ge\u00e7mi\u015f zaman anlam\u0131ndan \u00e7ok, nezaket amac\u0131yla kullan\u0131lm\u0131\u015ft\u0131r. Quer\u00eda hablar con usted daha kibar, daha resmi ve daha yumu\u015fak duyulur. T\u00fcrk\u00e7eye "Sizinle bir dakika konu\u015fmak istiyordum, l\u00fctfen." \u015feklinde \u00e7evrilir. Bu y\u00fczden kullan\u0131m alan\u0131: i\u00e7inde bulunulan anda nezaket kullan\u0131m\u0131.'},
-
-{id:24,sec:2,
- q:'"Cuando era ni\u00f1o, jugaba al f\u00fatbol todos los d\u00edas despu\u00e9s de la escuela."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri / foto\u011fraf karesi','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','\u015eu an i\u00e7in nezaket ifadesi','Ge\u00e7mi\u015fte tek seferlik tamamlanm\u0131\u015f olay'],ans:1,
- exp:'Bu c\u00fcmlede jugaba fiili ge\u00e7mi\u015fte d\u00fczenly olarak yap\u0131lan bir eylemi anlat\u0131r. "Cuando era ni\u00f1o" ifadesi "\u00e7ocukken" anlam\u0131na gelir. "Todos los d\u00edas" ise "her g\u00fcn" demektir. T\u00fcrk\u00e7eye "\u00c7ocukken okuldan sonra her g\u00fcn futbol oynard\u0131m." \u015feklinde \u00e7evrilir. Burada imperfecto T\u00fcrk\u00e7edeki -ard\u0131 / -erdi anlam\u0131n\u0131 verir. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin.'},
-
-{id:25,sec:2,
- q:'"Antes mi madre preparaba el desayuno temprano y nosotros com\u00edamos juntos."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fte devam eden eylem','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','Ge\u00e7mi\u015fin tasviri','\u015eu an i\u00e7in nezaket ifadesi'],ans:1,
- exp:'Bu c\u00fcmlede preparaba ve com\u00edamos fiilleri ge\u00e7mi\u015fte tekrar eden aile rutinini anlat\u0131r. "Antes" yani "eskiden" ifadesi, ge\u00e7mi\u015fte d\u00fczenly yap\u0131lan bir al\u0131\u015fkanl\u0131\u011fa i\u015faret eder. T\u00fcrk\u00e7eye "Eskiden annem kahvalt\u0131y\u0131 erken haz\u0131rlard\u0131 ve biz birlikte yemek yerdik." \u015feklinde \u00e7evrilir. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin.'},
-
-{id:26,sec:2,
- q:'"Mientras todos dorm\u00edan, mi padre le\u00eda un libro en el sal\u00f3n."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri','\u015eu an i\u00e7in nezaket ifadesi','Ge\u00e7mi\u015fte devam eden eylem','Ge\u00e7mi\u015fte tek seferlik tamamlanm\u0131\u015f olay'],ans:2,
- exp:'Bu c\u00fcmlede dorm\u00edan ve le\u00eda fiilleri ge\u00e7mi\u015fte ayn\u0131 anda devam eden eylemleri anlat\u0131r. "Mientras" kelimesi "-iken" anlam\u0131na gelir ve \u00e7o\u011fu zaman devam eden iki eylemi ba\u011flar. T\u00fcrk\u00e7eye "Herkes uyurken babam salonda kitap okuyordu." \u015feklinde \u00e7evrilir. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fte devam eden eylem.'},
-
-{id:27,sec:2,
- q:'"El cielo estaba gris y hac\u00eda mucho viento."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri / foto\u011fraf karesi','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','Ge\u00e7mi\u015fte devam eden eylem','\u015eu an i\u00e7in nezaket ifadesi'],ans:0,
- exp:'Bu c\u00fcmlede estaba ve hac\u00eda fiilleri ge\u00e7mi\u015fteki hava durumunu ve ortam\u0131 anlat\u0131r. G\u00f6ky\u00fcz\u00fcn\u00fcn gri olmas\u0131 ve r\u00fczg\u00e2r olmas\u0131, ge\u00e7mi\u015fteki ortan\u0131n arka plan bilgisidir. T\u00fcrk\u00e7eye "G\u00f6ky\u00fcz\u00fc griydi ve \u00e7ok r\u00fczg\u00e2r vard\u0131." \u015feklinde \u00e7evrilir. Buradaki sihirli anlam -idi / vard\u0131 anlam\u0131d\u0131r. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri / foto\u011fraf karesi.'},
-
-{id:28,sec:2,
- q:'"Llamaba para confirmar la cita de ma\u00f1ana."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','Ge\u00e7mi\u015fte devam eden eylem','Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri','\u015eu an i\u00e7in nezaket ifadesi'],ans:3,
- exp:'Bu c\u00fcmlede llamaba fiili, telefonda nazik bir giri\u015f yapmak i\u00e7in kullan\u0131lm\u0131\u015ft\u0131r. \u015eu anda arama sebebini daha kibar bir \u015fekilde ifade ediyor. Llamaba para confirmar la cita daha nazik ve yumu\u015fak bir giri\u015f yapar. T\u00fcrk\u00e7eye "Yar\u0131nki randevuyu teyit etmek i\u00e7in ar\u0131yordum." \u015feklinde \u00e7evrilir. Bu y\u00fczden kullan\u0131m alan\u0131: i\u00e7inde bulunulan anda nezaket kullan\u0131m\u0131.'},
-
-{id:29,sec:2,
- q:'"Ven\u00eda a pedir informaci\u00f3n sobre el curso de espa\u00f1ol."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fte tamamlanm\u0131\u015f olay','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','Ge\u00e7mi\u015fte devam eden eylem','\u015eu an i\u00e7in nezaket ifadesi'],ans:3,
- exp:'Bu c\u00fcmlede ven\u00eda fiili nezaket amac\u0131yla kullan\u0131lm\u0131\u015ft\u0131r. Burada ama\u00e7, \u015fu anda bir bilgi istemeyi daha kibar \u015fekilde ifade etmektir. Vengo a pedir informaci\u00f3n daha direkt bir ifadedir. Ven\u00eda a pedir informaci\u00f3n ise daha nazik duyulur. T\u00fcrk\u00e7eye "\u0130spanyolca kursu hakk\u0131nda bilgi almak istiyordum." \u015feklinde \u00e7evrilir. Bu y\u00fczden kullan\u0131m alan\u0131: i\u00e7inde bulunulan anda nezaket kullan\u0131m\u0131.'},
-
-{id:30,sec:2,
- q:'"La profesora era muy paciente y explicaba todo con calma."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri / foto\u011fraf karesi','Ge\u00e7mi\u015fte tek seferlik tamamlanm\u0131\u015f olay','\u015eu an i\u00e7in nezaket ifadesi','Ge\u00e7mi\u015fte devam eden eylem'],ans:0,
- exp:'Bu c\u00fcmlede era ve explicaba ge\u00e7mi\u015fteki bir \u00f6\u011fretmenin genel \u00f6zelli\u011fini ve davran\u0131\u015f bi\u00e7imini anlat\u0131r. Era muy paciente \u2192 \u00c7ok sabr\u0131yd\u0131. Bu k\u0131s\u0131m do\u011frudan bir ki\u015fi tasviridir. Explicaba todo con calma \u2192 Her \u015feyi sakin bir \u015fekilde a\u00e7\u0131klard\u0131. T\u00fcrk\u00e7edeki sihirli anlam -idi / -ard\u0131 \u015feklindedir. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri / foto\u011fraf karesi.'},
-
-{id:31,sec:2,
- q:'"Cuando entr\u00e9 en la cocina, mi abuela cocinaba sopa."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','\u015eu an i\u00e7in nezaket ifadesi','Ge\u00e7mi\u015fte devam eden eylem','Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri'],ans:2,
- exp:'Bu c\u00fcmlede cocinaba fiili ge\u00e7mi\u015fte devam eden bir eylemi anlat\u0131r. "Cuando entr\u00e9 en la cocina" yani "mutfa\u011fa girdi\u011fimde" ifadesi ge\u00e7mi\u015fte k\u0131sa ve tamamlanm\u0131\u015f bir olay\u0131 g\u00f6sterir. Ancak b\u00fcy\u00fckannenin \u00e7orba yapmas\u0131 o anda zaten devam eden bir eylemdir. Ben mutfa\u011fa girdim \u2192 k\u0131sa olay. B\u00fcy\u00fckannem \u00e7orba yap\u0131yordu \u2192 devam eden eylem. T\u00fcrk\u00e7eye "Mutfa\u011fa girdi\u011fimde b\u00fcy\u00fckannem \u00e7orba yap\u0131yordu." \u015feklinde \u00e7evrilir. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fte devam eden eylem.'},
-
-{id:32,sec:2,
- q:'"De peque\u00f1os, mis primos y yo visit\u00e1bamos a nuestros abuelos cada verano."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','Ge\u00e7mi\u015fte devam eden eylem','\u015eu an i\u00e7in nezaket ifadesi'],ans:1,
- exp:'Bu c\u00fcmlede visit\u00e1bamos fiili ge\u00e7mi\u015fte d\u00fczenly olarak yap\u0131lan bir eylemi anlat\u0131r. "De peque\u00f1os" yani "k\u00fc\u00e7\u00fckken" ifadesi ge\u00e7mi\u015fteki bir d\u00f6nemi g\u00f6sterir. "Cada verano" yani "her yaz" ifadesi ise bu eylemin bir kez de\u011fil, d\u00fczenly olarak tekrarland\u0131\u011f\u0131n\u0131 g\u00f6sterir. T\u00fcrk\u00e7eye "K\u00fc\u00e7\u00fckken kuzenlerimle her yaz b\u00fcy\u00fckanne ve b\u00fcy\u00fckhababam\u0131z\u0131 ziyaret ederdik." \u015feklinde \u00e7evrilir. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin.'},
-
-{id:33,sec:2,
- q:'"Hab\u00eda mucha gente en la plaza y las calles estaban llenas de luces."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri / foto\u011fraf karesi','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','Ge\u00e7mi\u015fte devam eden eylem','\u015eu an i\u00e7in nezaket ifadesi'],ans:0,
- exp:'Bu c\u00fcmlede hab\u00eda ve estaban ge\u00e7mi\u015fteki bir ortam\u0131 tarif eder. Hab\u00eda mucha gente \u2192 \u00c7ok insan vard\u0131. Las calles estaban llenas de luces \u2192 Sokaklar \u0131\u015f\u0131klarla doluydu. Burada bir olay\u0131n ger\u00e7ekle\u015fme s\u0131ras\u0131 de\u011fil, ge\u00e7mi\u015fteki sahnenin nas\u0131l g\u00f6r\u00fcnd\u00fc\u011f\u00fc anlat\u0131l\u0131r. Yani okuyucunun g\u00f6z\u00fcnde bir foto\u011fraf karesi olu\u015fturulur. T\u00fcrk\u00e7edeki sihirli anlam -idi / vard\u0131 anlam\u0131d\u0131r. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri / foto\u011fraf karesi.'},
-
-{id:34,sec:2,
- q:'"Antes no us\u00e1bamos internet para hacer los deberes."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fte devam eden eylem','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','\u015eu an i\u00e7in nezaket ifadesi','Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri'],ans:1,
- exp:'Bu c\u00fcmlede us\u00e1bamos fiili ge\u00e7mi\u015fteki genel bir al\u0131\u015fkanl\u0131\u011f\u0131 anlat\u0131r. "Antes" yani "eskiden" ifadesi \u00e7ok \u00f6nemli bir ipucudur. Burada bir g\u00fcn internet kullanmad\u0131k demiyoruz. Genel olarak ge\u00e7mi\u015fte \u00f6dev yapmak i\u00e7in internet kullanma al\u0131\u015fkanl\u0131\u011f\u0131m\u0131z yoktu diyoruz. T\u00fcrk\u00e7eye "Eskiden \u00f6devleri yapmak i\u00e7in internet kullanmazd\u0131k." \u015feklinde \u00e7evrilir. Bu y\u00fczden kullan\u0131m alan\u0131: ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin.'},
-
-{id:35,sec:2,
- q:'"Quer\u00eda preguntarte algo importante."\nBu c\u00fcmlede imperfecto hangi nedenle kullan\u0131lm\u0131\u015ft\u0131r?',
- opts:['Ge\u00e7mi\u015fte tek seferlik tamamlanm\u0131\u015f olay','Ge\u00e7mi\u015fin tan\u0131m\u0131 / tasviri','Ge\u00e7mi\u015fte al\u0131\u015fkanl\u0131k / rutin','\u015eu an i\u00e7in nezaket ifadesi'],ans:3,
- exp:'Bu c\u00fcmlede quer\u00eda fiili nezaket amac\u0131yla kullan\u0131lm\u0131\u015ft\u0131r. Asul ama\u00e7, \u015fu anda kar\u015f\u0131s\u0131ndaki ki\u015fiye daha nazik bir \u015fekilde yakla\u015fmakt\u0131r. Quiero preguntarte algo importante daha direkt bir c\u00fcmledir. Quer\u00eda preguntarte algo importante ise daha yumu\u015fak, daha kibar ve daha do\u011fal bir giri\u015f c\u00fcmlesidir. T\u00fcrk\u00e7eye "Sana \u00f6nemli bir \u015fey sormak istiyordum." \u015feklinde \u00e7evrilir. Bu y\u00fczden kullan\u0131m alan\u0131: i\u00e7inde bulunulan anda nezaket kullan\u0131m\u0131.'},
-
-// ── KISIM 3: DOĞRU ÇEKİM (36-50) ──
-{id:36,sec:3,
- q:'Ayer, mientras mi madre ______ la cena, nosotros pusimos la mesa.',
- opts:['prepar\u00f3','prepara','preparaba','ha preparado'],ans:2,
- exp:'Bu c\u00fcmlede mientras kelimesi \u00e7ok \u00f6nemli bir ipucudur. Mientras "-iken" anlam\u0131na gelir ve genellikle ge\u00e7mi\u015fte devam eden bir eylemi anlat\u0131rken kullan\u0131l\u0131r. Cümlede iki olay var: Mi madre preparaba la cena \u2192 Annem yeme\u011fi haz\u0131rl\u0131yordu. Nosotros pusimos la mesa \u2192 Biz masay\u0131 kurduk. Annenin yemek haz\u0131rlamas\u0131 arka planda devam eden bir s\u00fcre\u00e7tir. Bizim masay\u0131 kurmam\u0131z ise tamamlanm\u0131\u015f, k\u0131sa bir olayd\u0131r. Bu y\u00fczden yemek haz\u0131rlama eylemi i\u00e7in imperfecto gerekir: preparaba. A \u015f\u0131kk\u0131 prepar\u00f3 olmaz \u00e7\u00fcnk\u00fc burada annenin yeme\u011fi haz\u0131rlama s\u00fcreci devam ederken ba\u015fka bir olay ger\u00e7ekle\u015fiyor. B \u015f\u0131kk\u0131 prepara olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 ha preparado olmaz \u00e7\u00fcnk\u00fc "ayer" ile ge\u00e7mi\u015fteki belirli bir sahne anlat\u0131l\u0131yor. Do\u011fru cevap: preparaba'},
-
-{id:37,sec:3,
- q:'Cuando yo era peque\u00f1o, todos los veranos ______ a casa de mis abuelos.',
- opts:['fui','voy','he ido','iba'],ans:3,
- exp:'Bu c\u00fcmlede todos los veranos ifadesi \u00e7ok \u00f6nemlidir. "Her yaz" demektir ve ge\u00e7mi\u015fte tekrar eden bir al\u0131\u015fkanl\u0131\u011f\u0131 anlat\u0131r. C\u00fcmle \u015fu anlama gelir: "K\u00fc\u00e7\u00fckken her yaz b\u00fcy\u00fckanne ve b\u00fcy\u00fckhababam\u0131n evine giderdim." Burada bir kez gitmekten bahsetmiyoruz. \u00c7ocukluk d\u00f6neminde d\u00fczenly olarak yap\u0131lan bir eylemden bahsediyoruz. Bu y\u00fczden imperfecto kullan\u0131l\u0131r: iba. A \u015f\u0131kk\u0131 fui olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito indefinido ge\u00e7mi\u015fte tek seferlik tamamlanm\u0131\u015f bir gitme eylemini anlat\u0131r. B \u015f\u0131kk\u0131 voy olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. C \u015f\u0131kk\u0131 he ido olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito perfecto yap\u0131s\u0131d\u0131r. Do\u011fru cevap: iba'},
-
-{id:38,sec:3,
- q:'El s\u00e1bado pasado, primero desayun\u00e9 con mi familia y despu\u00e9s ______ al mercado.',
- opts:['iba','voy','fui','he ido'],ans:2,
- exp:'Bu c\u00fcmlede olaylar s\u0131rayla anlat\u0131l\u0131yor: \u00d6nce ailemle kahvalt\u0131 yapt\u0131m. Sonra pazara gittim. Bu t\u00fcr s\u0131ral\u0131, tamamlanm\u0131\u015f ge\u00e7mi\u015f olaylarda pret\u00e9rito indefinido kullan\u0131l\u0131r. C\u00fcmle \u015fu anlama gelir: "Ge\u00e7en cumartesi \u00f6nce ailemle kahvalt\u0131 yapt\u0131m, sonra pazara gittim." C \u015f\u0131kk\u0131 fui do\u011fru cevapd\u0131r. A \u015f\u0131kk\u0131 iba olmaz \u00e7\u00fcnk\u00fc imperfecto "gidiyordum / giderdim" anlam\u0131 verir; burada tek bir cumartesi g\u00fcn\u00fc yap\u0131lan tamamlanm\u0131\u015f bir olay var. B \u015f\u0131kk\u0131 voy olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 he ido olmaz \u00e7\u00fcnk\u00fc "el s\u00e1bado pasado" belirli ve bitmi\u015f bir ge\u00e7mi\u015f zaman ifadesidir. Do\u011fru cevap: fui'},
-
-{id:39,sec:3,
- q:'Cuando llegamos al restaurante, la camarera ______ las mesas.',
- opts:['limpiaba','limpió','limpia','ha limpiado'],ans:0,
- exp:'Bu c\u00fcmlede "biz restorana geldi\u011fimizde" bir sahne anlat\u0131l\u0131yor. Bizim restorana gelmemiz k\u0131sa ve tamamlanm\u0131\u015f bir olayd\u0131r: llegamos. Ama garsonun masalar\u0131 temizlemesi o s\u0131rada devam eden bir eylemdir. C\u00fcmle \u015fu anlama gelir: "Restorana vard\u0131\u011f\u0131m\u0131zda garson masalar\u0131 temizliyordu." Bu durumda arka planda devam eden eylem i\u00e7in imperfecto kullan\u0131l\u0131r: limpiaba. B \u015f\u0131kk\u0131 limpi\u00f3 olmaz \u00e7\u00fcnk\u00fc bu, garsonun masalar\u0131 temizleme eylemini tamamlanm\u0131\u015f bir olay gibi anlat\u0131r. C \u015f\u0131kk\u0131 limpia olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 ha limpiado olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito perfecto yap\u0131s\u0131d\u0131r. Do\u011fru cevap: limpiaba'},
-
-{id:40,sec:3,
- q:'Anoche vimos una pel\u00edcula y despu\u00e9s ______ sobre la historia durante una hora.',
- opts:['habl\u00e1bamos','hablamos','hablamos todos los d\u00edas','hablaban'],ans:1,
- exp:'Bu c\u00fcmlede ge\u00e7mi\u015fte tamamlanm\u0131\u015f iki olay s\u0131rayla anlat\u0131l\u0131yor: Film izledik. Sonra hikaye hakk\u0131nda bir saat konu\u015ftuk. "Konyu\u015fma" eylemi ge\u00e7mi\u015fte ba\u015flam\u0131\u015f ve bitmi\u015f bir olay olarak anlat\u0131l\u0131yor. C\u00fcmle \u015fu anlama gelir: "D\u00fcn gece bir film izledik ve sonra hikaye hakk\u0131nda bir saat konu\u015ftuk." A \u015f\u0131kk\u0131 habl\u00e1bamos olmaz \u00e7\u00fcnk\u00fc imperfecto daha \u00e7ok "konu\u015fuyorduk / konu\u015furduk" anlam\u0131 verir; burada tamamlanm\u0131\u015f bir olay var. C \u015f\u0131kk\u0131 hablamos todos los d\u00edas olmaz \u00e7\u00fcnk\u00fc yap\u0131sal olarak c\u00fcmleye uymaz. D \u015f\u0131kk\u0131 hablaban olmaz \u00e7\u00fcnk\u00fc \u00f6zne uyumu yanl\u0131\u015ft\u0131r; c\u00fcmlede \u00f6zne nosotros oldu\u011fu i\u00e7in "hablamos" gerekir. Do\u011fru cevap: hablamos'},
-
-{id:41,sec:3,
- q:'Antes, mis padres ______ cartas porque no usaban mensajes de texto.',
- opts:['escribieron','escrib\u00edan','escriben','han escrito'],ans:1,
- exp:'Bu c\u00fcmlede antes kelimesi \u00e7ok g\u00fc\u00e7l\u00fc bir ipucudur. "Eskiden" anlam\u0131na gelir ve \u00e7o\u011fu zaman ge\u00e7mi\u015fteki al\u0131\u015fkanl\u0131klarda imperfecto kullan\u0131l\u0131r. C\u00fcmlede anlat\u0131lan \u015fey \u015fudur: "Eskiden annemle babam mektup yazarlard\u0131 \u00e7\u00fcnk\u00fc mesaj kullanmazlard\u0131." Burada tek bir mektup yazma olay\u0131ndan bahsedilmiyor. Ge\u00e7mi\u015fte genel olarak var olan bir al\u0131\u015fkanl\u0131k anlat\u0131l\u0131yor. Bu y\u00fczden imperfecto gerekir: escrib\u00edan. A \u015f\u0131kk\u0131 escribieron olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito indefinido tek seferlik bir mektup yazma olay\u0131n\u0131 anlat\u0131r. C \u015f\u0131kk\u0131 escriben olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 han escrito olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito perfecto yap\u0131s\u0131d\u0131r. Do\u011fru cevap: escrib\u00edan'},
-
-{id:42,sec:3,
- q:'El a\u00f1o pasado, mi hermano ______ un coche nuevo y empez\u00f3 a ir al trabajo en coche.',
- opts:['compr\u00f3','compraba','compra','ha comprado'],ans:0,
- exp:'Bu c\u00fcmlede comprar un coche nuevo yani "yeni bir araba sat\u0131n almak" tek seferlik ve tamamlanm\u0131\u015f bir olayd\u0131r. Ayr\u0131ca c\u00fcmlede el a\u00f1o pasado yani "ge\u00e7en y\u0131l" deniyor. C\u00fcmle \u015fu anlama gelir: "Ge\u00e7en y\u0131l karde\u015fim yeni bir araba ald\u0131 ve i\u015fe arabayla gitmeye ba\u015flad\u0131." Bu y\u00fczden pret\u00e9rito indefinido kullan\u0131l\u0131r: compr\u00f3. B \u015f\u0131kk\u0131 compraba olmaz \u00e7\u00fcnk\u00fc imperfecto "al\u0131yordu / al\u0131rd\u0131" anlam\u0131 verir; araba sat\u0131n almak burada tek seferlik tamamlanm\u0131\u015f bir olayd\u0131r. C \u015f\u0131kk\u0131 compra olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 ha comprado olmaz \u00e7\u00fcnk\u00fc "el a\u00f1o pasado" gibi tamamlanm\u0131\u015f ve belirli bir ge\u00e7mi\u015f zaman ifadesi var. Do\u011fru cevap: compr\u00f3'},
-
-{id:43,sec:3,
- q:'Ayer por la tarde, mientras los ni\u00f1os ______ en el jard\u00edn, empez\u00f3 a llover.',
- opts:['jugaron','juegan','han jugado','jugaban'],ans:3,
- exp:'Bu c\u00fcmlede yine mientras kelimesi var. "-iken" anlam\u0131na gelir ve ge\u00e7mi\u015fte devam eden bir eylemi anlat\u0131r. C\u00fcmlede iki olay vard\u0131r: \u00c7ocuklar bah\u00e7ede oynuyordu. Ya\u011fmur ba\u015flad\u0131. \u00c7ocuklar\u0131n oyun oynamas\u0131 arka planda devam eden eylemdir. Ya\u011fmurun ba\u015flamas\u0131 ise k\u0131sa, ani ve tamamlanm\u0131\u015f olayd\u0131r. Bu y\u00fczden \u00e7ocuklar\u0131n oynama eylemi i\u00e7in imperfecto kullan\u0131l\u0131r: jugaban. A \u015f\u0131kk\u0131 jugaron olmaz \u00e7\u00fcnk\u00fc bu, \u00e7ocuklar\u0131n oynama eylemini tamamlanm\u0131\u015f bir olay gibi anlat\u0131r; ama burada "oynad\u0131lar" de\u011fil, "oynuyorlard\u0131" anlam\u0131 gerekir. B \u015f\u0131kk\u0131 juegan olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. C \u015f\u0131kk\u0131 han jugado olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito perfecto yap\u0131s\u0131d\u0131r. Do\u011fru cevap: jugaban'},
-
-{id:44,sec:3,
- q:'Cuando entr\u00e9 en la clase, todos los estudiantes ______ en silencio.',
- opts:['estudiaron','estudian','estudiaban','han estudiado'],ans:2,
- exp:'Bu c\u00fcmlede "ben s\u0131n\u0131fa girdi\u011fimde" ifadesi k\u0131sa ve tamamlanm\u0131\u015f bir olay\u0131 g\u00f6sterir: entr\u00e9. Ama \u00f6\u011frencilerin sessizce ders \u00e7al\u0131\u015fmas\u0131, o anda devam eden bir eylemdir. C\u00fcmle \u015fu anlama gelir: "S\u0131n\u0131fa girdi\u011fimde b\u00fchin \u00f6\u011frenciler sessizce ders \u00e7al\u0131\u015f\u0131yordu." Bu t\u00fcr yap\u0131larda genellikle \u015fu mant\u0131k vard\u0131r: K\u0131sa olay \u2192 pret\u00e9rito indefinido / Arka planda devam eden eylem \u2192 pret\u00e9rito imperfecto. Bu y\u00fczden do\u011fru cevap estudiaban olur. A \u015f\u0131kk\u0131 estudiaron olmaz \u00e7\u00fcnk\u00fc "\u00e7al\u0131\u015ft\u0131lar" anlam\u0131 verir ve eylemi tamamlanm\u0131\u015f g\u00f6sterir. B \u015f\u0131kk\u0131 estudian olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 han estudiado olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito perfecto yap\u0131s\u0131d\u0131r. Do\u011fru cevap: estudiaban'},
-
-{id:45,sec:3,
- q:'De ni\u00f1a, Clara siempre ______ con su mu\u00f1eca favorita antes de dormir.',
- opts:['jug\u00f3','juega','jugaba','ha jugado'],ans:2,
- exp:'Bu c\u00fcmlede iki \u00f6nemli ipucu var: De ni\u00f1a \u2192 \u00e7ocukken / Siempre \u2192 her zaman. Bu iki ifade birlikte ge\u00e7mi\u015fteki bir al\u0131\u015fkanl\u0131\u011f\u0131 anlat\u0131r. C\u00fcmle \u015fu anlama gelir: "Clara \u00e7ocukken uyumadan \u00f6nce her zaman en sevdi\u011fi bebe\u011fiyle oynard\u0131." Bu y\u00fczden imperfecto kullan\u0131l\u0131r: jugaba. A \u015f\u0131kk\u0131 jug\u00f3 olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito indefinido tek seferlik veya tamamlanm\u0131\u015f bir oynama olay\u0131n\u0131 anlat\u0131r. B \u015f\u0131kk\u0131 juega olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 ha jugado olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito perfecto yap\u0131s\u0131d\u0131r. Do\u011fru cevap: jugaba'},
-
-{id:46,sec:3,
- q:'Ayer lleg\u00fc\u00e9 tarde a casa porque ______ mucho tr\u00e1fico en la ciudad.',
- opts:['hubo','hay','ha habido','hab\u00eda'],ans:3,
- exp:'Bu c\u00fcmlede hab\u00eda mucho tr\u00e1fico ifadesi ge\u00e7mi\u015fteki bir durumun veya ortan\u0131n arka plan\u0131n\u0131 anlat\u0131r. Trafik, benim ge\u00e7 kalmam\u0131n ger\u00e7ekle\u015fti\u011fi ortan\u0131 a\u00e7\u0131kl\u0131yor. C\u00fcmle \u015fu anlama gelir: "D\u00fcn eve ge\u00e7 geldim \u00e7\u00fcnk\u00fc \u015fehirde \u00e7ok trafik vard\u0131." Burada trafik bir anda olup biten bir olay gibi de\u011fil, ge\u00e7mi\u015fteki genel durum / arka plan olarak anlat\u0131l\u0131yor. Bu y\u00fczden imperfecto kullan\u0131l\u0131r: hab\u00eda. A \u015f\u0131kk\u0131 hubo baz\u0131 durumlarda kullan\u0131labilir ama burada "trafik vard\u0131" yani ortan\u0131n durumu anlat\u0131l\u0131yor. B \u015f\u0131kk\u0131 hay olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. C \u015f\u0131kk\u0131 ha habido olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito perfecto yap\u0131s\u0131d\u0131r. Do\u011fru cevap: hab\u00eda'},
-
-{id:47,sec:3,
- q:'El lunes pasado, Marta ______ tres correos importantes antes de salir de la oficina.',
- opts:['escrib\u00eda','escrib\u00ed\u00f3','escribe','ha escrito'],ans:1,
- exp:'Bu c\u00fcmlede el lunes pasado yani "ge\u00e7en pazartesi" ifadesi belirli ve tamamlanm\u0131\u015f bir ge\u00e7mi\u015f zaman\u0131 g\u00f6sterir. Ayr\u0131ca tres correos importantes yani "\u00fc\u00e7 \u00f6nemli e-posta" ifadesi eylemi s\u0131n\u0131rland\u0131r\u0131r. C\u00fcmle \u015fu anlama gelir: "Ge\u00e7en pazartesi Marta ofisten \u00e7\u0131kmadan \u00f6nce \u00fc\u00e7 \u00f6nemli e-posta yazd\u0131." Bu y\u00fczden pret\u00e9rito indefinido kullan\u0131l\u0131r: escrib\u00ed\u00f3. A \u015f\u0131kk\u0131 escrib\u00eda olmaz \u00e7\u00fcnk\u00fc imperfecto "yaz\u0131yordu / yazard\u0131" anlam\u0131 verir; burada \u00fc\u00e7 e-posta yazma i\u015fi tamamlanm\u0131\u015f. C \u015f\u0131kk\u0131 escribe olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 ha escrito olmaz \u00e7\u00fcnk\u00fc "el lunes pasado" belirli ve bitmi\u015f bir ge\u00e7mi\u015f zamand\u0131r. Do\u011fru cevap: escrib\u00ed\u00f3'},
-
-{id:48,sec:3,
- q:'Cuando viv\u00edamos en Sevilla, mis hermanos y yo ______ al parque cada tarde.',
- opts:['\u00edbamos','fuimos','vamos','hemos ido'],ans:0,
- exp:'Bu c\u00fcmlede cuando viv\u00edamos en Sevilla ge\u00e7mi\u015fteki bir d\u00f6nemi anlat\u0131r. Cada tarde ise "her \u00f6\u011fleden sonra" demektir ve tekrar eden bir al\u0131\u015fkanl\u0131\u011f\u0131 g\u00f6sterir. C\u00fcmle \u015fu anlama gelir: "Sevilla\'da ya\u015farken karde\u015flerimle her \u00f6\u011fleden sonra parka giderdik." Burada bir kez parka gitmekten bahsedilmiyor. Sevilla\'da ya\u015fad\u0131\u011f\u0131m\u0131z d\u00f6nem boyunca tekrar eden bir rutin anlat\u0131l\u0131yor. Bu y\u00fczden imperfecto gerekir: \u00edbamos. B \u015f\u0131kk\u0131 fuimos olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito indefinido tek seferlik tamamlanm\u0131\u015f bir gitme olay\u0131n\u0131 anlat\u0131r. C \u015f\u0131kk\u0131 vamos olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 hemos ido olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito perfecto yap\u0131s\u0131d\u0131r. Do\u011fru cevap: \u00edbamos'},
-
-{id:49,sec:3,
- q:'Anoche, cuando son\u00f3 el tel\u00e9fono, yo ______ en el sof\u00e1.',
- opts:['dorm\u00eda','dorm\u00ed','duermo','he dormido'],ans:0,
- exp:'Bu c\u00fcmlede telefonun \u00e7almas\u0131 k\u0131sa, ani ve tamamlanm\u0131\u015f bir olayd\u0131r: son\u00f3. Ama benim kanepede uyuyor olmam o s\u0131rada devam eden bir durumdur. C\u00fcmle \u015fu anlama gelir: "D\u00fcn gece telefon \u00e7ald\u0131\u011f\u0131nda ben kanepede uyuyordum." Bu yap\u0131da genellikle bir eylem ba\u015fka bir devam eden eylemi b\u00f6ler: Devam eden eylem \u2192 dorm\u00eda / K\u0131sa olay \u2192 son\u00f3. B \u015f\u0131kk\u0131 dorm\u00ed olmaz \u00e7\u00fcnk\u00fc "uyudum" anlam\u0131 verir. C \u015f\u0131kk\u0131 duermo olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 he dormido olmaz \u00e7\u00fcnk\u00fc pret\u00e9rito perfecto yap\u0131s\u0131d\u0131r. Do\u011fru cevap: dorm\u00eda'},
-
-{id:50,sec:3,
- q:'El mes pasado, mis amigos y yo ______ un viaje a Valencia.',
- opts:['hac\u00edamos','hacemos','hicimos','hemos hecho'],ans:2,
- exp:'Bu c\u00fcmlede el mes pasado yani "ge\u00e7en ay" ifadesi belirli ve tamamlanm\u0131\u015f bir ge\u00e7mi\u015f zaman\u0131 anlat\u0131r. C\u00fcmle \u015fu anlama gelir: "Ge\u00e7en ay arkada\u015flar\u0131mla Valencia\'ya bir gezi yapt\u0131k." Bu y\u00fczden pret\u00e9rito indefinido kullan\u0131l\u0131r: hicimos. A \u015f\u0131kk\u0131 hac\u00edamos olmaz \u00e7\u00fcnk\u00fc imperfecto "yap\u0131yorduk / yapard\u0131k" anlam\u0131 verir. B \u015f\u0131kk\u0131 hacemos olmaz \u00e7\u00fcnk\u00fc presente zamand\u0131r. D \u015f\u0131kk\u0131 hemos hecho olmaz \u00e7\u00fcnk\u00fc el mes pasado kullan\u0131ld\u0131\u011f\u0131 i\u00e7in zaman ge\u00e7mi\u015fte kalm\u0131\u015ft\u0131r. Do\u011fru cevap: hicimos'},
-];
-
-let student='', answers={}, cur=0, submitted=false;
+let student='',answers={},cur=0,submitted=false;
 
 function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('sc-'+id).classList.add('active');window.scrollTo(0,0);}
 
 function startQuiz(){
   const s=document.getElementById('name-sel');
-  if(!s.value){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!');return;}
-  student=s.value; answers={}; submitted=false; cur=0;
+  if(!s.value){alert('Lütfen adınızı seçin!');return;}
+  student=s.value;answers={};submitted=false;cur=0;
   document.getElementById('top-st').textContent=student;
-  show('quiz'); render();
+  show('quiz');render();
 }
 
-function secName(s){return s===1?'K\u0131s\u0131m 1 \u2014 Okuma (\u00c7oktan Se\u00e7meli)':s===2?'K\u0131s\u0131m 2 \u2014 Hangi Kullan\u0131ma Girer?':'K\u0131s\u0131m 3 \u2014 Do\u011fru \u00c7ekimi Se\u00e7';}
+function secName(s){return s===1?'Kısım 1 — Okuma':s===2?'Kısım 2 — Hangi Kullanıma Girer?':'Kısım 3 — Doğru Çekimi Seç';}
 
 function render(){
   const q=QS[cur];
   const done=Object.keys(answers).length;
-  document.getElementById('pgfill').style.width=(done/50*100)+'%';
+  document.getElementById('pgf').style.width=(done/50*100)+'%';
   document.getElementById('pg-sec').textContent=secName(q.sec);
   document.getElementById('pg-cur').textContent=cur+1;
   document.getElementById('nav-ctr').textContent=(cur+1)+' / 50';
   document.getElementById('fin-ans').textContent=done;
   document.getElementById('btn-prev').disabled=(cur===0);
   const bn=document.getElementById('btn-next');
-  if(cur===49){bn.textContent='\u2714 Teslim Et';bn.className='btn btn-gold btn-sm';bn.onclick=goConfirm;}
-  else{bn.textContent='\u0130leri \u2192';bn.className='btn btn-main btn-sm';bn.onclick=()=>nav(1);}
+  if(cur===49){bn.textContent='✔ Teslim Et';bn.className='btn bg bs';bn.onclick=goConfirm;}
+  else{bn.textContent='İleri →';bn.className='btn bm bs';bn.onclick=()=>nav(1);}
   const ua=answers[q.id];
-  let h=`<div class="sec-badge">${secName(q.sec)}</div><div class="qcard">`;
+  let h='<div class="sb">'+secName(q.sec)+'</div><div class="qc">';
   if(q.sec===1){
-    h+=`<div class="rdbox">${q.rd.replace('______','<span style="color:var(--c5);font-weight:800">______</span>')}</div>`;
-    h+=`<div class="trbox"><div class="trlbl">\ud83c\uddf9\ud83c\uddf7 T\u00fcrk\u00e7e</div>${q.tr}</div>`;
-    h+=`<div class="qhead"><div class="qnum">${q.id}</div><div class="qtext">${q.q}</div></div>`;
+    const rdHtml=q.rd.replace('______','<span style="color:var(--c5);font-weight:800">______</span>');
+    h+='<div class="rb">'+rdHtml+'</div>';
+    h+='<div class="trb"><div class="trl">TR Türkçe</div>'+q.tr+'</div>';
+    h+='<div class="qh"><div class="qn">'+q.id+'</div><div class="qt">'+q.q+'</div></div>';
   } else if(q.sec===2){
     const ln=q.q.split('\n');
-    h+=`<div class="rdbox" style="font-size:14px;font-weight:600;font-style:italic">${ln[0]}</div>`;
-    h+=`<div class="qhead"><div class="qnum">${q.id}</div><div class="qtext">${ln[1]||''}</div></div>`;
+    h+='<div class="rb" style="font-size:14px;font-weight:600;font-style:italic">'+ln[0]+'</div>';
+    h+='<div class="qh"><div class="qn">'+q.id+'</div><div class="qt">'+(ln[1]||'')+'</div></div>';
   } else {
     const sq=q.q.replace('______','<span style="color:var(--c5);font-weight:800">______</span>');
-    h+=`<div class="qhead"><div class="qnum">${q.id}</div><div class="qtext">${sq}</div></div>`;
+    h+='<div class="qh"><div class="qn">'+q.id+'</div><div class="qt">'+sq+'</div></div>';
   }
-  h+='<div class="qopts">';
+  h+='<div class="qo">';
   q.opts.forEach((o,i)=>{
-    let c='obtn';
+    let c='ob';
     if(ua!==undefined){if(i===q.ans)c+=' ok';if(i===ua&&ua!==q.ans)c+=' er';}
-    h+=`<button class="${c}" ${ua!==undefined?'disabled':''} onclick="pick(${q.id},${i})"><span class="oltr">${LTR[i]}</span><span>${o}</span></button>`;
+    h+='<button class="'+c+'" '+(ua!==undefined?'disabled':'')+' onclick="pick('+q.id+','+i+')"><span class="ol">'+LTR[i]+'</span><span>'+o+'</span></button>';
   });
-  h+=`</div><div class="expl ${ua!==undefined?'show':''}"><div class="explbl">\ud83d\udca1 A\u00e7\u0131klama</div>${q.exp}</div></div>`;
+  h+='</div><div class="ex '+(ua!==undefined?'show':'')+'"><div class="exl">?? Açıklama</div>'+q.exp+'</div></div>';
   document.getElementById('q-area').innerHTML=h;
   let ok=0,er=0;
   QS.forEach(qq=>{const a=answers[qq.id];if(a===undefined)return;if(a===qq.ans)ok++;else er++;});
@@ -563,15 +260,15 @@ function goConfirm(){document.getElementById('cf-sel').value=student;show('confi
 function confirmSubmit(){
   try{
     const s=document.getElementById('cf-sel');
-    if(!s||!s.value){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!');return;}
+    if(!s||!s.value){alert('Lütfen adınızı seçin!');return;}
     student=s.value;
     const b=document.getElementById('cf-btn');
-    if(b){b.disabled=true;b.textContent='\u23f3 Kaydediliyor\u2026';}
+    if(b){b.disabled=true;b.textContent='⏳ Kaydediliyor…';}
     doSubmit();
   }catch(e){
     console.error(e);alert('Hata: '+e.message);
     const b=document.getElementById('cf-btn');
-    if(b){b.disabled=false;b.textContent='\u2714 Evet, Teslim Et';}
+    if(b){b.disabled=false;b.textContent='✔ Evet, Teslim Et';}
   }
 }
 
@@ -590,7 +287,7 @@ function doSubmit(){
   const s1=c1*2,s2=c2*2,s3=c3*2,tot=s1+s2+s3,cor=c1+c2+c3;
   document.getElementById('rs-name').textContent=student;
   document.getElementById('rs-score').innerHTML=tot+'<span>/100</span>';
-  document.getElementById('rs-pct').textContent='%'+tot+' ba\u015far\u0131';
+  document.getElementById('rs-pct').textContent='%'+tot+' başarı';
   document.getElementById('rs-c').textContent=cor;
   document.getElementById('rs-w').textContent=wr;
   document.getElementById('rs-b').textContent=bl;
@@ -607,12 +304,12 @@ async function saveSheets(nm,score,cor,wr,bl){
     const n=new Date();
     const dd=String(n.getDate()).padStart(2,'0'),mm=String(n.getMonth()+1).padStart(2,'0'),yy=n.getFullYear();
     const hh=String(n.getHours()).padStart(2,'0'),mi=String(n.getMinutes()).padStart(2,'0'),ss=String(n.getSeconds()).padStart(2,'0');
-    const fmt='\u2705 '+score+'/100\n\u2713'+cor+' \u2717'+wr+'\n'+dd+'.'+mm+'.'+yy+'\n'+hh+':'+mi+':'+ss;
+    const fmt='✅ '+score+'/100\n✓'+cor+' ✗'+wr+'\n'+dd+'.'+mm+'.'+yy+'\n'+hh+':'+mi+':'+ss;
     await fetch(ASU,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({spreadsheetId:SID,sheetName:SHN,studentName:nm,taskColumn:TCL,score,correct:cor,wrong:wr,blank:bl,formatted:fmt})});
-    el.className='stbadge st-ok';el.textContent='\u2705 \u00d6dev ba\u015far\u0131yla kaydedildi!';
+    el.className='stb stok';el.textContent='✅ Ödev başarıyla kaydedildi!';
   }catch(e){
-    el.className='stbadge st-er';el.textContent='\u26a0\ufe0f Kaydedilemedi \u2014 Profeye bildirin';
+    el.className='stb ster';el.textContent='⚠️ Kaydedilemedi — Profeye bildirin';
   }
 }
 
