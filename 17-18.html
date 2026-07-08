@@ -229,7 +229,7 @@ function render(){
   if(q.sec===1){
     const rdHtml=q.rd.replace('______','<span style="color:var(--c5);font-weight:800">______</span>');
     h+='<div class="rb">'+rdHtml+'</div>';
-    h+='<div class="trb"><div class="trl">TR Türkçe</div>'+q.tr+'</div>';
+    if(ua!==undefined){h+='<div class="trb"><div class="trl">TR Türkçe</div>'+q.tr+'</div>';}
     h+='<div class="qh"><div class="qn">'+q.id+'</div><div class="qt">'+q.q+'</div></div>';
   } else if(q.sec===2){
     const ln=q.q.split('\n');
