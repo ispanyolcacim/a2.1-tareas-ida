@@ -487,18 +487,33 @@ async function submitWriting(){
     const tarih=now.toLocaleDateString('tr-TR')+' '+now.toLocaleTimeString('tr-TR');
     const title=document.getElementById('w-title').value||'';
     const text=document.getElementById('w-text').value;
-    await emailjs.send(EMAILJS_SVC,EMAILJS_TPL,{
-      student_name:student,
-      lesson:'A2.1 \u2013 19-20. Ders Yazma \u00d6devi'+(title?' \u2014 '+title:''),
-      submit_date:tarih,
-      writing_text:text
-    });
-    document.getElementById('wrs-status').className='stb stok';
-    document.getElementById('wrs-status').textContent='\u2705 Yazman\u0131z ba\u015far\u0131yla g\u00f6nderildi!';
+    // 1) EmailJS
+    try{
+      await emailjs.send(EMAILJS_SVC,EMAILJS_TPL,{
+        student_name:student,
+        lesson:'A2.1 \u2013 19-20. Ders Yazma \u00d6devi'+(title?' \u2014 '+title:''),
+        submit_date:tarih,
+        writing_text:text
+      });
+      document.getElementById('wrs-status').className='stb stok';
+      document.getElementById('wrs-status').textContent='\u2705 Yazman\u0131z ba\u015far\u0131yla g\u00f6nderildi!';
+    }catch(e){
+      document.getElementById('wrs-status').className='stb ster';
+      document.getElementById('wrs-status').textContent='\u26a0\ufe0f G\u00f6nderilemedi \u2014 Profeye bildirin';
+    }
+    // 2) Sheets'e sınav puanını kaydet
+    calcAndSaveSheets(student);
   }catch(e){
-    document.getElementById('wrs-status').className='stb ster';
-    document.getElementById('wrs-status').textContent='\u26a0\ufe0f G\u00f6nderilemedi \u2014 Profeye bildirin';
+    console.error(e);
   }
+}
+
+function calcAndSaveSheets(nm){
+  let ok=0,er=0,bl=0;
+  MC_DATA.forEach(q=>{const a=mcAns[q.id];if(a===undefined)bl++;else if(a===q.ans)ok++;else er++;});
+  FILL_DATA.forEach(q=>{const a=fillAns[q.id];if(a===undefined)bl++;else if(checkFill(a,q.ans))ok++;else er++;});
+  const score=ok;
+  saveSheets(nm,score,ok,er,bl);
 }
 
 function goQuizResult(){
@@ -512,8 +527,9 @@ function goQuizResult(){
   document.getElementById('rs-c').textContent=ok;
   document.getElementById('rs-w').textContent=er;
   document.getElementById('rs-b').textContent=bl;
+  document.getElementById('rs-status').className='stb stok';
+  document.getElementById('rs-status').textContent='\u2705 \u00d6dev kaydedildi!';
   show('result');
-  saveSheets(student,score,ok,er,bl);
 }
 
 async function saveSheets(nm,score,ok,er,bl){
