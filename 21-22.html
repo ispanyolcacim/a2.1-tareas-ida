@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – H6 21-22. Ders</title>
+<style></style>
+</head>
+<body>
+<div class="hdr">
+  <div class="htag">6. Hafta Ödevi &nbsp;|&nbsp; A2.1 (21-22. Ders)</div>
+  <h1>🇪🇸 A2.1 – H6 21-22. Ders</h1>
+  <div class="hsub">50 soru &nbsp;•&nbsp; 2 puan/soru &nbsp;•&nbsp; 100 puan &nbsp;•&nbsp; Indefinido &amp; Imperfecto &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+
+<div class="screen active" id="sc-name">
+  <div class="nb">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="sel" id="name-sel">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
+      <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
+      <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
+      <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
+      <option>Zumeyra Dogan</option></select>
+    <div class="ib">
+      <div class="ibr"><div class="ibd"></div><span><strong>1–10:</strong> Karma cümleler — indefinido doğru kullanımı</span></div>
+      <div class="ibr"><div class="ibd"></div><span><strong>11–20:</strong> Neden-sonuç &amp; zaman dilimleri</span></div>
+      <div class="ibr"><div class="ibd"></div><span><strong>21–30:</strong> Kariyer &amp; günlük hayat anıları</span></div>
+      <div class="ibr"><div class="ibd"></div><span><strong>31–40:</strong> Çocukluk, aile &amp; seyahat</span></div>
+      <div class="ibr"><div class="ibd"></div><span><strong>41–50:</strong> Karma kullanım</span></div>
+      <div class="ibh"></div>
+      <div class="ibr"><div class="ibd" style="background:var(--c4)"></div><span><strong>50 soru × 2 puan = 100 puan</strong></span></div>
+    </div>
+    <button class="btn bm bf" onclick="startQuiz()">▶ Başla</button>
+  </div>
+</div>
+
+<div class="screen" id="sc-quiz">
+  <div class="qw">
+    <div class="tb">
+      <div class="ts" id="top-st">—</div>
+      <div class="tsc">
+        <div class="si sok">✓ <span id="sc-ok">0</span></div>
+        <div class="si ser">✗ <span id="sc-er">0</span></div>
+      </div>
+    </div>
+    <div class="pgw">
+      <div class="pgb"><div class="pgf" id="pgf"></div></div>
+      <div class="pgi"><span id="pg-sec">—</span><span>Soru <span id="pg-cur">1</span> / 50</span></div>
+    </div>
+    <div id="q-area"></div>
+    <div class="nv">
+      <button class="btn bo bs" id="btn-prev" onclick="nav(-1)">← Geri</button>
+      <div class="nc" id="nav-ctr">1 / 50</div>
+      <button class="btn bm bs" id="btn-next" onclick="nav(1)">İleri →</button>
+    </div>
+    <div class="fb">
+      <div class="fi2"><strong id="fin-ans">0</strong> / 50 yanıtlandı</div>
+      <button class="btn bg" onclick="goConfirm()">✔ Ödevi Teslim Et</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="sc-confirm">
+  <div class="cfw">
+    <div style="font-size:48px;margin-bottom:12px">📋</div>
+    <h2>Ödevi Teslim Et</h2>
+    <div class="ns">⚠️ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ</div>
+    <p>Teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
+    <select class="sel" id="cf-sel" style="margin-bottom:16px">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
+      <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
+      <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
+      <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
+      <option>Zumeyra Dogan</option></select>
+    <button class="btn bg bf" id="cf-btn" onclick="confirmSubmit()">✔ Evet, Teslim Et</button>
+  </div>
+</div>
+
+<div class="screen" id="sc-result">
+  <div class="rw">
+    <div class="rc">
+      <div class="re">🇪🇸</div>
+      <div class="rn" id="rs-name">—</div>
+      <div class="rt">A2.1 · H6 – 21-22. Ders · Indefinido &amp; Imperfecto</div>
+      <div class="rbig" id="rs-score">0<span>/100</span></div>
+      <div class="rp" id="rs-pct"></div>
+      <div class="bd">
+        <div class="bdr"><span class="bdl">📝 1–10: Karma Cümleler</span><span class="bds" id="br1">0 / 20</span></div>
+        <div class="bdr"><span class="bdl">🔗 11–20: Neden-Sonuç &amp; Zaman</span><span class="bds" id="br2">0 / 20</span></div>
+        <div class="bdr"><span class="bdl">💼 21–30: Kariyer &amp; Günlük Hayat</span><span class="bds" id="br3">0 / 20</span></div>
+        <div class="bdr"><span class="bdl">🌿 31–40: Çocukluk &amp; Seyahat</span><span class="bds" id="br4">0 / 20</span></div>
+        <div class="bdr"><span class="bdl">🎯 41–50: Karma Kullanım</span><span class="bds" id="br5">0 / 20</span></div>
+      </div>
+      <div class="rst">
+        <div class="ri rok"><div class="rnum" id="rs-c">0</div><div class="rl">Doğru</div></div>
+        <div class="ri rer"><div class="rnum" id="rs-w">0</div><div class="rl">Yanlış</div></div>
+        <div class="ri rbl"><div class="rnum" id="rs-b">0</div><div class="rl">Boş</div></div>
+      </div>
+      <div class="stb stpnd" id="rs-status">⏳ Kaydediliyor…</div>
+    </div>
+    <div class="ra"><button class="btn bo" onclick="goName()">🔄 Yeniden Başla</button></div>
+  </div>
+</div>
+
+<script>
+const ASU='https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
+const SID='1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const SHN='A2.1';
+const TCL='H6 – 21-22.Ders';
+const LTR=['A','B','C','D'];
+const QS=[{"id": 1, "q": "Cuando yo ___ pequeño, mi familia ___ en una casa con jardín. En 2012, todos ___ a Sevilla por primera vez.", "opts": ["era / vivíamos / viajamos", "fui / vivimos / viajábamos", "era / vivimos / viajábamos", "fui / vivíamos / viajamos"], "ans": 0, "exp": "\"Cuando yo era pequeño\" geçmişteki yaş/dönem anlatımıdır, imperfecto kullanılır. \"Vivíamos\" aileyi biz olarak düşünerek verilmiştir. \"En 2012 viajamos\" belirli bir yılda bir kez gerçekleşmiş tamamlanmış olaydır, indefinido kullanılır."}, {"id": 2, "q": "María ___ quince años cuando ___ muy nerviosa por el examen. Esa mañana, su profesora la ___ para hablar con ella.", "opts": ["tuvo / estuvo / llamaba", "tenía / estuvo / llamaba", "tuvo / estaba / llamó", "tenía / estaba / llamó"], "ans": 3, "exp": "Yaş söylerken geçmişte genellikle tener + imperfecto kullanılır: \"tenía quince años\". Duygu ve ruh hali arka plan olarak anlatılıyorsa \"estaba nerviosa\" denir. \"Esa mañana su profesora la llamó\" ise o sabah gerçekleşmiş net ve tamamlanmış bir olaydır; indefinido gerekir."}, {"id": 3, "q": "Ayer ___ mucho frío, pero mis amigos y yo ___ salir. ___ no teníamos mucho dinero, fuimos a un café barato.", "opts": ["hizo / decidíamos / porque", "hacía / decidimos / aunque", "hizo / decidimos / mientras", "hacía / decidíamos / después"], "ans": 1, "exp": "Hava durumu geçmişte ortamı anlatıyorsa \"hacía frío\" kullanılır. \"Decidimos salir\" belirli bir anda alınmış ve tamamlanmış bir karardır, indefinido gerekir. \"Aunque no teníamos mucho dinero\" ifadesinde \"aunque\" zıtlık verir: Paramız çok yoktu ama yine de ucuz bir kafeye gittik."}, {"id": 4, "q": "Mientras mis primos y yo ___ a las cartas, mi tío ___ en la sala y nos ___ una caja antigua.", "opts": ["jugamos / entraba / dejaba", "jugábamos / entraba / dejó", "jugábamos / entró / dejó", "jugamos / entró / dejaba"], "ans": 2, "exp": "\"Mientras jugábamos\" geçmişte devam eden bir eylemi anlatır; imperfecto kullanılır. \"Mi tío entró\" bu devam eden eylemi kesen ani ve tamamlanmış olaydır; indefinido gerekir. \"Nos dejó una caja\" da tamamlanmış bir eylemdir."}, {"id": 5, "q": "El hotel ___ pequeño, pero muy cómodo. Allí ___ a un turista chileno; ___ salimos juntos a cenar.", "opts": ["fue / conocía / mientras", "era / conocía / después", "era / conocí / después", "fue / conocí / aunque"], "ans": 2, "exp": "\"El hotel era pequeño\" otelin geçmişteki fiziksel tanımıdır; imperfecto kullanılır. \"Conocí a un turista\" belirli bir anda gerçekleşen tanışma eylemidir; indefinido gerekir. \"Después salimos\" olay sırası kurar: önce tanıştım, sonra yemeğe çıktık."}, {"id": 6, "q": "Anoche, mientras yo ___ español, el teléfono ___. ___, no pude terminar mis ejercicios.", "opts": ["estudié / sonaba / aunque", "estudiaba / sonó / por eso", "estudiaba / sonaba / porque", "estudié / sonó / mientras"], "ans": 1, "exp": "\"Mientras estudiaba\" geçmişte devam eden bir eylemdir, imperfecto gerekir. \"El teléfono sonó\" bu eylemi kesen kısa ve tamamlanmış olaydır; indefinido kullanılır. \"Por eso\" sonuç bildirir: Telefon çaldığı için egzersizleri bitiremedim."}, {"id": 7, "q": "Antes, mi abuelo ___ todos los días al mercado. Un día, ___ una carta antigua y ___ muy emocionado.", "opts": ["fue / encontraba / estaba", "iba / encontraba / estuvo", "fue / encontró / estaba", "iba / encontró / estuvo"], "ans": 3, "exp": "\"Antes iba todos los días\" geçmişte düzenli yapılan alışkanlığı anlatır, imperfecto kullanılır. \"Un día encontró\" belirli bir gün gerçekleşmiş tamamlanmış olaydır; indefinido gerekir. \"Estuvo muy emocionado\" o olaydan sonra yaşanan ve tamamlanan duygu durumunu anlatır."}, {"id": 8, "q": "Cuando Laura ___ en la universidad, normalmente ___ mucho café. Sin embargo, el viernes pasado no ___ nada.", "opts": ["estudiaba / bebía / bebió", "estudió / bebía / bebía", "estudiaba / bebió / bebió", "estudió / bebió / bebía"], "ans": 0, "exp": "\"Cuando estudiaba en la universidad\" geçmişteki dönem/arka plan anlatımıdır; imperfecto gerekir. \"Normalmente bebía mucho café\" geçmiş alışkanlığıdır. \"El viernes pasado no bebió nada\" ise belirli bir günde gerçekleşen tamamlanmış durumdur; indefinido kullanılır."}, {"id": 9, "q": "La ciudad ___ tranquila y las calles ___ casi vacías. De repente, un grupo de músicos ___ en la plaza.", "opts": ["estaba / estaban / apareció", "estuvo / estuvieron / aparecía", "estaba / estuvieron / apareció", "estuvo / estaban / aparecía"], "ans": 0, "exp": "Şehrin ve sokakların durumu geçmişte sahne/arka plan olarak anlatılıyor: \"estaba tranquila\", \"estaban vacías\". İmperfecto kullanılır. \"De repente apareció\" ise ani ve tamamlanmış bir olaydır; indefinido gerekir."}, {"id": 10, "q": "Cada verano, nosotros ___ a la playa con mis tíos. Pero el año pasado ___ a la montaña, porque mi madre ___ descansar en un lugar tranquilo.", "opts": ["fuimos / íbamos / quería", "íbamos / íbamos / quiso", "íbamos / fuimos / quería", "fuimos / fuimos / quiso"], "ans": 2, "exp": "\"Cada verano íbamos\" geçmişte tekrar eden alışkanlıktır; imperfecto gerekir. \"El año pasado fuimos\" belirli bir yılda gerçekleşmiş tamamlanmış olaydır; indefinido kullanılır. \"Mi madre quería descansar\" ise o dönemdeki istek/durumdur; imperfecto ile verilir."}, {"id": 11, "q": "Mi hermana ___ muy tímida cuando era niña. A los dieciocho años, ___ a otra ciudad y allí ___ muchos amigos.", "opts": ["fue / se mudaba / hacía", "era / se mudó / hizo", "fue / se mudó / hacía", "era / se mudaba / hizo"], "ans": 1, "exp": "Kişilik özelliği geçmişte tanım olarak verildiği için \"era muy tímida\" kullanılır. \"A los dieciocho años se mudó\" belirli bir yaşta tamamlanmış taşınma olayıdır. \"Hizo muchos amigos\" da tamamlanmış bir eylemdir; indefinido gerekir."}, {"id": 12, "q": "Mientras los niños ___ en el jardín, empezó a llover. Entonces, todos ___ a casa y la abuela les ___ chocolate caliente.", "opts": ["jugaron / entraban / preparaba", "jugaban / entraban / preparó", "jugaron / entraron / preparaba", "jugaban / entraron / preparó"], "ans": 3, "exp": "\"Mientras los niños jugaban\" devam eden bir arka plan eylemidir; imperfecto gerekir. Yağmur başlayınca \"entraron a casa\" tamamlanmış bir hareket olarak anlatılır. \"La abuela les preparó chocolate\" da olay zincirinin tamamlanmış parçasıdır."}, {"id": 13, "q": "El restaurante ___ lleno y el camarero ___ muy ocupado. Después de esperar veinte minutos, nosotros ___ otro lugar.", "opts": ["estuvo / estuvo / buscábamos", "era / fue / buscamos", "estuvo / estaba / buscábamos", "estaba / estaba / buscamos"], "ans": 3, "exp": "Restoranın dolu olması ve garsonun meşgul olması o anki durumu/tasviri anlatır; \"estaba\" kullanılır. \"Después de esperar veinte minutos, buscamos otro lugar\" belirli bir süreden sonra alınan tamamlanmış aksiyondur; indefinido gerekir."}, {"id": 14, "q": "Cuando Carlos ___ pequeño, siempre ___ miedo a los perros. Pero ayer, en el parque, ___ con uno sin problemas.", "opts": ["era / tenía / jugó", "fue / tuvo / jugaba", "era / tuvo / jugó", "fue / tenía / jugaba"], "ans": 0, "exp": "\"Cuando Carlos era pequeño\" çocukluk döneminin arka planıdır. \"Siempre tenía miedo\" geçmişte sürekli olan bir duygu/durumdur; imperfecto gerekir. \"Ayer jugó\" ise dün gerçekleşmiş tamamlanmış bir eylemdir; indefinido kullanılır."}, {"id": 15, "q": "El sábado pasado, Ana ___ tarde porque ___ muy cansada. Cuando llegó al cine, la película ya ___.", "opts": ["llegaba / estuvo / empezó", "llegó / estuvo / empezaba", "llegó / estaba / había empezado", "llegaba / estaba / empezó"], "ans": 2, "exp": "\"El sábado pasado Ana llegó tarde\" belirli bir zamanda tamamlanmış eylemdir; indefinido gerekir. \"Estaba muy cansada\" o anki ruhsal/fiziksel durumdur; imperfecto kullanılır. \"La película ya había empezado\" Ana gelmeden önce başlamış bir olaydır; pluscuamperfecto kullanılır."}, {"id": 16, "q": "Antes, mis vecinos ___ muchas fiestas en casa. Una noche, la música ___ tan fuerte que nosotros ___ a la policía.", "opts": ["hicieron / era / llamábamos", "hacían / estaba / llamamos", "hicieron / estuvo / llamamos", "hacían / fue / llamábamos"], "ans": 1, "exp": "\"Antes hacían muchas fiestas\" geçmişte tekrar eden alışkanlığı anlatır; imperfecto gerekir. \"La música estaba tan fuerte\" o andaki durumu anlatır. \"Llamamos a la policía\" belirli bir gece yapılan tamamlanmış eylemdir; indefinido kullanılır."}, {"id": 17, "q": "Mi padre ___ en una fábrica cuando yo nací. En 2005, ___ de trabajo y nuestra vida ___ mucho.", "opts": ["trabajó / cambiaba / cambiaba", "trabajaba / cambió / cambió", "trabajaba / cambiaba / cambió", "trabajó / cambió / cambiaba"], "ans": 1, "exp": "\"Cuando yo nací\" anında babanın yaptığı iş arka plan bilgisidir: \"trabajaba en una fábrica\". \"En 2005 cambió de trabajo\" belirli bir yılda tamamlanmış olaydır. \"Nuestra vida cambió mucho\" da tamamlanmış sonuçtur; indefinido ile verilir."}, {"id": 18, "q": "Cuando entramos en la casa, todo ___ oscuro y no ___ nadie. De repente, nuestros amigos ___ \"¡Sorpresa!\"", "opts": ["estuvo / había / gritaban", "estaba / hubo / gritaron", "estaba / había / gritaron", "estuvo / hubo / gritaban"], "ans": 2, "exp": "\"Todo estaba oscuro\" evin o andaki durumunu anlatır; imperfecto kullanılır. \"No había nadie\" varlık/yokluk durumudur ve arka plan anlatımıdır. \"De repente gritaron\" ani ve tamamlanmış bir olaydır; indefinido gerekir."}, {"id": 19, "q": "De niño, Pablo ___ todos los domingos con su abuela. El domingo pasado, la ___ después de mucho tiempo y los dos ___ juntos.", "opts": ["comía / visitó / cocinaron", "comió / visitaba / cocinaban", "comía / visitaba / cocinaron", "comió / visitó / cocinaban"], "ans": 0, "exp": "\"De niño comía todos los domingos\" çocuklukta tekrar eden alışkanlıktır; imperfecto gerekir. \"El domingo pasado la visitó\" belirli bir günde tamamlanmış ziyaret eylemidir. \"Los dos cocinaron juntos\" da aynı gün gerçekleşmiş tamamlanmış olaydır."}, {"id": 20, "q": "La tarde ___ tranquila y nosotros ___ en la terraza. Entonces, mi hermano ___ una noticia importante.", "opts": ["fue / estuvimos / contaba", "estaba / estuvimos / contaba", "fue / estábamos / contó", "estaba / estábamos / contó"], "ans": 3, "exp": "\"La tarde estaba tranquila\" geçmişte ortam tasviridir; imperfecto gerekir. \"Nosotros estábamos en la terraza\" o anda bulunulan yeri/durumu anlatır. \"Mi hermano contó una noticia\" ise bu arka plan içinde gerçekleşen tamamlanmış olaydır; indefinido kullanılır."}, {"id": 21, "q": "Cuando Marta ___ en Madrid, normalmente ___ al trabajo en metro. Un día, el metro no ___ y tuvo que tomar un taxi.", "opts": ["vivió / iba / funcionaba", "vivía / fue / funcionó", "vivió / fue / funcionaba", "vivía / iba / funcionó"], "ans": 3, "exp": "\"Cuando vivía en Madrid\" geçmişteki yaşam dönemi için imperfecto kullanılır. \"Normalmente iba\" geçmiş alışkanlığıdır. \"Un día el metro no funcionó\" belirli bir gün yaşanan tamamlanmış problem olduğu için indefinido gerekir."}, {"id": 22, "q": "El museo ___ muy interesante. Primero ___ la sala de arte moderno y luego ___ muchas fotos.", "opts": ["era / visitamos / sacamos", "fue / visitábamos / sacábamos", "era / visitábamos / sacamos", "fue / visitamos / sacábamos"], "ans": 0, "exp": "\"El museo era interesante\" müzenin genel tanımıdır; imperfecto daha doğaldır. \"Primero visitamos\" ve \"luego sacamos\" olay sırasını anlatır. Sıralı, tamamlanmış gezi eylemleri için indefinido kullanılır."}, {"id": 23, "q": "Mientras mi madre ___ la cena, mi padre ___ la mesa. En ese momento, yo ___ la puerta.", "opts": ["preparó / ponía / abrí", "preparaba / puso / abría", "preparaba / ponía / abrí", "preparó / puso / abría"], "ans": 2, "exp": "\"Mientras mi madre preparaba\" ve \"mi padre ponía la mesa\" aynı anda devam eden iki geçmiş eylemdir; imperfecto kullanılır. \"Yo abrí la puerta\" ise bu arka plan sırasında gerçekleşen kısa ve tamamlanmış olaydır; indefinido gerekir."}, {"id": 24, "q": "Antes, nosotros ___ cartas a nuestros primos. En 2010, les ___ un correo electrónico por primera vez y nos ___ mucho.", "opts": ["escribimos / mandábamos / gustaba", "escribíamos / mandamos / gustó", "escribíamos / mandábamos / gustó", "escribimos / mandamos / gustaba"], "ans": 1, "exp": "\"Antes escribíamos cartas\" geçmiş alışkanlığıdır; imperfecto gerekir. \"En 2010 mandamos un correo por primera vez\" belirli bir yılda ilk kez yapılan tamamlanmış eylemdir. \"Nos gustó mucho\" o deneyimle ilgili tamamlanmış tepkiyi anlatır; indefinido kullanılır."}, {"id": 25, "q": "La profesora ___ muy amable y siempre nos ___ con paciencia. Pero ayer nos ___ un examen difícil.", "opts": ["fue / explicó / puso", "era / explicaba / puso", "era / explicó / ponía", "fue / explicaba / ponía"], "ans": 1, "exp": "\"La profesora era muy amable\" karakter tanımıdır; imperfecto gerekir. \"Siempre nos explicaba\" geçmişte tekrar eden davranış/alışkanlıktır. \"Ayer nos puso un examen\" dün gerçekleşmiş tamamlanmış olaydır; indefinido kullanılır."}, {"id": 26, "q": "Cuando llegué a casa, mi hermana ___ en el sofá y ___ una serie. Me vio y me ___ qué había pasado.", "opts": ["se sentó / vio / preguntaba", "estaba sentada / vio / preguntaba", "se sentó / veía / preguntó", "estaba sentada / veía / preguntó"], "ans": 3, "exp": "\"Estaba sentada\" o anda içinde bulunduğu durumu anlatır; imperfecto gerekir. \"Veía una serie\" geçmişte devam eden eylemdir. \"Me preguntó\" ise benim eve gelmemden sonra gerçekleşen tamamlanmış konuşma eylemidir; indefinido kullanılır."}, {"id": 27, "q": "El viaje ___ largo, pero nosotros ___ contentos. Al final, ___ a Barcelona a las ocho de la noche.", "opts": ["fue / estábamos / llegamos", "era / estuvimos / llegábamos", "fue / estuvimos / llegábamos", "era / estábamos / llegamos"], "ans": 0, "exp": "\"El viaje fue largo\" yolculuk tamamlanmış bir bütün olarak değerlendirildiği için indefinido kullanılır. \"Estábamos contentos\" yolculuk sırasındaki duygu durumudur; imperfecto gerekir. \"Llegamos a Barcelona\" belirli saatte tamamlanmış varış eylemidir; indefinido kullanılır."}, {"id": 28, "q": "De joven, mi madre ___ mucho deporte. Sin embargo, después de la universidad, ___ poco tiempo y ___ de entrenar.", "opts": ["hizo / tenía / dejaba", "hacía / tuvo / dejaba", "hacía / tuvo / dejó", "hizo / tuvo / dejó"], "ans": 2, "exp": "\"De joven hacía deporte\" gençlik dönemindeki alışkanlığı anlatır; imperfecto gerekir. \"Después de la universidad tuvo poco tiempo\" hayatındaki belirli bir dönem değişimini anlatır; indefinido kullanılır. \"Dejó de entrenar\" da tamamlanmış bir bırakma eylemidir."}, {"id": 29, "q": "El lunes pasado, yo ___ muy temprano porque ___ una reunión importante. Mientras desayunaba, mi jefe me ___ un mensaje.", "opts": ["me levantaba / tenía / enviaba", "me levanté / tuve / enviaba", "me levanté / tenía / envió", "me levantaba / tuve / envió"], "ans": 2, "exp": "\"El lunes pasado me levanté\" belirli bir günde tamamlanmış eylemdir; indefinido gerekir. \"Tenía una reunión\" o günün planı/durumu olarak arka plan verir; imperfecto kullanılır. \"Mi jefe me envió un mensaje\" kahvaltı sırasında gerçekleşen tamamlanmış olaydır."}, {"id": 30, "q": "Cuando nosotros ___ en el pueblo, no ___ internet en casa. Por eso, un día ___ a la biblioteca para estudiar.", "opts": ["vivimos / hubo / fuimos", "vivíamos / había / fuimos", "vivíamos / hubo / íbamos", "vivimos / había / íbamos"], "ans": 1, "exp": "\"Cuando vivíamos en el pueblo\" geçmişteki yaşam dönemi için imperfecto kullanılır. \"No había internet\" varlık/yokluk durumudur; imperfecto gerekir. \"Un día fuimos a la biblioteca\" belirli bir gün yapılan tamamlanmış eylemdir; indefinido kullanılır."}, {"id": 31, "q": "La película ___ aburrida al principio, pero después ___ más interesante. Al final, todos ___ mucho.", "opts": ["era / era / reíamos", "fue / era / nos reímos", "era / fue / reíamos", "era / fue / nos reímos"], "ans": 3, "exp": "\"Al principio era aburrida\" filmin başlangıçtaki durumunu/tanımını anlatır; imperfecto kullanılır. \"Después fue más interesante\" film akışında belirli bir değişim/sonuç olarak verildiği için indefinido kullanılır. \"Al final nos reímos mucho\" filmin sonunda gerçekleşen tamamlanmış tepkiyi anlatır."}, {"id": 32, "q": "Mientras Elena ___ por la calle, ___ a su antiguo profesor. Él la ___ inmediatamente.", "opts": ["caminaba / vio / reconoció", "caminó / veía / reconocía", "caminaba / veía / reconoció", "caminó / vio / reconocía"], "ans": 0, "exp": "\"Mientras caminaba\" geçmişte devam eden eylemdir; imperfecto gerekir. \"Vio a su antiguo profesor\" bu yürüyüş sırasında gerçekleşen kısa ve tamamlanmış olaydır. \"La reconoció\" da aynı şekilde tamamlanmış bir tanıma eylemidir."}, {"id": 33, "q": "Antes, mi hermano ___ muy desordenado. Un día, ___ su habitación completamente y desde entonces ___ más organizado.", "opts": ["era / limpió / fue", "fue / limpiaba / era", "era / limpiaba / fue", "fue / limpió / era"], "ans": 0, "exp": "\"Era muy desordenado\" geçmişteki kişilik/alışkanlık tanımıdır; imperfecto gerekir. \"Un día limpió su habitación\" belirli bir gün yapılan tamamlanmış eylemdir. \"Desde entonces fue más organizado\" bu olaydan sonra başlayan değişimi sonuç olarak verir; indefinido kullanımı mümkündür."}, {"id": 34, "q": "Cuando mis padres ___ jóvenes, ___ poco dinero, pero ___ muy felices.", "opts": ["fueron / tuvieron / fueron", "eran / tenían / eran", "eran / tuvieron / fueron", "fueron / tenían / eran"], "ans": 1, "exp": "\"Cuando mis padres eran jóvenes\" geçmiş dönem tanımıdır; imperfecto gerekir. \"Tenían poco dinero\" süreklilik gösteren ekonomik durumdur. \"Eran muy felices\" de geçmişteki genel duygu/durum tanımıdır; imperfecto kullanılır."}, {"id": 35, "q": "Ayer en clase, nosotros ___ un texto sobre viajes. El texto ___ fácil, pero algunas palabras nos ___ difíciles.", "opts": ["leíamos / fue / parecieron", "leíamos / era / parecían", "leímos / era / parecieron", "leímos / fue / parecían"], "ans": 2, "exp": "\"Ayer en clase leímos un texto\" belirli bir derste tamamlanmış okuma eylemidir; indefinido gerekir. \"El texto era fácil\" metnin genel tanımıdır; imperfecto kullanılır. \"Algunas palabras nos parecieron difíciles\" o derste oluşan tamamlanmış değerlendirmedir; indefinido doğaldır."}, {"id": 36, "q": "La casa de mi abuela ___ grande y ___ muchas flores en el jardín. El verano pasado, mis primos y yo la ___ de nuevo.", "opts": ["fue / hubo / visitábamos", "era / hubo / visitábamos", "fue / había / visitamos", "era / había / visitamos"], "ans": 3, "exp": "\"La casa era grande\" fiziksel tasvirdir; imperfecto gerekir. \"Había muchas flores\" geçmişte var olan şeyleri anlatır. \"El verano pasado la visitamos\" belirli bir yaz yapılan tamamlanmış ziyaret eylemidir; indefinido kullanılır."}, {"id": 37, "q": "Cuando empezó la tormenta, nosotros ___ en la playa. El cielo ___ muy oscuro y la gente ___ rápidamente.", "opts": ["estuvimos / estaba / salía", "estábamos / estuvo / salió", "estuvimos / estuvo / salía", "estábamos / estaba / salió"], "ans": 3, "exp": "\"Nosotros estábamos en la playa\" fırtına başladığında içinde bulunulan durumu anlatır; imperfecto gerekir. \"El cielo estaba oscuro\" ortam tasviridir. \"La gente salió rápidamente\" fırtına başlayınca gerçekleşen tamamlanmış hareket olduğu için indefinido kullanılır."}, {"id": 38, "q": "De pequeña, Lucía ___ con ser médica. Años después, ___ Medicina y finalmente ___ en un hospital.", "opts": ["soñó / estudiaba / trabajaba", "soñaba / estudiaba / trabajó", "soñaba / estudió / trabajó", "soñó / estudió / trabajaba"], "ans": 2, "exp": "\"De pequeña soñaba\" çocukluktaki sürekli hayal/istek durumudur; imperfecto gerekir. \"Estudió Medicina\" belirli bir eğitim sürecini tamamlanmış bir bütün olarak anlatır; indefinido kullanılır. \"Trabajó en un hospital\" da tamamlanmış geçmiş deneyim olarak verilir."}, {"id": 39, "q": "El domingo ___ sol y por eso nosotros ___ al parque. Mientras caminábamos, ___ a unos amigos.", "opts": ["hacía / fuimos / vimos", "hizo / íbamos / veíamos", "hacía / íbamos / vimos", "hizo / fuimos / veíamos"], "ans": 0, "exp": "\"Hacía sol\" hava durumunu arka plan olarak anlatır; imperfecto gerekir. \"Fuimos al parque\" o gün yapılan tamamlanmış eylemdir. \"Vimos a unos amigos\" yürüyüş sırasında gerçekleşen karşılaşma eylemidir; indefinido kullanılır."}, {"id": 40, "q": "Antes, mi familia ___ la televisión después de cenar. Pero anoche, nadie la ___ porque todos ___ muy cansados.", "opts": ["vio / vio / estuvieron", "veía / vio / estaban", "veía / veía / estuvieron", "vio / veía / estaban"], "ans": 1, "exp": "\"Antes mi familia veía la televisión\" geçmiş alışkanlığıdır; imperfecto gerekir. \"Anoche nadie la vio\" dün gece gerçekleşmeyen tamamlanmış eylemdir; indefinido kullanılır. \"Todos estaban muy cansados\" o anki fiziksel durum/arka plan olduğu için imperfecto gerekir."}, {"id": 41, "q": "Cuando llegué al aeropuerto, mi amigo ya ___ allí. Él ___ una chaqueta azul y me ___ con la mano.", "opts": ["estuvo / llevó / saludaba", "estaba / llevaba / saludó", "estaba / llevó / saludaba", "estuvo / llevaba / saludó"], "ans": 1, "exp": "\"Ya estaba allí\" ben vardığım anda onun bulunduğu durumu anlatır; imperfecto gerekir. \"Llevaba una chaqueta azul\" kıyafet tasviridir; imperfecto kullanılır. \"Me saludó\" ise o anda gerçekleşen tamamlanmış eylemdir; indefinido gerekir."}, {"id": 42, "q": "La fiesta ___ muy divertida. Todos ___ música y, al final, nosotros ___ hasta tarde.", "opts": ["era / escucharon / bailábamos", "fue / escuchaban / bailábamos", "era / escuchábamos / bailamos", "fue / escuchaban / bailamos"], "ans": 3, "exp": "\"La fiesta fue muy divertida\" parti tamamlanmış bir bütün olarak değerlendiriliyor; indefinido kullanılır. \"Todos escuchaban música\" parti sırasında devam eden arka plan eylemidir. \"Al final bailamos hasta tarde\" partinin sonunda gerçekleşen tamamlanmış eylemdir."}, {"id": 43, "q": "Cuando era estudiante, yo ___ mucho en la biblioteca. Un día, ___ un libro muy antiguo y lo ___ en dos días.", "opts": ["estudié / encontraba / leía", "estudiaba / encontraba / leí", "estudiaba / encontré / leí", "estudié / encontré / leía"], "ans": 2, "exp": "\"Cuando era estudiante estudiaba mucho\" geçmişteki alışkanlık/dönem anlatımıdır; imperfecto gerekir. \"Un día encontré un libro\" belirli bir gün gerçekleşen tamamlanmış olaydır. \"Lo leí en dos días\" iki günde tamamlanmış okuma eylemidir; indefinido kullanılır."}, {"id": 44, "q": "El niño ___ triste porque no ___ su juguete favorito. Después de buscarlo mucho, lo ___ debajo de la cama.", "opts": ["estaba / encontraba / encontró", "estuvo / encontró / encontraba", "estaba / encontró / encontró", "estuvo / encontraba / encontró"], "ans": 0, "exp": "\"El niño estaba triste\" o anki duygu durumudur; imperfecto gerekir. \"No encontraba su juguete\" oyuncağını bulamama durumu devam eden bir problem olarak anlatılır; imperfecto kullanılır. \"Lo encontró debajo de la cama\" ise aramanın sonunda gerçekleşen tamamlanmış olaydır."}, {"id": 45, "q": "Mi tía ___ muy bien cuando era joven. En una boda, ___ una canción tradicional y todos la ___.", "opts": ["cantaba / cantó / aplaudieron", "cantó / cantaba / aplaudían", "cantaba / cantaba / aplaudieron", "cantó / cantó / aplaudían"], "ans": 0, "exp": "\"Cantaba muy bien cuando era joven\" gençlik dönemindeki genel yetenek/alışkanlık anlatımıdır; imperfecto gerekir. \"En una boda cantó una canción\" belirli bir düğünde yapılmış tamamlanmış eylemdir. \"Todos la aplaudieron\" de şarkıdan sonra gerçekleşen tamamlanmış tepkidir."}, {"id": 46, "q": "Mientras nosotros ___ la ciudad, ___ una tienda muy bonita. Entramos y el vendedor nos ___ varios recuerdos.", "opts": ["visitamos / veíamos / mostraba", "visitábamos / veíamos / mostró", "visitábamos / vimos / mostró", "visitamos / vimos / mostraba"], "ans": 2, "exp": "\"Mientras visitábamos la ciudad\" şehir gezisi sırasında devam eden eylemdir; imperfecto gerekir. \"Vimos una tienda\" gezi sırasında bir anda gerçekleşen fark etme eylemidir; indefinido kullanılır. \"El vendedor nos mostró\" içeri girdikten sonra tamamlanmış bir eylemdir."}, {"id": 47, "q": "Antes, Clara ___ miedo de hablar en público. El mes pasado, ___ una presentación y ___ mucho más segura.", "opts": ["tuvo / hacía / estaba", "tenía / hacía / estuvo", "tuvo / hizo / estaba", "tenía / hizo / estuvo"], "ans": 3, "exp": "\"Antes tenía miedo\" geçmişte süreklilik gösteren duygu durumudur; imperfecto gerekir. \"El mes pasado hizo una presentación\" belirli bir zamanda tamamlanmış eylemdir. \"Estuvo mucho más segura\" sunum sırasında veya sonrasında yaşanan tamamlanmış duygu durumunu anlatır; indefinido kullanılır."}, {"id": 48, "q": "Cuando nosotros ___ niños, ___ mucho tiempo en la calle. Pero un día, una vecina nos ___ volver a casa temprano.", "opts": ["fuimos / pasábamos / pidió", "éramos / pasábamos / pidió", "éramos / pasamos / pedía", "fuimos / pasamos / pedía"], "ans": 1, "exp": "\"Cuando éramos niños\" çocukluk dönemini anlatır; imperfecto gerekir. \"Pasábamos mucho tiempo\" geçmişte tekrar eden alışkanlıktır. \"Un día una vecina nos pidió\" belirli bir gün gerçekleşen tamamlanmış rica/uyarı eylemidir; indefinido kullanılır."}, {"id": 49, "q": "La mañana ___ fría y el autobús ___ tarde. Por eso, yo ___ a clase diez minutos después.", "opts": ["fue / llegó / llegaba", "estaba / llegó / llegué", "estaba / llegaba / llegué", "fue / llegaba / llegaba"], "ans": 1, "exp": "\"La mañana estaba fría\" hava/ortam tasviridir; imperfecto gerekir. \"El autobús llegó tarde\" belirli bir sabah yaşanan tamamlanmış olaydır; indefinido kullanılır. \"Yo llegué a clase\" de sonucu anlatan tamamlanmış eylemdir."}, {"id": 50, "q": "Cuando mis amigos ___ de viaje, siempre me ___ mensajes. El verano pasado, ___ desde México y me contaron muchas cosas.", "opts": ["estaban / mandaban / escribieron", "estuvieron / mandaban / escribían", "estaban / mandaron / escribieron", "estuvieron / mandaron / escribían"], "ans": 0, "exp": "\"Cuando mis amigos estaban de viaje\" geçmişte seyahatte oldukları dönemleri anlatır; imperfecto kullanılır. \"Siempre me mandaban mensajes\" geçmişte tekrar eden alışkanlıktır. \"El verano pasado escribieron desde México\" belirli bir yaz gerçekleşmiş tamamlanmış eylemdir; indefinido gerekir."}];
+
+let student='',answers={},cur=0;
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('sc-'+id).classList.add('active');window.scrollTo(0,0);}
+
+function startQuiz(){
+  const s=document.getElementById('name-sel');
+  if(!s.value){alert('Lütfen adınızı seçin!');return;}
+  student=s.value;answers={};cur=0;
+  document.getElementById('top-st').textContent=student;
+  show('quiz');render();
+}
+
+function secLabel(id){
+  if(id<=10)return 'Kısım 1 — Karma Cümleler';
+  if(id<=20)return 'Kısım 2 — Neden-Sonuç & Zaman';
+  if(id<=30)return 'Kısım 3 — Kariyer & Günlük Hayat';
+  if(id<=40)return 'Kısım 4 — Çocukluk & Seyahat';
+  return 'Kısım 5 — Karma Kullanım';
+}
+
+function render(){
+  const q=QS[cur];
+  const done=Object.keys(answers).length;
+  document.getElementById('pgf').style.width=(done/50*100)+'%';
+  document.getElementById('pg-sec').textContent=secLabel(q.id);
+  document.getElementById('pg-cur').textContent=cur+1;
+  document.getElementById('nav-ctr').textContent=(cur+1)+' / 50';
+  document.getElementById('fin-ans').textContent=done;
+  document.getElementById('btn-prev').disabled=(cur===0);
+  const bn=document.getElementById('btn-next');
+  if(cur===49){bn.textContent='✔ Teslim Et';bn.className='btn bg bs';bn.onclick=goConfirm;}
+  else{bn.textContent='İleri →';bn.className='btn bm bs';bn.onclick=()=>nav(1);}
+  const ua=answers[q.id];
+  const qText=q.q.replace(/___+/g,'<span style="color:var(--c5);font-weight:800">______</span>');
+  let h='<div class="sb">'+secLabel(q.id)+'</div><div class="qc">';
+  h+='<div class="qh"><div class="qnum">'+q.id+'</div><div class="qt">'+qText+'</div></div>';
+  h+='<div class="qo">';
+  q.opts.forEach((o,i)=>{
+    let c='ob';
+    if(ua!==undefined){if(i===q.ans)c+=' ok';if(i===ua&&ua!==q.ans)c+=' er';}
+    h+='<button class="'+c+'" '+(ua!==undefined?'disabled':'')+' onclick="pick('+q.id+','+i+')"><span class="ol">'+LTR[i]+'</span><span>'+o+'</span></button>';
+  });
+  h+='</div>';
+  h+='<div class="ex '+(ua!==undefined?'show':'')+'"><div class="exl">Aciklama</div>'+q.exp+'</div>';
+  h+='</div>';
+  document.getElementById('q-area').innerHTML=h;
+  let ok=0,er=0;
+  QS.forEach(qq=>{const a=answers[qq.id];if(a===undefined)return;if(a===qq.ans)ok++;else er++;});
+  document.getElementById('sc-ok').textContent=ok;
+  document.getElementById('sc-er').textContent=er;
+}
+
+function nav(d){cur=Math.max(0,Math.min(49,cur+d));render();}
+function pick(qid,i){if(answers[qid]!==undefined)return;answers[qid]=i;render();}
+function goConfirm(){document.getElementById('cf-sel').value=student;show('confirm');}
+
+function confirmSubmit(){
+  try{
+    const s=document.getElementById('cf-sel');
+    if(!s||!s.value){alert('Lütfen adınızı seçin!');return;}
+    student=s.value;
+    const b=document.getElementById('cf-btn');
+    if(b){b.disabled=true;b.textContent='⏳ Kaydediliyor…';}
+    doSubmit();
+  }catch(e){
+    console.error(e);
+    const b=document.getElementById('cf-btn');
+    if(b){b.disabled=false;b.textContent='✔ Evet, Teslim Et';}
+    alert('Hata: '+e.message);
+  }
+}
+
+function doSubmit(){
+  let ok=0,er=0,bl=0,s1=0,s2=0,s3=0,s4=0,s5=0;
+  QS.forEach(q=>{
+    const a=answers[q.id];
+    if(a===undefined){bl++;return;}
+    const correct=(a===q.ans);
+    if(correct){ok++;if(q.id<=10)s1++;else if(q.id<=20)s2++;else if(q.id<=30)s3++;else if(q.id<=40)s4++;else s5++;}
+    else er++;
+  });
+  const score=ok*2;
+  document.getElementById('rs-name').textContent=student;
+  document.getElementById('rs-score').innerHTML=score+'<span>/100</span>';
+  document.getElementById('rs-pct').textContent='%'+score+' başarı';
+  document.getElementById('rs-c').textContent=ok;
+  document.getElementById('rs-w').textContent=er;
+  document.getElementById('rs-b').textContent=bl;
+  document.getElementById('br1').textContent=(s1*2)+' / 20';
+  document.getElementById('br2').textContent=(s2*2)+' / 20';
+  document.getElementById('br3').textContent=(s3*2)+' / 20';
+  document.getElementById('br4').textContent=(s4*2)+' / 20';
+  document.getElementById('br5').textContent=(s5*2)+' / 20';
+  show('result');
+  saveSheets(student,score,ok,er,bl);
+}
+
+async function saveSheets(nm,score,ok,er,bl){
+  const el=document.getElementById('rs-status');
+  try{
+    const n=new Date();
+    const dd=String(n.getDate()).padStart(2,'0'),mm=String(n.getMonth()+1).padStart(2,'0'),yy=n.getFullYear();
+    const hh=String(n.getHours()).padStart(2,'0'),mi=String(n.getMinutes()).padStart(2,'0'),ss=String(n.getSeconds()).padStart(2,'0');
+    const fmt='✅ '+score+'/100\n✓'+ok+' ✗'+er+'\n'+dd+'.'+mm+'.'+yy+'\n'+hh+':'+mi+':'+ss;
+    await fetch(ASU,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({spreadsheetId:SID,sheetName:SHN,studentName:nm,taskColumn:TCL,score,correct:ok,wrong:er,blank:bl,formatted:fmt})});
+    el.className='stb stok';el.textContent='✅ Ödev başarıyla kaydedildi!';
+  }catch(e){
+    el.className='stb ster';el.textContent='⚠️ Kaydedilemedi — Profeye bildirin';
+  }
+}
+
+function goName(){answers={};cur=0;document.getElementById('name-sel').value='';show('name');}
+</script>
+</body>
+</html>
