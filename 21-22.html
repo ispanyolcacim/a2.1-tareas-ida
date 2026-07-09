@@ -3,20 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A2.1 – H6 21-22. Ders</title>
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<title>A2.1 · H6 – 21-22. Ders · Indefinido & Imperfecto</title>
+<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--c1:#fcedbe;--c2:#f6cf80;--c3:#f7c9d3;--c4:#ee84a8;--c5:#d35a75;--dark:#4a2535;--mid:#8a5060;--white:#fff;--green:#6aab7a;--red:#d97070;--r:14px}
 body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0,#fff5f8 60%,#fffde8);min-height:100vh;color:var(--dark)}
-.hdr{background:linear-gradient(135deg,var(--c4),var(--c5));padding:18px 20px 14px;text-align:center;box-shadow:0 4px 18px rgba(238,132,168,.4);position:relative;overflow:hidden}
-.hdr::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,.1) 14px,rgba(255,255,255,.1) 15px)}
+.header{background:linear-gradient(135deg,var(--c4),var(--c5));padding:18px 20px 14px;text-align:center;box-shadow:0 4px 18px rgba(238,132,168,.4);position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,.1) 14px,rgba(255,255,255,.1) 15px)}
 .htag{display:inline-block;background:rgba(255,255,255,.35);border:1.5px solid rgba(255,255,255,.55);border-radius:20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 14px;margin-bottom:8px;color:#fff;position:relative}
-.hdr h1{font-size:clamp(16px,4vw,22px);font-weight:800;color:#fff;position:relative}
-.hsub{font-size:12px;color:rgba(255,255,255,.85);margin-top:4px;position:relative}
+.header h1{font-size:clamp(16px,4vw,23px);font-weight:800;color:#fff;position:relative}
+.header-sub{font-size:12px;color:rgba(255,255,255,.85);margin-top:4px;position:relative}
 .screen{display:none;animation:fi .3s ease}.screen.active{display:block}
 @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-/* NAME */
-.nb{max-width:440px;margin:0 auto;padding:32px 20px;text-align:center}
+.nb{max-width:420px;margin:0 auto;padding:32px 20px;text-align:center}
 .nb h2{font-size:20px;color:var(--dark);margin-bottom:5px}
 .nb p{font-size:13px;color:var(--mid);margin-bottom:20px}
 .sel{width:100%;padding:13px 16px;font-size:15px;background:#fff;border:2px solid var(--c3);border-radius:var(--r);color:var(--dark);appearance:none;cursor:pointer;margin-bottom:14px;font-family:inherit}
@@ -25,7 +23,6 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 .ibr{display:flex;align-items:flex-start;gap:9px;margin-bottom:5px}
 .ibd{width:8px;height:8px;border-radius:50%;background:var(--c2);flex-shrink:0;margin-top:5px}
 .ibh{height:1px;background:var(--c3);margin:9px 0}
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 24px;border:none;border-radius:var(--r);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
 .bm{background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;box-shadow:0 4px 12px rgba(211,90,117,.35)}
 .bm:hover{transform:translateY(-2px)}
@@ -36,7 +33,6 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 .bs{padding:9px 18px;font-size:13px}
 .bf{width:100%}
 .btn:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
-/* QUIZ */
 .qw{max-width:660px;margin:0 auto;padding:16px}
 .tb{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);padding:10px 16px;margin-bottom:12px;gap:8px;flex-wrap:wrap}
 .ts{font-size:12px;color:var(--mid);font-weight:600}
@@ -52,19 +48,9 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 .qh{padding:16px 18px 14px;border-bottom:1px solid var(--c3);display:flex;gap:12px;align-items:flex-start}
 .qn{background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;margin-top:1px}
 .qt{font-size:14.5px;line-height:1.65;flex:1;color:var(--dark);font-weight:500}
-/* Fill warning box */
-.warn{background:rgba(246,207,128,.2);border:1.5px solid var(--c2);border-radius:10px;padding:10px 14px;margin:10px 16px 4px;font-size:12px;line-height:1.7;color:#7a5000}
-.warn strong{display:block;margin-bottom:3px;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:#9a6000}
-/* Fill input */
-.fi-wrap{padding:12px 16px 14px}
-.fi-inp{width:100%;padding:11px 14px;font-size:14px;font-family:inherit;color:var(--dark);background:var(--c1);border:2px solid var(--c3);border-radius:10px;transition:border-color .2s}
-.fi-inp:focus{outline:none;border-color:var(--c2);background:#fff}
-.fi-inp.ok{background:#edfaf2;border-color:#8dcca0;color:#276221}
-.fi-inp.er{background:#fdf0f0;border-color:#e8a0a0;color:#a04040}
-.fi-btn{margin-top:8px;width:100%;padding:11px;border:none;border-radius:10px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;transition:all .2s}
-.fi-btn:hover{transform:translateY(-1px)}
-.fi-btn:disabled{opacity:.35;cursor:default;transform:none}
-/* MC options */
+.rb{background:var(--c1);border-left:3px solid var(--c2);border-radius:0 8px 8px 0;padding:12px 16px;margin:0 16px 12px;font-size:13px;line-height:1.9;color:var(--dark)}
+.trb{background:#f0f8ff;border-left:3px solid #85c1e9;border-radius:0 8px 8px 0;padding:10px 14px;margin:0 16px 10px;font-size:12px;line-height:1.75;color:#1a3a5c;font-style:italic}
+.trl{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#1a5276;margin-bottom:4px;font-style:normal}
 .qo{padding:12px 16px 14px;display:grid;gap:8px}
 .ob{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#fdf8fb;border:1.5px solid var(--c3);border-radius:10px;color:var(--dark);font-size:13.5px;line-height:1.5;cursor:pointer;text-align:left;width:100%;transition:all .18s;font-family:inherit}
 .ob:hover:not(:disabled){background:var(--c1);border-color:var(--c2);transform:translateX(4px)}
@@ -77,46 +63,15 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 .ex{display:none;margin:0 16px 14px;background:var(--c1);border-left:3px solid var(--c2);border-radius:0 8px 8px 0;padding:11px 14px;font-size:13px;line-height:1.75;color:var(--mid)}
 .ex.show{display:block}
 .exl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#9a6000;margin-bottom:4px}
-/* NAV */
 .nv{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;margin-bottom:16px;flex-wrap:wrap}
 .nc{font-size:13px;color:var(--mid);font-weight:600;text-align:center;flex:1}
 .fb{position:sticky;bottom:0;background:rgba(255,248,250,.97);backdrop-filter:blur(10px);border-top:1.5px solid var(--c3);padding:11px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;box-shadow:0 -4px 14px rgba(238,132,168,.18)}
-.fi2{font-size:12px;color:var(--mid)}
-.fi2 strong{color:var(--dark);font-size:14px}
-/* WRITING */
-.ww{max-width:660px;margin:0 auto;padding:16px}
-.wcard{background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);overflow:hidden;box-shadow:0 3px 14px rgba(238,132,168,.15);margin-bottom:14px}
-.whead{background:linear-gradient(135deg,var(--c4),var(--c5));padding:14px 18px;color:#fff;font-weight:700;font-size:15px}
-.wbody{padding:20px}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
-@media(max-width:520px){.fg{grid-template-columns:1fr}}
-.fw label{display:block;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--mid);margin-bottom:5px}
-.fw input{width:100%;padding:10px 13px;border:2px solid var(--c3);border-radius:10px;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--dark);background:#fafafa;outline:none;transition:border-color .2s}
-.fw input:focus{border-color:var(--c2);background:#fff}
-.fw input[readonly]{opacity:.5;cursor:default}
-.ybox{background:var(--c1);border:1.5px solid var(--c2);border-radius:10px;padding:14px 16px;margin-bottom:14px;font-size:13px;line-height:1.8}
-.yl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#9a6000;margin-bottom:8px}
-.yli{margin-left:18px}
-.yli li{margin-bottom:4px}
-.cklist{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
-@media(max-width:520px){.cklist{grid-template-columns:1fr}}
-.cki{display:flex;align-items:flex-start;gap:8px;font-size:12px;font-weight:600;color:var(--mid);background:#fafafa;padding:9px 12px;border-radius:10px;border:2px solid var(--c3);cursor:pointer}
-.cki input{accent-color:var(--c5);margin-top:1px;flex-shrink:0}
-.wta{width:100%;min-height:400px;padding:14px 16px;font-size:14px;line-height:1.9;font-family:inherit;color:var(--dark);background:var(--c1);border:2px solid rgba(246,207,128,.5);border-radius:10px;resize:vertical;transition:border-color .2s;margin-bottom:8px}
-.wta:focus{outline:none;border-color:var(--c2);box-shadow:0 0 0 3px rgba(246,207,128,.15)}
-.wc{font-size:11px;color:var(--mid);text-align:right;margin-bottom:16px}
-.rubric{width:100%;border-collapse:collapse;margin-top:10px;font-size:13px}
-.rubric th{background:linear-gradient(90deg,var(--c4),var(--c5));padding:9px 14px;text-align:left;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:#fff}
-.rubric td{padding:9px 14px;border-bottom:1px solid var(--c3);vertical-align:top;line-height:1.5}
-.rubric tr:last-child td{border-bottom:none;font-weight:700;background:rgba(246,207,128,.12)}
-.rubric tr:nth-child(even) td{background:rgba(247,201,211,.15)}
-.rubric .pts{text-align:right;color:var(--c5);font-weight:700;white-space:nowrap}
-/* CONFIRM */
+.fi{font-size:12px;color:var(--mid)}
+.fi strong{color:var(--dark);font-size:14px}
 .cfw{max-width:420px;margin:0 auto;padding:40px 20px;text-align:center}
 .cfw h2{font-size:22px;color:var(--dark);margin-bottom:8px}
 .cfw p{font-size:14px;color:var(--mid);margin-bottom:20px;line-height:1.6}
 .ns{background:rgba(211,90,117,.1);border:2px solid var(--c4);border-radius:var(--r);padding:14px 18px;margin-bottom:20px;font-size:14px;font-weight:700;color:var(--c5)}
-/* RESULT */
 .rw{max-width:460px;margin:0 auto;padding:28px 20px;text-align:center}
 .rc{background:#fff;border:1.5px solid var(--c3);border-radius:20px;padding:28px 22px;margin-bottom:14px;box-shadow:0 6px 24px rgba(238,132,168,.2)}
 .re{font-size:50px;margin-bottom:10px}
@@ -130,168 +85,239 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 .ri .rnum{font-size:28px;font-weight:800;line-height:1}
 .ri .rl{font-size:11px;color:var(--mid);margin-top:3px}
 .rok .rnum{color:var(--green)}.rer .rnum{color:var(--red)}.rbl .rnum{color:#bbb}
+.bd{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.bdr{display:flex;justify-content:space-between;align-items:center;background:rgba(248,219,216,.2);border:1px solid var(--c3);border-radius:8px;padding:8px 14px;font-size:13px}
+.bdl{color:var(--mid)}.bds{font-weight:700;color:var(--dark)}
 .stb{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;margin-bottom:14px}
 .stok{background:rgba(106,171,122,.15);border:1.5px solid rgba(106,171,122,.4);color:#3a7a4a}
 .ster{background:rgba(217,112,112,.15);border:1.5px solid rgba(217,112,112,.4);color:#a04040}
 .stpnd{background:rgba(246,207,128,.2);border:1.5px solid rgba(246,207,128,.5);color:#9a6000}
-.ra{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
-/* Photo warning */
-.photo-warn{background:rgba(238,132,168,.12);border:2px solid var(--c4);border-radius:var(--r);padding:16px 18px;margin-bottom:20px;text-align:center}
-.photo-warn .pw-icon{font-size:32px;margin-bottom:8px}
-.photo-warn p{font-size:14px;color:var(--dark);line-height:1.7;font-weight:600}
-</style>
+.ra{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}</style>
 </head>
 <body>
-<div class="hdr">
+
+<div class="header">
   <div class="htag">6. Hafta Ödevi &nbsp;|&nbsp; A2.1 (21-22. Ders)</div>
-  <h1>🇪🇸 A2.1 – H6 21-22. Ders</h1>
-  <div class="hsub">50 soru &nbsp;•&nbsp; 2 puan/soru &nbsp;•&nbsp; 100 puan &nbsp;•&nbsp; Indefinido &amp; Imperfecto &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+  <h1>&#x1F1EA;&#x1F1F8; A2.1 – H6 21-22. Ders</h1>
+  <div class="header-sub">50 soru &nbsp;&bull;&nbsp; 2 puan/soru &nbsp;&bull;&nbsp; 100 puan &nbsp;&bull;&nbsp; Indefinido &amp; Imperfecto &nbsp;&bull;&nbsp; @ispanyolcacim &nbsp;&bull;&nbsp; Profe Hazel</div>
 </div>
+
 <div class="screen active" id="sc-name">
   <div class="nb">
-    <h2>📚 Adınızı seçin</h2>
-    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
-    <select class="sel" id="name-sel">
-      <option value="">-- Adınızı Seçin --</option>
+    <h2>&#x1F4DA; Ad&#x131;n&#x131;z&#x131; se&#xe7;in</h2>
+    <p>&#xd6;deve ba&#x15f;lamadan &#xf6;nce l&#xfc;tfen listeden ad&#x131;n&#x131;z&#x131; se&#xe7;in.</p>
+    <select class="sel" id="name-sel"><option value="">-- Adınızı Seçin --</option>
       <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
       <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
       <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
       <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
       <option>Zumeyra Dogan</option></select>
     <div class="ib">
-      <div class="ibr"><div class="ibd"></div><span><strong>1–10:</strong> Karma cümleler — indefinido &amp; imperfecto</span></div>
-      <div class="ibr"><div class="ibd"></div><span><strong>11–20:</strong> Neden-sonuç &amp; zaman dilimleri</span></div>
-      <div class="ibr"><div class="ibd"></div><span><strong>21–30:</strong> Kariyer &amp; günlük hayat anıları</span></div>
-      <div class="ibr"><div class="ibd"></div><span><strong>31–40:</strong> Çocukluk &amp; seyahat</span></div>
-      <div class="ibr"><div class="ibd"></div><span><strong>41–50:</strong> Karma kullanım</span></div>
+      <div class="ibr"><div class="ibd"></div><span><strong>&#x1F4DD; 1–10: Karma Cümleler:</strong> 1</span></div><div class="ibr"><div class="ibd"></div><span><strong>&#x1F517; 11–20: Neden-Sonuç:</strong> 2</span></div><div class="ibr"><div class="ibd"></div><span><strong>&#x1F4BC; 21–30: Kariyer & Hayat:</strong> 3</span></div><div class="ibr"><div class="ibd"></div><span><strong>&#x1F33F; 31–40: Çocukluk & Seyahat:</strong> 4</span></div><div class="ibr"><div class="ibd"></div><span><strong>&#x1F3AF; 41–50: Karma Kullanım:</strong> 5</span></div>
       <div class="ibh"></div>
-      <div class="ibr"><div class="ibd" style="background:var(--c4)"></div><span><strong>50 soru × 2 puan = 100 puan</strong></span></div>
+      <div class="ibr"><div class="ibd" style="background:var(--c4)"></div><span><strong>50 soru &times; 2 puan = 100 puan</strong></span></div>
     </div>
-    <button class="btn btn-main btn-full" onclick="startQuiz()">▶ Başla</button>
+    <button class="btn bm bf" onclick="startQuiz()">&#x25b6; Ba&#x15f;la</button>
   </div>
 </div>
+
 <div class="screen" id="sc-quiz">
-  <div class="qwrap">
-    <div class="top-bar">
-      <div class="top-st" id="top-st">—</div>
-      <div class="top-sc">
-        <div class="sc-it sc-ok">✓ <span id="sc-ok">0</span></div>
-        <div class="sc-it sc-er">✗ <span id="sc-er">0</span></div>
+  <div class="qw">
+    <div class="tb">
+      <div class="ts" id="top-st">&#x2014;</div>
+      <div class="tsc">
+        <div class="si sok">&#x2713; <span id="sc-ok">0</span></div>
+        <div class="si ser">&#x2717; <span id="sc-er">0</span></div>
       </div>
     </div>
-    <div class="pgwrap">
-      <div class="pgbar"><div class="pgfill" id="pgfill"></div></div>
-      <div class="pginfo"><span id="pg-sec">—</span><span>Soru <span id="pg-cur">1</span> / 50</span></div>
+    <div class="pgw">
+      <div class="pgb"><div class="pgf" id="pgf"></div></div>
+      <div class="pgi"><span id="pg-sec">&#x2014;</span><span>Soru <span id="pg-cur">1</span> / 50</span></div>
     </div>
     <div id="q-area"></div>
-    <div class="navbar">
-      <button class="btn btn-outline btn-sm" id="btn-prev" onclick="nav(-1)">← Geri</button>
-      <div class="navctr" id="nav-ctr">1 / 50</div>
-      <button class="btn btn-main btn-sm" id="btn-next" onclick="nav(1)">İleri →</button>
+    <div class="nv">
+      <button class="btn bo bs" id="btn-prev" onclick="nav(-1)">&#x2190; Geri</button>
+      <div class="nc" id="nav-ctr">1 / 50</div>
+      <button class="btn bm bs" id="btn-next" onclick="nav(1)">&#x130;leri &#x2192;</button>
     </div>
-    <div class="finbar">
-      <div class="fininfo"><strong id="fin-ans">0</strong> / 50 yanıtlandı</div>
-      <button class="btn btn-gold" onclick="goConfirm()">✔ Ödevi Teslim Et</button>
+    <div class="fb">
+      <div class="fi"><strong id="fin-ans">0</strong> / 50 yan&#x131;tland&#x131;</div>
+      <button class="btn bg" onclick="goConfirm()">&#x2714; &#xd6;devi Teslim Et</button>
     </div>
   </div>
 </div>
+
 <div class="screen" id="sc-confirm">
-  <div class="cfwrap">
-    <div style="font-size:48px;margin-bottom:12px">📋</div>
-    <h2>Ödevi Teslim Et</h2>
-    <div class="not-sub">⚠️ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ</div>
-    <p>Teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
-    <select class="sel" id="cf-sel" style="margin-bottom:16px">
-      <option value="">-- Adınızı Seçin --</option>
+  <div class="cfw">
+    <div style="font-size:48px;margin-bottom:12px">&#x1F4CB;</div>
+    <h2>&#xd6;devi Teslim Et</h2>
+    <div class="ns">&#x26a0;&#xfe0f; &#xd6;DEV&#x130;N&#x130;Z HEN&#xdc;Z TESL&#x130;M ED&#x130;LMED&#x130;</div>
+    <p>Teslim etmeden &#xf6;nce listeden ad&#x131;n&#x131;z&#x131; se&#xe7;in ve onaylay&#x131;n.</p>
+    <select class="sel" id="cf-sel" style="margin-bottom:16px"><option value="">-- Adınızı Seçin --</option>
       <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
       <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
       <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
       <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
       <option>Zumeyra Dogan</option></select>
-    <button class="btn btn-gold btn-full" id="cf-btn" onclick="confirmSubmit()">✔ Evet, Teslim Et</button>
+    <button class="btn bg bf" id="cf-btn" onclick="confirmSubmit()">&#x2714; Evet, Teslim Et</button>
   </div>
 </div>
+
 <div class="screen" id="sc-result">
-  <div class="rswrap">
-    <div class="rscard">
-      <div class="rsemoji">🇪🇸</div>
-      <div class="rsnm" id="rs-name">—</div>
-      <div class="rstitle">A2.1 · H6 – 21-22. Ders · Indefinido &amp; Imperfecto</div>
-      <div class="rsbig" id="rs-score">0<span>/100</span></div>
-      <div class="rspct" id="rs-pct"></div>
-      <div class="bdown">
-        <div class="bdrow"><span class="bdlbl">📝 1–10: Karma Cümleler</span><span class="bdscore" id="br1">0 / 20</span></div>
-        <div class="bdrow"><span class="bdlbl">🔗 11–20: Neden-Sonuç</span><span class="bdscore" id="br2">0 / 20</span></div>
-        <div class="bdrow"><span class="bdlbl">💼 21–30: Kariyer & Hayat</span><span class="bdscore" id="br3">0 / 20</span></div>
-        <div class="bdrow"><span class="bdlbl">🌿 31–40: Çocukluk & Seyahat</span><span class="bdscore" id="br4">0 / 20</span></div>
-        <div class="bdrow"><span class="bdlbl">🎯 41–50: Karma Kullanım</span><span class="bdscore" id="br5">0 / 20</span></div>
+  <div class="rw">
+    <div class="rc">
+      <div class="re">&#x1F1EA;&#x1F1F8;</div>
+      <div class="rn" id="rs-name">&#x2014;</div>
+      <div class="rt">A2.1 · H6 – 21-22. Ders · Indefinido & Imperfecto</div>
+      <div class="rbig" id="rs-score">0<span>/100</span></div>
+      <div class="rp" id="rs-pct"></div>
+      <div class="bd"><div class="bdr"><span class="bdl">&#x1F4DD; 1–10: Karma Cümleler</span><span class="bds" id="br1">0 / 20</span></div>
+<div class="bdr"><span class="bdl">&#x1F517; 11–20: Neden-Sonuç</span><span class="bds" id="br2">0 / 20</span></div>
+<div class="bdr"><span class="bdl">&#x1F4BC; 21–30: Kariyer & Hayat</span><span class="bds" id="br3">0 / 20</span></div>
+<div class="bdr"><span class="bdl">&#x1F33F; 31–40: Çocukluk & Seyahat</span><span class="bds" id="br4">0 / 20</span></div>
+<div class="bdr"><span class="bdl">&#x1F3AF; 41–50: Karma Kullanım</span><span class="bds" id="br5">0 / 20</span></div>
+</div>
+      <div class="rst">
+        <div class="ri rok"><div class="rnum" id="rs-c">0</div><div class="rl">Do&#x11f;ru</div></div>
+        <div class="ri rer"><div class="rnum" id="rs-w">0</div><div class="rl">Yanl&#x131;&#x15f;</div></div>
+        <div class="ri rbl"><div class="rnum" id="rs-b">0</div><div class="rl">Bo&#x15f;</div></div>
       </div>
-      <div class="rsstats">
-        <div class="rsit rsok"><div class="rsn" id="rs-c">0</div><div class="rsl">Doğru</div></div>
-        <div class="rsit rser"><div class="rsn" id="rs-w">0</div><div class="rsl">Yanlış</div></div>
-        <div class="rsit rsbl"><div class="rsn" id="rs-b">0</div><div class="rsl">Boş</div></div>
-      </div>
-      <div class="stbadge stpnd" id="rs-status">⏳ Kaydediliyor…</div>
+      <div class="stb stpnd" id="rs-status">&#x23f3; Kaydediliyor&#x2026;</div>
     </div>
-    <div class="rsact"><button class="btn btn-outline" onclick="goName()">🔄 Yeniden Başla</button></div>
+    <div class="ra"><button class="btn bo" onclick="goName()">&#x1F504; Yeniden Ba&#x15f;la</button></div>
   </div>
-</div><script>
+</div>
+
+<script>
 const ASU='https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
 const SID='1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
 const SHN='A2.1';
 const TCL='H6 – 21-22.Ders';
+const TOTAL=50;
+const PTS=2;
 const LTR=['A','B','C','D'];
 const QS=[{"id": 1, "q": "Cuando yo ___ peque\u00f1o, mi familia ___ en una casa con jard\u00edn. En 2012, todos ___ a Sevilla por primera vez.", "opts": ["era / viv\u00edamos / viajamos", "fui / vivimos / viaj\u00e1bamos", "era / vivimos / viaj\u00e1bamos", "fui / viv\u00edamos / viajamos"], "ans": 0, "exp": "\"Cuando yo era peque\u00f1o\" ge\u00e7mi\u015fteki ya\u015f/d\u00f6nem anlat\u0131m\u0131d\u0131r, imperfecto kullan\u0131l\u0131r. \"Viv\u00edamos\" aileyi biz olarak d\u00fc\u015f\u00fcnerek verilmi\u015ftir. \"En 2012 viajamos\" belirli bir y\u0131lda bir kez ger\u00e7ekle\u015fmi\u015f tamamlanm\u0131\u015f olayd\u0131r, indefinido kullan\u0131l\u0131r."}, {"id": 2, "q": "Mar\u00eda ___ quince a\u00f1os cuando ___ muy nerviosa por el examen. Esa ma\u00f1ana, su profesora la ___ para hablar con ella.", "opts": ["tuvo / estuvo / llamaba", "ten\u00eda / estuvo / llamaba", "tuvo / estaba / llam\u00f3", "ten\u00eda / estaba / llam\u00f3"], "ans": 3, "exp": "Ya\u015f s\u00f6ylerken ge\u00e7mi\u015fte genellikle tener + imperfecto kullan\u0131l\u0131r: \"ten\u00eda quince a\u00f1os\". Duygu ve ruh hali arka plan olarak anlat\u0131l\u0131yorsa \"estaba nerviosa\" denir. \"Esa ma\u00f1ana su profesora la llam\u00f3\" ise o sabah ger\u00e7ekle\u015fmi\u015f net ve tamamlanm\u0131\u015f bir olayd\u0131r; indefinido gerekir."}, {"id": 3, "q": "Ayer ___ mucho fr\u00edo, pero mis amigos y yo ___ salir. ___ no ten\u00edamos mucho dinero, fuimos a un caf\u00e9 barato.", "opts": ["hizo / decid\u00edamos / porque", "hac\u00eda / decidimos / aunque", "hizo / decidimos / mientras", "hac\u00eda / decid\u00edamos / despu\u00e9s"], "ans": 1, "exp": "Hava durumu ge\u00e7mi\u015fte ortam\u0131 anlat\u0131yorsa \"hac\u00eda fr\u00edo\" kullan\u0131l\u0131r. \"Decidimos salir\" belirli bir anda al\u0131nm\u0131\u015f ve tamamlanm\u0131\u015f bir karard\u0131r, indefinido gerekir. \"Aunque no ten\u00edamos mucho dinero\" ifadesinde \"aunque\" z\u0131tl\u0131k verir: Param\u0131z \u00e7ok yoktu ama yine de ucuz bir kafeye gittik."}, {"id": 4, "q": "Mientras mis primos y yo ___ a las cartas, mi t\u00edo ___ en la sala y nos ___ una caja antigua.", "opts": ["jugamos / entraba / dejaba", "jug\u00e1bamos / entraba / dej\u00f3", "jug\u00e1bamos / entr\u00f3 / dej\u00f3", "jugamos / entr\u00f3 / dejaba"], "ans": 2, "exp": "\"Mientras jug\u00e1bamos\" ge\u00e7mi\u015fte devam eden bir eylemi anlat\u0131r; imperfecto kullan\u0131l\u0131r. \"Mi t\u00edo entr\u00f3\" bu devam eden eylemi kesen ani ve tamamlanm\u0131\u015f olayd\u0131r; indefinido gerekir. \"Nos dej\u00f3 una caja\" da tamamlanm\u0131\u015f bir eylemdir."}, {"id": 5, "q": "El hotel ___ peque\u00f1o, pero muy c\u00f3modo. All\u00ed ___ a un turista chileno; ___ salimos juntos a cenar.", "opts": ["fue / conoc\u00eda / mientras", "era / conoc\u00eda / despu\u00e9s", "era / conoc\u00ed / despu\u00e9s", "fue / conoc\u00ed / aunque"], "ans": 2, "exp": "\"El hotel era peque\u00f1o\" otelin ge\u00e7mi\u015fteki fiziksel tan\u0131m\u0131d\u0131r; imperfecto kullan\u0131l\u0131r. \"Conoc\u00ed a un turista\" belirli bir anda ger\u00e7ekle\u015fen tan\u0131\u015fma eylemidir; indefinido gerekir. \"Despu\u00e9s salimos\" olay s\u0131ras\u0131 kurar: \u00f6nce tan\u0131\u015ft\u0131m, sonra yeme\u011fe \u00e7\u0131kt\u0131k."}, {"id": 6, "q": "Anoche, mientras yo ___ espa\u00f1ol, el tel\u00e9fono ___. ___, no pude terminar mis ejercicios.", "opts": ["estudi\u00e9 / sonaba / aunque", "estudiaba / son\u00f3 / por eso", "estudiaba / sonaba / porque", "estudi\u00e9 / son\u00f3 / mientras"], "ans": 1, "exp": "\"Mientras estudiaba\" ge\u00e7mi\u015fte devam eden bir eylemdir, imperfecto gerekir. \"El tel\u00e9fono son\u00f3\" bu eylemi kesen k\u0131sa ve tamamlanm\u0131\u015f olayd\u0131r; indefinido kullan\u0131l\u0131r. \"Por eso\" sonu\u00e7 bildirir: Telefon \u00e7ald\u0131\u011f\u0131 i\u00e7in egzersizleri bitiremedim."}, {"id": 7, "q": "Antes, mi abuelo ___ todos los d\u00edas al mercado. Un d\u00eda, ___ una carta antigua y ___ muy emocionado.", "opts": ["fue / encontraba / estaba", "iba / encontraba / estuvo", "fue / encontr\u00f3 / estaba", "iba / encontr\u00f3 / estuvo"], "ans": 3, "exp": "\"Antes iba todos los d\u00edas\" ge\u00e7mi\u015fte d\u00fczenli yap\u0131lan al\u0131\u015fkanl\u0131\u011f\u0131 anlat\u0131r, imperfecto kullan\u0131l\u0131r. \"Un d\u00eda encontr\u00f3\" belirli bir g\u00fcn ger\u00e7ekle\u015fmi\u015f tamamlanm\u0131\u015f olayd\u0131r; indefinido gerekir. \"Estuvo muy emocionado\" o olaydan sonra ya\u015fanan ve tamamlanan duygu durumunu anlat\u0131r."}, {"id": 8, "q": "Cuando Laura ___ en la universidad, normalmente ___ mucho caf\u00e9. Sin embargo, el viernes pasado no ___ nada.", "opts": ["estudiaba / beb\u00eda / bebi\u00f3", "estudi\u00f3 / beb\u00eda / beb\u00eda", "estudiaba / bebi\u00f3 / bebi\u00f3", "estudi\u00f3 / bebi\u00f3 / beb\u00eda"], "ans": 0, "exp": "\"Cuando estudiaba en la universidad\" ge\u00e7mi\u015fteki d\u00f6nem/arka plan anlat\u0131m\u0131d\u0131r; imperfecto gerekir. \"Normalmente beb\u00eda mucho caf\u00e9\" ge\u00e7mi\u015f al\u0131\u015fkanl\u0131\u011f\u0131d\u0131r. \"El viernes pasado no bebi\u00f3 nada\" ise belirli bir g\u00fcnde ger\u00e7ekle\u015fen tamamlanm\u0131\u015f durumdur; indefinido kullan\u0131l\u0131r."}, {"id": 9, "q": "La ciudad ___ tranquila y las calles ___ casi vac\u00edas. De repente, un grupo de m\u00fasicos ___ en la plaza.", "opts": ["estaba / estaban / apareci\u00f3", "estuvo / estuvieron / aparec\u00eda", "estaba / estuvieron / apareci\u00f3", "estuvo / estaban / aparec\u00eda"], "ans": 0, "exp": "\u015eehrin ve sokaklar\u0131n durumu ge\u00e7mi\u015fte sahne/arka plan olarak anlat\u0131l\u0131yor: \"estaba tranquila\", \"estaban vac\u00edas\". \u0130mperfecto kullan\u0131l\u0131r. \"De repente apareci\u00f3\" ise ani ve tamamlanm\u0131\u015f bir olayd\u0131r; indefinido gerekir."}, {"id": 10, "q": "Cada verano, nosotros ___ a la playa con mis t\u00edos. Pero el a\u00f1o pasado ___ a la monta\u00f1a, porque mi madre ___ descansar en un lugar tranquilo.", "opts": ["fuimos / \u00edbamos / quer\u00eda", "\u00edbamos / \u00edbamos / quiso", "\u00edbamos / fuimos / quer\u00eda", "fuimos / fuimos / quiso"], "ans": 2, "exp": "\"Cada verano \u00edbamos\" ge\u00e7mi\u015fte tekrar eden al\u0131\u015fkanl\u0131kt\u0131r; imperfecto gerekir. \"El a\u00f1o pasado fuimos\" belirli bir y\u0131lda ger\u00e7ekle\u015fmi\u015f tamamlanm\u0131\u015f olayd\u0131r; indefinido kullan\u0131l\u0131r. \"Mi madre quer\u00eda descansar\" ise o d\u00f6nemdeki istek/durumdur; imperfecto ile verilir."}, {"id": 11, "q": "Mi hermana ___ muy t\u00edmida cuando era ni\u00f1a. A los dieciocho a\u00f1os, ___ a otra ciudad y all\u00ed ___ muchos amigos.", "opts": ["fue / se mudaba / hac\u00eda", "era / se mud\u00f3 / hizo", "fue / se mud\u00f3 / hac\u00eda", "era / se mudaba / hizo"], "ans": 1, "exp": "Ki\u015filik \u00f6zelli\u011fi ge\u00e7mi\u015fte tan\u0131m olarak verildi\u011fi i\u00e7in \"era muy t\u00edmida\" kullan\u0131l\u0131r. \"A los dieciocho a\u00f1os se mud\u00f3\" belirli bir ya\u015fta tamamlanm\u0131\u015f ta\u015f\u0131nma olay\u0131d\u0131r. \"Hizo muchos amigos\" da tamamlanm\u0131\u015f bir eylemdir; indefinido gerekir."}, {"id": 12, "q": "Mientras los ni\u00f1os ___ en el jard\u00edn, empez\u00f3 a llover. Entonces, todos ___ a casa y la abuela les ___ chocolate caliente.", "opts": ["jugaron / entraban / preparaba", "jugaban / entraban / prepar\u00f3", "jugaron / entraron / preparaba", "jugaban / entraron / prepar\u00f3"], "ans": 3, "exp": "\"Mientras los ni\u00f1os jugaban\" devam eden bir arka plan eylemidir; imperfecto gerekir. Ya\u011fmur ba\u015flay\u0131nca \"entraron a casa\" tamamlanm\u0131\u015f bir hareket olarak anlat\u0131l\u0131r. \"La abuela les prepar\u00f3 chocolate\" da olay zincirinin tamamlanm\u0131\u015f par\u00e7as\u0131d\u0131r."}, {"id": 13, "q": "El restaurante ___ lleno y el camarero ___ muy ocupado. Despu\u00e9s de esperar veinte minutos, nosotros ___ otro lugar.", "opts": ["estuvo / estuvo / busc\u00e1bamos", "era / fue / buscamos", "estuvo / estaba / busc\u00e1bamos", "estaba / estaba / buscamos"], "ans": 3, "exp": "Restoran\u0131n dolu olmas\u0131 ve garsonun me\u015fgul olmas\u0131 o anki durumu/tasviri anlat\u0131r; \"estaba\" kullan\u0131l\u0131r. \"Despu\u00e9s de esperar veinte minutos, buscamos otro lugar\" belirli bir s\u00fcreden sonra al\u0131nan tamamlanm\u0131\u015f aksiyondur; indefinido gerekir."}, {"id": 14, "q": "Cuando Carlos ___ peque\u00f1o, siempre ___ miedo a los perros. Pero ayer, en el parque, ___ con uno sin problemas.", "opts": ["era / ten\u00eda / jug\u00f3", "fue / tuvo / jugaba", "era / tuvo / jug\u00f3", "fue / ten\u00eda / jugaba"], "ans": 0, "exp": "\"Cuando Carlos era peque\u00f1o\" \u00e7ocukluk d\u00f6neminin arka plan\u0131d\u0131r. \"Siempre ten\u00eda miedo\" ge\u00e7mi\u015fte s\u00fcrekli olan bir duygu/durumdur; imperfecto gerekir. \"Ayer jug\u00f3\" ise d\u00fcn ger\u00e7ekle\u015fmi\u015f tamamlanm\u0131\u015f bir eylemdir; indefinido kullan\u0131l\u0131r."}, {"id": 15, "q": "El s\u00e1bado pasado, Ana ___ tarde porque ___ muy cansada. Cuando lleg\u00f3 al cine, la pel\u00edcula ya ___.", "opts": ["llegaba / estuvo / empez\u00f3", "lleg\u00f3 / estuvo / empezaba", "lleg\u00f3 / estaba / hab\u00eda empezado", "llegaba / estaba / empez\u00f3"], "ans": 2, "exp": "\"El s\u00e1bado pasado Ana lleg\u00f3 tarde\" belirli bir zamanda tamamlanm\u0131\u015f eylemdir; indefinido gerekir. \"Estaba muy cansada\" o anki ruhsal/fiziksel durumdur; imperfecto kullan\u0131l\u0131r. \"La pel\u00edcula ya hab\u00eda empezado\" Ana gelmeden \u00f6nce ba\u015flam\u0131\u015f bir olayd\u0131r; pluscuamperfecto kullan\u0131l\u0131r."}, {"id": 16, "q": "Antes, mis vecinos ___ muchas fiestas en casa. Una noche, la m\u00fasica ___ tan fuerte que nosotros ___ a la polic\u00eda.", "opts": ["hicieron / era / llam\u00e1bamos", "hac\u00edan / estaba / llamamos", "hicieron / estuvo / llamamos", "hac\u00edan / fue / llam\u00e1bamos"], "ans": 1, "exp": "\"Antes hac\u00edan muchas fiestas\" ge\u00e7mi\u015fte tekrar eden al\u0131\u015fkanl\u0131\u011f\u0131 anlat\u0131r; imperfecto gerekir. \"La m\u00fasica estaba tan fuerte\" o andaki durumu anlat\u0131r. \"Llamamos a la polic\u00eda\" belirli bir gece yap\u0131lan tamamlanm\u0131\u015f eylemdir; indefinido kullan\u0131l\u0131r."}, {"id": 17, "q": "Mi padre ___ en una f\u00e1brica cuando yo nac\u00ed. En 2005, ___ de trabajo y nuestra vida ___ mucho.", "opts": ["trabaj\u00f3 / cambiaba / cambiaba", "trabajaba / cambi\u00f3 / cambi\u00f3", "trabajaba / cambiaba / cambi\u00f3", "trabaj\u00f3 / cambi\u00f3 / cambiaba"], "ans": 1, "exp": "\"Cuando yo nac\u00ed\" an\u0131nda baban\u0131n yapt\u0131\u011f\u0131 i\u015f arka plan bilgisidir: \"trabajaba en una f\u00e1brica\". \"En 2005 cambi\u00f3 de trabajo\" belirli bir y\u0131lda tamamlanm\u0131\u015f olayd\u0131r. \"Nuestra vida cambi\u00f3 mucho\" da tamamlanm\u0131\u015f sonu\u00e7tur; indefinido ile verilir."}, {"id": 18, "q": "Cuando entramos en la casa, todo ___ oscuro y no ___ nadie. De repente, nuestros amigos ___ \"\u00a1Sorpresa!\"", "opts": ["estuvo / hab\u00eda / gritaban", "estaba / hubo / gritaron", "estaba / hab\u00eda / gritaron", "estuvo / hubo / gritaban"], "ans": 2, "exp": "\"Todo estaba oscuro\" evin o andaki durumunu anlat\u0131r; imperfecto kullan\u0131l\u0131r. \"No hab\u00eda nadie\" varl\u0131k/yokluk durumudur ve arka plan anlat\u0131m\u0131d\u0131r. \"De repente gritaron\" ani ve tamamlanm\u0131\u015f bir olayd\u0131r; indefinido gerekir."}, {"id": 19, "q": "De ni\u00f1o, Pablo ___ todos los domingos con su abuela. El domingo pasado, la ___ despu\u00e9s de mucho tiempo y los dos ___ juntos.", "opts": ["com\u00eda / visit\u00f3 / cocinaron", "comi\u00f3 / visitaba / cocinaban", "com\u00eda / visitaba / cocinaron", "comi\u00f3 / visit\u00f3 / cocinaban"], "ans": 0, "exp": "\"De ni\u00f1o com\u00eda todos los domingos\" \u00e7ocuklukta tekrar eden al\u0131\u015fkanl\u0131kt\u0131r; imperfecto gerekir. \"El domingo pasado la visit\u00f3\" belirli bir g\u00fcnde tamamlanm\u0131\u015f ziyaret eylemidir. \"Los dos cocinaron juntos\" da ayn\u0131 g\u00fcn ger\u00e7ekle\u015fmi\u015f tamamlanm\u0131\u015f olayd\u0131r."}, {"id": 20, "q": "La tarde ___ tranquila y nosotros ___ en la terraza. Entonces, mi hermano ___ una noticia importante.", "opts": ["fue / estuvimos / contaba", "estaba / estuvimos / contaba", "fue / est\u00e1bamos / cont\u00f3", "estaba / est\u00e1bamos / cont\u00f3"], "ans": 3, "exp": "\"La tarde estaba tranquila\" ge\u00e7mi\u015fte ortam tasviridir; imperfecto gerekir. \"Nosotros est\u00e1bamos en la terraza\" o anda bulunulan yeri/durumu anlat\u0131r. \"Mi hermano cont\u00f3 una noticia\" ise bu arka plan i\u00e7inde ger\u00e7ekle\u015fen tamamlanm\u0131\u015f olayd\u0131r; indefinido kullan\u0131l\u0131r."}, {"id": 21, "q": "Cuando Marta ___ en Madrid, normalmente ___ al trabajo en metro. Un d\u00eda, el metro no ___ y tuvo que tomar un taxi.", "opts": ["vivi\u00f3 / iba / funcionaba", "viv\u00eda / fue / funcion\u00f3", "vivi\u00f3 / fue / funcionaba", "viv\u00eda / iba / funcion\u00f3"], "ans": 3, "exp": "\"Cuando viv\u00eda en Madrid\" ge\u00e7mi\u015fteki ya\u015fam d\u00f6nemi i\u00e7in imperfecto kullan\u0131l\u0131r. \"Normalmente iba\" ge\u00e7mi\u015f al\u0131\u015fkanl\u0131\u011f\u0131d\u0131r. \"Un d\u00eda el metro no funcion\u00f3\" belirli bir g\u00fcn ya\u015fanan tamamlanm\u0131\u015f problem oldu\u011fu i\u00e7in indefinido gerekir."}, {"id": 22, "q": "El museo ___ muy interesante. Primero ___ la sala de arte moderno y luego ___ muchas fotos.", "opts": ["era / visitamos / sacamos", "fue / visit\u00e1bamos / sac\u00e1bamos", "era / visit\u00e1bamos / sacamos", "fue / visitamos / sac\u00e1bamos"], "ans": 0, "exp": "\"El museo era interesante\" m\u00fczenin genel tan\u0131m\u0131d\u0131r; imperfecto daha do\u011fald\u0131r. \"Primero visitamos\" ve \"luego sacamos\" olay s\u0131ras\u0131n\u0131 anlat\u0131r. S\u0131ral\u0131, tamamlanm\u0131\u015f gezi eylemleri i\u00e7in indefinido kullan\u0131l\u0131r."}, {"id": 23, "q": "Mientras mi madre ___ la cena, mi padre ___ la mesa. En ese momento, yo ___ la puerta.", "opts": ["prepar\u00f3 / pon\u00eda / abr\u00ed", "preparaba / puso / abr\u00eda", "preparaba / pon\u00eda / abr\u00ed", "prepar\u00f3 / puso / abr\u00eda"], "ans": 2, "exp": "\"Mientras mi madre preparaba\" ve \"mi padre pon\u00eda la mesa\" ayn\u0131 anda devam eden iki ge\u00e7mi\u015f eylemdir; imperfecto kullan\u0131l\u0131r. \"Yo abr\u00ed la puerta\" ise bu arka plan s\u0131ras\u0131nda ger\u00e7ekle\u015fen k\u0131sa ve tamamlanm\u0131\u015f olayd\u0131r; indefinido gerekir."}, {"id": 24, "q": "Antes, nosotros ___ cartas a nuestros primos. En 2010, les ___ un correo electr\u00f3nico por primera vez y nos ___ mucho.", "opts": ["escribimos / mand\u00e1bamos / gustaba", "escrib\u00edamos / mandamos / gust\u00f3", "escrib\u00edamos / mand\u00e1bamos / gust\u00f3", "escribimos / mandamos / gustaba"], "ans": 1, "exp": "\"Antes escrib\u00edamos cartas\" ge\u00e7mi\u015f al\u0131\u015fkanl\u0131\u011f\u0131d\u0131r; imperfecto gerekir. \"En 2010 mandamos un correo por primera vez\" belirli bir y\u0131lda ilk kez yap\u0131lan tamamlanm\u0131\u015f eylemdir. \"Nos gust\u00f3 mucho\" o deneyimle ilgili tamamlanm\u0131\u015f tepkiyi anlat\u0131r; indefinido kullan\u0131l\u0131r."}, {"id": 25, "q": "La profesora ___ muy amable y siempre nos ___ con paciencia. Pero ayer nos ___ un examen dif\u00edcil.", "opts": ["fue / explic\u00f3 / puso", "era / explicaba / puso", "era / explic\u00f3 / pon\u00eda", "fue / explicaba / pon\u00eda"], "ans": 1, "exp": "\"La profesora era muy amable\" karakter tan\u0131m\u0131d\u0131r; imperfecto gerekir. \"Siempre nos explicaba\" ge\u00e7mi\u015fte tekrar eden davran\u0131\u015f/al\u0131\u015fkanl\u0131kt\u0131r. \"Ayer nos puso un examen\" d\u00fcn ger\u00e7ekle\u015fmi\u015f tamamlanm\u0131\u015f olayd\u0131r; indefinido kullan\u0131l\u0131r."}, {"id": 26, "q": "Cuando llegu\u00e9 a casa, mi hermana ___ en el sof\u00e1 y ___ una serie. Me vio y me ___ qu\u00e9 hab\u00eda pasado.", "opts": ["se sent\u00f3 / vio / preguntaba", "estaba sentada / vio / preguntaba", "se sent\u00f3 / ve\u00eda / pregunt\u00f3", "estaba sentada / ve\u00eda / pregunt\u00f3"], "ans": 3, "exp": "\"Estaba sentada\" o anda i\u00e7inde bulundu\u011fu durumu anlat\u0131r; imperfecto gerekir. \"Ve\u00eda una serie\" ge\u00e7mi\u015fte devam eden eylemdir. \"Me pregunt\u00f3\" ise benim eve gelmemden sonra ger\u00e7ekle\u015fen tamamlanm\u0131\u015f konu\u015fma eylemidir; indefinido kullan\u0131l\u0131r."}, {"id": 27, "q": "El viaje ___ largo, pero nosotros ___ contentos. Al final, ___ a Barcelona a las ocho de la noche.", "opts": ["fue / est\u00e1bamos / llegamos", "era / estuvimos / lleg\u00e1bamos", "fue / estuvimos / lleg\u00e1bamos", "era / est\u00e1bamos / llegamos"], "ans": 0, "exp": "\"El viaje fue largo\" yolculuk tamamlanm\u0131\u015f bir b\u00fct\u00fcn olarak de\u011ferlendirildi\u011fi i\u00e7in indefinido kullan\u0131l\u0131r. \"Est\u00e1bamos contentos\" yolculuk s\u0131ras\u0131ndaki duygu durumudur; imperfecto gerekir. \"Llegamos a Barcelona\" belirli saatte tamamlanm\u0131\u015f var\u0131\u015f eylemidir; indefinido kullan\u0131l\u0131r."}, {"id": 28, "q": "De joven, mi madre ___ mucho deporte. Sin embargo, despu\u00e9s de la universidad, ___ poco tiempo y ___ de entrenar.", "opts": ["hizo / ten\u00eda / dejaba", "hac\u00eda / tuvo / dejaba", "hac\u00eda / tuvo / dej\u00f3", "hizo / tuvo / dej\u00f3"], "ans": 2, "exp": "\"De joven hac\u00eda deporte\" gen\u00e7lik d\u00f6nemindeki al\u0131\u015fkanl\u0131\u011f\u0131 anlat\u0131r; imperfecto gerekir. \"Despu\u00e9s de la universidad tuvo poco tiempo\" hayat\u0131ndaki belirli bir d\u00f6nem de\u011fi\u015fimini anlat\u0131r; indefinido kullan\u0131l\u0131r. \"Dej\u00f3 de entrenar\" da tamamlanm\u0131\u015f bir b\u0131rakma eylemidir."}, {"id": 29, "q": "El lunes pasado, yo ___ muy temprano porque ___ una reuni\u00f3n importante. Mientras desayunaba, mi jefe me ___ un mensaje.", "opts": ["me levantaba / ten\u00eda / enviaba", "me levant\u00e9 / tuve / enviaba", "me levant\u00e9 / ten\u00eda / envi\u00f3", "me levantaba / tuve / envi\u00f3"], "ans": 2, "exp": "\"El lunes pasado me levant\u00e9\" belirli bir g\u00fcnde tamamlanm\u0131\u015f eylemdir; indefinido gerekir. \"Ten\u00eda una reuni\u00f3n\" o g\u00fcn\u00fcn plan\u0131/durumu olarak arka plan verir; imperfecto kullan\u0131l\u0131r. \"Mi jefe me envi\u00f3 un mensaje\" kahvalt\u0131 s\u0131ras\u0131nda ger\u00e7ekle\u015fen tamamlanm\u0131\u015f olayd\u0131r."}, {"id": 30, "q": "Cuando nosotros ___ en el pueblo, no ___ internet en casa. Por eso, un d\u00eda ___ a la biblioteca para estudiar.", "opts": ["vivimos / hubo / fuimos", "viv\u00edamos / hab\u00eda / fuimos", "viv\u00edamos / hubo / \u00edbamos", "vivimos / hab\u00eda / \u00edbamos"], "ans": 1, "exp": "\"Cuando viv\u00edamos en el pueblo\" ge\u00e7mi\u015fteki ya\u015fam d\u00f6nemi i\u00e7in imperfecto kullan\u0131l\u0131r. \"No hab\u00eda internet\" varl\u0131k/yokluk durumudur; imperfecto gerekir. \"Un d\u00eda fuimos a la biblioteca\" belirli bir g\u00fcn yap\u0131lan tamamlanm\u0131\u015f eylemdir; indefinido kullan\u0131l\u0131r."}, {"id": 31, "q": "La pel\u00edcula ___ aburrida al principio, pero despu\u00e9s ___ m\u00e1s interesante. Al final, todos ___ mucho.", "opts": ["era / era / re\u00edamos", "fue / era / nos re\u00edmos", "era / fue / re\u00edamos", "era / fue / nos re\u00edmos"], "ans": 3, "exp": "\"Al principio era aburrida\" filmin ba\u015flang\u0131\u00e7taki durumunu/tan\u0131m\u0131n\u0131 anlat\u0131r; imperfecto kullan\u0131l\u0131r. \"Despu\u00e9s fue m\u00e1s interesante\" film ak\u0131\u015f\u0131nda belirli bir de\u011fi\u015fim/sonu\u00e7 olarak verildi\u011fi i\u00e7in indefinido kullan\u0131l\u0131r. \"Al final nos re\u00edmos mucho\" filmin sonunda ger\u00e7ekle\u015fen tamamlanm\u0131\u015f tepkiyi anlat\u0131r."}, {"id": 32, "q": "Mientras Elena ___ por la calle, ___ a su antiguo profesor. \u00c9l la ___ inmediatamente.", "opts": ["caminaba / vio / reconoci\u00f3", "camin\u00f3 / ve\u00eda / reconoc\u00eda", "caminaba / ve\u00eda / reconoci\u00f3", "camin\u00f3 / vio / reconoc\u00eda"], "ans": 0, "exp": "\"Mientras caminaba\" ge\u00e7mi\u015fte devam eden eylemdir; imperfecto gerekir. \"Vio a su antiguo profesor\" bu y\u00fcr\u00fcy\u00fc\u015f s\u0131ras\u0131nda ger\u00e7ekle\u015fen k\u0131sa ve tamamlanm\u0131\u015f olayd\u0131r. \"La reconoci\u00f3\" da ayn\u0131 \u015fekilde tamamlanm\u0131\u015f bir tan\u0131ma eylemidir."}, {"id": 33, "q": "Antes, mi hermano ___ muy desordenado. Un d\u00eda, ___ su habitaci\u00f3n completamente y desde entonces ___ m\u00e1s organizado.", "opts": ["era / limpi\u00f3 / fue", "fue / limpiaba / era", "era / limpiaba / fue", "fue / limpi\u00f3 / era"], "ans": 0, "exp": "\"Era muy desordenado\" ge\u00e7mi\u015fteki ki\u015filik/al\u0131\u015fkanl\u0131k tan\u0131m\u0131d\u0131r; imperfecto gerekir. \"Un d\u00eda limpi\u00f3 su habitaci\u00f3n\" belirli bir g\u00fcn yap\u0131lan tamamlanm\u0131\u015f eylemdir. \"Desde entonces fue m\u00e1s organizado\" bu olaydan sonra ba\u015flayan de\u011fi\u015fimi sonu\u00e7 olarak verir; indefinido kullan\u0131m\u0131 m\u00fcmk\u00fcnd\u00fcr."}, {"id": 34, "q": "Cuando mis padres ___ j\u00f3venes, ___ poco dinero, pero ___ muy felices.", "opts": ["fueron / tuvieron / fueron", "eran / ten\u00edan / eran", "eran / tuvieron / fueron", "fueron / ten\u00edan / eran"], "ans": 1, "exp": "\"Cuando mis padres eran j\u00f3venes\" ge\u00e7mi\u015f d\u00f6nem tan\u0131m\u0131d\u0131r; imperfecto gerekir. \"Ten\u00edan poco dinero\" s\u00fcreklilik g\u00f6steren ekonomik durumdur. \"Eran muy felices\" de ge\u00e7mi\u015fteki genel duygu/durum tan\u0131m\u0131d\u0131r; imperfecto kullan\u0131l\u0131r."}, {"id": 35, "q": "Ayer en clase, nosotros ___ un texto sobre viajes. El texto ___ f\u00e1cil, pero algunas palabras nos ___ dif\u00edciles.", "opts": ["le\u00edamos / fue / parecieron", "le\u00edamos / era / parec\u00edan", "le\u00edmos / era / parecieron", "le\u00edmos / fue / parec\u00edan"], "ans": 2, "exp": "\"Ayer en clase le\u00edmos un texto\" belirli bir derste tamamlanm\u0131\u015f okuma eylemidir; indefinido gerekir. \"El texto era f\u00e1cil\" metnin genel tan\u0131m\u0131d\u0131r; imperfecto kullan\u0131l\u0131r. \"Algunas palabras nos parecieron dif\u00edciles\" o derste olu\u015fan tamamlanm\u0131\u015f de\u011ferlendirmedir; indefinido do\u011fald\u0131r."}, {"id": 36, "q": "La casa de mi abuela ___ grande y ___ muchas flores en el jard\u00edn. El verano pasado, mis primos y yo la ___ de nuevo.", "opts": ["fue / hubo / visit\u00e1bamos", "era / hubo / visit\u00e1bamos", "fue / hab\u00eda / visitamos", "era / hab\u00eda / visitamos"], "ans": 3, "exp": "\"La casa era grande\" fiziksel tasvirdir; imperfecto gerekir. \"Hab\u00eda muchas flores\" ge\u00e7mi\u015fte var olan \u015feyleri anlat\u0131r. \"El verano pasado la visitamos\" belirli bir yaz yap\u0131lan tamamlanm\u0131\u015f ziyaret eylemidir; indefinido kullan\u0131l\u0131r."}, {"id": 37, "q": "Cuando empez\u00f3 la tormenta, nosotros ___ en la playa. El cielo ___ muy oscuro y la gente ___ r\u00e1pidamente.", "opts": ["estuvimos / estaba / sal\u00eda", "est\u00e1bamos / estuvo / sali\u00f3", "estuvimos / estuvo / sal\u00eda", "est\u00e1bamos / estaba / sali\u00f3"], "ans": 3, "exp": "\"Nosotros est\u00e1bamos en la playa\" f\u0131rt\u0131na ba\u015flad\u0131\u011f\u0131nda i\u00e7inde bulunulan durumu anlat\u0131r; imperfecto gerekir. \"El cielo estaba oscuro\" ortam tasviridir. \"La gente sali\u00f3 r\u00e1pidamente\" f\u0131rt\u0131na ba\u015flay\u0131nca ger\u00e7ekle\u015fen tamamlanm\u0131\u015f hareket oldu\u011fu i\u00e7in indefinido kullan\u0131l\u0131r."}, {"id": 38, "q": "De peque\u00f1a, Luc\u00eda ___ con ser m\u00e9dica. A\u00f1os despu\u00e9s, ___ Medicina y finalmente ___ en un hospital.", "opts": ["so\u00f1\u00f3 / estudiaba / trabajaba", "so\u00f1aba / estudiaba / trabaj\u00f3", "so\u00f1aba / estudi\u00f3 / trabaj\u00f3", "so\u00f1\u00f3 / estudi\u00f3 / trabajaba"], "ans": 2, "exp": "\"De peque\u00f1a so\u00f1aba\" \u00e7ocukluktaki s\u00fcrekli hayal/istek durumudur; imperfecto gerekir. \"Estudi\u00f3 Medicina\" belirli bir e\u011fitim s\u00fcrecini tamamlanm\u0131\u015f bir b\u00fct\u00fcn olarak anlat\u0131r; indefinido kullan\u0131l\u0131r. \"Trabaj\u00f3 en un hospital\" da tamamlanm\u0131\u015f ge\u00e7mi\u015f deneyim olarak verilir."}, {"id": 39, "q": "El domingo ___ sol y por eso nosotros ___ al parque. Mientras camin\u00e1bamos, ___ a unos amigos.", "opts": ["hac\u00eda / fuimos / vimos", "hizo / \u00edbamos / ve\u00edamos", "hac\u00eda / \u00edbamos / vimos", "hizo / fuimos / ve\u00edamos"], "ans": 0, "exp": "\"Hac\u00eda sol\" hava durumunu arka plan olarak anlat\u0131r; imperfecto gerekir. \"Fuimos al parque\" o g\u00fcn yap\u0131lan tamamlanm\u0131\u015f eylemdir. \"Vimos a unos amigos\" y\u00fcr\u00fcy\u00fc\u015f s\u0131ras\u0131nda ger\u00e7ekle\u015fen kar\u015f\u0131la\u015fma eylemidir; indefinido kullan\u0131l\u0131r."}, {"id": 40, "q": "Antes, mi familia ___ la televisi\u00f3n despu\u00e9s de cenar. Pero anoche, nadie la ___ porque todos ___ muy cansados.", "opts": ["vio / vio / estuvieron", "ve\u00eda / vio / estaban", "ve\u00eda / ve\u00eda / estuvieron", "vio / ve\u00eda / estaban"], "ans": 1, "exp": "\"Antes mi familia ve\u00eda la televisi\u00f3n\" ge\u00e7mi\u015f al\u0131\u015fkanl\u0131\u011f\u0131d\u0131r; imperfecto gerekir. \"Anoche nadie la vio\" d\u00fcn gece ger\u00e7ekle\u015fmeyen tamamlanm\u0131\u015f eylemdir; indefinido kullan\u0131l\u0131r. \"Todos estaban muy cansados\" o anki fiziksel durum/arka plan oldu\u011fu i\u00e7in imperfecto gerekir."}, {"id": 41, "q": "Cuando llegu\u00e9 al aeropuerto, mi amigo ya ___ all\u00ed. \u00c9l ___ una chaqueta azul y me ___ con la mano.", "opts": ["estuvo / llev\u00f3 / saludaba", "estaba / llevaba / salud\u00f3", "estaba / llev\u00f3 / saludaba", "estuvo / llevaba / salud\u00f3"], "ans": 1, "exp": "\"Ya estaba all\u00ed\" ben vard\u0131\u011f\u0131m anda onun bulundu\u011fu durumu anlat\u0131r; imperfecto gerekir. \"Llevaba una chaqueta azul\" k\u0131yafet tasviridir; imperfecto kullan\u0131l\u0131r. \"Me salud\u00f3\" ise o anda ger\u00e7ekle\u015fen tamamlanm\u0131\u015f eylemdir; indefinido gerekir."}, {"id": 42, "q": "La fiesta ___ muy divertida. Todos ___ m\u00fasica y, al final, nosotros ___ hasta tarde.", "opts": ["era / escucharon / bail\u00e1bamos", "fue / escuchaban / bail\u00e1bamos", "era / escuch\u00e1bamos / bailamos", "fue / escuchaban / bailamos"], "ans": 3, "exp": "\"La fiesta fue muy divertida\" parti tamamlanm\u0131\u015f bir b\u00fct\u00fcn olarak de\u011ferlendiriliyor; indefinido kullan\u0131l\u0131r. \"Todos escuchaban m\u00fasica\" parti s\u0131ras\u0131nda devam eden arka plan eylemidir. \"Al final bailamos hasta tarde\" partinin sonunda ger\u00e7ekle\u015fen tamamlanm\u0131\u015f eylemdir."}, {"id": 43, "q": "Cuando era estudiante, yo ___ mucho en la biblioteca. Un d\u00eda, ___ un libro muy antiguo y lo ___ en dos d\u00edas.", "opts": ["estudi\u00e9 / encontraba / le\u00eda", "estudiaba / encontraba / le\u00ed", "estudiaba / encontr\u00e9 / le\u00ed", "estudi\u00e9 / encontr\u00e9 / le\u00eda"], "ans": 2, "exp": "\"Cuando era estudiante estudiaba mucho\" ge\u00e7mi\u015fteki al\u0131\u015fkanl\u0131k/d\u00f6nem anlat\u0131m\u0131d\u0131r; imperfecto gerekir. \"Un d\u00eda encontr\u00e9 un libro\" belirli bir g\u00fcn ger\u00e7ekle\u015fen tamamlanm\u0131\u015f olayd\u0131r. \"Lo le\u00ed en dos d\u00edas\" iki g\u00fcnde tamamlanm\u0131\u015f okuma eylemidir; indefinido kullan\u0131l\u0131r."}, {"id": 44, "q": "El ni\u00f1o ___ triste porque no ___ su juguete favorito. Despu\u00e9s de buscarlo mucho, lo ___ debajo de la cama.", "opts": ["estaba / encontraba / encontr\u00f3", "estuvo / encontr\u00f3 / encontraba", "estaba / encontr\u00f3 / encontr\u00f3", "estuvo / encontraba / encontr\u00f3"], "ans": 0, "exp": "\"El ni\u00f1o estaba triste\" o anki duygu durumudur; imperfecto gerekir. \"No encontraba su juguete\" oyunca\u011f\u0131n\u0131 bulamama durumu devam eden bir problem olarak anlat\u0131l\u0131r; imperfecto kullan\u0131l\u0131r. \"Lo encontr\u00f3 debajo de la cama\" ise araman\u0131n sonunda ger\u00e7ekle\u015fen tamamlanm\u0131\u015f olayd\u0131r."}, {"id": 45, "q": "Mi t\u00eda ___ muy bien cuando era joven. En una boda, ___ una canci\u00f3n tradicional y todos la ___.", "opts": ["cantaba / cant\u00f3 / aplaudieron", "cant\u00f3 / cantaba / aplaud\u00edan", "cantaba / cantaba / aplaudieron", "cant\u00f3 / cant\u00f3 / aplaud\u00edan"], "ans": 0, "exp": "\"Cantaba muy bien cuando era joven\" gen\u00e7lik d\u00f6nemindeki genel yetenek/al\u0131\u015fkanl\u0131k anlat\u0131m\u0131d\u0131r; imperfecto gerekir. \"En una boda cant\u00f3 una canci\u00f3n\" belirli bir d\u00fc\u011f\u00fcnde yap\u0131lm\u0131\u015f tamamlanm\u0131\u015f eylemdir. \"Todos la aplaudieron\" de \u015fark\u0131dan sonra ger\u00e7ekle\u015fen tamamlanm\u0131\u015f tepkidir."}, {"id": 46, "q": "Mientras nosotros ___ la ciudad, ___ una tienda muy bonita. Entramos y el vendedor nos ___ varios recuerdos.", "opts": ["visitamos / ve\u00edamos / mostraba", "visit\u00e1bamos / ve\u00edamos / mostr\u00f3", "visit\u00e1bamos / vimos / mostr\u00f3", "visitamos / vimos / mostraba"], "ans": 2, "exp": "\"Mientras visit\u00e1bamos la ciudad\" \u015fehir gezisi s\u0131ras\u0131nda devam eden eylemdir; imperfecto gerekir. \"Vimos una tienda\" gezi s\u0131ras\u0131nda bir anda ger\u00e7ekle\u015fen fark etme eylemidir; indefinido kullan\u0131l\u0131r. \"El vendedor nos mostr\u00f3\" i\u00e7eri girdikten sonra tamamlanm\u0131\u015f bir eylemdir."}, {"id": 47, "q": "Antes, Clara ___ miedo de hablar en p\u00fablico. El mes pasado, ___ una presentaci\u00f3n y ___ mucho m\u00e1s segura.", "opts": ["tuvo / hac\u00eda / estaba", "ten\u00eda / hac\u00eda / estuvo", "tuvo / hizo / estaba", "ten\u00eda / hizo / estuvo"], "ans": 3, "exp": "\"Antes ten\u00eda miedo\" ge\u00e7mi\u015fte s\u00fcreklilik g\u00f6steren duygu durumudur; imperfecto gerekir. \"El mes pasado hizo una presentaci\u00f3n\" belirli bir zamanda tamamlanm\u0131\u015f eylemdir. \"Estuvo mucho m\u00e1s segura\" sunum s\u0131ras\u0131nda veya sonras\u0131nda ya\u015fanan tamamlanm\u0131\u015f duygu durumunu anlat\u0131r; indefinido kullan\u0131l\u0131r."}, {"id": 48, "q": "Cuando nosotros ___ ni\u00f1os, ___ mucho tiempo en la calle. Pero un d\u00eda, una vecina nos ___ volver a casa temprano.", "opts": ["fuimos / pas\u00e1bamos / pidi\u00f3", "\u00e9ramos / pas\u00e1bamos / pidi\u00f3", "\u00e9ramos / pasamos / ped\u00eda", "fuimos / pasamos / ped\u00eda"], "ans": 1, "exp": "\"Cuando \u00e9ramos ni\u00f1os\" \u00e7ocukluk d\u00f6nemini anlat\u0131r; imperfecto gerekir. \"Pas\u00e1bamos mucho tiempo\" ge\u00e7mi\u015fte tekrar eden al\u0131\u015fkanl\u0131kt\u0131r. \"Un d\u00eda una vecina nos pidi\u00f3\" belirli bir g\u00fcn ger\u00e7ekle\u015fen tamamlanm\u0131\u015f rica/uyar\u0131 eylemidir; indefinido kullan\u0131l\u0131r."}, {"id": 49, "q": "La ma\u00f1ana ___ fr\u00eda y el autob\u00fas ___ tarde. Por eso, yo ___ a clase diez minutos despu\u00e9s.", "opts": ["fue / lleg\u00f3 / llegaba", "estaba / lleg\u00f3 / llegu\u00e9", "estaba / llegaba / llegu\u00e9", "fue / llegaba / llegaba"], "ans": 1, "exp": "\"La ma\u00f1ana estaba fr\u00eda\" hava/ortam tasviridir; imperfecto gerekir. \"El autob\u00fas lleg\u00f3 tarde\" belirli bir sabah ya\u015fanan tamamlanm\u0131\u015f olayd\u0131r; indefinido kullan\u0131l\u0131r. \"Yo llegu\u00e9 a clase\" de sonucu anlatan tamamlanm\u0131\u015f eylemdir."}, {"id": 50, "q": "Cuando mis amigos ___ de viaje, siempre me ___ mensajes. El verano pasado, ___ desde M\u00e9xico y me contaron muchas cosas.", "opts": ["estaban / mandaban / escribieron", "estuvieron / mandaban / escrib\u00edan", "estaban / mandaron / escribieron", "estuvieron / mandaron / escrib\u00edan"], "ans": 0, "exp": "\"Cuando mis amigos estaban de viaje\" ge\u00e7mi\u015fte seyahatte olduklar\u0131 d\u00f6nemleri anlat\u0131r; imperfecto kullan\u0131l\u0131r. \"Siempre me mandaban mensajes\" ge\u00e7mi\u015fte tekrar eden al\u0131\u015fkanl\u0131kt\u0131r. \"El verano pasado escribieron desde M\u00e9xico\" belirli bir yaz ger\u00e7ekle\u015fmi\u015f tamamlanm\u0131\u015f eylemdir; indefinido gerekir."}];
+const SECTIONS=[["&#x1F4DD; 1\u201310: Karma C\u00fcmleler", 1, 20], ["&#x1F517; 11\u201320: Neden-Sonu\u00e7", 2, 20], ["&#x1F4BC; 21\u201330: Kariyer & Hayat", 3, 20], ["&#x1F33F; 31\u201340: \u00c7ocukluk & Seyahat", 4, 20], ["&#x1F3AF; 41\u201350: Karma Kullan\u0131m", 5, 20]];
+
 let student='',answers={},cur=0;
+
 function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('sc-'+id).classList.add('active');window.scrollTo(0,0);}
-function startQuiz(){const s=document.getElementById('name-sel');if(!s.value){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!');return;}student=s.value;answers={};cur=0;document.getElementById('top-st').textContent=student;show('quiz');render();}
-function secLabel(id){if(id<=10)return 'K\u0131s\u0131m 1 \u2014 Karma C\u00fcmleler';if(id<=20)return 'K\u0131s\u0131m 2 \u2014 Neden-Sonu\u00e7';if(id<=30)return 'K\u0131s\u0131m 3 \u2014 Kariyer & Hayat';if(id<=40)return 'K\u0131s\u0131m 4 \u2014 \u00c7ocukluk & Seyahat';return 'K\u0131s\u0131m 5 \u2014 Karma Kullan\u0131m';}
+
+function startQuiz(){
+  const s=document.getElementById('name-sel');
+  if(!s.value){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!');return;}
+  student=s.value;answers={};cur=0;
+  document.getElementById('top-st').textContent=student;
+  show('quiz');render();
+}
+
+function secLabel(id){
+  for(const [lbl,sid,] of SECTIONS){
+    const prev=SECTIONS[SECTIONS.indexOf(SECTIONS.find(x=>x[1]===sid))-1];
+    const from=prev?prev[1]*Math.round(50/SECTIONS.length)+1:1;
+    // simple: use order
+  }
+  if(id<=10)return '&#x1F4DD; 1–10: Karma Cümleler';if(id<=20)return '&#x1F517; 11–20: Neden-Sonuç';if(id<=30)return '&#x1F4BC; 21–30: Kariyer & Hayat';if(id<=40)return '&#x1F33F; 31–40: Çocukluk & Seyahat';
+  return '&#x1F3AF; 41–50: Karma Kullanım';
+}
+
 function render(){
-  const q=QS[cur];const done=Object.keys(answers).length;
-  document.getElementById('pgfill').style.width=(done/50*100)+'%';
+  const q=QS[cur];
+  const done=Object.keys(answers).length;
+  document.getElementById('pgf').style.width=(done/TOTAL*100)+'%';
   document.getElementById('pg-sec').textContent=secLabel(q.id);
   document.getElementById('pg-cur').textContent=cur+1;
-  document.getElementById('nav-ctr').textContent=(cur+1)+' / 50';
+  document.getElementById('nav-ctr').textContent=(cur+1)+' / '+TOTAL;
   document.getElementById('fin-ans').textContent=done;
   document.getElementById('btn-prev').disabled=(cur===0);
   const bn=document.getElementById('btn-next');
-  if(cur===49){bn.textContent='\u2714 Teslim Et';bn.className='btn btn-gold btn-sm';bn.onclick=goConfirm;}
-  else{bn.textContent='\u0130leri \u2192';bn.className='btn btn-main btn-sm';bn.onclick=()=>nav(1);}
+  if(cur===TOTAL-1){bn.textContent='\u2714 Teslim Et';bn.className='btn bg bs';bn.onclick=goConfirm;}
+  else{bn.textContent='\u0130leri \u2192';bn.className='btn bm bs';bn.onclick=()=>nav(1);}
   const ua=answers[q.id];
   const qText=q.q.replace(/___+/g,'<span style="color:var(--c5);font-weight:800">______</span>');
-  let h='<div class="sec-badge">'+secLabel(q.id)+'</div><div class="qcard">';
-  h+='<div class="qhead"><div class="qnum">'+q.id+'</div><div class="qtext">'+qText+'</div></div>';
-  h+='<div class="qopts">';
-  q.opts.forEach((o,i)=>{let c='obtn';if(ua!==undefined){if(i===q.ans)c+=' ok';if(i===ua&&ua!==q.ans)c+=' er';}h+='<button class="'+c+'" '+(ua!==undefined?'disabled':'')+' onclick="pick('+q.id+','+i+')"><span class="oltr">'+LTR[i]+'</span><span>'+o+'</span></button>';});
-  h+='</div><div class="expl '+(ua!==undefined?'show':'')+'"><div class="explbl">A\u00e7\u0131klama</div>'+q.exp+'</div></div>';
+  let h='<div class="sb">'+secLabel(q.id)+'</div><div class="qc">';
+  h+='<div class="qh"><div class="qn">'+q.id+'</div><div class="qt">'+qText+'</div></div>';
+  h+='<div class="qo">';
+  q.opts.forEach((o,i)=>{
+    let c='ob';
+    if(ua!==undefined){if(i===q.ans)c+=' ok';if(i===ua&&ua!==q.ans)c+=' er';}
+    h+='<button class="'+c+'" '+(ua!==undefined?'disabled':'')+' onclick="pick('+q.id+','+i+')"><span class="ol">'+LTR[i]+'</span><span>'+o+'</span></button>';
+  });
+  h+='</div>';
+  h+='<div class="ex '+(ua!==undefined?'show':'')+'"><div class="exl">&#x1F4A1; A\u00e7\u0131klama</div>'+q.exp+'</div>';
+  h+='</div>';
   document.getElementById('q-area').innerHTML=h;
-  let ok=0,er=0;QS.forEach(qq=>{const a=answers[qq.id];if(a===undefined)return;if(a===qq.ans)ok++;else er++;});
-  document.getElementById('sc-ok').textContent=ok;document.getElementById('sc-er').textContent=er;
+  let ok=0,er=0;
+  QS.forEach(qq=>{const a=answers[qq.id];if(a===undefined)return;if(a===qq.ans)ok++;else er++;});
+  document.getElementById('sc-ok').textContent=ok;
+  document.getElementById('sc-er').textContent=er;
 }
-function nav(d){cur=Math.max(0,Math.min(49,cur+d));render();}
+
+function nav(d){cur=Math.max(0,Math.min(TOTAL-1,cur+d));render();}
 function pick(qid,i){if(answers[qid]!==undefined)return;answers[qid]=i;render();}
 function goConfirm(){document.getElementById('cf-sel').value=student;show('confirm');}
-function confirmSubmit(){try{const s=document.getElementById('cf-sel');if(!s||!s.value){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!');return;}student=s.value;const b=document.getElementById('cf-btn');if(b){b.disabled=true;b.textContent='\u23f3 Kaydediliyor\u2026';}doSubmit();}catch(e){const b=document.getElementById('cf-btn');if(b){b.disabled=false;b.textContent='\u2714 Evet, Teslim Et';}alert('Hata: '+e.message);}}
+
+function confirmSubmit(){
+  try{
+    const s=document.getElementById('cf-sel');
+    if(!s||!s.value){alert('L\u00fctfen ad\u0131n\u0131z\u0131 se\u00e7in!');return;}
+    student=s.value;
+    const b=document.getElementById('cf-btn');
+    if(b){b.disabled=true;b.textContent='\u23f3 Kaydediliyor\u2026';}
+    doSubmit();
+  }catch(e){
+    const b=document.getElementById('cf-btn');
+    if(b){b.disabled=false;b.textContent='\u2714 Evet, Teslim Et';}
+    alert('Hata: '+e.message);
+  }
+}
+
 function doSubmit(){
-  let ok=0,er=0,bl=0,s1=0,s2=0,s3=0,s4=0,s5=0;
-  QS.forEach(q=>{const a=answers[q.id];if(a===undefined){bl++;return;}const correct=(a===q.ans);if(correct){ok++;if(q.id<=10)s1++;else if(q.id<=20)s2++;else if(q.id<=30)s3++;else if(q.id<=40)s4++;else s5++;}else er++;});
-  const score=ok*2;
+  let ok=0,er=0,bl=0;
+  const secCounts={};
+  SECTIONS.forEach(s=>secCounts[s[1]]=0);
+  QS.forEach(q=>{
+    const a=answers[q.id];
+    if(a===undefined){bl++;return;}
+    if(a===q.ans){
+      ok++;
+      for(let i=0;i<SECTIONS.length;i++){
+        const limit=Math.round((i+1)*TOTAL/SECTIONS.length);
+        const from=i===0?1:Math.round(i*TOTAL/SECTIONS.length)+1;
+        if(q.id>=from&&q.id<=limit){secCounts[SECTIONS[i][1]]++;break;}
+      }
+    } else er++;
+  });
+  const score=ok*PTS;
   document.getElementById('rs-name').textContent=student;
   document.getElementById('rs-score').innerHTML=score+'<span>/100</span>';
   document.getElementById('rs-pct').textContent='%'+score+' ba\u015far\u0131';
-  document.getElementById('rs-c').textContent=ok;document.getElementById('rs-w').textContent=er;document.getElementById('rs-b').textContent=bl;
-  document.getElementById('br1').textContent=(s1*2)+' / 20';document.getElementById('br2').textContent=(s2*2)+' / 20';
-  document.getElementById('br3').textContent=(s3*2)+' / 20';document.getElementById('br4').textContent=(s4*2)+' / 20';
-  document.getElementById('br5').textContent=(s5*2)+' / 20';
-  show('result');saveSheets(student,score,ok,er,bl);
+  document.getElementById('rs-c').textContent=ok;
+  document.getElementById('rs-w').textContent=er;
+  document.getElementById('rs-b').textContent=bl;
+  SECTIONS.forEach((s,i)=>{
+    document.getElementById('br'+s[1]).textContent=(secCounts[s[1]]*PTS)+' / '+s[2];
+  });
+  show('result');
+  saveSheets(student,score,ok,er,bl);
 }
+
 async function saveSheets(nm,score,ok,er,bl){
   const el=document.getElementById('rs-status');
-  try{const n=new Date();const dd=String(n.getDate()).padStart(2,'0'),mm=String(n.getMonth()+1).padStart(2,'0'),yy=n.getFullYear();const hh=String(n.getHours()).padStart(2,'0'),mi=String(n.getMinutes()).padStart(2,'0'),ss=String(n.getSeconds()).padStart(2,'0');
-  const fmt='\u2705 '+score+'/100\\n\u2713'+ok+' \u2717'+er+'\\n'+dd+'.'+mm+'.'+yy+'\\n'+hh+':'+mi+':'+ss;
-  await fetch(ASU,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({spreadsheetId:SID,sheetName:SHN,studentName:nm,taskColumn:TCL,score,correct:ok,wrong:er,blank:bl,formatted:fmt})});
-  el.className='stbadge stok';el.textContent='\u2705 \u00d6dev ba\u015far\u0131yla kaydedildi!';}
-  catch(e){el.className='stbadge ster';el.textContent='\u26a0\ufe0f Kaydedilemedi \u2014 Profeye bildirin';}
+  try{
+    const n=new Date();
+    const dd=String(n.getDate()).padStart(2,'0'),mm=String(n.getMonth()+1).padStart(2,'0'),yy=n.getFullYear();
+    const hh=String(n.getHours()).padStart(2,'0'),mi=String(n.getMinutes()).padStart(2,'0'),ss2=String(n.getSeconds()).padStart(2,'0');
+    const fmt='\u2705 '+score+'/100\n\u2713'+ok+' \u2717'+er+'\n'+dd+'.'+mm+'.'+yy+'\n'+hh+':'+mi+':'+ss2;
+    await fetch(ASU,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({spreadsheetId:SID,sheetName:SHN,studentName:nm,taskColumn:TCL,score,correct:ok,wrong:er,blank:bl,formatted:fmt})});
+    el.className='stb stok';el.textContent='\u2705 \u00d6dev ba\u015far\u0131yla kaydedildi!';
+  }catch(e){
+    el.className='stb ster';el.textContent='\u26a0\ufe0f Kaydedilemedi \u2014 Profeye bildirin';
+  }
 }
+
 function goName(){answers={};cur=0;document.getElementById('name-sel').value='';show('name');}
-</script></body></html>
+</script>
+</body>
+</html>
