@@ -13,17 +13,14 @@
   --green:#6aab7a; --red:#d97070; --radius:14px;
 }
 body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,#fff5f5 0%,#fffde8 60%,#fff0f8 100%); min-height:100vh; color:var(--dark); }
-
 .header { background:linear-gradient(135deg,var(--pink1),var(--pink3)); padding:18px 20px 14px; text-align:center; box-shadow:0 4px 18px rgba(246,196,195,0.45); position:relative; overflow:hidden; }
 .header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.13) 14px,rgba(255,255,255,0.13) 15px); }
 .header-tag { display:inline-block; background:rgba(255,255,255,0.4); border:1.5px solid rgba(255,255,255,0.6); border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; margin-bottom:8px; color:var(--dark); position:relative; }
 .header h1 { font-size:clamp(16px,4vw,23px); font-weight:800; color:var(--dark); position:relative; text-shadow:0 1px 4px rgba(255,255,255,0.5); }
 .header-sub { font-size:12px; color:var(--mid); margin-top:4px; position:relative; }
-
 .screen { display:none; animation:fadeIn 0.3s ease; }
 .screen.active { display:block; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
 /* NAME */
 .name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
 .name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
@@ -34,7 +31,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .ib-row { display:flex; align-items:flex-start; gap:9px; margin-bottom:5px; }
 .ib-row:last-child { margin-bottom:0; }
 .ib-dot { width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; margin-top:5px; }
-
 /* BUTTONS */
 .btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 24px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; }
 .btn-pink   { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); box-shadow:0 4px 12px rgba(246,196,195,0.45); }
@@ -46,7 +42,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .btn-sm   { padding:9px 18px; font-size:13px; }
 .btn-full { width:100%; }
 .btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
-
 /* WRITING */
 .writing-wrap { max-width:620px; margin:0 auto; padding:20px 16px; }
 .writing-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(246,196,195,0.2); margin-bottom:16px; }
@@ -66,7 +61,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .send-status { margin-top:12px; padding:10px 16px; border-radius:8px; font-size:13px; font-weight:600; text-align:center; display:none; }
 .send-ok  { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
 .send-err { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
-
 .rubric { width:100%; border-collapse:collapse; margin-top:16px; font-size:13.5px; }
 .rubric th { background:linear-gradient(90deg,var(--pink1),var(--pink3)); padding:9px 14px; text-align:left; font-size:12px; letter-spacing:.8px; text-transform:uppercase; color:var(--dark); }
 .rubric td { padding:9px 14px; border-bottom:1px solid var(--pink2); vertical-align:top; line-height:1.5; }
@@ -74,12 +68,10 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .rubric tr:nth-child(even) td { background:rgba(248,219,216,0.2); }
 .rubric .pts { text-align:right; color:#9a7000; font-weight:700; white-space:nowrap; }
 .writing-nav { display:flex; gap:10px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
-
 /* CONFIRM */
 .confirm-wrap { max-width:420px; margin:0 auto; padding:40px 20px; text-align:center; }
 .confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
 .confirm-wrap p  { font-size:14px; color:var(--mid); margin-bottom:20px; line-height:1.6; }
-
 /* RESULT */
 .result-wrap { max-width:440px; margin:0 auto; padding:28px 20px; text-align:center; }
 .result-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:20px; padding:28px 22px; margin-bottom:14px; box-shadow:0 6px 24px rgba(246,196,195,0.3); }
@@ -95,13 +87,11 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="header-tag">1. Hafta Ödevi &nbsp;|&nbsp; A2.1 (1-2. Ders)</div>
   <h1>🇪🇸 A2.1 – H1 1-2. Ders – Yazma Ödevi</h1>
   <div class="header-sub">Pretérito Perfecto &nbsp;•&nbsp; Yazma Bölümü &nbsp;•&nbsp; 100 puan &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
 </div>
-
 <!-- EKRAN 1: AD SEÇİMİ -->
 <div class="screen active" id="screen-name">
   <div class="name-body">
@@ -110,18 +100,22 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <select class="name-select" id="name-select">
       <option value="">-- Adınızı Seçin --</option>
       <option>Aysen Gurkan</option>
-      <option>Begum Senturk</option>
-      <option>Didem Dundar</option>
-      <option>Ebru Ozgen</option>
-      <option>Ece Turhanoglu</option>
-      <option>Esra Ozkaya</option>
-      <option>Gulsah Gundogdu</option>
-      <option>Irem Savas</option>
-      <option>Kardelen Kuscu</option>
-      <option>Oznur Ozdogan Ozer</option>
-      <option>Sevde Ozdemir</option>
-      <option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option>
+      <option>Birce Suzen</option>
+      <option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option>
+      <option>Elif Ozgur Atli</option>
+      <option>Elif Safak</option>
+      <option>Emel Kanburoglu</option>
+      <option>Gulce Eyibilir</option>
+      <option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option>
+      <option>Meryem Ozbek</option>
+      <option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option>
+      <option>Yasemin Kurtulus Tunc</option>
+      <option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option>
+      <option>Zeynep Oztaskin</option>
     </select>
     <div class="info-box">
       <div class="ib-row"><div class="ib-dot"></div><span><strong>Yazma Bölümü:</strong> Pretérito Perfecto zamanını kullanarak kısa bir metin yazacaksınız.</span></div>
@@ -131,18 +125,14 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <button class="btn btn-pink btn-full" onclick="startWriting()">▶ Başla</button>
   </div>
 </div>
-
 <!-- EKRAN 2: YAZMA -->
 <div class="screen" id="screen-writing">
   <div class="writing-wrap">
     <div class="writing-card">
       <div class="writing-head">✍️ &nbsp;Yazma Ödevi &nbsp;<span style="opacity:.7;font-weight:400;font-size:13px">(100 puan)</span></div>
       <div class="writing-body">
-
         <div class="konu-box">📝 Konu: Son dersimizden bu yana neler yaptınız?</div>
-
         <p>Bu bölümde sizden <strong>Pretérito Perfecto</strong> zamanını kullanarak kısa bir yazı yazmanız istenmektedir.</p>
-
         <div class="bilgi-box">
           <div class="bilgi-label">📋 Yazınızın başına ekleyin</div>
           <strong>Nombre y Apellido:</strong> <span id="writing-name-display">—</span><br>
@@ -150,7 +140,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
           <strong>Tema de la tarea:</strong> Pretérito Perfecto<br>
           <strong>Título de tu texto:</strong> _______________________
         </div>
-
         <p style="margin-top:14px"><strong>Yönerge</strong></p>
         <p style="margin-top:6px">Son dersimizden bu yana neler yaptığınızı anlatan kısa bir metin yazınız.<br>Metninizde mutlaka:</p>
         <ul style="margin-top:8px">
@@ -161,19 +150,16 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
           <li>Yaptığınız etkinlikleri sadece listelemeyiniz; her etkinliği <strong>neden-sonuç ilişkisiyle</strong> açıklayınız.</li>
           <li>Cümlelerinizde özellikle <strong>Pretérito Perfecto</strong> kullanmaya dikkat ediniz.</li>
         </ul>
-
         <div class="ornek-box">
           <strong style="font-style:normal;color:#6c3483">Örnek yapılar:</strong><br>
           He estudiado español porque quiero mejorar mi nivel.<br>
           He visto una película en español y por eso he aprendido palabras nuevas.<br>
           He descansado más porque he estado muy cansado/a esta semana.
         </div>
-
         <p style="margin-top:14px"><strong>✏️ Yazınızı aşağıya yazın:</strong></p>
         <textarea class="writing-textarea" id="writing-input" placeholder="Yazınızı buraya yazın…" oninput="updateCharCount()"></textarea>
         <div class="char-count" id="char-count">0 karakter</div>
         <div class="send-status" id="send-status"></div>
-
         <p style="margin-top:20px"><strong>📊 Puanlama Cetveli</strong></p>
         <table class="rubric">
           <thead><tr><th>Kriter</th><th class="pts">Puan</th></tr></thead>
@@ -187,7 +173,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
             <tr><td><strong>Maksimum puan</strong></td><td class="pts"><strong>100</strong></td></tr>
           </tbody>
         </table>
-
       </div>
     </div>
     <div class="writing-nav">
@@ -195,7 +180,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
   </div>
 </div>
-
 <!-- EKRAN 3: AD ONAY -->
 <div class="screen" id="screen-confirm">
   <div class="confirm-wrap">
@@ -205,23 +189,26 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
       <option value="">-- Adınızı Seçin --</option>
       <option>Aysen Gurkan</option>
-      <option>Begum Senturk</option>
-      <option>Didem Dundar</option>
-      <option>Ebru Ozgen</option>
-      <option>Ece Turhanoglu</option>
-      <option>Esra Ozkaya</option>
-      <option>Gulsah Gundogdu</option>
-      <option>Irem Savas</option>
-      <option>Kardelen Kuscu</option>
-      <option>Oznur Ozdogan Ozer</option>
-      <option>Sevde Ozdemir</option>
-      <option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option>
+      <option>Birce Suzen</option>
+      <option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option>
+      <option>Elif Ozgur Atli</option>
+      <option>Elif Safak</option>
+      <option>Emel Kanburoglu</option>
+      <option>Gulce Eyibilir</option>
+      <option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option>
+      <option>Meryem Ozbek</option>
+      <option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option>
+      <option>Yasemin Kurtulus Tunc</option>
+      <option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option>
+      <option>Zeynep Oztaskin</option>
     </select>
     <button class="btn btn-yellow btn-full" onclick="confirmAndSubmit()">✔ Ödevi Teslim Et</button>
   </div>
 </div>
-
 <!-- EKRAN 4: SONUÇ -->
 <div class="screen" id="screen-result">
   <div class="result-wrap">
@@ -237,23 +224,19 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
   </div>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
 emailjs.init('xNYEbUQNiWJPvbyoJ');
 const EMAILJS_SERVICE  = 'service_4ee1wh7';
 const EMAILJS_TEMPLATE = 'template_xjyyxhf';
 const LESSON_NAME      = 'A2.1 H1 – 1-2. Ders (Yazma)';
-
 let studentName  = '';
 let writingText  = '';
-
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
   window.scrollTo(0, 0);
 }
-
 function startWriting() {
   const sel = document.getElementById('name-select');
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
@@ -261,12 +244,10 @@ function startWriting() {
   document.getElementById('writing-name-display').textContent = studentName;
   showScreen('writing');
 }
-
 function updateCharCount() {
   const len = document.getElementById('writing-input').value.length;
   document.getElementById('char-count').textContent = len + ' karakter';
 }
-
 function goToConfirm() {
   const text = document.getElementById('writing-input').value.trim();
   if (text.length < 20) { alert('Lütfen yazınızı tamamlayın (en az 20 karakter).'); return; }
@@ -274,19 +255,15 @@ function goToConfirm() {
   document.getElementById('confirm-name-select').value = studentName;
   showScreen('confirm');
 }
-
 async function confirmAndSubmit() {
   const sel = document.getElementById('confirm-name-select');
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
   studentName = sel.value;
-
   const btn = document.querySelector('#screen-confirm .btn-yellow');
   btn.disabled = true;
   btn.textContent = '⏳ Gönderiliyor…';
-
   const now    = new Date();
   const tarih  = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
-
   try {
     await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
       student_name: studentName,
@@ -304,7 +281,6 @@ async function confirmAndSubmit() {
     alert('Gönderilemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.');
   }
 }
-
 function goToName() {
   studentName = ''; writingText = '';
   document.getElementById('name-select').value = '';
