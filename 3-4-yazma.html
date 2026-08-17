@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – H1 3-4. Ders – Yazma Bölümü</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --pink1:#F6C4C3; --pink2:#F8DBD8; --pink3:#FAAED2;
+  --yellow:#F8CE5B; --cream:#FFFFE0;
+  --dark:#5a3a3a; --mid:#8a6060; --white:#ffffff;
+  --green:#6aab7a; --red:#d97070; --radius:14px;
+}
+body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,#fff5f5 0%,#fffde8 60%,#fff0f8 100%); min-height:100vh; color:var(--dark); }
+.header { background:linear-gradient(135deg,var(--pink1),var(--pink3)); padding:18px 20px 14px; text-align:center; box-shadow:0 4px 18px rgba(246,196,195,0.45); position:relative; overflow:hidden; }
+.header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.13) 14px,rgba(255,255,255,0.13) 15px); }
+.header-tag { display:inline-block; background:rgba(255,255,255,0.4); border:1.5px solid rgba(255,255,255,0.6); border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; margin-bottom:8px; color:var(--dark); position:relative; }
+.header h1 { font-size:clamp(16px,4vw,23px); font-weight:800; color:var(--dark); position:relative; text-shadow:0 1px 4px rgba(255,255,255,0.5); }
+.header-sub { font-size:12px; color:var(--mid); margin-top:4px; position:relative; }
+.screen { display:none; animation:fadeIn 0.3s ease; }
+.screen.active { display:block; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+/* NAME */
+.name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
+.name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
+.name-body p  { font-size:13px; color:var(--mid); margin-bottom:20px; }
+.name-select { width:100%; padding:13px 16px; font-size:15px; background:var(--white); border:2px solid var(--pink1); border-radius:var(--radius); color:var(--dark); appearance:none; cursor:pointer; margin-bottom:14px; font-family:inherit; transition:border-color 0.2s; }
+.name-select:focus { outline:none; border-color:var(--yellow); box-shadow:0 0 0 3px rgba(248,206,91,0.2); }
+.info-box { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:14px 16px; margin-bottom:18px; text-align:left; font-size:13px; line-height:1.75; box-shadow:0 2px 10px rgba(246,196,195,0.18); }
+.ib-row { display:flex; align-items:flex-start; gap:9px; margin-bottom:5px; }
+.ib-row:last-child { margin-bottom:0; }
+.ib-dot { width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; margin-top:5px; }
+/* BUTTONS */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 24px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; }
+.btn-pink   { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); box-shadow:0 4px 12px rgba(246,196,195,0.45); }
+.btn-pink:hover   { transform:translateY(-2px); box-shadow:0 6px 18px rgba(246,196,195,0.65); }
+.btn-yellow { background:linear-gradient(135deg,var(--yellow),#e8b84b); color:var(--dark); box-shadow:0 4px 12px rgba(248,206,91,0.4); }
+.btn-yellow:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(248,206,91,0.55); }
+.btn-outline { background:var(--white); border:2px solid var(--pink1); color:var(--dark); }
+.btn-outline:hover { background:var(--pink2); }
+.btn-sm   { padding:9px 18px; font-size:13px; }
+.btn-full { width:100%; }
+.btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
+/* WRITING */
+.writing-wrap { max-width:620px; margin:0 auto; padding:20px 16px; }
+.writing-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(246,196,195,0.2); margin-bottom:16px; }
+.writing-head { background:linear-gradient(135deg,var(--pink1),var(--pink3)); padding:14px 18px; display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; color:var(--dark); }
+.writing-body { padding:20px; font-size:14px; line-height:1.85; color:var(--dark); }
+.writing-body strong { color:#6c3483; }
+.konu-box { background:linear-gradient(135deg,rgba(246,196,195,0.2),rgba(250,174,210,0.2)); border:1.5px solid var(--pink1); border-radius:10px; padding:14px 16px; margin-bottom:16px; font-size:15px; font-weight:700; color:var(--dark); text-align:center; }
+.bilgi-box { background:var(--cream); border:1px solid rgba(248,206,91,0.4); border-left:3px solid var(--yellow); border-radius:0 8px 8px 0; padding:12px 15px; margin:12px 0; font-size:13px; line-height:1.7; }
+.bilgi-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a7000; margin-bottom:5px; }
+.writing-body ul { margin:8px 0 8px 20px; }
+.writing-body li { margin-bottom:6px; }
+.ornek-box { background:#f8f4ff; border:1px solid rgba(155,89,182,0.2); border-left:3px solid #9b59b6; border-radius:0 8px 8px 0; padding:12px 15px; margin:12px 0; font-size:13px; line-height:1.8; font-style:italic; color:#6c3483; }
+.writing-textarea { width:100%; min-height:220px; padding:14px 16px; font-size:14px; line-height:1.8; font-family:inherit; color:var(--dark); background:var(--cream); border:2px solid rgba(248,206,91,0.5); border-radius:10px; resize:vertical; margin-top:12px; transition:border-color 0.2s; }
+.writing-textarea:focus { outline:none; border-color:var(--yellow); box-shadow:0 0 0 3px rgba(248,206,91,0.15); }
+.char-count { font-size:11px; color:var(--mid); text-align:right; margin-top:4px; }
+.send-status { margin-top:12px; padding:10px 16px; border-radius:8px; font-size:13px; font-weight:600; text-align:center; display:none; }
+.send-ok  { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
+.send-err { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
+.rubric { width:100%; border-collapse:collapse; margin-top:16px; font-size:13.5px; }
+.rubric th { background:linear-gradient(90deg,var(--pink1),var(--pink3)); padding:9px 14px; text-align:left; font-size:12px; letter-spacing:.8px; text-transform:uppercase; color:var(--dark); }
+.rubric td { padding:9px 14px; border-bottom:1px solid var(--pink2); vertical-align:top; line-height:1.5; }
+.rubric tr:last-child td { border-bottom:none; font-weight:700; background:rgba(248,206,91,0.1); }
+.rubric tr:nth-child(even) td { background:rgba(248,219,216,0.2); }
+.rubric .pts { text-align:right; color:#9a7000; font-weight:700; white-space:nowrap; }
+.writing-nav { display:flex; gap:10px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
+/* CONFIRM */
+.confirm-wrap { max-width:420px; margin:0 auto; padding:40px 20px; text-align:center; }
+.confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
+.confirm-wrap p  { font-size:14px; color:var(--mid); margin-bottom:20px; line-height:1.6; }
+/* RESULT */
+.result-wrap { max-width:440px; margin:0 auto; padding:28px 20px; text-align:center; }
+.result-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:20px; padding:28px 22px; margin-bottom:14px; box-shadow:0 6px 24px rgba(246,196,195,0.3); }
+.result-emoji { font-size:50px; margin-bottom:10px; }
+.result-name  { font-size:14px; color:var(--mid); margin-bottom:3px; }
+.result-title { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:16px; }
+.status-badge { display:inline-flex; align-items:center; gap:7px; padding:9px 20px; border-radius:50px; font-size:13px; font-weight:700; margin-bottom:14px; }
+.status-ok    { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
+.status-error { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
+.status-pending { background:rgba(248,206,91,0.18); border:1.5px solid rgba(248,206,91,0.45); color:#9a7000; }
+.result-note { font-size:13px; color:var(--mid); line-height:1.7; margin-top:8px; }
+.result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:16px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-tag">1. Hafta Ödevi &nbsp;|&nbsp; A2.1 (3-4. Ders)</div>
+  <h1>🇪🇸 A2.1 – H1 3-4. Ders – Yazma Bölümü</h1>
+  <div class="header-sub">Pretérito Perfecto &nbsp;•&nbsp; Yazma Bölümü &nbsp;•&nbsp; 100 puan &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+<!-- EKRAN 1: AD SEÇİMİ -->
+<div class="screen active" id="screen-name">
+  <div class="name-body">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="name-select" id="name-select">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option>
+      <option>Birce Suzen</option>
+      <option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option>
+      <option>Elif Ozgur Atli</option>
+      <option>Elif Safak</option>
+      <option>Emel Kanburoglu</option>
+      <option>Gulce Eyibilir</option>
+      <option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option>
+      <option>Meryem Ozbek</option>
+      <option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option>
+      <option>Yasemin Kurtulus Tunc</option>
+      <option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option>
+      <option>Zeynep Oztaskin</option>
+    </select>
+    <div class="info-box">
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Yazma Bölümü:</strong> Pretérito Perfecto zamanını kullanarak kısa bir metin yazacaksınız.</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span>Yazınız bu sayfadan doğrudan Profe Hazel'e iletilecektir.</span></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--pink3)"></div><span>Toplam <strong>100 puan</strong></span></div>
+    </div>
+    <button class="btn btn-pink btn-full" onclick="startWriting()">▶ Başla</button>
+  </div>
+</div>
+<!-- EKRAN 2: YAZMA -->
+<div class="screen" id="screen-writing">
+  <div class="writing-wrap">
+    <div class="writing-card">
+      <div class="writing-head">✍️ &nbsp;Yazma Ödevi &nbsp;<span style="opacity:.7;font-weight:400;font-size:13px">(100 puan)</span></div>
+      <div class="writing-body">
+        <div class="konu-box">📝 Konu: Son dersimizden bu yana neler yaptınız?</div>
+        <p>Bu bölümde sizden <strong>Pretérito Perfecto</strong> zamanını kullanarak kısa bir yazı yazmanız istenmektedir.</p>
+        <div class="bilgi-box">
+          <div class="bilgi-label">📋 Yazınızın başına ekleyin</div>
+          <strong>Nombre y Apellido:</strong> <span id="writing-name-display">—</span><br>
+          <strong>Número de tarea:</strong> A2.1 (3+4)<br>
+          <strong>Tema de la tarea:</strong> Pretérito Perfecto<br>
+          <strong>Título de tu texto:</strong> _______________________
+        </div>
+        <p style="margin-top:14px"><strong>Yönerge</strong></p>
+        <p style="margin-top:6px">Son dersimizden bu yana neler yaptığınızı anlatan kısa bir metin yazınız.<br>Metninizde mutlaka:</p>
+        <ul style="margin-top:8px">
+          <li>Bir başlık olmalıdır.</li>
+          <li>Metin giriş, gelişme ve sonuç bölümlerinden oluşmalıdır.</li>
+          <li>Formal / düzgün bir dil kullanılmalıdır.</li>
+          <li>En az 4 farklı etkinlik anlatılmalıdır.</li>
+          <li>Yaptığınız etkinlikleri sadece listelemeyiniz; her etkinliği <strong>neden-sonuç ilişkisiyle</strong> açıklayınız.</li>
+          <li>Cümlelerinizde özellikle <strong>Pretérito Perfecto</strong> kullanmaya dikkat ediniz.</li>
+        </ul>
+        <div class="ornek-box">
+          <strong style="font-style:normal;color:#6c3483">Örnek yapılar:</strong><br>
+          He estudiado español porque quiero mejorar mi nivel.<br>
+          He visto una película en español y por eso he aprendido palabras nuevas.<br>
+          He descansado más porque he estado muy cansado/a esta semana.
+        </div>
+        <p style="margin-top:14px"><strong>✏️ Yazınızı aşağıya yazın:</strong></p>
+        <textarea class="writing-textarea" id="writing-input" placeholder="Yazınızı buraya yazın…" oninput="updateCharCount()"></textarea>
+        <div class="char-count" id="char-count">0 karakter</div>
+        <div class="send-status" id="send-status"></div>
+        <p style="margin-top:20px"><strong>📊 Puanlama Cetveli</strong></p>
+        <table class="rubric">
+          <thead><tr><th>Kriter</th><th class="pts">Puan</th></tr></thead>
+          <tbody>
+            <tr><td>Ad, soyad, ödev numarası ve başlık bilgilerinin eksiksiz yazılması</td><td class="pts">12.5</td></tr>
+            <tr><td>Metnin giriş, gelişme ve sonuç bölümlerinden oluşması</td><td class="pts">12.5</td></tr>
+            <tr><td>En az 4 farklı etkinliğin anlatılması</td><td class="pts">20</td></tr>
+            <tr><td>Etkinliklerin neden-sonuç ilişkisiyle açıklanması</td><td class="pts">20</td></tr>
+            <tr><td>Pretérito Perfecto zamanının doğru ve uygun kullanılması</td><td class="pts">25</td></tr>
+            <tr><td>Formal, düzenli ve anlaşılır bir dil kullanılması</td><td class="pts">10</td></tr>
+            <tr><td><strong>Maksimum puan</strong></td><td class="pts"><strong>100</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="writing-nav">
+      <button class="btn btn-yellow" id="btn-send" onclick="goToConfirm()">✔ Yazıyı Tamamladım, Teslim Et</button>
+    </div>
+  </div>
+</div>
+<!-- EKRAN 3: AD ONAY -->
+<div class="screen" id="screen-confirm">
+  <div class="confirm-wrap">
+    <div style="font-size:48px;margin-bottom:12px">🎯</div>
+    <h2>Son adım — Adınızı onaylayın</h2>
+    <p>Ödevi göndermeden önce listeden adınızı seçin ve onaylayın.</p>
+    <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option>
+      <option>Birce Suzen</option>
+      <option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option>
+      <option>Elif Ozgur Atli</option>
+      <option>Elif Safak</option>
+      <option>Emel Kanburoglu</option>
+      <option>Gulce Eyibilir</option>
+      <option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option>
+      <option>Meryem Ozbek</option>
+      <option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option>
+      <option>Yasemin Kurtulus Tunc</option>
+      <option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option>
+      <option>Zeynep Oztaskin</option>
+    </select>
+    <button class="btn btn-yellow btn-full" onclick="confirmAndSubmit()">✔ Ödevi Teslim Et</button>
+  </div>
+</div>
+<!-- EKRAN 4: SONUÇ -->
+<div class="screen" id="screen-result">
+  <div class="result-wrap">
+    <div class="result-card">
+      <div class="result-emoji">🇪🇸</div>
+      <div class="result-name" id="res-name">—</div>
+      <div class="result-title">A2.1 · H1 – 3-4. Ders · Pretérito Perfecto · Yazma</div>
+      <div class="status-badge status-pending" id="res-status">⏳ Gönderiliyor…</div>
+      <p class="result-note">Yazmanız Profe Hazel'e iletildi. Puanınız değerlendirme sonrasında bildirilecektir.</p>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-outline" onclick="goToName()">🔄 Yeniden Başla</button>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+emailjs.init('xNYEbUQNiWJPvbyoJ');
+const EMAILJS_SERVICE  = 'service_4ee1wh7';
+const EMAILJS_TEMPLATE = 'template_xjyyxhf';
+const LESSON_NAME      = 'A2.1 H1 – 3-4. Ders (Yazma)';
+let studentName  = '';
+let writingText  = '';
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+function startWriting() {
+  const sel = document.getElementById('name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  document.getElementById('writing-name-display').textContent = studentName;
+  showScreen('writing');
+}
+function updateCharCount() {
+  const len = document.getElementById('writing-input').value.length;
+  document.getElementById('char-count').textContent = len + ' karakter';
+}
+function goToConfirm() {
+  const text = document.getElementById('writing-input').value.trim();
+  if (text.length < 20) { alert('Lütfen yazınızı tamamlayın (en az 20 karakter).'); return; }
+  writingText = text;
+  document.getElementById('confirm-name-select').value = studentName;
+  showScreen('confirm');
+}
+async function confirmAndSubmit() {
+  const sel = document.getElementById('confirm-name-select');
+  if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
+  studentName = sel.value;
+  const btn = document.querySelector('#screen-confirm .btn-yellow');
+  btn.disabled = true;
+  btn.textContent = '⏳ Gönderiliyor…';
+  const now    = new Date();
+  const tarih  = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
+  try {
+    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
+      student_name: studentName,
+      lesson:       LESSON_NAME,
+      submit_date:  tarih,
+      writing_text: writingText
+    });
+    showScreen('result');
+    document.getElementById('res-name').textContent = studentName;
+    document.getElementById('res-status').className = 'status-badge status-ok';
+    document.getElementById('res-status').textContent = '✅ Yazınız başarıyla gönderildi!';
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = '✔ Ödevi Teslim Et';
+    alert('Gönderilemedi. Lütfen internet bağlantınızı kontrol edip tekrar deneyin.');
+  }
+}
+function goToName() {
+  studentName = ''; writingText = '';
+  document.getElementById('name-select').value = '';
+  document.getElementById('writing-input').value = '';
+  document.getElementById('char-count').textContent = '0 karakter';
+  showScreen('name');
+}
+</script>
+</body>
+</html>
