@@ -22,7 +22,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .screen { display:none; animation:fadeIn 0.3s ease; }
 .screen.active { display:block; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
 /* NAME */
 .name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
 .name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
@@ -34,7 +33,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .ib-row:last-child { margin-bottom:0; }
 .ib-dot { width:8px; height:8px; border-radius:50%; background:var(--yellow); flex-shrink:0; margin-top:5px; }
 .ib-hr { height:1px; background:var(--pink2); margin:9px 0; }
-
 /* BUTTONS */
 .btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 24px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; }
 .btn-pink { background:linear-gradient(135deg,var(--pink1),var(--pink3)); color:var(--dark); box-shadow:0 4px 12px rgba(246,196,195,0.45); }
@@ -50,7 +48,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .btn-sm { padding:9px 18px; font-size:13px; }
 .btn-full { width:100%; }
 .btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
-
 /* QUIZ */
 .quiz-wrap { max-width:620px; margin:0 auto; padding:16px; }
 .top-bar { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:10px 16px; margin-bottom:12px; gap:8px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(246,196,195,0.18); }
@@ -94,13 +91,12 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .finish-bar { position:sticky; bottom:0; background:rgba(255,249,249,0.97); backdrop-filter:blur(10px); border-top:1.5px solid var(--pink2); padding:11px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; box-shadow:0 -4px 14px rgba(246,196,195,0.22); }
 .finish-info { font-size:12px; color:var(--mid); }
 .finish-info strong { color:var(--dark); font-size:14px; }
-
+.submit-bar { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:11px 16px; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(246,196,195,0.18); }
 /* NAME CONFIRM */
 .confirm-wrap { max-width:420px; margin:0 auto; padding:40px 20px; text-align:center; }
 .confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
 .confirm-wrap p { font-size:14px; color:var(--mid); margin-bottom:24px; line-height:1.6; }
 .confirm-name-box { background:var(--white); border:2px solid var(--yellow); border-radius:var(--radius); padding:16px; margin-bottom:20px; font-size:18px; font-weight:700; color:var(--dark); }
-
 /* WRITING */
 .writing-wrap { max-width:620px; margin:0 auto; padding:20px 16px; }
 .writing-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(246,196,195,0.2); margin-bottom:16px; }
@@ -126,7 +122,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .send-status { margin-top:12px; padding:10px 16px; border-radius:8px; font-size:13px; font-weight:600; text-align:center; display:none; }
 .send-ok { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
 .send-err { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
-
 /* RESULT */
 .result-wrap { max-width:440px; margin:0 auto; padding:28px 20px; text-align:center; }
 .result-card { background:var(--white); border:1.5px solid var(--pink2); border-radius:20px; padding:28px 22px; margin-bottom:14px; box-shadow:0 6px 24px rgba(246,196,195,0.3); }
@@ -148,7 +143,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .status-ok { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
 .status-error { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
 .result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
-
 /* MODAL */
 .modal-bg { display:none; position:fixed; inset:0; background:rgba(90,58,58,0.38); backdrop-filter:blur(6px); z-index:999; align-items:center; justify-content:center; padding:20px; }
 .modal-bg.open { display:flex; }
@@ -162,13 +156,11 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="header-tag">1. Hafta Ödevi &nbsp;|&nbsp; A2.1 (3-4. Ders)</div>
   <h1>🇪🇸 A2.1 – H1 3-4. Ders</h1>
   <div class="header-sub">50 soru &nbsp;•&nbsp; Çoktan seçmeli &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
 </div>
-
 <!-- EKRAN 1: AD SEÇİMİ -->
 <div class="screen active" id="screen-name">
   <div class="name-body">
@@ -177,31 +169,33 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <select class="name-select" id="name-select">
       <option value="">-- Adınızı Seçin --</option>
       <option>Aysen Gurkan</option>
-      <option>Begum Senturk</option>
-      <option>Didem Dundar</option>
-      <option>Ebru Ozgen</option>
-      <option>Ece Turhanoglu</option>
-      <option>Esra Ozkaya</option>
-      <option>Gulsah Gundogdu</option>
-      <option>Irem Savas</option>
-      <option>Kardelen Kuscu</option>
-      <option>Oznur Ozdogan Ozer</option>
-      <option>Sevde Ozdemir</option>
-      <option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option>
+      <option>Birce Suzen</option>
+      <option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option>
+      <option>Elif Ozgur Atli</option>
+      <option>Elif Safak</option>
+      <option>Emel Kanburoglu</option>
+      <option>Gulce Eyibilir</option>
+      <option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option>
+      <option>Meryem Ozbek</option>
+      <option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option>
+      <option>Yasemin Kurtulus Tunc</option>
+      <option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option>
+      <option>Zeynep Oztaskin</option>
     </select>
     <div class="info-box">
       <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Başlık seçme — Soru 1–10</span></div>
       <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> Boşluk doldurma — Soru 11–30</span></div>
       <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Dinleme — Soru 31–50 (Vimeo linki her soruda)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 4:</strong> Yazma Bölümü — Bu sayfadan gönderilir</span></div>
       <div class="ib-hr"></div>
       <div class="ib-row"><div class="ib-dot" style="background:var(--pink3)"></div><span>Her soru 2 puan &nbsp;•&nbsp; Toplam 100 puan</span></div>
     </div>
     <button class="btn btn-pink btn-full" onclick="startQuiz()">▶ Başla</button>
   </div>
 </div>
-
 <!-- EKRAN 2: QUIZ -->
 <div class="screen" id="screen-quiz">
   <div class="quiz-wrap">
@@ -211,6 +205,10 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
         <div class="top-score-item sc-correct">✓ <span id="sc-correct">0</span></div>
         <div class="top-score-item sc-wrong">✗ <span id="sc-wrong">0</span></div>
       </div>
+    </div>
+    <div class="submit-bar">
+      <div class="finish-info"><strong id="bb-answered">0</strong> / 50 soru yanıtlandı</div>
+      <button class="btn btn-yellow" onclick="goToConfirm()">✔ Ödevi Teslim Et</button>
     </div>
     <div class="prog-wrap">
       <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
@@ -225,13 +223,8 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
       <div class="nav-center" id="nav-center">1 / 50</div>
       <button class="btn btn-pink btn-sm" id="btn-next" onclick="navigate(1)">İleri →</button>
     </div>
-    <div class="finish-bar">
-      <div class="finish-info"><strong id="bb-answered">0</strong> / 50 soru yanıtlandı</div>
-      <button class="btn btn-yellow" onclick="showScreen('writing')">✍️ Yazma Bölümüne Geç</button>
-    </div>
   </div>
 </div>
-
 <!-- EKRAN 3: AD ONAY -->
 <div class="screen" id="screen-confirm">
   <div class="confirm-wrap">
@@ -241,55 +234,27 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
       <option value="">-- Adınızı Seçin --</option>
       <option>Aysen Gurkan</option>
-      <option>Begum Senturk</option>
-      <option>Didem Dundar</option>
-      <option>Ebru Ozgen</option>
-      <option>Ece Turhanoglu</option>
-      <option>Esra Ozkaya</option>
-      <option>Gulsah Gundogdu</option>
-      <option>Irem Savas</option>
-      <option>Kardelen Kuscu</option>
-      <option>Oznur Ozdogan Ozer</option>
-      <option>Sevde Ozdemir</option>
-      <option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option>
+      <option>Birce Suzen</option>
+      <option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option>
+      <option>Elif Ozgur Atli</option>
+      <option>Elif Safak</option>
+      <option>Emel Kanburoglu</option>
+      <option>Gulce Eyibilir</option>
+      <option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option>
+      <option>Meryem Ozbek</option>
+      <option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option>
+      <option>Yasemin Kurtulus Tunc</option>
+      <option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option>
+      <option>Zeynep Oztaskin</option>
     </select>
     <button class="btn btn-yellow btn-full" onclick="confirmAndSubmit()">✔ Ödevi Teslim Et</button>
   </div>
 </div>
-
-<!-- EKRAN 4: YAZMA BÖLÜMÜ -->
-<div class="screen" id="screen-writing">
-  <div class="writing-wrap">
-    <div class="writing-card">
-      <div class="writing-head">✍️ &nbsp;Yazma Bölümü &nbsp;<span style="opacity:.75;font-weight:400;font-size:13px">(Ayrıca değerlendirilir)</span></div>
-      <div class="writing-body">
-        <div class="konu-box" id="writing-konu">📝 Konu yükleniyor…</div>
-        <div class="bilgi-box">
-          <div class="bilgi-label">📋 Yazınızın başına ekleyin</div>
-          <strong>Nombre y Apellido:</strong> <span id="writing-name-display">—</span><br>
-          <strong>Número de tarea:</strong> A2.1 (3+4)<br>
-          <strong>Tema de la tarea:</strong> <span id="writing-tema">—</span>
-        </div>
-        <p><strong>Yönerge</strong></p>
-        <div id="writing-yonerge"></div>
-        <div class="ornek-box" id="writing-ornekler"></div>
-        <p style="margin-top:14px"><strong>✏️ Yazınızı aşağıya yazın:</strong></p>
-        <textarea class="writing-textarea" id="writing-input" placeholder="Yazınızı buraya yazın…" oninput="updateCharCount()"></textarea>
-        <div class="char-count" id="char-count">0 karakter</div>
-        <div class="send-status" id="send-status"></div>
-        <p style="margin-top:18px"><strong>📊 Puanlama Cetveli</strong></p>
-        <table class="rubric" id="writing-rubric"></table>
-      </div>
-    </div>
-    <div class="writing-nav">
-      <button class="btn btn-outline" onclick="showScreen('confirm')">← Geri</button>
-      <button class="btn btn-yellow" id="btn-send-writing" onclick="goToConfirmAfterWriting()">✔ Yazıyı Tamamladım, Teslim Et</button>
-    </div>
-  </div>
-</div>
-
-<!-- EKRAN 5: SONUÇ -->
+<!-- EKRAN 4: SONUÇ -->
 <div class="screen" id="screen-result">
   <div class="result-wrap">
     <div class="result-card">
@@ -312,7 +277,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
   </div>
 </div>
-
 <!-- MODAL -->
 <div class="modal-bg" id="modal-finish">
   <div class="modal-box">
@@ -325,46 +289,13 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
   </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
 // ── CONFIG ──
-emailjs.init('xNYEbUQNiWJPvbyoJ');
-const EMAILJS_SERVICE  = 'service_4ee1wh7';
-const EMAILJS_TEMPLATE = 'template_xjyyxhf';
 const APPS_SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
 const SPREADSHEET_ID   = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
 const SHEET_NAME       = 'A2.1';
 const TASK_COLUMN      = 'H1 – 3-4.Ders';
-const LESSON_NAME      = 'A2.1 H1 – 3-4. Ders';
 const VIMEO_URL        = 'https://vimeo.com/205117603?fl=pl&fe=vl';
-
-const WRITING_CONFIG = {
-  konu: 'Describe tu rutina diaria.',
-  tema: 'La rutina diaria',
-  yonerge: `<ul style="margin-top:8px">
-    <li>Bir başlık olmalıdır.</li>
-    <li>Metin giriş, gelişme ve sonuç bölümlerinden oluşmalıdır.</li>
-    <li>Günlük rutininizi en az <strong>5 farklı eylemle</strong> anlatınız.</li>
-    <li>Eylemleri sadece listelemeyiniz; neden-sonuç ilişkisiyle açıklayınız.</li>
-    <li>Cümlelerinizde özellikle <strong>presente de indicativo</strong> kullanmaya dikkat ediniz.</li>
-    <li>Formal ve düzgün bir dil kullanınız.</li>
-  </ul>`,
-  ornekler: `<strong style="font-style:normal;color:#6c3483">Örnek yapılar:</strong><br>
-Me levanto a las siete porque tengo clase a las ocho.<br>
-Después de desayunar, voy a la universidad en metro.<br>
-Por la noche estudio dos horas y luego me acuesto.`,
-  rubric: [
-    ['Ad, soyad ve başlık bilgilerinin eksiksiz yazılması', '5'],
-    ['Giriş–gelişme–sonuç yapısı', '5'],
-    ['En az 5 farklı eylem', '10'],
-    ['Neden-sonuç ilişkisi', '10'],
-    ['Presente de indicativo doğru kullanımı', '10'],
-    ['Formal dil kullanımı', '5'],
-    ['Maksimum puan', '45'],
-  ]
-};
-
 // ── SORULAR ──
 const QUESTIONS = [
   // KISIM 1: BAŞLIK SEÇME (1-10)
@@ -428,7 +359,6 @@ const QUESTIONS = [
    opts:['La tienda más cara de la ciudad','Una fiesta de moda elegante','La ropa nueva de Nuria','Cambiar de estilo sin comprar más'],
    ans:3,
    exp:'Doğru cevap D. Metin Nuria\'nın yeni kıyafet almadan gardırobunu düzenleyerek ve mevcut kıyafetlerini farklı şekilde kullanarak stilini değiştirmesini anlatıyor.<br>A yanlıştır çünkü pahalı bir mağazadan bahsedilmiyor.<br>B yanlıştır çünkü moda partisi yok.<br>C çeldiricidir çünkü kıyafet konusu var ama Nuria\'nın amacı yeni kıyafet almak değil, daha az tüketmek ve elindekileri değerlendirmektir.'},
-
   // KISIM 2: BOŞLUK DOLDURMA (11-30)
   {id:11,sec:2,
    reading:'Marta vive lejos de su universidad. Cada mañana se levanta a las seis y toma el autobús a las siete. Normalmente llega temprano, pero hoy hay mucho tráfico en la ciudad. Marta mira la hora muchas veces porque tiene un examen importante. Por eso, está un poco nerviosa y piensa: "Espero no llegar tarde". Cuando finalmente baja del autobús, camina rápido hacia la universidad. Tiene solo cinco minutos, __________ consigue entrar antes de que cierre la puerta del aula.',
@@ -550,7 +480,6 @@ const QUESTIONS = [
    opts:['porque','nunca','contra','antes'],
    ans:0,
    exp:'Doğru cevap A) porque. Luis için bu anın önemli olmasının sebebi zihnini dinlendirmesine yardımcı olmasıdır. Bu yüzden sebep bildiren porque kullanılır.<br>B) nunca "asla" demektir ve anlamı bozuyor.<br>C) contra "karşı" anlamındadır.<br>D) antes "önce" demektir, sebep ilişkisi kurmaz. Doğru cevap porquedir.'},
-
   // KISIM 3: DİNLEME (31-50)
   {id:31,sec:3,q:'¿De qué tema hablan principalmente en el diálogo?',opts:['De los deportes favoritos','De los restaurantes en España','De la ropa y las compras','De los medios de transporte'],ans:2,exp:'Doğru cevap C. Diyalog boyunca kıyafetlerden, kıyafet alışverişinden, evde ve işte giyilen kıyafetlerden, hediyelerden, tişört ve jeansten bahsediliyor.<br>A yanlıştır çünkü Red Sox takımı geçse de spor ana konu değildir.<br>B yanlıştır çünkü restoranlardan bahsedilmiyor.<br>D yanlıştır çünkü ulaşım konusu yoktur.'},
   {id:32,sec:3,q:'¿Tiene el hombre una tienda favorita para comprar ropa?',opts:['Sí, siempre compra en la misma tienda.','No, no tiene una tienda favorita.','Sí, solo compra en tiendas españolas.','No compra ropa nunca.'],ans:1,exp:'Doğru cevap B. Adam açıkça "No tengo una tienda favorita" diyor. Yani favori bir mağazası yok.<br>A yanlıştır çünkü hep aynı mağazadan aldığını söylemiyor.<br>C yanlıştır çünkü sadece İspanyol mağazalarından alışveriş yaptığını söylemiyor.<br>D yanlıştır çünkü kıyafet satın aldığından bahsediyor.'},
@@ -573,20 +502,17 @@ const QUESTIONS = [
   {id:49,sec:3,q:'¿Dónde compró la camiseta?',opts:['En un kiosco de la calle','En Levi\'s','En una tienda de España','En un supermercado'],ans:0,exp:'Doğru cevap A. Adam tişörtü sokaktaki bir kiosktan aldığını söylüyor.<br>B Levi\'s, jeanleri aldığı yerdir; tişört için doğru değildir.<br>C İspanya\'daki bir mağaza denmiyor.<br>D süpermarket bilgisi yoktur.'},
   {id:50,sec:3,q:'En España, ¿cómo llaman a los jeans?',opts:['Camisas','Chaquetas','Vaqueros','Corbatas'],ans:2,exp:'Doğru cevap C. Adam "Los jeans en España los llamamos vaqueros" diyor. Yani İspanya\'da jeans için "vaqueros" kelimesi kullanılır.<br>A gömlek, B ceket, D kravat anlamındadır. Bu yüzden doğru cevap vaquerostur.'},
 ];
-
 // ── STATE ──
 let studentName = '';
 let answers = {};
 let currentQ = 0;
 let submitted = false;
-
 // ── SCREENS ──
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
   window.scrollTo(0,0);
 }
-
 function startQuiz() {
   const sel = document.getElementById('name-select');
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
@@ -595,50 +521,24 @@ function startQuiz() {
   answers = {};
   submitted = false;
   document.getElementById('top-student').textContent = studentName;
-  // Fill writing section
-  document.getElementById('writing-konu').textContent = '📝 Konu: ' + WRITING_CONFIG.konu;
-  document.getElementById('writing-name-display').textContent = studentName;
-  document.getElementById('writing-tema').textContent = WRITING_CONFIG.tema;
-  document.getElementById('writing-yonerge').innerHTML = WRITING_CONFIG.yonerge;
-  document.getElementById('writing-ornekler').innerHTML = WRITING_CONFIG.ornekler;
-  // Rubric
-  let rubHtml = '<thead><tr><th>Kriter</th><th class="pts">Puan</th></tr></thead><tbody>';
-  WRITING_CONFIG.rubric.forEach(r => { rubHtml += `<tr><td>${r[0]}</td><td class="pts">${r[1]}</td></tr>`; });
-  rubHtml += '</tbody>';
-  document.getElementById('writing-rubric').innerHTML = rubHtml;
   showScreen('quiz');
   renderQuestion();
 }
-
 function goToConfirm() {
-  document.getElementById('confirm-name-display').textContent = studentName;
+  document.getElementById('confirm-name-select').value = studentName;
   showScreen('confirm');
 }
-
 function renderQuestion() {
   const q = QUESTIONS[currentQ];
   const letters = ['A','B','C','D'];
   const secNames = {1:'Kısım 1 — Başlık Seçme', 2:'Kısım 2 — Boşluk Doldurma', 3:'Kısım 3 — Dinleme'};
-
   document.getElementById('prog-section').textContent = secNames[q.sec];
   document.getElementById('prog-fill').style.width = (Object.keys(answers).length / QUESTIONS.length * 100) + '%';
   document.getElementById('prog-cur').textContent = currentQ + 1;
   document.getElementById('nav-center').textContent = (currentQ + 1) + ' / 50';
   document.getElementById('bb-answered').textContent = Object.keys(answers).length;
   document.getElementById('btn-prev').disabled = (currentQ === 0);
-
-  const isLast = (currentQ === QUESTIONS.length - 1);
-  const btnNext = document.getElementById('btn-next');
-  if (isLast) {
-    btnNext.textContent = '✍️ Yazma Bölümüne Geç →';
-    btnNext.className = 'btn btn-purple btn-sm';
-    btnNext.onclick = () => showScreen('writing');
-  } else {
-    btnNext.textContent = 'İleri →';
-    btnNext.className = 'btn btn-pink btn-sm';
-    btnNext.onclick = () => navigate(1);
-  }
-
+  document.getElementById('btn-next').disabled = (currentQ === QUESTIONS.length - 1);
   // Audio box for section 3
   const audioHTML = q.sec === 3 ? `
     <div class="audio-box">
@@ -648,11 +548,9 @@ function renderQuestion() {
         <a href="${VIMEO_URL}" target="_blank">▶ Sesi Dinle (Vimeo)</a>
       </div>
     </div>` : '';
-
   const readingHTML = q.reading
     ? `<div class="reading-tag">📖 Metin</div><div class="reading-box">${q.reading}</div><div class="q-sub">${q.q}</div>`
     : '';
-
   const optsHTML = q.opts.map((o,i) => {
     let cls = 'opt-btn';
     const ua = answers[q.id];
@@ -665,9 +563,7 @@ function renderQuestion() {
       <span class="opt-letter">${letters[i]}</span><span>${o}</span>
     </button>`;
   }).join('');
-
   const expShow = answers[q.id] !== undefined ? 'show' : '';
-
   document.getElementById('q-area').innerHTML = `
     <div class="section-badge">${secNames[q.sec]}</div>
     ${audioHTML}
@@ -682,12 +578,10 @@ function renderQuestion() {
       </div>
     </div>`;
 }
-
 function navigate(dir) {
   currentQ = Math.max(0, Math.min(QUESTIONS.length - 1, currentQ + dir));
   renderQuestion();
 }
-
 function answer(qId, chosen) {
   if (answers[qId] !== undefined || submitted) return;
   answers[qId] = chosen;
@@ -701,54 +595,12 @@ function answer(qId, chosen) {
   document.getElementById('sc-wrong').textContent = wrong;
   renderQuestion();
 }
-
-function updateCharCount() {
-  const len = document.getElementById('writing-input').value.length;
-  document.getElementById('char-count').textContent = len + ' karakter';
-}
-
-let writingText = '';
-
-function goToConfirmAfterWriting() {
-  const text = document.getElementById('writing-input').value.trim();
-  if (text.length < 20) {
-    alert('Lütfen yazma ödevinizi tamamlayın (en az 20 karakter).');
-    return;
-  }
-  writingText = text;
-  // Confirm ekranında başta seçilen adı otomatik seç
-  const sel = document.getElementById('confirm-name-select');
-  sel.value = studentName;
-  showScreen('confirm');
-}
-
-async function confirmAndSubmit() {
+function confirmAndSubmit() {
   const sel = document.getElementById('confirm-name-select');
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
   studentName = sel.value;
-
-  const btn = document.querySelector('#screen-confirm .btn-yellow');
-  btn.disabled = true;
-  btn.textContent = '⏳ Gönderiliyor…';
-
-  const now = new Date();
-  const tarih = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
-
-  try {
-    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-      student_name: studentName,
-      lesson: LESSON_NAME,
-      submit_date: tarih,
-      writing_text: writingText
-    });
-    submitQuiz();
-  } catch(e) {
-    btn.disabled = false;
-    btn.textContent = '✔ Ödevi Teslim Et';
-    alert('Yazı gönderilemedi. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.');
-  }
+  submitQuiz();
 }
-
 function submitQuiz() {
   submitted = true;
   let correct = 0, wrong = 0;
@@ -759,7 +611,6 @@ function submitQuiz() {
   });
   const blank = QUESTIONS.length - Object.keys(answers).length;
   const score = correct * 2;
-
   document.getElementById('res-name').textContent = studentName;
   document.getElementById('res-score').innerHTML = score + '<span>/100</span>';
   document.getElementById('res-pct').textContent = '%' + Math.round(score/100*100) + ' başarı';
@@ -769,7 +620,6 @@ function submitQuiz() {
   showScreen('result');
   sendToSheets(studentName, score, correct, wrong, blank);
 }
-
 async function sendToSheets(name, score, correct, wrong, blank) {
   const el = document.getElementById('res-status');
   try {
@@ -793,14 +643,12 @@ async function sendToSheets(name, score, correct, wrong, blank) {
     el.textContent = '⚠️ Kaydedilemedi — Profe\'ye bildirin';
   }
 }
-
 function reviewAnswers() {
   showScreen('quiz');
   const fw = QUESTIONS.findIndex(q => answers[q.id] !== undefined && answers[q.id] !== q.ans);
   currentQ = fw >= 0 ? fw : 0;
   renderQuestion();
 }
-
 function goToName() {
   answers = {}; submitted = false; currentQ = 0;
   document.getElementById('name-select').value = '';
