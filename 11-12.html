@@ -83,6 +83,10 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .rubric tr:nth-child(even) td { background:rgba(248,219,216,0.2); }
 .rubric .pts { text-align:right; color:#9a7000; font-weight:700; white-space:nowrap; }
 .writing-nav { display:flex; gap:10px; justify-content:center; margin-top:6px; flex-wrap:wrap; }
+.confirm-check-box { background:var(--cream); border:2px solid var(--yellow); border-radius:var(--radius); padding:16px 18px; margin-bottom:14px; }
+.confirm-check-label { display:flex; align-items:flex-start; gap:12px; cursor:pointer; font-size:14px; font-weight:700; color:var(--dark); line-height:1.5; }
+.confirm-check-label input[type="checkbox"] { width:21px; height:21px; margin-top:1px; accent-color:var(--yellow); cursor:pointer; flex-shrink:0; }
+.confirm-check-warning { display:flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color:#a04040; margin-top:9px; margin-left:33px; }
 /* CONFIRM */
 .confirm-wrap { max-width:420px; margin:0 auto; padding:40px 20px; text-align:center; }
 .confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
@@ -272,8 +276,15 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
         </table>
       </div>
     </div>
+    <div class="confirm-check-box">
+      <label class="confirm-check-label">
+        <input type="checkbox" id="copy-confirm-checkbox" onchange="toggleSubmitButton()">
+        <span>Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım.</span>
+      </label>
+      <div class="confirm-check-warning">⚠️ Bu kutucuğu işaretlemeden teslim butonu aktif olmayacaktır.</div>
+    </div>
     <div class="writing-nav">
-      <button class="btn btn-yellow" onclick="goToConfirm()">✔ Yazıyı Tamamladım, Teslim Et</button>
+      <button class="btn btn-yellow" id="submit-btn" onclick="goToConfirm()" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
     </div>
   </div>
 </div>
@@ -355,7 +366,15 @@ function updateCharCount() {
   const paragraphs = countParagraphs(val);
   document.getElementById('char-count').textContent = chars + ' karakter · ' + words + ' kelime · ' + paragraphs + ' paragraf';
 }
+function toggleSubmitButton() {
+  const checked = document.getElementById('copy-confirm-checkbox').checked;
+  document.getElementById('submit-btn').disabled = !checked;
+}
 function goToConfirm() {
+  if (!document.getElementById('copy-confirm-checkbox').checked) {
+    alert('Lütfen önce "Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım." kutucuğunu işaretleyin.');
+    return;
+  }
   const text = document.getElementById('writing-input').value.trim();
   const words = countWords(text);
   const paragraphs = countParagraphs(text);
@@ -396,6 +415,8 @@ function goToName() {
   document.getElementById('name-select').value = '';
   document.getElementById('writing-input').value = '';
   document.getElementById('char-count').textContent = '0 karakter · 0 kelime · 0 paragraf';
+  document.getElementById('copy-confirm-checkbox').checked = false;
+  document.getElementById('submit-btn').disabled = true;
   showScreen('name');
 }
 </script>
