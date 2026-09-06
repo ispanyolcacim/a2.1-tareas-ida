@@ -606,6 +606,12 @@ function playDictSegment() {
   if (!scWidget) { alert('Ses oynatıcı henüz yüklenmedi, birkaç saniye sonra tekrar deneyin.'); return; }
   scWidget.seekTo(DICT_START_MS);
   scWidget.play();
+  // SoundCloud widget'ı bazen ilk seekTo çağrısını yok sayıp 0:00'dan başlatabiliyor.
+  // Bu yüzden gerçek "play" olayı tetiklendiğinde konumu tekrar 0:40'a sabitliyoruz.
+  scWidget.bind(SC.Widget.Events.PLAY, function onDictPlay() {
+    scWidget.seekTo(DICT_START_MS);
+    scWidget.unbind(SC.Widget.Events.PLAY);
+  });
 }
 function pauseDictSegment() { if (scWidget) scWidget.pause(); }
 
