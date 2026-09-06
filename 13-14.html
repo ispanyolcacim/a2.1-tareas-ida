@@ -43,6 +43,9 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .btn-sm   { padding:9px 18px; font-size:13px; }
 .btn-full { width:100%; }
 .btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
+.btn-submit-top { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:15px; margin-bottom:14px; border:none; border-radius:var(--radius); background:linear-gradient(135deg,#ff8a8a 0%,#e35656 55%,#c0392b 100%); color:#fff; font-size:15px; font-weight:800; letter-spacing:.3px; cursor:pointer; box-shadow:0 4px 16px rgba(224,86,86,.45); animation:submitPulse 2.4s ease-in-out infinite; font-family:inherit; }
+.btn-submit-top:hover { transform:translateY(-1px); }
+@keyframes submitPulse { 0%,100%{box-shadow:0 4px 16px rgba(224,86,86,.45)} 50%{box-shadow:0 4px 24px rgba(224,86,86,.8)} }
 /* QUIZ */
 .quiz-wrap { max-width:660px; margin:0 auto; padding:16px; }
 .top-bar { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:1.5px solid var(--pink2); border-radius:var(--radius); padding:10px 16px; margin-bottom:12px; gap:8px; flex-wrap:wrap; }
@@ -132,7 +135,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 <div class="header">
   <div class="header-tag">4. Hafta Ödevi &nbsp;|&nbsp; A2.1 (13-14. Ders)</div>
   <h1>🇪🇸 A2.1 – H4 13-14. Ders</h1>
-  <div class="header-sub">50 soru &nbsp;•&nbsp; Okuma · Çeviri · Yol Gösterici İfadeler &nbsp;•&nbsp; + 4. Bölüm: Dikte &nbsp;•&nbsp; 100 puan &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+  <div class="header-sub">Dikte · Okuma · Çeviri · Yol Gösterici İfadeler (50 soru) &nbsp;•&nbsp; 100 puan &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
 </div>
 <!-- EKRAN 1: AD SEÇİMİ -->
 <div class="screen active" id="screen-name">
@@ -141,17 +144,18 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
     <select class="name-select" id="name-select">
       <option value="">-- Adınızı Seçin --</option>
-      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
-      <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
-      <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
-      <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option>
+      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option>
+      <option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
     </select>
     <div class="info-box">
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Okuma Çalışması — Soru 1–20 (30 puan)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> YDS Tarzı Çeviri — Soru 21–40 (30 puan)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Yol Gösterici İfadeler — Soru 41–50 (20 puan)</span></div>
-      <div class="ib-row"><div class="ib-dot" style="background:var(--pink3)"></div><span><strong>Kısım 4:</strong> Dikte Çalışması (20 puan)</span></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--pink3)"></div><span><strong>Kısım 1:</strong> Dikte Çalışması 🎧 (20 puan)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> Okuma Çalışması — Soru 1–20 (30 puan)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> YDS Tarzı Çeviri — Soru 21–40 (30 puan)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 4:</strong> Yol Gösterici İfadeler — Soru 41–50 (20 puan)</span></div>
       <div class="ib-hr"></div>
       <div class="ib-row"><div class="ib-dot" style="background:var(--pink3)"></div><span>Toplam <strong>100 puan</strong></span></div>
     </div>
@@ -161,6 +165,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 <!-- EKRAN 2: QUIZ -->
 <div class="screen" id="screen-quiz">
   <div class="quiz-wrap">
+    <button class="btn-submit-top" onclick="goToConfirm()">🚀📩 ÖDEVİ TESLİM ET</button>
     <div class="top-bar">
       <div class="top-student" id="top-student">—</div>
       <div class="top-scores">
@@ -183,7 +188,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
     <div class="finish-bar">
       <div class="finish-info"><strong id="bb-answered">0</strong> / 50 yanıtlandı</div>
-      <button class="btn btn-yellow" onclick="goToConfirm()">✔ Ödevi Teslim Et</button>
     </div>
   </div>
 </div>
@@ -196,11 +200,12 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <p>Teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
     <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
       <option value="">-- Adınızı Seçin --</option>
-      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
-      <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
-      <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
-      <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option>
+      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option>
+      <option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
     </select>
     <button class="btn btn-yellow btn-full" onclick="confirmAndSubmit()">✔ Evet, Teslim Et</button>
   </div>
@@ -211,13 +216,14 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <div class="result-card">
       <div class="result-emoji">🇪🇸</div>
       <div class="result-name" id="res-name">—</div>
-      <div class="result-title">A2.1 · H4 – 13-14. Ders (Kısım 1-3)</div>
-      <div class="result-score-big" id="res-score">0<span>/80</span></div>
+      <div class="result-title">A2.1 · H4 – 13-14. Ders (Tüm Bölümler)</div>
+      <div class="result-score-big" id="res-score">0<span>/100</span></div>
       <div class="result-pct" id="res-pct"></div>
       <div class="score-breakdown">
-        <div class="breakdown-row"><span class="br-label">📖 Okuma (1-20)</span><span class="br-score" id="br-okuma">0 / 30</span></div>
-        <div class="breakdown-row"><span class="br-label">🔤 Çeviri (21-40)</span><span class="br-score" id="br-ceviri">0 / 30</span></div>
-        <div class="breakdown-row"><span class="br-label">🌟 Yol Gösterici (41-50)</span><span class="br-score" id="br-yol">0 / 20</span></div>
+        <div class="breakdown-row" style="background:rgba(248,206,91,0.25)"><span class="br-label">🎧 Dikte (Kısım 1)</span><span class="br-score" id="br-dikte">0 / 20</span></div>
+        <div class="breakdown-row"><span class="br-label">📖 Okuma (Kısım 2)</span><span class="br-score" id="br-okuma">0 / 30</span></div>
+        <div class="breakdown-row"><span class="br-label">🔤 Çeviri (Kısım 3)</span><span class="br-score" id="br-ceviri">0 / 30</span></div>
+        <div class="breakdown-row"><span class="br-label">🌟 Yol Gösterici (Kısım 4)</span><span class="br-score" id="br-yol">0 / 20</span></div>
       </div>
       <div class="result-stats">
         <div class="rs-item rs-correct"><div class="rs-n" id="res-c">0</div><div class="rs-l">Doğru</div></div>
@@ -225,10 +231,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
         <div class="rs-item rs-blank">  <div class="rs-n" id="res-b">0</div><div class="rs-l">Boş</div></div>
       </div>
       <div class="status-badge status-pending" id="res-status">⏳ Kaydediliyor…</div>
-      <div class="not-submitted" style="background:rgba(248,206,91,0.18);border-color:var(--yellow);color:#7a5c00">🎧 Toplam puanınız (100 üzerinden) 4. Bölüm (Dikte) tamamlandığında hesaplanacaktır.</div>
-    </div>
-    <div class="result-actions">
-      <button class="btn btn-yellow" id="btn-go-dictation" onclick="goToDictation()" style="display:none">🎧 4. Bölüm: Dikteye Geç →</button>
     </div>
     <div class="result-actions">
       <button class="btn btn-outline" onclick="reviewAnswers()">🔍 Yanlışları Gör</button>
@@ -239,7 +241,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 <!-- EKRAN 5: DİKTE (4. BÖLÜM) -->
 <div class="screen" id="screen-dictation">
   <div class="quiz-wrap">
-    <div class="section-badge">4. Bölüm — Dikte Çalışması</div>
+    <div class="section-badge">Kısım 1 — Dikte Çalışması</div>
     <div class="top-bar">
       <div class="top-student" id="dict-top-student">—</div>
     </div>
@@ -260,9 +262,9 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
       <div class="dict-correct-title">✅ Diktenin Doğru Hali</div>
       <div class="dict-correct-text" id="dict-correct-text"></div>
       <div class="score-breakdown">
-        <div class="breakdown-row"><span class="br-label">🎧 Dikte Puanı</span><span class="br-score" id="dict-score-line">0 / 20</span></div>
-        <div class="breakdown-row" style="background:rgba(248,206,91,0.3)"><span class="br-label"><strong>🏆 TOPLAM PUAN</strong></span><span class="br-score" id="dict-total-line"><strong>0 / 100</strong></span></div>
+        <div class="breakdown-row" style="background:rgba(248,206,91,0.3)"><span class="br-label">🎧 Dikte Puanı</span><span class="br-score" id="dict-score-line">0 / 20</span></div>
       </div>
+      <button class="btn btn-yellow btn-full" onclick="goToQuizFromDictation()">➡️ Kısım 2: Okuma / Çeviri / Yol Gösterici Bölümüne Geç</button>
     </div>
   </div>
 </div>
@@ -368,14 +370,20 @@ function startQuiz() {
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
   studentName = sel.value;
   answers = {}; submitted = false; currentQ = 0;
+  dictEmailSent = false; dictScoreFinal = 0; quizTotalScore = 0;
   document.getElementById('top-student').textContent = studentName;
+  document.getElementById('dict-top-student').textContent = studentName;
+  showScreen('dictation');
+  startDictTips();
+}
+function goToQuizFromDictation() {
   showScreen('quiz');
   renderQuestion();
 }
 function renderQuestion() {
   const q = QUESTIONS[currentQ];
   const letters = ['A','B','C','D'];
-  const secNames = {1:'Kısım 1 — Okuma Çalışması', 2:'Kısım 2 — YDS Tarzı Çeviri', 3:'Kısım 3 — Yol Gösterici İfadeler'};
+  const secNames = {1:'Kısım 2 — Okuma Çalışması', 2:'Kısım 3 — YDS Tarzı Çeviri', 3:'Kısım 4 — Yol Gösterici İfadeler'};
   // Progress
   const answered = Object.keys(answers).length;
   document.getElementById('prog-fill').style.width = (answered / 50 * 100) + '%';
@@ -484,26 +492,29 @@ function submitQuiz() {
       else yol++;
     }
   });
-  // Kısım 1-3 yeniden ölçeklendirildi: 30 + 30 + 20 = 80 (kalan 20 puan Kısım 4 - Dikte için)
+  // Kısım 2-4 (Okuma/Çeviri/Yol Gösterici) yeniden ölçeklendirildi: 30 + 30 + 20 = 80
+  // Kısım 1 (Dikte) zaten 20 puan olarak baştan hesaplandı (dictScoreFinal)
   const okumaScore  = fmt(okuma  * 1.5);   // 20 soru x 1.5 = 30
   const ceviriScore = fmt(ceviri * 1.5);   // 20 soru x 1.5 = 30
   const yolScore    = fmt(yol    * 2);     // 10 soru x 2   = 20
   const score       = fmt(okumaScore + ceviriScore + yolScore); // /80
   quizTotalScore = score;
+  const totalScore = fmt(quizTotalScore + dictScoreFinal); // /100
   const correct = okuma + ceviri + yol;
   const wrong   = QUESTIONS.filter(q => answers[q.id] !== undefined && answers[q.id] !== q.ans).length;
   const blank   = QUESTIONS.filter(q => answers[q.id] === undefined).length;
   document.getElementById('res-name').textContent   = studentName;
-  document.getElementById('res-score').innerHTML    = score + '<span>/80</span>';
-  document.getElementById('res-pct').textContent    = 'Kısım 1-3 · Toplam puan Kısım 4 (Dikte) sonrası hesaplanacak';
+  document.getElementById('res-score').innerHTML    = totalScore + '<span>/100</span>';
+  document.getElementById('res-pct').textContent    = '🎉 Ödev tamamlandı! (Dikte + Okuma + Çeviri + Yol Gösterici)';
   document.getElementById('res-c').textContent      = correct;
   document.getElementById('res-w').textContent      = wrong;
   document.getElementById('res-b').textContent      = blank;
+  document.getElementById('br-dikte').textContent   = dictScoreFinal + ' / 20';
   document.getElementById('br-okuma').textContent   = okumaScore  + ' / 30';
   document.getElementById('br-ceviri').textContent  = ceviriScore + ' / 30';
   document.getElementById('br-yol').textContent     = yolScore    + ' / 20';
   showScreen('result');
-  sendToSheets(studentName, score, correct, wrong, blank);
+  sendToSheets(studentName, score, correct, wrong, blank, totalScore);
 }
 function nowStamp() {
   const now = new Date();
@@ -518,19 +529,19 @@ async function postToSheet(taskColumn, formatted, score, correct, wrong, blank) 
     body: JSON.stringify({ spreadsheetId:SPREADSHEET_ID, sheetName:SHEET_NAME, studentName, taskColumn, score, correct, wrong, blank, formatted })
   });
 }
-async function sendToSheets(name, score, correct, wrong, blank) {
+async function sendToSheets(name, score, correct, wrong, blank, totalScore) {
   const el = document.getElementById('res-status');
   const t = nowStamp();
   try {
-    const formatted = '✅ Test (Kısım 1-3): '+score+'/80\n✓'+correct+' ✗'+wrong+'\n'+t.dd+'.'+t.mm+'.'+t.yyyy+'\n'+t.hh+':'+t.min+':'+t.ss2;
+    const formatted = '✅ Test (Kısım 2-4): '+score+'/80\n✓'+correct+' ✗'+wrong+'\n'+t.full;
     await postToSheet(TASK_COLUMN, formatted, score, correct, wrong, blank);
+    const totalFormatted = '🏆 Toplam: '+totalScore+'/100 (Dikte '+dictScoreFinal+'/20 + Test '+score+'/80)\n'+t.full;
+    await postToSheet(TASK_COLUMN + ' - Toplam', totalFormatted, totalScore, null, null, null);
     el.className = 'status-badge status-ok';
     el.textContent = '✅ Ödev başarıyla kaydedildi!';
   } catch(e) {
     el.className = 'status-badge status-error';
     el.textContent = '⚠️ Kaydedilemedi — Profe\'ye bildirin';
-  } finally {
-    document.getElementById('btn-go-dictation').style.display = 'inline-flex';
   }
 }
 function reviewAnswers() {
@@ -572,11 +583,6 @@ function startDictTips() {
       box.style.opacity = 1;
     }, 300);
   }, 4500);
-}
-function goToDictation() {
-  document.getElementById('dict-top-student').textContent = studentName;
-  showScreen('dictation');
-  startDictTips();
 }
 window.addEventListener('load', () => {
   if (typeof SC !== 'undefined') {
@@ -631,7 +637,6 @@ function sendDictationEmail() {
   const text = document.getElementById('dictationText').value.trim();
   const t = nowStamp();
   dictScoreFinal = scoreDictation(text, DICT_CORRECT, DICT_MAX);
-  const totalScore = fmt(quizTotalScore + dictScoreFinal);
   const statusEl = document.getElementById('dict-status');
   const submitBtn = document.getElementById('btn-dict-submit');
   statusEl.className = 'dict-status';
@@ -649,24 +654,22 @@ function sendDictationEmail() {
   const params = {
     student_name: studentName,
     name: studentName,
-    lesson: TASK_COLUMN + ' - Dikte (4. Bölüm)',
+    lesson: TASK_COLUMN + ' - Kısım 1 (Dikte)',
     submit_date: t.full,
-    writing_text: text + '\n\n---\nOtomatik Dikte Puanı: ' + dictScoreFinal + ' / ' + DICT_MAX,
+    writing_text: text + '\n\n---\n📊 Bu dikte çalışması otomatik olarak puanlandı: ' + dictScoreFinal + ' / ' + DICT_MAX + ' puan aldı.',
     email: ''
   };
   emailjs.send('service_4ee1wh7', 'template_xjyyxhf', params).then(() => {
     dictEmailSent = true;
     showScreen('dictation');
     statusEl.className = 'dict-status ok';
-    statusEl.textContent = '✅ ' + studentName + ' öğrencisinin dikte çalışması e-posta ile iletildi.';
+    statusEl.textContent = '✅ ' + studentName + ' öğrencisinin dikte çalışması e-posta ile iletildi. Puanı: ' + dictScoreFinal + ' / ' + DICT_MAX + '.';
     document.getElementById('dictationText').disabled = true;
     if (dictTipTimer) clearInterval(dictTipTimer);
     document.getElementById('dict-correct-text').textContent = DICT_CORRECT;
     document.getElementById('dict-score-line').textContent = dictScoreFinal + ' / ' + DICT_MAX;
-    document.getElementById('dict-total-line').innerHTML = '<strong>' + totalScore + ' / 100</strong>';
     document.getElementById('dict-correct-box').className = 'dict-correct-box show';
     postToSheet(TASK_COLUMN + ' - Dikte', '🎧 Dikte: ' + dictScoreFinal + '/' + DICT_MAX + '\n' + t.full, dictScoreFinal, null, null, null);
-    postToSheet(TASK_COLUMN + ' - Toplam', '🏆 Toplam: ' + totalScore + '/100 (Test ' + quizTotalScore + '/80 + Dikte ' + dictScoreFinal + '/20)\n' + t.full, totalScore, null, null, null);
   }).catch((err) => {
     showScreen('dictation');
     statusEl.className = 'dict-status err';
