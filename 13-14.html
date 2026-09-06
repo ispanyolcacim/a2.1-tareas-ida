@@ -128,6 +128,10 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .dict-correct-box.show { display:block; }
 .dict-correct-title { font-weight:800; color:var(--dark); margin-bottom:8px; font-size:14px; }
 .dict-correct-text { font-size:13px; color:var(--dark); line-height:1.85; margin-bottom:10px; }
+.btn-continue-big { display:flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:20px; margin-bottom:8px; border:none; border-radius:var(--radius); background:linear-gradient(135deg,#7ecbff 0%,#4a90e2 55%,#2f6fbf 100%); color:#fff; font-size:17px; font-weight:900; letter-spacing:.3px; cursor:pointer; box-shadow:0 6px 20px rgba(74,144,226,.5); animation:continuePulse 2s ease-in-out infinite; font-family:inherit; text-align:center; }
+.btn-continue-big:hover { transform:translateY(-2px); }
+@keyframes continuePulse { 0%,100%{box-shadow:0 6px 20px rgba(74,144,226,.5)} 50%{box-shadow:0 6px 30px rgba(74,144,226,.85)} }
+.dict-continue-hint { text-align:center; font-size:12.5px; font-weight:700; color:#2f6fbf; margin-bottom:16px; line-height:1.6; }
 @media(max-width:480px){ .result-score-big{font-size:48px} }
 </style>
 </head>
@@ -259,12 +263,13 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <button class="btn btn-yellow btn-full" id="btn-dict-submit" onclick="goToDictConfirm()">📩 Dikteyi Teslim Et</button>
     <div class="dict-status" id="dict-status"></div>
     <div class="dict-correct-box" id="dict-correct-box">
+      <button class="btn-continue-big" onclick="goToQuizFromDictation()">➡️ KISIM 2'YE GEÇ: Okuma / Çeviri / Yol Gösterici</button>
+      <div class="dict-continue-hint">👉 Ödev burada bitmiyor! Toplam puanın için kalan 3 bölümü de tamamlaman gerekiyor.</div>
       <div class="dict-correct-title">✅ Diktenin Doğru Hali</div>
       <div class="dict-correct-text" id="dict-correct-text"></div>
       <div class="score-breakdown">
         <div class="breakdown-row" style="background:rgba(248,206,91,0.3)"><span class="br-label">🎧 Dikte Puanı</span><span class="br-score" id="dict-score-line">0 / 20</span></div>
       </div>
-      <button class="btn btn-yellow btn-full" onclick="goToQuizFromDictation()">➡️ Kısım 2: Okuma / Çeviri / Yol Gösterici Bölümüne Geç</button>
     </div>
   </div>
 </div>
@@ -533,10 +538,10 @@ async function sendToSheets(name, score, correct, wrong, blank, totalScore) {
   const el = document.getElementById('res-status');
   const t = nowStamp();
   try {
-    const formatted = '✅ Test (Kısım 2-4): '+score+'/80\n✓'+correct+' ✗'+wrong+'\n'+t.full;
-    await postToSheet(TASK_COLUMN, formatted, score, correct, wrong, blank);
-    const totalFormatted = '🏆 Toplam: '+totalScore+'/100 (Dikte '+dictScoreFinal+'/20 + Test '+score+'/80)\n'+t.full;
-    await postToSheet(TASK_COLUMN + ' - Toplam', totalFormatted, totalScore, null, null, null);
+    const summary = 'Dikte: '+dictScoreFinal+'/20\nTest: '+score+'/80\nToplam: '+totalScore+'/100\n'+t.full;
+    await postToSheet(TASK_COLUMN, summary, score, correct, wrong, blank);
+    await postToSheet(TASK_COLUMN + ' - Dikte', summary, dictScoreFinal, null, null, null);
+    await postToSheet(TASK_COLUMN + ' - Toplam', summary, totalScore, null, null, null);
     el.className = 'status-badge status-ok';
     el.textContent = '✅ Ödev başarıyla kaydedildi!';
   } catch(e) {
@@ -656,7 +661,7 @@ function sendDictationEmail() {
     name: studentName,
     lesson: TASK_COLUMN + ' - Kısım 1 (Dikte)',
     submit_date: t.full,
-    writing_text: text + '\n\n---\n📊 Bu dikte çalışması otomatik olarak puanlandı: ' + dictScoreFinal + ' / ' + DICT_MAX + ' puan aldı.',
+    writing_text: text + '\n\n---\n📊 Bu dikte çalışması otomatik olarak puanlandı: ' + dictScoreFinal + ' / ' + DICT_MAX + ' puan aldı.' + '\n\n✅ Diktenin Doğru Hali:\n' + DICT_CORRECT,
     email: ''
   };
   emailjs.send('service_4ee1wh7', 'template_xjyyxhf', params).then(() => {
