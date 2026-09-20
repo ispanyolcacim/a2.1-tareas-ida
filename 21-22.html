@@ -92,7 +92,56 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 .stok{background:rgba(106,171,122,.15);border:1.5px solid rgba(106,171,122,.4);color:#3a7a4a}
 .ster{background:rgba(217,112,112,.15);border:1.5px solid rgba(217,112,112,.4);color:#a04040}
 .stpnd{background:rgba(246,207,128,.2);border:1.5px solid rgba(246,207,128,.5);color:#9a6000}
-.ra{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}</style>
+.ra{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.notice-box{
+  background:linear-gradient(135deg,#fff9df,#fff2f6);
+  border:1.5px solid var(--c3);
+  border-left:5px solid var(--c4);
+  border-radius:var(--r);
+  padding:15px 16px;
+  margin:0 0 18px;
+  text-align:left;
+  font-size:13.5px;
+  line-height:1.75;
+  color:var(--dark);
+  box-shadow:0 3px 12px rgba(238,132,168,.12)
+}
+.notice-box p{margin:0 0 9px}
+.notice-box p:last-child{margin-bottom:0}
+.submit-top{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(255,248,250,.97);
+  backdrop-filter:blur(10px);
+  border:1.5px solid var(--c3);
+  border-radius:var(--r);
+  padding:10px 12px;
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  box-shadow:0 4px 14px rgba(238,132,168,.18)
+}
+.submit-top .fi{margin:0}
+.result-note{
+  background:linear-gradient(135deg,#fff9df,#fff2f6);
+  border:1.5px solid var(--c3);
+  border-left:5px solid var(--c4);
+  border-radius:var(--r);
+  padding:15px 16px;
+  margin:16px 0 4px;
+  text-align:left;
+  font-size:13.5px;
+  line-height:1.75;
+  color:var(--dark)
+}
+@media(max-width:520px){
+  .submit-top{flex-direction:column;align-items:stretch}
+  .submit-top .fi{text-align:center}
+  .submit-top .btn{width:100%}
+}</style>
 </head>
 <body>
 
@@ -106,6 +155,13 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
   <div class="nb">
     <h2>&#x1F4DA; Ad&#x131;n&#x131;z&#x131; se&#xe7;in</h2>
     <p>&#xd6;deve ba&#x15f;lamadan &#xf6;nce l&#xfc;tfen listeden ad&#x131;n&#x131;z&#x131; se&#xe7;in.</p>
+
+    <div class="notice-box">
+      <p><strong>📢 Sevgili arkadaşlar, bu testi çözmeden önce küçük bir hatırlatma yapmak istiyorum 🌸</strong></p>
+      <p>Eğer daha önceki haftalardan eksik veya tamamlanmamış ödeviniz varsa, lütfen en kısa sürede onları da tamamlamayı unutmayın 📚✨ Düzenli tekrar, İspanyolcanızın gelişimi için çok değerli! 💪🇪🇸</p>
+      <p><strong>Şimdi bol şans, keyifli çalışmalar! 🍀😊</strong></p>
+    </div>
+
     <select class="sel" id="name-sel"><option value="">-- Adınızı Seçin --</option>
       <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option><option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option><option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option><option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option><option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option><option>Zeynep Oztaskin</option></select>
     <div class="ib">
@@ -119,6 +175,10 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 
 <div class="screen" id="sc-quiz">
   <div class="qw">
+    <div class="submit-top">
+      <div class="fi"><strong id="fin-ans">0</strong> / 50 yan&#x131;tland&#x131;</div>
+      <button class="btn bg" onclick="goConfirm()">&#x2714; &#xd6;devi Teslim Et</button>
+    </div>
     <div class="tb">
       <div class="ts" id="top-st">&#x2014;</div>
       <div class="tsc">
@@ -135,10 +195,6 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
       <button class="btn bo bs" id="btn-prev" onclick="nav(-1)">&#x2190; Geri</button>
       <div class="nc" id="nav-ctr">1 / 50</div>
       <button class="btn bm bs" id="btn-next" onclick="nav(1)">&#x130;leri &#x2192;</button>
-    </div>
-    <div class="fb">
-      <div class="fi"><strong id="fin-ans">0</strong> / 50 yan&#x131;tland&#x131;</div>
-      <button class="btn bg" onclick="goConfirm()">&#x2714; &#xd6;devi Teslim Et</button>
     </div>
   </div>
 </div>
@@ -175,6 +231,15 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
         <div class="ri rbl"><div class="rnum" id="rs-b">0</div><div class="rl">Bo&#x15f;</div></div>
       </div>
       <div class="stb stpnd" id="rs-status">&#x23f3; Kaydediliyor&#x2026;</div>
+
+      <div class="result-note">
+        <strong>🌟 6. haftayı bitirmek üzereyiz!</strong><br><br>
+        Bu noktada önceki haftalardan <strong>eksik veya tamamlanmamış ödev bırakmamanız çok önemli.</strong>
+        Derste aldığınız <strong>inputun gerçek bir outputa dönüşmesi</strong>; yani öğrendiğiniz İspanyolcayı aktif olarak kullanabilmeniz,
+        ancak düzenli tekrar, yazma, uygulama ve üretimle mümkün olur. 📚✍️🇪🇸
+        <br><br>
+        Eksik ödeviniz varsa lütfen en kısa sürede tamamlayın. Her tamamladığınız çalışma, bildiklerinizi pasif bilgiden aktif kullanıma taşır. 💪✨
+      </div>
     </div>
     <div class="ra"><button class="btn bo" onclick="goName()">&#x1F504; Yeniden Ba&#x15f;la</button></div>
   </div>
