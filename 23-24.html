@@ -92,7 +92,56 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 .stok{background:rgba(106,171,122,.15);border:1.5px solid rgba(106,171,122,.4);color:#3a7a4a}
 .ster{background:rgba(217,112,112,.15);border:1.5px solid rgba(217,112,112,.4);color:#a04040}
 .stpnd{background:rgba(246,207,128,.2);border:1.5px solid rgba(246,207,128,.5);color:#9a6000}
-.ra{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}</style>
+.ra{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.notice-box{
+  background:linear-gradient(135deg,#fff9df,#fff2f6);
+  border:1.5px solid var(--c3);
+  border-left:5px solid var(--c4);
+  border-radius:var(--r);
+  padding:15px 16px;
+  margin:0 0 18px;
+  text-align:left;
+  font-size:13.5px;
+  line-height:1.75;
+  color:var(--dark);
+  box-shadow:0 3px 12px rgba(238,132,168,.12)
+}
+.notice-box p{margin:0 0 9px}
+.notice-box p:last-child{margin-bottom:0}
+.submit-top{
+  position:sticky;
+  top:0;
+  z-index:30;
+  background:rgba(255,248,250,.97);
+  backdrop-filter:blur(10px);
+  border:1.5px solid var(--c3);
+  border-radius:var(--r);
+  padding:10px 12px;
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  box-shadow:0 4px 14px rgba(238,132,168,.18)
+}
+.submit-top .fi{margin:0}
+.result-note{
+  background:linear-gradient(135deg,#fff9df,#fff2f6);
+  border:1.5px solid var(--c3);
+  border-left:5px solid var(--c4);
+  border-radius:var(--r);
+  padding:16px;
+  margin:16px 0 4px;
+  text-align:left;
+  font-size:13.5px;
+  line-height:1.8;
+  color:var(--dark)
+}
+@media(max-width:520px){
+  .submit-top{flex-direction:column;align-items:stretch}
+  .submit-top .fi{text-align:center}
+  .submit-top .btn{width:100%}
+}</style>
 </head>
 <body>
 
@@ -106,12 +155,15 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
   <div class="nb">
     <h2>&#x1F4DA; Ad&#x131;n&#x131;z&#x131; se&#xe7;in</h2>
     <p>&#xd6;deve ba&#x15f;lamadan &#xf6;nce l&#xfc;tfen listeden ad&#x131;n&#x131;z&#x131; se&#xe7;in.</p>
+
+    <div class="notice-box">
+      <p><strong>📢 Sevgili arkadaşlar, bu testi çözmeden önce küçük bir hatırlatma yapmak istiyorum 🌸</strong></p>
+      <p>Eğer daha önceki haftalardan eksik veya tamamlanmamış ödeviniz varsa, lütfen en kısa sürede onları da tamamlamayı unutmayın 📚✨ Düzenli tekrar, İspanyolcanızın gelişimi için çok değerli! 💪🇪🇸</p>
+      <p><strong>Şimdi bol şans, keyifli çalışmalar! 🍀😊</strong></p>
+    </div>
+
     <select class="sel" id="name-sel"><option value="">-- Adınızı Seçin --</option>
-      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
-      <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
-      <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
-      <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option></select>
+      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option><option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option><option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option><option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option><option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option><option>Zeynep Oztaskin</option></select>
     <div class="ib">
       <div class="ibr"><div class="ibd"></div><span><strong>1&#x2013;20:</strong> Okuma metni sorular&#x131;</span></div>
       <div class="ibr"><div class="ibd"></div><span><strong>21&#x2013;40:</strong> Cloze test</span></div>
@@ -127,6 +179,10 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
 
 <div class="screen" id="sc-quiz">
   <div class="qw">
+    <div class="submit-top">
+      <div class="fi"><strong id="fin-ans">0</strong> / 100 yan&#x131;tland&#x131;</div>
+      <button class="btn bg" onclick="goConfirm()">&#x2714; &#xd6;devi Teslim Et</button>
+    </div>
     <div class="tb">
       <div class="ts" id="top-st">&#x2014;</div>
       <div class="tsc">
@@ -144,10 +200,6 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
       <div class="nc" id="nav-ctr">1 / 100</div>
       <button class="btn bm bs" id="btn-next" onclick="nav(1)">&#x130;leri &#x2192;</button>
     </div>
-    <div class="fb">
-      <div class="fi"><strong id="fin-ans">0</strong> / 100 yan&#x131;tland&#x131;</div>
-      <button class="btn bg" onclick="goConfirm()">&#x2714; &#xd6;devi Teslim Et</button>
-    </div>
   </div>
 </div>
 
@@ -158,11 +210,7 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
     <div class="ns">&#x26a0;&#xfe0f; &#xd6;DEV&#x130;N&#x130;Z HEN&#xdc;Z TESL&#x130;M ED&#x130;LMED&#x130;</div>
     <p>Teslim etmeden &#xf6;nce listeden ad&#x131;n&#x131;z&#x131; se&#xe7;in ve onaylay&#x131;n.</p>
     <select class="sel" id="cf-sel" style="margin-bottom:16px"><option value="">-- Adınızı Seçin --</option>
-      <option>Aysen Gurkan</option><option>Begum Senturk</option><option>Didem Dundar</option>
-      <option>Ebru Ozgen</option><option>Ece Turhanoglu</option><option>Esra Ozkaya</option>
-      <option>Gulsah Gundogdu</option><option>Irem Savas</option><option>Kardelen Kuscu</option>
-      <option>Oznur Ozdogan Ozer</option><option>Sevde Ozdemir</option><option>Seyma Kocak</option>
-      <option>Zumeyra Dogan</option></select>
+      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option><option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option><option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option><option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option><option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option><option>Zeynep Oztaskin</option></select>
     <button class="btn bg bf" id="cf-btn" onclick="confirmSubmit()">&#x2714; Evet, Teslim Et</button>
   </div>
 </div>
@@ -188,6 +236,17 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
         <div class="ri rbl"><div class="rnum" id="rs-b">0</div><div class="rl">Bo&#x15f;</div></div>
       </div>
       <div class="stb stpnd" id="rs-status">&#x23f3; Kaydediliyor&#x2026;</div>
+
+      <div class="result-note">
+        <strong>🌟 6. haftayı bitirdik, şimdi 7. haftaya geçiyoruz!</strong><br><br>
+        Bu aşamada önceki haftalardan <strong>eksik veya tamamlanmamış ödev bırakmamanız çok önemli.</strong>
+        Derste aldığınız <strong>inputun outputa dönüşmesi</strong>; yani gördüğünüz, okuduğunuz ve öğrendiğiniz İspanyolcayı
+        kendi cümlelerinizde aktif biçimde kullanabilmeniz için düzenli tekrar ve üretim yapmanız gerekir. 📚✍️🇪🇸
+        <br><br>
+        Her ödev bu sürecin bir parçasıdır. Eksik kalan bir çalışma, öğrendiğiniz bilgiyi aktif kullanıma dönüştürme sürecinde
+        bir basamağın eksik kalması demektir. Bu yüzden varsa eksik çalışmalarınızı lütfen en kısa sürede tamamlayın;
+        <strong>7. haftaya mümkün olduğunca eksiksiz geçelim.</strong> 💪✨
+      </div>
     </div>
     <div class="ra"><button class="btn bo" onclick="goName()">&#x1F504; Yeniden Ba&#x15f;la</button></div>
   </div>
