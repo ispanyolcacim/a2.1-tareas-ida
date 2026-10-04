@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A2.1 – 8. Hafta | Objeto Directo & Objeto Indirecto</title>
+<style>
+*{box-sizing:border-box}
+:root{
+  --pink:#dc6384;--pink2:#ef8aa6;--light:#f8d5df;--cream:#fff5cc;--gold:#efbd50;
+  --dark:#4b2736;--mid:#8d5969;--green:#4d9d68;--red:#d45d69;--bg:#fff9f4;
+}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;color:var(--dark);
+background:linear-gradient(155deg,#fff9f2,#fff7fb 55%,#fffdea);min-height:100vh}
+.header{background:linear-gradient(135deg,var(--pink2),var(--pink));color:#fff;text-align:center;
+padding:20px 16px;box-shadow:0 5px 20px #dc638444}
+.header .tag{display:inline-block;padding:5px 14px;border-radius:99px;background:#ffffff2d;
+border:1px solid #ffffff77;font-size:12px;font-weight:800;letter-spacing:1px}
+.header h1{font-size:clamp(21px,4vw,30px);margin:8px 0 4px}
+.header p{margin:0;font-size:13px;opacity:.95}
+.wrap{max-width:930px;margin:22px auto 55px;padding:0 16px}
+.card{background:#fff;border:1.5px solid var(--light);border-radius:20px;padding:20px;
+box-shadow:0 5px 22px #dc638418}
+.cover{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+.notice{background:linear-gradient(135deg,#fff9df,#fff3f7);border-left:5px solid var(--pink2);
+padding:14px 16px;border-radius:0 14px 14px 0;line-height:1.65;font-size:14px}
+select{width:100%;padding:13px;border:2px solid var(--light);border-radius:13px;background:white;
+color:var(--dark);font:inherit;margin:8px 0 14px}
+.btn{border:0;border-radius:13px;padding:12px 17px;font:700 14px inherit;cursor:pointer;transition:.15s}
+.btn:hover{transform:translateY(-1px)}
+.primary{background:linear-gradient(135deg,var(--pink2),var(--pink));color:#fff}
+.gold{background:linear-gradient(135deg,#f8d37b,var(--gold));color:var(--dark)}
+.outline{background:#fff;border:2px solid var(--light);color:var(--dark)}
+.wide{width:100%}
+.legend{display:grid;gap:9px;margin-top:12px}
+.legend div{background:#fff8fa;border:1px solid var(--light);padding:10px 12px;border-radius:12px;font-size:13px}
+.screen{display:none} .screen.active{display:block}
+.topbar{position:sticky;top:8px;z-index:20;background:#fffefeea;backdrop-filter:blur(12px);
+border:1.5px solid var(--light);border-radius:16px;padding:10px 12px;display:flex;
+align-items:center;justify-content:space-between;gap:10px;box-shadow:0 4px 16px #dc63841f}
+.topmeta{font-size:13px;color:var(--mid);line-height:1.5} .topmeta strong{color:var(--dark)}
+.progress{height:9px;background:var(--light);border-radius:99px;overflow:hidden;margin:12px 0 5px}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--gold));transition:.2s}
+.progtext{display:flex;justify-content:space-between;color:var(--mid);font-size:12px;margin-bottom:12px}
+.section{display:inline-block;background:linear-gradient(90deg,var(--pink2),var(--pink));color:white;
+border-radius:99px;padding:7px 13px;font-size:12px;font-weight:800;margin-bottom:10px}
+.qcard{background:#fff;border:1.5px solid var(--light);border-radius:20px;overflow:hidden;
+box-shadow:0 5px 20px #dc638417}
+.qhead{padding:20px 20px 10px}
+.qnum{font-size:12px;color:var(--pink);font-weight:900;margin-bottom:10px}
+.prompt{font-size:17px;line-height:1.7}
+.reading{background:#fff8e0;border:1px solid #f0d37b;border-radius:14px;padding:14px;line-height:1.75}
+.finalboss{background:linear-gradient(135deg,#fff6cf,#fff0f5)}
+.options{display:grid;gap:10px;padding:6px 20px 18px}
+.option{text-align:left;background:#fff9fb;border:2px solid var(--light);border-radius:13px;padding:13px 14px;
+cursor:pointer;color:var(--dark);font:600 14px/1.45 inherit}
+.option:hover{border-color:#e99ab0;background:#fff5f8}
+.option.selected{border-color:var(--pink);background:#fff0f5}
+.option.correct{border-color:var(--green);background:#eff9f2}
+.option.wrong{border-color:var(--red);background:#fff0f1}
+.controls{border-top:1px solid var(--light);padding:14px 20px;display:flex;gap:9px;flex-wrap:wrap}
+.feedback{display:none;margin:0 20px 20px;padding:16px 17px;background:#fff9df;border-left:5px solid var(--gold);
+border-radius:0 14px 14px 0;line-height:1.7;font-size:14px}
+.feedback.show{display:block}
+.feedback.ok{border-left-color:var(--green);background:#effaf2}
+.feedback.bad{border-left-color:var(--red);background:#fff1f2}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
+.navcenter{font-size:13px;color:var(--mid);font-weight:800}
+.result{max-width:580px;margin:28px auto;text-align:center}
+.score{font-size:62px;font-weight:900;line-height:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}
+.stat{background:#fff8fa;border:1px solid var(--light);border-radius:13px;padding:12px}
+.stat b{display:block;font-size:25px}
+.answerkey{margin-top:15px;text-align:left;background:#fff8e8;border:1px solid #f0d37b;padding:14px;border-radius:13px;line-height:1.7}
+.reminder{font-size:14px;line-height:1.65}
+.reminder strong{color:var(--pink)}
+@media(max-width:720px){
+ .cover{grid-template-columns:1fr} .topbar{flex-wrap:wrap} .prompt{font-size:15px}
+ .stats{grid-template-columns:1fr} .nav .btn{padding:11px 12px}
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="tag">8. HAFTA ÖDEVİ · A2.1</div>
+  <h1>🇪🇸 Objeto Directo & Objeto Indirecto</h1>
+  <p>50 soru · Okuma + OD/OI + Pronombres dobles · @ispanyolcacim · Profe Hazel</p>
+</div>
+
+<section id="cover" class="screen active">
+<div class="wrap">
+  <div class="cover">
+    <div class="card">
+      <h2>📚 Ödeve Başla</h2>
+      <p>Önce adınızı seçin.</p>
+      <select id="student">
+        <option value="">-- Adınızı Seçin --</option>
+        <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option><option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option><option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option><option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option><option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
+      </select>
+      <div class="notice"><strong>📢 8. HAFTA</strong><br>
+      Bu çalışmada Objeto Directo ve Objeto Indirecto'yu yalnızca zamir seçerek değil,
+      <strong>bağlamdan analiz ederek</strong> kullanacaksınız. Okuma sorularında paragrafın tamamını okuyun;
+      yalnızca ismin cinsiyetine bakarak cevap vermeyin.</div><br>
+      <button class="btn primary wide" onclick="startQuiz()">▶ Ödeve Başla</button>
+    </div>
+    <div class="card reminder">
+      <h2>🧠 Hızlı Hatırlatma</h2>
+      <p><strong>OD:</strong> kimi? neyi? → lo / la / los / las</p>
+      <p><strong>OI:</strong> kime? kimin için? → me / te / le / nos / os / les</p>
+      <p><strong>İkisi birlikte:</strong> OI + OD + fiil</p>
+      <p><strong>le / les + lo/la/los/las → se</strong></p>
+      <p>✅ Se lo explico.<br>✅ Te las he comprado.<br>✅ Voy a contárselo.<br>✅ Estoy explicándosela.</p>
+      <div class="legend">
+        <div><b>1–10</b> · OD / OI ayrımı</div>
+        <div><b>11–20</b> · OD + OI birlikte</div>
+        <div><b>21–30</b> · Zamir yerleşimi</div>
+        <div><b>31–40</b> · Comprensión lectora</div>
+        <div><b>41–50</b> · Hata analizi & ileri kullanım</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="quiz" class="screen">
+<div class="wrap">
+  <div class="topbar">
+    <div class="topmeta"><strong id="studentName">—</strong><br><span id="answered">0</span> / 50 cevaplandı</div>
+    <button class="btn gold" onclick="finishQuiz()">🏁 Testi Bitir</button>
+  </div>
+  <div class="progress"><div id="bar"></div></div>
+  <div class="progtext"><span id="sectionName"></span><span>Soru <b id="curNo">1</b> / 50</span></div>
+  <div id="qarea"></div>
+  <div class="nav">
+    <button class="btn outline" id="prevBtn" onclick="move(-1)">← Geri</button>
+    <div class="navcenter" id="navCount">1 / 50</div>
+    <button class="btn primary" id="nextBtn" onclick="move(1)">İleri →</button>
+  </div>
+</div>
+</section>
+
+<section id="result" class="screen">
+<div class="wrap">
+ <div class="result card">
+  <div style="font-size:50px">🇪🇸</div>
+  <div id="resultStudent" style="font-weight:800;color:var(--mid)"></div>
+  <h2>A2.1 · 8. Hafta · OD & OI</h2>
+  <div class="score"><span id="score">0</span><span style="font-size:22px;color:var(--mid)">/100</span></div>
+  <div class="stats">
+    <div class="stat"><b id="correct" style="color:var(--green)">0</b>Doğru</div>
+    <div class="stat"><b id="wrong" style="color:var(--red)">0</b>Yanlış</div>
+    <div class="stat"><b id="blank" style="color:#999">0</b>Boş</div>
+  </div>
+  <button class="btn primary wide" onclick="reviewWrong()">🔎 Yanlışları Gözden Geçir</button>
+  <div class="answerkey"><b>Not:</b> Her soruda “Cevabı Kontrol Et” butonundan sonra
+  <strong>Türkçe çeviri + ayrıntılı OD/OI analizi</strong> açılır.</div>
+ </div>
+</div>
+</section>
+
+<script>
+const QS = [{"id": 1, "q": "Ayer Natalia dejó <strong>el portátil</strong> en casa de su hermana.<br><br>Kalın bölüm zamirleştirilirse hangisi doğrudur?", "opts": ["le", "lo", "la", "se"], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>lo</strong><br><br>\n<b>Tam cümle:</b> Natalia <strong>lo dejó</strong> en casa de su hermana.<br>\n<b>Türkçesi:</b> Natalia dizüstü bilgisayarı kız kardeşinin evinde bıraktı. → Natalia <strong>onu</strong> kız kardeşinin evinde bıraktı.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué dejó Natalia?</i> → <strong>el portátil</strong>.<br>\n• <strong>El portátil</strong>, eylemin doğrudan etkilediği şeydir; bu nedenle <strong>Objeto Directo (OD)</strong> olur.<br>\n• <i>portátil</i> eril ve tekildir: <strong>el portátil → lo</strong>.<br>\n• <i>dejó</i> çekimli bir fiildir; nesne zamiri fiilden önce gelir: <strong>lo dejó</strong>.<br>\n• Burada <strong>le</strong> kullanamayız; çünkü “bilgisayara” bir şey yapılmıyor, bilgisayar doğrudan bırakılan nesnedir."}, {"id": 2, "q": "El entrenador explicó el nuevo ejercicio <strong>a los jugadores</strong> antes del partido.<br><br>Kalın bölümün yerine hangi zamir gelir?", "opts": ["los", "se", "les", "lo"], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>les</strong><br><br>\n<b>Tam cümle:</b> El entrenador <strong>les explicó</strong> el nuevo ejercicio antes del partido.<br>\n<b>Türkçesi:</b> Antrenör maçtan önce oyunculara yeni egzersizi açıkladı.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué explicó?</i> → <strong>el nuevo ejercicio</strong> = OD.<br>\n• <i>¿A quién explicó el ejercicio?</i> → <strong>a los jugadores</strong> = OI.<br>\n• Üçüncü kişi çoğul OI zamiri <strong>les</strong>tir.<br>\n• Burada OD açıkça cümlede kaldığı için <strong>les → se</strong> dönüşümü yapılmaz.<br>\n• Yani: <strong>les explicó el nuevo ejercicio</strong>."}, {"id": 3, "q": "Esta mañana he encontrado <strong>unas gafas</strong> debajo del sofá.<br><br>Kalın bölüm yerine hangisi gelir?", "opts": ["los", "las", "les", "la"], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>las</strong><br><br>\n<b>Tam cümle:</b> Esta mañana <strong>las he encontrado</strong> debajo del sofá.<br>\n<b>Türkçesi:</b> Bu sabah kanepenin altında bir gözlük buldum. → Bu sabah <strong>onu</strong> kanepenin altında buldum.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué he encontrado?</i> → <strong>unas gafas</strong> = OD.<br>\n• <i>las gafas</i> İspanyolcada çoğul ve dişildir: <strong>las gafas → las</strong>.<br>\n• Pretérito Perfecto’da zamir yardımcı fiilden önce gelir: <strong>las + he + encontrado</strong>.<br>\n• ❌ <i>he las encontrado</i> olmaz."}, {"id": 4, "q": "Mi abuela preparó una sopa especial <strong>para nosotros</strong>.<br><br>Kalın bölümün zamiri hangisidir?", "opts": ["se", "los", "nos", "la"], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>nos</strong><br><br>\n<b>Tam cümle:</b> Mi abuela <strong>nos preparó</strong> una sopa especial.<br>\n<b>Türkçesi:</b> Büyükannem bizim için özel bir çorba hazırladı.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué preparó?</i> → <strong>una sopa especial</strong> = OD.<br>\n• <i>¿Para quién?</i> → <strong>para nosotros</strong> = OI.<br>\n• <strong>nosotros → nos</strong>.<br>\n• Bu cümlede yalnızca OI zamirleştirildiği için <i>una sopa especial</i> açıkça cümlede kalır."}, {"id": 5, "q": "El sábado visitamos <strong>a nuestros antiguos vecinos</strong>.<br><br>Kalın bölüm hangi zamirle değiştirilir?", "opts": ["los", "les", "se", "nos"], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>los</strong><br><br>\n<b>Tam cümle:</b> El sábado <strong>los visitamos</strong>.<br>\n<b>Türkçesi:</b> Cumartesi eski komşularımızı ziyaret ettik. → Cumartesi <strong>onları</strong> ziyaret ettik.<br><br>\n<b>Detaylı analiz:</b><br>\n• Buradaki <strong>a</strong>, öğrenciyi yanıltabilir. Bu yapı <strong>personal a</strong>dır.<br>\n• <i>visitar a alguien</i> fiilinde ziyaret edilen kişi <strong>OD</strong> olur.<br>\n• <i>¿A quién visitamos?</i> → a nuestros antiguos vecinos.<br>\n• Eril çoğul OD → <strong>los</strong>.<br>\n• Çok önemli: <strong>“a + kişi” görmek otomatik olarak OI demek değildir.</strong>"}, {"id": 6, "q": "La secretaria envió una confirmación <strong>a cada participante</strong>.<br><br>Kalın bölüm yerine hangisi gelir?", "opts": ["lo", "la", "se", "le"], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>le</strong><br><br>\n<b>Tam cümle:</b> La secretaria <strong>le envió</strong> una confirmación.<br>\n<b>Türkçesi:</b> Sekreter her katılımcıya bir onay gönderdi.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué envió?</i> → una confirmación = OD.<br>\n• <i>¿A quién?</i> → a cada participante = OI.<br>\n• <i>cada participante</i> tekil kabul edilir → <strong>le</strong>.<br>\n• OD zamirleştirilmediği için <strong>se</strong> kullanılmaz."}, {"id": 7, "q": "No podemos abrir <strong>estas ventanas</strong> porque están bloqueadas.<br><br>Kalın bölüm yerine hangisi gelir?", "opts": ["las", "les", "se", "lo"], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>las</strong><br><br>\n<b>Tam cümle:</b> No <strong>las podemos abrir</strong> porque están bloqueadas.<br>\n<b>Alternatif:</b> No podemos <strong>abrirlas</strong> porque están bloqueadas.<br>\n<b>Türkçesi:</b> Bu pencereleri açamıyoruz çünkü kilitliler. → <strong>Onları</strong> açamıyoruz çünkü kilitliler.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué no podemos abrir?</i> → estas ventanas = OD.<br>\n• <i>las ventanas → las</i>.<br>\n• <i>poder + infinitivo</i> yapısında zamir iki yerde olabilir:<br>\n1) <strong>Las podemos abrir.</strong><br>\n2) <strong>Podemos abrirlas.</strong>"}, {"id": 8, "q": "El profesor hizo una pregunta difícil <strong>a Marta</strong>.<br><br>Kalın bölümün zamiri hangisidir?", "opts": ["la", "le", "lo", "se"], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>le</strong><br><br>\n<b>Tam cümle:</b> El profesor <strong>le hizo</strong> una pregunta difícil.<br>\n<b>Türkçesi:</b> Öğretmen Marta'ya zor bir soru sordu.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué hizo?</i> → una pregunta difícil = OD.<br>\n• <i>¿A quién?</i> → a Marta = OI.<br>\n• Marta kadın olsa da burada <strong>la</strong> değil <strong>le</strong> gerekir; çünkü görev cinsiyetten önce gelir.<br>\n• OI tekil → <strong>le</strong>."}, {"id": 9, "q": "Durante el viaje fotografiamos <strong>todos los monumentos del centro</strong>.<br><br>Doğru zamir hangisidir?", "opts": ["les", "lo", "los", "se"], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>los</strong><br><br>\n<b>Tam cümle:</b> Durante el viaje <strong>los fotografiamos</strong>.<br>\n<b>Türkçesi:</b> Seyahat sırasında merkezdeki bütün anıtların fotoğrafını çektik. → Seyahat sırasında <strong>onların</strong> fotoğrafını çektik.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué fotografiamos?</i> → todos los monumentos = OD.<br>\n• <i>los monumentos → los</i>.<br>\n• <strong>les</strong> sadece OI görevinde kullanılabilirdi."}, {"id": 10, "q": "Andrés contó la noticia <strong>a su mejor amiga</strong> después de clase.<br><br>Kalın bölüm yerine hangisi gelir?", "opts": ["la", "se", "le", "lo"], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>le</strong><br><br>\n<b>Tam cümle:</b> Andrés <strong>le contó</strong> la noticia después de clase.<br>\n<b>Türkçesi:</b> Andrés dersten sonra en yakın arkadaşına haberi anlattı/söyledi.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué contó?</i> → la noticia = OD.<br>\n• <i>¿A quién?</i> → a su mejor amiga = OI.<br>\n• Tekil OI → <strong>le</strong>.<br>\n• <i>amiga</i> dişil diye <strong>la</strong> seçilmez; çünkü burada kişi OI görevindedir."}, {"id": 11, "q": "El dependiente entregó <strong>el paquete al cliente</strong>.<br><br>İki nesne de zamirleştirilirse hangisi doğrudur?", "opts": ["Le lo entregó.", "Lo le entregó.", "Se la entregó.", "Se lo entregó."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Se lo entregó.</strong><br><br>\n<b>Türkçesi:</b> Satış görevlisi paketi müşteriye teslim etti. → <strong>Onu ona teslim etti.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>el paquete</i> → OD → <strong>lo</strong>.<br>\n• <i>al cliente</i> → OI → <strong>le</strong>.<br>\n• Normalde <i>le + lo</i> ortaya çıkar; fakat İspanyolcada ❌ <strong>le lo</strong> kullanılmaz.<br>\n• <strong>le → se</strong> olur: <strong>se lo</strong>.<br>\n• Sıra daima: <strong>OI + OD + fiil</strong>."}, {"id": 12, "q": "Compré <strong>unas revistas para mi madre</strong>.<br><br>Doğru dönüşüm hangisidir?", "opts": ["Le las compré.", "Las le compré.", "Me las compré.", "Se las compré."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Se las compré.</strong><br><br>\n<b>Türkçesi:</b> Annem için birkaç dergi aldım. → <strong>Onları ona aldım.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>unas revistas</i> → OD → <strong>las</strong>.<br>\n• <i>para mi madre</i> → OI → <strong>le</strong>.<br>\n• <strong>le + las → se + las</strong>.<br>\n• Bu nedenle doğru yapı: <strong>Se las compré.</strong>"}, {"id": 13, "q": "Carlos preparó <strong>el desayuno para mí</strong> antes de salir.<br><br>Doğru dönüşüm hangisidir?", "opts": ["Lo me preparó.", "Se lo preparó.", "Me lo preparó.", "Me la preparó."], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>Me lo preparó.</strong><br><br>\n<b>Türkçesi:</b> Carlos dışarı çıkmadan önce benim için kahvaltıyı hazırladı. → <strong>Onu benim için hazırladı.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>para mí</i> → OI → <strong>me</strong>.<br>\n• <i>el desayuno</i> → OD → <strong>lo</strong>.<br>\n• Sıra: <strong>OI + OD</strong> → <strong>me lo</strong>.<br>\n• <strong>me</strong> zamiri <i>le/les</i> olmadığı için <strong>se</strong> dönüşümü gerekmez."}, {"id": 14, "q": "Hemos explicado <strong>las normas a vosotros</strong>.<br><br>Doğru dönüşüm hangisidir?", "opts": ["Os las hemos explicado.", "Se las hemos explicado.", "Las os hemos explicado.", "Os los hemos explicado."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>Os las hemos explicado.</strong><br><br>\n<b>Türkçesi:</b> Kuralları size açıkladık. → <strong>Onları size açıkladık.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>a vosotros</i> → OI → <strong>os</strong>.<br>\n• <i>las normas</i> → OD → <strong>las</strong>.<br>\n• Pretérito Perfecto: <strong>os + las + hemos + explicado</strong>.<br>\n• Zamirler yardımcı fiilden önce gelir."}, {"id": 15, "q": "El médico dio <strong>los resultados a la paciente</strong>.<br><br>Doğru dönüşüm hangisidir?", "opts": ["Se los dio.", "Le los dio.", "Se las dio.", "Los le dio."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>Se los dio.</strong><br><br>\n<b>Türkçesi:</b> Doktor sonuçları hastaya verdi. → <strong>Onları ona verdi.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>los resultados</i> → OD → <strong>los</strong>.<br>\n• <i>a la paciente</i> → OI → <strong>le</strong>.<br>\n• <strong>le + los → se los</strong>.<br>\n• <i>paciente</i> kadın olduğu için OI zamiri <strong>la</strong> olmaz; görev OI olduğu için temel zamir <strong>le</strong>dir."}, {"id": 16, "q": "Mi hermano nos enseñó <strong>su nueva bicicleta</strong>.<br><br>Tam zamirli hâli hangisidir?", "opts": ["La nos enseñó.", "Se la enseñó.", "Nos lo enseñó.", "Nos la enseñó."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Nos la enseñó.</strong><br><br>\n<b>Türkçesi:</b> Kardeşim bize yeni bisikletini gösterdi. → <strong>Onu bize gösterdi.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• Cümlede <strong>nos</strong> zaten “bize” anlamında OI'dir.<br>\n• <i>su nueva bicicleta</i> → dişil tekil OD → <strong>la</strong>.<br>\n• Sıra: <strong>nos + la + enseñó</strong>.<br>\n• ❌ <i>la nos</i> sıralaması yanlıştır."}, {"id": 17, "q": "He guardado <strong>dos entradas para ti</strong>.<br><br>Doğru dönüşüm hangisidir?", "opts": ["Se las he guardado.", "Te las he guardado.", "Te los he guardado.", "Las te he guardado."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>Te las he guardado.</strong><br><br>\n<b>Türkçesi:</b> Senin için iki bilet ayırdım. → <strong>Onları senin için ayırdım.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>para ti</i> → <strong>te</strong> = OI.<br>\n• <i>dos entradas</i> → <strong>las</strong> = OD.<br>\n• Perfecto’da: <strong>te + las + he + guardado</strong>.<br>\n• <strong>te</strong> değişmez; sadece <i>le/les</i> + OD zamiri birleşiminde <i>se</i> dönüşümü olur."}, {"id": 18, "q": "La empresa mandó <strong>los contratos a sus empleados</strong>.<br><br>Doğru dönüşüm hangisidir?", "opts": ["Se los mandó.", "Les los mandó.", "Se las mandó.", "Los se mandó."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>Se los mandó.</strong><br><br>\n<b>Türkçesi:</b> Şirket sözleşmeleri çalışanlarına gönderdi. → <strong>Onları onlara gönderdi.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>los contratos</i> → <strong>los</strong> = OD.<br>\n• <i>a sus empleados</i> → <strong>les</strong> = OI.<br>\n• ❌ <i>les los</i> olmaz → ✅ <strong>se los</strong>."}, {"id": 19, "q": "Nuestra profesora nos recomendó <strong>este documental</strong>.<br><br>Doğru dönüşüm hangisidir?", "opts": ["Nos la recomendó.", "Nos lo recomendó.", "Lo nos recomendó.", "Se lo recomendó."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>Nos lo recomendó.</strong><br><br>\n<b>Türkçesi:</b> Öğretmenimiz bize bu belgeseli tavsiye etti. → <strong>Onu bize tavsiye etti.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <strong>nos</strong> = bize = OI.<br>\n• <i>este documental</i> = eril tekil OD → <strong>lo</strong>.<br>\n• Doğru sıra: <strong>nos lo recomendó</strong>."}, {"id": 20, "q": "Javier llevó <strong>las medicinas a su abuela</strong>.<br><br>Doğru dönüşüm hangisidir?", "opts": ["Le las llevó.", "Las se llevó.", "Se los llevó.", "Se las llevó."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Se las llevó.</strong><br><br>\n<b>Türkçesi:</b> Javier ilaçları büyükannesine götürdü. → <strong>Onları ona götürdü.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>las medicinas</i> → <strong>las</strong> = OD.<br>\n• <i>a su abuela</i> → <strong>le</strong> = OI.<br>\n• <strong>le + las → se las</strong>.<br>\n• Bağlam burada çok önemlidir; <i>se las llevó</i> başka bağlamlarda “onları alıp götürdü” anlamına da gelebilir."}, {"id": 21, "q": "Voy a explicar el problema a mis compañeros.<br><br>İki nesneyi de zamirleştirirsek hangisi doğrudur?", "opts": ["Les lo voy a explicar.", "Lo se voy a explicar.", "Se voy a explicarlo.", "Se lo voy a explicar."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Se lo voy a explicar.</strong><br><br>\n<b>Türkçesi:</b> Sorunu arkadaşlarıma açıklayacağım. → <strong>Onu onlara açıklayacağım.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>el problema</i> → <strong>lo</strong>.<br>\n• <i>a mis compañeros</i> → <strong>les → se</strong>.<br>\n• <i>ir a + infinitivo</i> yapısında iki doğru yerleşim vardır:<br>\n1) <strong>Se lo voy a explicar.</strong><br>\n2) <strong>Voy a explicárselo.</strong><br>\n• Zamirler yapının ortasına gelişigüzel sokulamaz."}, {"id": 22, "q": "Queremos mostrar las habitaciones a nuestros invitados.<br><br>Zamirler infinitivoya eklenirse hangisi doğrudur?", "opts": ["Queremos mostrarloslas.", "Queremos mostrárselas.", "Queremos se las mostrar.", "Queremos mostrarleslas."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>Queremos mostrárselas.</strong><br><br>\n<b>Türkçesi:</b> Odaları misafirlerimize göstermek istiyoruz. → <strong>Onları onlara göstermek istiyoruz.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>las habitaciones</i> → <strong>las</strong>.<br>\n• <i>a nuestros invitados</i> → <strong>les → se</strong>.<br>\n• <i>mostrar + se + las</i> → <strong>mostrárselas</strong>.<br>\n• Zamirler infinitivoya bağlanınca tek kelime olur ve vurgu işareti gerekir."}, {"id": 23, "q": "Estoy preparando los documentos para Laura.<br><br>İki nesneyi zamirleştiren doğru cümle hangisidir?", "opts": ["Le los estoy preparando.", "Los se estoy preparando.", "Estoy preparándolosle.", "Se los estoy preparando."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Se los estoy preparando.</strong><br><br>\n<b>Türkçesi:</b> Belgeleri Laura için hazırlıyorum. → <strong>Onları onun için hazırlıyorum.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>los documentos</i> → <strong>los</strong>.<br>\n• <i>para Laura</i> → <strong>le → se</strong>.<br>\n• Gerundio yapısında iki seçenek vardır:<br>\n✅ <strong>Se los estoy preparando.</strong><br>\n✅ <strong>Estoy preparándoselos.</strong>"}, {"id": 24, "q": "Hemos enviado la factura al director.<br><br>Doğru zamirli cümle hangisidir?", "opts": ["Se la hemos enviado.", "Hemos se la enviado.", "La hemos se enviado.", "Le la hemos enviado."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>Se la hemos enviado.</strong><br><br>\n<b>Türkçesi:</b> Faturayı müdüre gönderdik. → <strong>Onu ona gönderdik.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>la factura</i> → <strong>la</strong>.<br>\n• <i>al director</i> → <strong>le → se</strong>.<br>\n• Pretérito Perfecto dizilişi: <strong>se + la + hemos + enviado</strong>.<br>\n• Zamirler <i>hemos</i> ile <i>enviado</i> arasına gelemez."}, {"id": 25, "q": "Cuando vivíamos allí, nuestra vecina preparaba dulces para nosotros.<br><br>Her iki nesne zamirleştirilirse hangisi doğrudur?", "opts": ["Se los preparaba.", "Los nos preparaba.", "Nos las preparaba.", "Nos los preparaba."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Nos los preparaba.</strong><br><br>\n<b>Türkçesi:</b> Orada yaşadığımız zaman komşumuz bizim için tatlılar hazırlardı. → <strong>Onları bizim için hazırlardı.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>dulces</i> → eril çoğul → <strong>los</strong>.<br>\n• <i>para nosotros</i> → <strong>nos</strong>.<br>\n• Sıra: <strong>nos los</strong>.<br>\n• <i>preparaba</i> Imperfecto olsa da zamir sırası değişmez."}, {"id": 26, "q": "Estoy enseñando la aplicación a mi padre.<br><br>Gerundioya bağlanan doğru biçim hangisidir?", "opts": ["Estoy enseñándolela.", "Estoy enseñándosela.", "Estoy enseñándola se.", "Estoy se la enseñando."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>Estoy enseñándosela.</strong><br><br>\n<b>Türkçesi:</b> Uygulamayı babama gösteriyorum. → <strong>Onu ona gösteriyorum.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>la aplicación</i> → <strong>la</strong>.<br>\n• <i>a mi padre</i> → <strong>le → se</strong>.<br>\n• <i>enseñando + se + la</i> → <strong>enseñándosela</strong>.<br>\n• Zamirler gerundioya bağlanınca vurgu işareti gerekir.<br>\n• Alternatif: <strong>Se la estoy enseñando.</strong>"}, {"id": 27, "q": "Mañana vamos a devolver las llaves al propietario.<br><br>Doğru dönüşüm hangisidir?", "opts": ["Les las vamos a devolver.", "Las se vamos a devolver.", "Se las vamos a devolver.", "Vamos se las a devolver."], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>Se las vamos a devolver.</strong><br><br>\n<b>Türkçesi:</b> Yarın anahtarları ev sahibine geri vereceğiz. → <strong>Onları ona geri vereceğiz.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>las llaves</i> → <strong>las</strong>.<br>\n• <i>al propietario</i> → <strong>le → se</strong>.<br>\n• ✅ <strong>Se las vamos a devolver.</strong><br>\n• Alternatif: ✅ <strong>Vamos a devolvérselas.</strong>"}, {"id": 28, "q": "Ayer estaba contando el problema a Ana.<br><br>Doğru zamirli cümle hangisidir?", "opts": ["Se lo estaba contando.", "Le lo estaba contando.", "Lo se estaba contando.", "Estaba lo contándole."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>Se lo estaba contando.</strong><br><br>\n<b>Türkçesi:</b> Dün sorunu Ana'ya anlatıyordum. → <strong>Onu ona anlatıyordum.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>el problema</i> → <strong>lo</strong>.<br>\n• <i>a Ana</i> → <strong>le → se</strong>.<br>\n• <i>estar + gerundio</i> Imperfecto ile kurulmuş olsa da iki yerleşim mümkündür:<br>\n✅ <strong>Se lo estaba contando.</strong><br>\n✅ <strong>Estaba contándoselo.</strong>"}, {"id": 29, "q": "No puedo prestar la moto a Marcos.<br><br>Doğru dönüşüm hangisidir?", "opts": ["No la puedo prestarle.", "No puedo se la prestar.", "No le la puedo prestar.", "No se la puedo prestar."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>No se la puedo prestar.</strong><br><br>\n<b>Türkçesi:</b> Motosikleti Marcos'a ödünç veremem. → <strong>Onu ona ödünç veremem.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>la moto</i> → <strong>la</strong>.<br>\n• <i>a Marcos</i> → <strong>le → se</strong>.<br>\n• Modal yapı: <strong>no se la puedo prestar</strong>.<br>\n• Alternatif: <strong>No puedo prestársela.</strong>"}, {"id": 30, "q": "Han preparado unas habitaciones para nosotros.<br><br>Doğru cümle hangisidir?", "opts": ["Las nos han preparado.", "Nos las han preparado.", "Se las han preparado.", "Nos los han preparado."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>Nos las han preparado.</strong><br><br>\n<b>Türkçesi:</b> Bizim için birkaç oda hazırladılar. → <strong>Onları bizim için hazırladılar.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>unas habitaciones</i> → <strong>las</strong>.<br>\n• <i>para nosotros</i> → <strong>nos</strong>.<br>\n• Perfecto dizilişi: <strong>nos + las + han + preparado</strong>."}, {"id": 31, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Clara tiene mañana una entrevista de trabajo. Esta tarde ha preparado varios documentos y los ha puesto dentro de una carpeta. Su padre va a llevar la carpeta a Clara porque ella ya está en la oficina.</div><br>\n“Su padre va a llevar <strong>la carpeta a Clara</strong>.”<br><br>İki unsur zamirleştirilirse hangisi doğrudur?", "opts": ["Le la va a llevar.", "La le va a llevar.", "Se la va a llevar.", "Se lo va a llevar."], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>Se la va a llevar.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Clara'nın yarın bir iş görüşmesi var. Bu öğleden sonra birkaç belge hazırladı ve onları bir dosyanın içine koydu. Babası dosyayı Clara'ya götürecek çünkü Clara zaten ofiste.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> Babası dosyayı Clara'ya götürecek. → <strong>Onu ona götürecek.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>la carpeta</i> → OD → <strong>la</strong>.<br>\n• <i>a Clara</i> → OI → <strong>le</strong>.<br>\n• <strong>le + la → se la</strong>.<br>\n• <i>ir a + infinitivo</i>: <strong>Se la va a llevar.</strong><br>\n• Alternatif: <strong>Va a llevársela.</strong>"}, {"id": 32, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Miguel está preparando una presentación para sus compañeros. Ha terminado las diapositivas esta mañana. Esta tarde quiere enseñar las diapositivas a sus compañeros antes de la reunión.</div><br>\nDoğru dönüşüm hangisidir?", "opts": ["Les las quiere enseñar.", "Se las quiere enseñar.", "Los quiere enseñar.", "Se los quiere enseñar."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>Se las quiere enseñar.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Miguel arkadaşları için bir sunum hazırlıyor. Bu sabah slaytları bitirdi. Bu öğleden sonra toplantıdan önce slaytları arkadaşlarına göstermek istiyor.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> Slaytları arkadaşlarına göstermek istiyor. → <strong>Onları onlara göstermek istiyor.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>las diapositivas</i> → <strong>las</strong> = OD.<br>\n• <i>a sus compañeros</i> → <strong>les → se</strong> = OI.<br>\n• ✅ <strong>Se las quiere enseñar.</strong><br>\n• Alternatif: <strong>Quiere enseñárselas.</strong>"}, {"id": 33, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Sara fue ayer a una tienda porque necesitaba una mochila nueva. Probó varios modelos y finalmente eligió una mochila verde porque era cómoda y ligera.</div><br>\n“Finalmente eligió <strong>una mochila verde</strong>.” Zamirli hâli hangisidir?", "opts": ["Finalmente le eligió.", "Finalmente lo eligió.", "Finalmente se eligió.", "Finalmente la eligió."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Finalmente la eligió.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Sara dün yeni bir sırt çantasına ihtiyacı olduğu için bir mağazaya gitti. Birkaç model denedi ve sonunda rahat ve hafif olduğu için yeşil bir sırt çantası seçti.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> Sonunda yeşil bir sırt çantası seçti. → Sonunda <strong>onu</strong> seçti.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>¿Qué eligió?</i> → una mochila verde = OD.<br>\n• <i>la mochila → la</i>.<br>\n• ✅ <strong>Finalmente la eligió.</strong>"}, {"id": 34, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Tomás suele visitar a sus abuelos los domingos. La semana pasada compró unas plantas pequeñas porque a su abuela le encanta la jardinería. El domingo llevó las plantas a sus abuelos.</div><br>\nSon cümlenin doğru zamirli hâli hangisidir?", "opts": ["Les las llevó.", "Se los llevó.", "Se las llevó.", "Las les llevó."], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>Se las llevó.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Tomás pazar günleri genellikle büyükanne ve büyükbabasını ziyaret eder. Geçen hafta, büyükannesi bahçeciliği çok sevdiği için küçük bitkiler satın aldı. Pazar günü bitkileri büyükanne ve büyükbabasına götürdü.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> Bitkileri onlara götürdü. → <strong>Onları onlara götürdü.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>las plantas</i> → <strong>las</strong>.<br>\n• <i>a sus abuelos</i> → <strong>les → se</strong>.<br>\n• ✅ <strong>Se las llevó.</strong>"}, {"id": 35, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Elena está aprendiendo a cocinar. Ayer preparó una tortilla por primera vez. Su compañero de piso llegó tarde y Elena ofreció la tortilla a su compañero.</div><br>\nSon bölümün doğru dönüşümü hangisidir?", "opts": ["Le la ofreció.", "Se lo ofreció.", "Se la ofreció.", "La se ofreció."], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>Se la ofreció.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Elena yemek yapmayı öğreniyor. Dün ilk kez bir tortilla yaptı. Ev arkadaşı geç geldi ve Elena tortillayı ev arkadaşına ikram etti.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> Tortillayı ona ikram etti. → <strong>Onu ona ikram etti.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>la tortilla</i> → <strong>la</strong>.<br>\n• <i>a su compañero</i> → <strong>le → se</strong>.<br>\n• ✅ <strong>Se la ofreció.</strong>"}, {"id": 36, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Cuando Laura era pequeña, su padre compraba muchos cuentos infantiles. Por la noche, Laura elegía un cuento y su padre leía el cuento a Laura antes de dormir.</div><br>\nSon bölüm zamirleştirilirse hangisi doğrudur?", "opts": ["Se lo leía.", "Le lo leía.", "Se la leía.", "Lo se leía."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>Se lo leía.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Laura küçükken babası birçok çocuk hikâye kitabı alırdı. Akşamları Laura bir hikâye seçer ve babası uyumadan önce hikâyeyi Laura'ya okurdu.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> Babası hikâyeyi Laura'ya okurdu. → <strong>Onu ona okurdu.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>el cuento</i> → <strong>lo</strong> = OD.<br>\n• <i>a Laura</i> → <strong>le → se</strong> = OI.<br>\n• ✅ <strong>Se lo leía.</strong><br>\n• <i>leía</i> Imperfecto'dur; geçmişte tekrarlanan alışkanlığı anlatır."}, {"id": 37, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Diego organiza una fiesta este fin de semana. Ha comprado varias bebidas y ha reservado un local pequeño. Mañana va a enviar la dirección a todos los invitados.</div><br>\n“la dirección a todos los invitados” yerine hangisi gelir?", "opts": ["Se la va a enviar.", "Les la va a enviar.", "Se lo va a enviar.", "La se va a enviar."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>Se la va a enviar.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Diego bu hafta sonu bir parti düzenliyor. Birkaç içecek aldı ve küçük bir mekân ayırttı. Yarın adresi bütün davetlilere gönderecek.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> Adresi bütün davetlilere gönderecek. → <strong>Onu onlara gönderecek.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>la dirección</i> → <strong>la</strong>.<br>\n• <i>a todos los invitados</i> → <strong>les → se</strong>.<br>\n• ✅ <strong>Se la va a enviar.</strong><br>\n• Alternatif: <strong>Va a enviársela.</strong>"}, {"id": 38, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Marta trabaja en una biblioteca. Un estudiante necesitaba dos libros para un proyecto, pero no podía ir a la biblioteca antes del cierre. Marta decidió guardar los dos libros para el estudiante hasta el día siguiente.</div><br>\nSon cümlenin nesneleri zamirleştirilirse hangisi doğrudur?", "opts": ["Se las decidió guardar.", "Se los decidió guardar.", "Les los decidió guardar.", "Los le decidió guardar."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>Se los decidió guardar.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Marta bir kütüphanede çalışıyor. Bir öğrencinin bir proje için iki kitaba ihtiyacı vardı, fakat kapanıştan önce kitapları almaya gelemiyordu. Marta iki kitabı ertesi güne kadar öğrenci için ayırmaya karar verdi.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> İki kitabı onun için ayırmaya karar verdi. → <strong>Onları onun için ayırmaya karar verdi.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>los dos libros</i> → <strong>los</strong>.<br>\n• <i>para el estudiante</i> → <strong>le → se</strong>.<br>\n• ✅ <strong>Se los decidió guardar.</strong><br>\n• Daha doğal alternatif: <strong>Decidió guardárselos.</strong>"}, {"id": 39, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Álvaro tenía que firmar unos papeles importantes. Como estaba fuera de la ciudad, pidió ayuda a su hermana. Ella llevó los papeles al abogado por la mañana.</div><br>\n“los papeles al abogado” yerine hangisi gelir?", "opts": ["Le los llevó.", "Se las llevó.", "Se los llevó.", "Los se llevó."], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>Se los llevó.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Álvaro'nun bazı önemli belgeleri imzalaması gerekiyordu. Şehir dışında olduğu için kız kardeşinden yardım istedi. Kız kardeşi sabah belgeleri avukata götürdü.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> Belgeleri avukata götürdü. → <strong>Onları ona götürdü.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>los papeles</i> → <strong>los</strong>.<br>\n• <i>al abogado</i> → <strong>le → se</strong>.<br>\n• ✅ <strong>Se los llevó.</strong>"}, {"id": 40, "q": "<div class=\"reading\"><b>📖 Texto</b><br>Carmen ha preparado una tarta para sus vecinos porque la ayudaron durante la mudanza. Esta noche piensa llevar la tarta a sus vecinos después de cenar.</div><br>\nDoğru dönüşüm hangisidir?", "opts": ["Les la piensa llevar.", "Se lo piensa llevar.", "La se piensa llevar.", "Se la piensa llevar."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Se la piensa llevar.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Carmen taşınma sırasında ona yardım ettikleri için komşuları için bir pasta hazırladı. Bu akşam yemekten sonra pastayı komşularına götürmeyi düşünüyor.<br><br>\n<b>Hedef cümlenin Türkçesi:</b> Pastayı komşularına götürmeyi düşünüyor. → <strong>Onu onlara götürmeyi düşünüyor.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>la tarta</i> → <strong>la</strong>.<br>\n• <i>a sus vecinos</i> → <strong>les → se</strong>.<br>\n• ✅ <strong>Se la piensa llevar.</strong><br>\n• Alternatif: <strong>Piensa llevársela.</strong>"}, {"id": 41, "q": "Aşağıdaki cümlelerden hangisi tamamen doğrudur?", "opts": ["Le lo expliqué esta mañana.", "Lo le expliqué esta mañana.", "Se lo expliqué esta mañana.", "Se le expliqué esta mañana."], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>Se lo expliqué esta mañana.</strong><br><br>\n<b>Türkçesi:</b> Bu sabah onu ona açıkladım.<br><br>\n<b>Detaylı analiz:</b><br>\n• Varsayılan yapı: <i>explicar algo a alguien</i>.<br>\n• <i>algo</i> → <strong>lo</strong>.<br>\n• <i>a él / a ella</i> → <strong>le</strong>.<br>\n• ❌ <i>le lo</i> olmaz → ✅ <strong>se lo</strong>.<br>\n• ❌ <i>lo le</i> de yanlıştır çünkü sıra <strong>OI + OD</strong> olmalıdır."}, {"id": 42, "q": "“Mañana voy a traer las carpetas para ti.”<br><br>Hangisi aynı anlamdadır?", "opts": ["Se las voy a traer mañana.", "Te las voy a traer mañana.", "Te los voy a traer mañana.", "Las te voy a traer mañana."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>Te las voy a traer mañana.</strong><br><br>\n<b>Türkçesi:</b> Yarın klasörleri senin için getireceğim. → Yarın <strong>onları sana getireceğim.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>para ti</i> → <strong>te</strong> = OI.<br>\n• <i>las carpetas</i> → <strong>las</strong> = OD.<br>\n• Doğru sıra: <strong>te las</strong>.<br>\n• Alternatif: <strong>Voy a traértelas mañana.</strong>"}, {"id": 43, "q": "Aşağıdaki cümlelerden hangisi <strong>yanlıştır</strong>?", "opts": ["He se lo contado.", "Se lo he contado.", "Nos las habían enseñado.", "Te lo voy a explicar."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>He se lo contado.</strong> ❌<br><br>\n<b>Doğru hâli:</b> <strong>Se lo he contado.</strong><br>\n<b>Türkçesi:</b> Onu ona anlattım.<br><br>\n<b>Detaylı analiz:</b><br>\n• Pretérito Perfecto’da zamirler yardımcı fiilden önce gelir.<br>\n• Doğru sıra: <strong>se + lo + he + contado</strong>.<br>\n• ❌ <i>he se lo contado</i> olamaz.<br>\n• Diğer seçeneklerde zamirlerin konumu dilbilgisel olarak doğrudur."}, {"id": 44, "q": "“Estamos explicando las reglas a los nuevos alumnos.”<br><br>Hangisi aynı anlamı verir?", "opts": ["Estamos explicándoleslas.", "Estamos explicándolos.", "Estamos explicándoselas.", "Estamos se las explicando."], "ans": 2, "feedback": "<b>Doğru cevap:</b> <strong>Estamos explicándoselas.</strong><br><br>\n<b>Türkçesi:</b> Kuralları yeni öğrencilere açıklıyoruz. → <strong>Onları onlara açıklıyoruz.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>las reglas</i> → <strong>las</strong>.<br>\n• <i>a los nuevos alumnos</i> → <strong>les → se</strong>.<br>\n• <i>explicando + se + las</i> → <strong>explicándoselas</strong>.<br>\n• Alternatif: <strong>Se las estamos explicando.</strong>"}, {"id": 45, "q": "“Mi madre preparaba bocadillos para nosotros cada mañana.”<br><br>İki nesne de zamirleştirilirse hangisi doğrudur?", "opts": ["Mi madre nos los preparaba cada mañana.", "Mi madre se los preparaba cada mañana.", "Mi madre los nos preparaba cada mañana.", "Mi madre nos las preparaba cada mañana."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>Mi madre nos los preparaba cada mañana.</strong><br><br>\n<b>Türkçesi:</b> Annem her sabah bizim için sandviç hazırlardı. → Annem her sabah <strong>onları bizim için hazırlardı.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>bocadillos</i> → <strong>los</strong>.<br>\n• <i>para nosotros</i> → <strong>nos</strong>.<br>\n• Sıra: <strong>nos los</strong>.<br>\n• <i>cada mañana</i> geçmiş alışkanlık ifade ettiği için <i>preparaba</i> Imperfecto'dur."}, {"id": 46, "q": "Hangi cümledeki <strong>se</strong>, reflexivo değildir?", "opts": ["Julia se lo explicó a su hermana.", "Julia se levantó a las siete.", "Julia se maquilló antes de salir.", "Julia se miró en el espejo."], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>Julia se lo explicó a su hermana.</strong><br><br>\n<b>Türkçesi:</b> Julia onu kız kardeşine açıkladı.<br><br>\n<b>Detaylı analiz:</b><br>\n• A seçeneğinde yapı: <i>explicar algo a su hermana</i>.<br>\n• <i>a su hermana</i> → <strong>le</strong>.<br>\n• <i>algo</i> → <strong>lo</strong>.<br>\n• <strong>le + lo → se lo</strong>.<br>\n• Yani buradaki <strong>se</strong>, reflexivo değildir; <strong>le</strong> zamirinin dönüşmüş hâlidir.<br>\n• Diğer seçeneklerde özne eylemi kendi üzerinde yapar: <i>levantarse, maquillarse, mirarse</i>."}, {"id": 47, "q": "“Ellos muestran las fotografías a nosotros.”<br><br>Doğru zamirli yapı hangisidir?", "opts": ["Se las muestran.", "Nos los muestran.", "Las nos muestran.", "Nos las muestran."], "ans": 3, "feedback": "<b>Doğru cevap:</b> <strong>Nos las muestran.</strong><br><br>\n<b>Türkçesi:</b> Fotoğrafları bize gösteriyorlar. → <strong>Onları bize gösteriyorlar.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>a nosotros</i> → <strong>nos</strong> = OI.<br>\n• <i>las fotografías</i> → <strong>las</strong> = OD.<br>\n• Sıra: <strong>OI + OD</strong> → <strong>nos las</strong>."}, {"id": 48, "q": "“No quiero decir la verdad a mis compañeros todavía.”<br><br>İki zamiri infinitivoya bağlayan doğru biçim hangisidir?", "opts": ["No quiero decirlesla todavía.", "No quiero decírsela todavía.", "No quiero decirla se todavía.", "No quiero se la decir todavía."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>No quiero decírsela todavía.</strong><br><br>\n<b>Türkçesi:</b> Gerçeği arkadaşlarıma henüz söylemek istemiyorum. → <strong>Onu onlara henüz söylemek istemiyorum.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>la verdad</i> → <strong>la</strong>.<br>\n• <i>a mis compañeros</i> → <strong>les → se</strong>.<br>\n• <i>decir + se + la</i> → <strong>decírsela</strong>.<br>\n• Zamirler infinitivoya bağlanınca tek kelime olur ve vurgu işareti gerekir."}, {"id": 49, "q": "<strong>Raúl me prestó su cámara durante el viaje.</strong><br><br>Doğru analiz hangisidir?", "opts": ["me = OI / su cámara = OD", "me = OD / su cámara = OI", "me = reflexivo / su cámara = OD", "Her ikisi de OI"], "ans": 0, "feedback": "<b>Doğru cevap:</b> <strong>me = OI / su cámara = OD</strong><br><br>\n<b>Cümlenin Türkçesi:</b> Raúl seyahat sırasında bana fotoğraf makinesini ödünç verdi.<br>\n<b>Tam zamirli hâli:</b> Raúl <strong>me la prestó</strong>.<br>\n<b>Türkçesi:</b> Raúl <strong>onu bana ödünç verdi</strong>.<br><br>\n<b>Detaylı analiz:</b><br>\n• <i>prestar algo a alguien</i>.<br>\n• <i>¿Qué prestó?</i> → su cámara = OD → <strong>la</strong>.<br>\n• <i>¿A quién?</i> → a mí = OI → <strong>me</strong>.<br>\n• Sonuç: <strong>me la prestó</strong>."}, {"id": 50, "q": "<div class=\"reading finalboss\"><b>👑 FINAL</b><br>Beatriz ha comprado cuatro billetes para sus padres. Mañana va a entregar los cuatro billetes a sus padres antes del viaje.</div><br>\nİki nesne tamamen zamirleştirildiğinde aşağıdaki çiftlerden hangisinin <strong>ikisi de doğrudur</strong>?", "opts": ["Les los va a entregar. / Va a entregarleslos.", "Se los va a entregar. / Va a entregárselos.", "Se las va a entregar. / Va a entregárselas.", "Los se va a entregar. / Va se los a entregar."], "ans": 1, "feedback": "<b>Doğru cevap:</b> <strong>Se los va a entregar. / Va a entregárselos.</strong><br><br>\n<b>Paragrafın Türkçesi:</b> Beatriz anne ve babası için dört bilet satın aldı. Yarın yolculuktan önce dört bileti anne ve babasına teslim edecek.<br>\n<b>Hedef anlam:</b> <strong>Onları onlara teslim edecek.</strong><br><br>\n<b>Detaylı analiz:</b><br>\n• <i>los cuatro billetes</i> → OD → <strong>los</strong>.<br>\n• <i>a sus padres</i> → OI → <strong>les</strong>.<br>\n• ❌ <strong>les los</strong> olmaz.<br>\n• <strong>les → se</strong> dönüşür → <strong>se los</strong>.<br><br>\n<b>İki doğru yerleşim:</b><br>\n1) Çekimli fiilden önce: <strong>Se los va a entregar.</strong><br>\n2) Infinitivoya bitişik: <strong>Va a entregárselos.</strong><br><br>\nBu soru aynı anda <strong>OD/OI tespiti + se dönüşümü + zamir sırası + infinitivo yerleşimi</strong> ölçer."}];
+let cur = 0;
+let student = "";
+const state = {};
+
+function sec(n){
+ if(n<=10) return "1–10 · OD / OI Ayrımı";
+ if(n<=20) return "11–20 · OD + OI Birlikte";
+ if(n<=30) return "21–30 · Zamirlerin Yerleşimi";
+ if(n<=40) return "31–40 · Comprensión Lectora";
+ return "41–50 · Hata Analizi & İleri Kullanım";
+}
+function show(id){
+ document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function startQuiz(){
+ const s=document.getElementById("student").value;
+ if(!s){alert("Lütfen adınızı seçin.");return;}
+ student=s;
+ document.getElementById("studentName").textContent=student;
+ show("quiz"); render();
+}
+function st(id){
+ if(!state[id]) state[id]={selected:null,checked:false,correct:false};
+ return state[id];
+}
+function selectOpt(i){
+ const q=QS[cur], x=st(q.id);
+ if(x.checked) return;
+ x.selected=i;
+ render();
+}
+function checkAnswer(){
+ const q=QS[cur], x=st(q.id);
+ if(x.selected===null){alert("Önce bir seçenek işaretleyin.");return;}
+ x.checked=true;
+ x.correct=x.selected===q.ans;
+ render();
+}
+function render(){
+ const q=QS[cur], x=st(q.id);
+ let opts=q.opts.map((o,i)=>{
+   let cls="option";
+   if(x.selected===i) cls+=" selected";
+   if(x.checked && i===q.ans) cls+=" correct";
+   if(x.checked && x.selected===i && i!==q.ans) cls+=" wrong";
+   return `<button class="${cls}" onclick="selectOpt(${i})"><b>${String.fromCharCode(65+i)})</b> ${o}</button>`;
+ }).join("");
+ let fb="";
+ if(x.checked){
+   fb=`<div class="feedback show ${x.correct?'ok':'bad'}">
+      <div style="font-size:16px;font-weight:900;margin-bottom:8px">${x.correct?'✅ Doğru!':'❌ Yanlış.'}</div>
+      ${q.feedback}
+   </div>`;
+ }
+ document.getElementById("qarea").innerHTML=`
+   <div class="section">${sec(q.id)}</div>
+   <div class="qcard">
+     <div class="qhead"><div class="qnum">SORU ${q.id} / 50</div><div class="prompt">${q.q}</div></div>
+     <div class="options">${opts}</div>
+     <div class="controls">
+       <button class="btn gold" onclick="checkAnswer()" ${x.checked?'disabled':''}>🔍 Cevabı Kontrol Et</button>
+     </div>
+     ${fb}
+   </div>`;
+ updateMeta();
+}
+function updateMeta(){
+ const checked=QS.filter(q=>state[q.id]?.checked).length;
+ document.getElementById("answered").textContent=checked;
+ document.getElementById("bar").style.width=(checked/50*100)+"%";
+ document.getElementById("sectionName").textContent=sec(QS[cur].id);
+ document.getElementById("curNo").textContent=cur+1;
+ document.getElementById("navCount").textContent=(cur+1)+" / 50";
+ document.getElementById("prevBtn").disabled=cur===0;
+ const n=document.getElementById("nextBtn");
+ if(cur===49){n.textContent="Sonuç →";n.onclick=finishQuiz;}
+ else{n.textContent="İleri →";n.onclick=()=>move(1);}
+}
+function move(d){
+ cur=Math.max(0,Math.min(49,cur+d));render();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function finishQuiz(){
+ const checked=QS.filter(q=>state[q.id]?.checked).length;
+ const blanks=50-checked;
+ if(blanks>0 && !confirm(`${blanks} soru henüz kontrol edilmedi/boş. Yine de testi bitirmek istiyor musunuz?`)) return;
+ let c=0,w=0;
+ QS.forEach(q=>{ if(state[q.id]?.checked){ if(state[q.id].correct)c++; else w++; } });
+ const score=c*2;
+ document.getElementById("resultStudent").textContent=student;
+ document.getElementById("score").textContent=score;
+ document.getElementById("correct").textContent=c;
+ document.getElementById("wrong").textContent=w;
+ document.getElementById("blank").textContent=blanks;
+ show("result");
+}
+function reviewWrong(){
+ const idx=QS.findIndex(q=>state[q.id]?.checked && !state[q.id].correct);
+ cur=idx>=0?idx:0; show("quiz"); render();
+}
+</script>
+</body>
+</html>
