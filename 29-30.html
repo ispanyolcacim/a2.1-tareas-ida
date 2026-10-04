@@ -223,13 +223,6 @@ function selectOpt(i){
  x.selected=i;
  render();
 }
-function checkAnswer(){
- const q=QS[cur], x=st(q.id);
- if(x.selected===null){alert("Önce bir seçenek işaretleyin.");return;}
- x.checked=true;
- x.correct=x.selected===q.ans;
- render();
-}
 function render(){
  const q=QS[cur], x=st(q.id);
  let opts=q.opts.map((o,i)=>{
@@ -239,27 +232,16 @@ function render(){
    if(x.checked && x.selected===i && i!==q.ans) cls+=" wrong";
    return `<button class="${cls}" onclick="selectOpt(${i})"><b>${String.fromCharCode(65+i)})</b> ${o}</button>`;
  }).join("");
- let fb="";
- if(x.checked){
-   fb=`<div class="feedback show ${x.correct?'ok':'bad'}">
-      <div style="font-size:16px;font-weight:900;margin-bottom:8px">${x.correct?'✅ Doğru!':'❌ Yanlış.'}</div>
-      ${q.feedback}
-   </div>`;
- }
  document.getElementById("qarea").innerHTML=`
    <div class="section">${sec(q.id)}</div>
    <div class="qcard">
      <div class="qhead"><div class="qnum">SORU ${q.id} / 50</div><div class="prompt">${q.q}</div></div>
      <div class="options">${opts}</div>
-     <div class="controls">
-       <button class="btn gold" onclick="checkAnswer()" ${x.checked?'disabled':''}>🔍 Cevabı Kontrol Et</button>
-     </div>
-     ${fb}
-   </div>`;
+</div>`;
  updateMeta();
 }
 function updateMeta(){
- const checked=QS.filter(q=>state[q.id]?.checked).length;
+ const checked=QS.filter(q=>state[q.id]?.selected!==null && state[q.id]?.selected!==undefined).length;
  document.getElementById("answered").textContent=checked;
  document.getElementById("bar").style.width=(checked/50*100)+"%";
  document.getElementById("sectionName").textContent=sec(QS[cur].id);
@@ -275,7 +257,7 @@ function move(d){
  window.scrollTo({top:0,behavior:"smooth"});
 }
 function goConfirm(){
- const checked=QS.filter(q=>state[q.id]?.checked).length;
+ const checked=QS.filter(q=>state[q.id]?.selected!==null && state[q.id]?.selected!==undefined).length;
  const blank=50-checked;
  document.getElementById("confirmInfo").innerHTML=
    `<strong>${checked}</strong> soru kontrol edildi · <strong>${blank}</strong> soru boş.<br>`+
@@ -290,10 +272,17 @@ function submitQuiz(){
 
  let correct=0,wrong=0,blank=0;
  QS.forEach(q=>{
-   const x=state[q.id];
-   if(!x || !x.checked) blank++;
-   else if(x.correct) correct++;
-   else wrong++;
+   const x=st(q.id);
+   if(x.selected===null || x.selected===undefined){
+     blank++;
+     x.checked=false;
+     x.correct=false;
+   }else{
+     x.checked=true;
+     x.correct=(x.selected===q.ans);
+     if(x.correct) correct++;
+     else wrong++;
+   }
  });
 
  const score=correct*2; // 50 soru = 100 puan
