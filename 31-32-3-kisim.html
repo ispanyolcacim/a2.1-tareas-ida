@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A2.1 – 8. Hafta 31–32. Ders | 3. Kısım</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;color:#4a2535;background:linear-gradient(160deg,#fff9f2,#fff6fa 60%,#fffde9);min-height:100vh}
+:root{--pink:#df6384;--pink2:#ef86a4;--light:#f9d3dd;--cream:#fff5cd;--gold:#efbe4f;--dark:#4a2535;--mid:#8d5161;--green:#5da875;--red:#d7666b;--purple:#77558f;--r:18px}
+.header{background:linear-gradient(135deg,var(--pink2),var(--pink));padding:18px 20px;text-align:center;color:white;box-shadow:0 4px 18px #df638455;position:relative;overflow:hidden}
+.header:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 14px,#ffffff15 14px,#ffffff15 15px)}
+.header>*{position:relative}
+.htag{display:inline-block;border:1px solid #ffffff88;background:#ffffff33;border-radius:999px;padding:4px 15px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+h1{font-size:clamp(19px,4vw,27px);margin:8px 0 3px}.sub{font-size:12px;opacity:.92}
+.screen{display:none}.screen.active{display:block}
+.cover{max-width:920px;margin:24px auto;padding:0 18px 35px}.cover-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.card{background:#fff;border:1.5px solid var(--light);border-radius:var(--r);padding:20px;box-shadow:0 5px 20px #df63841a}
+.notice{background:linear-gradient(135deg,#fff9df,#fff2f6);border-left:5px solid var(--pink2);line-height:1.7;font-size:14px;padding:14px 16px;border-radius:0 14px 14px 0}
+.notice strong{color:var(--pink)}
+select{width:100%;padding:13px 14px;border:2px solid var(--light);border-radius:14px;background:#fff;font:inherit;color:var(--dark);margin:10px 0 14px}
+.btn{border:0;border-radius:14px;padding:12px 19px;font:700 14px inherit;cursor:pointer;transition:.18s;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.btn:hover{transform:translateY(-1px)}.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.primary{background:linear-gradient(135deg,var(--pink2),var(--pink));color:#fff;box-shadow:0 4px 12px #df638444}
+.gold{background:linear-gradient(135deg,#f7d174,var(--gold));color:var(--dark)}.outline{background:#fff;border:2px solid var(--light);color:var(--dark)}.wide{width:100%}
+.legend{display:grid;gap:10px;margin:14px 0}.legend div{background:#fff8fa;border:1px solid var(--light);border-radius:12px;padding:11px 13px;font-size:13px}.legend b{color:var(--pink)}
+.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.part{padding:10px;border-radius:12px;border:1px solid var(--light);background:#fff8fa;font-size:12px;text-align:center}.part.current{background:#fff3c8;border-color:#e7c451;font-weight:800}
+.quiz{max-width:900px;margin:0 auto;padding:14px 18px 50px}
+.topbar{position:sticky;top:8px;z-index:20;background:#fffdfddd;border:1.5px solid var(--light);backdrop-filter:blur(12px);border-radius:16px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 4px 18px #df638422;margin-bottom:12px}
+.mini{font-size:13px;color:var(--mid)}.mini strong{color:var(--dark)}
+.progress{height:8px;background:var(--light);border-radius:20px;overflow:hidden;margin:10px 0 5px}.progress>div{height:100%;background:linear-gradient(90deg,var(--pink),var(--gold));width:0;transition:.25s}
+.progtext{display:flex;justify-content:space-between;font-size:12px;color:var(--mid);margin-bottom:10px;gap:10px;flex-wrap:wrap}
+.section-pill{display:inline-block;background:linear-gradient(90deg,var(--pink2),var(--pink));color:white;border-radius:999px;padding:7px 15px;font-size:12px;font-weight:800;letter-spacing:.5px;margin:6px 0 10px}
+.qcard{background:white;border:1.5px solid var(--light);border-radius:20px;overflow:hidden;box-shadow:0 4px 18px #df638418}
+.qhead{padding:18px 20px 10px}.qnum{font-size:12px;font-weight:800;color:var(--pink);margin-bottom:10px}.prompt{font-size:17px;line-height:1.75;font-weight:650}
+.options{display:grid;gap:10px;padding:8px 20px 18px}
+.option{text-align:left;border:2px solid var(--light);background:#fff9fb;color:var(--dark);border-radius:13px;padding:13px 14px;font:600 14px/1.5 inherit;cursor:pointer}
+.option:hover{border-color:#ec9cb1;background:#fff3f7}.option.selected{border-color:var(--pink);background:#fff0f5}
+.option.correct{border-color:var(--green);background:#effaf2}.option.wrong{border-color:var(--red);background:#fff0f1}
+.option.locked{cursor:default}
+.feedback{margin:0 20px 18px;border-left:5px solid var(--gold);background:#fff9df;border-radius:0 14px 14px 0;padding:14px 16px;line-height:1.72;font-size:14px}
+.feedback.correct{border-left-color:var(--green);background:#effaf2}.feedback.wrong{border-left-color:var(--red);background:#fff0f1}
+.expl{margin-top:12px;background:#fff;border:1px solid var(--light);border-radius:14px;padding:14px 16px}.expl h4{margin:0 0 9px;color:var(--pink)}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:14px;gap:10px}.navcenter{font-weight:700;color:var(--mid);font-size:13px}
+.confirm,.result{max-width:560px;margin:30px auto;padding:0 18px;text-align:center}.score{font-size:64px;font-weight:900;line-height:1;color:var(--dark)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}.stat{border:1px solid var(--light);border-radius:14px;padding:12px;background:#fff8fa}.stat b{font-size:26px;display:block}
+.status{padding:10px 14px;border-radius:999px;display:inline-block;font-weight:700;background:#fff4cf;color:#8a6400;margin-top:8px}
+.attention{background:#fff2f2;border:1px solid #f2b0b6;border-radius:14px;padding:13px 14px;line-height:1.65;font-size:13px;margin-top:12px}
+@media(max-width:720px){.cover-grid{grid-template-columns:1fr}.topbar{flex-wrap:wrap}.prompt{font-size:15px}.stats,.parts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="htag">8. HAFTA ÖDEVİ · A2.1 (31–32. DERS) · 3. KISIM</div>
+  <h1>🧠 Desafío Final · Traduce · Transforma · Corrige</h1>
+  <div class="sub">50 soru · 100 puan · Yüksek dikkat · @ispanyolcacim · Profe Hazel</div>
+</div>
+
+<section id="sc-cover" class="screen active"><div class="cover"><div class="cover-grid">
+<div class="card">
+  <h2>📚 Adınızı seçin</h2>
+  <p>Ödeve başlamadan önce listeden adınızı seçin.</p>
+  <select id="student"><option value="">-- Adınızı Seçin --</option><option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option><option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option><option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option><option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option><option>Zeynep Oztaskin</option></select>
+  <div class="notice">
+    <strong>📢 31–32. DERS ÖDEVİ · 3. VE SON KISIM</strong><br>
+    Bu çalışma dönemimizin <b>son ödevinin son bölümüdür.</b> İlk iki kısmı tamamladıysanız şimdi final meydan okumasındasınız. 🌸<br><br>
+    Bu bölümde yalnızca konuyu bilmek yetmez: <b>küçük ayrıntıları fark etmeniz gerekir.</b>
+    Zaman ifadesi, fiil zamanı, şahıs, vurgu, zamir sırası, cinsiyet ve sayıdaki minicik farklar doğru cevabı belirleyecek.
+  </div>
+  <div class="attention">
+    🚨 <b>DİKKAT:</b> Bir şıkka tıkladığınız anda cevabınız <b>kilitlenir</b> ve açıklama açılır.
+    Sonradan şık değiştiremezsiniz. Bu yüzden tıklamadan önce bütün seçenekleri dikkatle okuyun.
+  </div><br>
+  <button class="btn primary wide" onclick="startQuiz()">▶ Final Bölümüne Başla</button>
+</div>
+
+<div class="card">
+  <h2>🧩 Yapı</h2>
+  <div class="legend">
+    <div><b>1–20</b> · Traduce · Türkçeden İspanyolcaya</div>
+    <div><b>21–35</b> · Transforma · Cümleyi dönüştür</div>
+    <div><b>36–50</b> · Corrige · Hata avı</div>
+    <div>Her soruda <b>4 birbirine yakın seçenek</b></div>
+    <div>Şık seçildiği anda <b>anında doğru/yanlış + detaylı açıklama</b></div>
+    <div><b>50 soru = 100 puan</b></div>
+  </div>
+  <div class="parts">
+    <div class="part">1. KISIM<br>Genel Tekrar</div>
+    <div class="part">2. KISIM<br>Okuma</div>
+    <div class="part current">✅ 3. KISIM<br>Final Challenge</div>
+  </div>
+</div>
+</div></div></section>
+
+<section id="sc-quiz" class="screen"><div class="quiz">
+<div class="topbar">
+  <div class="mini"><strong id="topStudent">—</strong><br><span id="answered">0</span> / 50 cevaplandı</div>
+  <button class="btn gold" onclick="goConfirm()">✔ Ödevi Teslim Et</button>
+</div>
+<div class="progress"><div id="bar"></div></div>
+<div class="progtext"><span id="secName">—</span><span>Soru <b id="curNo">1</b> / 50</span></div>
+<div id="qarea"></div>
+<div class="nav">
+  <button class="btn outline" id="prev" onclick="nav(-1)">← Geri</button>
+  <div class="navcenter" id="navcount">1 / 50</div>
+  <button class="btn primary" id="next" onclick="nav(1)">İleri →</button>
+</div>
+</div></section>
+
+<section id="sc-confirm" class="screen"><div class="confirm"><div class="card">
+<div style="font-size:48px">📋</div><h2>Ödevi Teslim Et</h2>
+<p>Cevaplanmayan sorular boş olarak değerlendirilecektir.</p>
+<div id="confirmInfo" class="notice"></div>
+<select id="student2"><option value="">-- Adınızı Seçin --</option><option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option><option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option><option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option><option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option><option>Zeynep Oztaskin</option></select>
+<button class="btn gold wide" onclick="submitQuiz()">✔ Evet, Teslim Et</button><br><br>
+<button class="btn outline wide" onclick="showScreen('quiz')">← Ödeve Dön</button>
+</div></div></section>
+
+<section id="sc-result" class="screen"><div class="result"><div class="card">
+<div style="font-size:50px">🏁</div><div id="resultName" style="color:var(--mid);font-weight:700"></div>
+<h2>A2.1 · H8 · 31–32. Ders · 3. Kısım</h2>
+<div class="score"><span id="score">0</span><span style="font-size:23px;color:var(--mid);font-weight:500">/100</span></div>
+<div class="stats">
+  <div class="stat"><b id="rCorrect" style="color:var(--green)">0</b>Doğru / 50</div>
+  <div class="stat"><b id="rWrong" style="color:var(--red)">0</b>Yanlış</div>
+  <div class="stat"><b id="rBlank" style="color:#999">0</b>Boş</div>
+</div>
+<div class="notice" style="text-align:left"><strong>🎓 31–32. Ders ödevinin 3. ve son kısmını tamamladınız.</strong><br>Bu bölüm özellikle ayrıntı, dikkat ve dönem boyunca öğrendiğiniz yapıların birlikte kullanımını ölçüyordu.</div>
+<div id="saveStatus" class="status">⏳ Kaydediliyor…</div>
+</div></div></section>
+
+<script>
+const ASU='https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
+const SID='1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const SHN='A2.1';
+const TCL='H8 – 31-32.Ders (3. KISIM)';
+const QS=[{"id": 1, "section": "1–20 · Traduce", "prompt": "Ben küçükken her yaz büyükannemlerde kalırdım ama geçen yaz ilk kez arkadaşlarımla Madrid'e gittim.", "opts": ["Cuando era pequeño/a, todos los veranos me quedé en casa de mis abuelos, pero el verano pasado fui a Madrid con mis amigos por primera vez.", "Cuando fui pequeño/a, todos los veranos me quedé en casa de mis abuelos, pero el verano pasado iba a Madrid con mis amigos por primera vez.", "Cuando era pequeño/a, todos los veranos me quedaba en casa de mis abuelos, pero el verano pasado fui a Madrid con mis amigos por primera vez.", "Cuando estaba pequeño/a, todos los veranos me quedaba en casa de mis abuelos, pero el verano pasado fui a Madrid con mis amigos por primera vez."], "ans": 2, "explanation": "<b>Era</b> yaş/durum için Imperfecto; <b>todos los veranos</b> tekrar eden alışkanlık → <b>me quedaba</b>. <b>El verano pasado</b> bitmiş zaman → <b>fui</b>. Burada en büyük tuzak, alışkanlığı Indefinido ile vermek veya <i>ser pequeño</i> yerine yanlışlıkla <i>estar pequeño</i> kullanmaktır."}, {"id": 2, "section": "1–20 · Traduce", "prompt": "Dün anneme çiçekleri verdim ama hediyeyi ona vermeyi unuttum.", "opts": ["Ayer le di las flores a mi madre, pero olvidé darle el regalo.", "Ayer la di las flores a mi madre, pero olvidé darle el regalo.", "Ayer le daba las flores a mi madre, pero olvidé darla el regalo.", "Ayer le di las flores a mi madre, pero olvidé le dar el regalo."], "ans": 0, "explanation": "<b>a mi madre</b> dolaylı nesnedir → <b>le</b>. <b>dar algo a alguien</b>. Mastarda zamir sona eklenebilir: <b>darle</b>. <i>la di</i> burada yanlıştır çünkü <i>la</i> doğrudan nesne olurdu."}, {"id": 3, "section": "1–20 · Traduce", "prompt": "Şu anda kardeşim odasında ders çalışıyor, bu yüzden onu rahatsız etmek istemiyorum.", "opts": ["Ahora mi hermano estudia en su habitación, por eso no quiero molestándole.", "Ahora mi hermano está estudiar en su habitación, por eso no quiero lo molestar.", "Ahora mi hermano está estudiando en su habitación, por eso no quiero le molestar.", "Ahora mi hermano está estudiando en su habitación, por eso no quiero molestarlo."], "ans": 3, "explanation": "<b>Ahora</b> → şu anda devam eden eylem: <b>estar + gerundio</b>. <b>molestar a mi hermano</b> doğrudan nesnedir → <b>lo</b>; mastara bitişik: <b>molestarlo</b>."}, {"id": 4, "section": "1–20 · Traduce", "prompt": "Bu hafta üç kez onunla konuştum ama hâlâ bana gerçeği söylemedi.", "opts": ["Esta semana he hablado con él/ella tres veces, pero todavía no ha me dicho la verdad.", "Esta semana he hablado con él/ella tres veces, pero todavía no me ha dicho la verdad.", "Esta semana hablé con él/ella tres veces, pero todavía no me dijo la verdad.", "Esta semana hablaba con él/ella tres veces, pero todavía no me ha dicho la verdad."], "ans": 1, "explanation": "<b>Esta semana</b> bitmemiş zaman dilimi olduğundan Pretérito Perfecto uygundur: <b>he hablado</b>. Zamir yardımcı fiilden önce gelir: <b>me ha dicho</b>, ❌ <i>ha me dicho</i>."}, {"id": 5, "section": "1–20 · Traduce", "prompt": "Ben yemek yaparken telefon çaldı ve arkadaşım bana kötü haberi söyledi.", "opts": ["Mientras estaba cocinar, sonó el teléfono y mi amigo/a me dio la mala noticia.", "Mientras cociné, sonaba el teléfono y mi amigo/a me daba la mala noticia.", "Mientras cocinaba, sonó el teléfono y mi amigo/a me dio la mala noticia.", "Mientras cocinaba, sonaba el teléfono y mi amigo/a me dio la mala noticia."], "ans": 2, "explanation": "<b>Mientras cocinaba</b> devam eden arka plan → Imperfecto. <b>sonó</b> ve <b>dio</b> tamamlanmış olaylar → Indefinido. Bu soru iki zamanı aynı anda doğru seçmeyi gerektirir."}, {"id": 6, "section": "1–20 · Traduce", "prompt": "Yarın erken kalkacağım çünkü saat sekizde bir toplantıya gitmek zorundayım.", "opts": ["Mañana voy a me levantar temprano porque tengo que ir a una reunión a las ocho.", "Mañana me voy levantar temprano porque tengo de ir a una reunión a las ocho.", "Mañana voy a levantarme temprano porque tengo ir a una reunión a las ocho.", "Mañana me voy a levantar temprano porque tengo que ir a una reunión a las ocho."], "ans": 3, "explanation": "<b>Ir a + infinitivo</b> ve reflexivo zamir: <b>me voy a levantar</b> veya <b>voy a levantarme</b>. Zorunluluk: <b>tener que + infinitivo</b>. <i>tener de</i> ve <i>tener ir</i> yanlış."}, {"id": 7, "section": "1–20 · Traduce", "prompt": "Çocukken pazar günleri genellikle dedemle parka giderdim.", "opts": ["Cuando era niño/a, solía ir al parque con mi abuelo los domingos.", "Cuando fui niño/a, solí ir al parque con mi abuelo los domingos.", "Cuando era niño/a, suelo ir al parque con mi abuelo los domingos.", "Cuando estaba niño/a, solía iba al parque con mi abuelo los domingos."], "ans": 0, "explanation": "Geçmiş alışkanlık: <b>solía + infinitivo</b>. Yaş/dönem: <b>era niño/a</b>. <i>solía iba</i> olmaz; <b>soler</b> sonrası infinitivo gelir."}, {"id": 8, "section": "1–20 · Traduce", "prompt": "Bu kitap o kitaptan daha ilginç ama bu ikisi aynı derecede pahalı.", "opts": ["Este libro es más interesante como aquel, pero los dos son tan caros que.", "Este libro es más interesante que aquel, pero los dos son igual de caros.", "Este libro está más interesante que aquel, pero los dos están igual de caros.", "Este libro es tan interesante que aquel, pero los dos son más caros como."], "ans": 1, "explanation": "Karşılaştırma: <b>más + adjetivo + que</b>. Eşitlik için burada doğal yapı <b>igual de + adjetivo</b>. Kitabın genel özelliği için <b>ser</b> kullanılır."}, {"id": 9, "section": "1–20 · Traduce", "prompt": "Babam bana arabasını ödünç verdi ve ben ertesi gün onu geri verdim.", "opts": ["Mi padre me prestó su coche y yo lo le devolví al día siguiente.", "Mi padre me prestó su coche y yo le lo devolví al día siguiente.", "Mi padre me prestó su coche y yo se la devolví al día siguiente.", "Mi padre me prestó su coche y yo se lo devolví al día siguiente."], "ans": 3, "explanation": "<b>el coche → lo</b>, <b>a mi padre → le</b>. Birlikte: <b>le + lo → se lo</b>. Cinsiyet de önemli: <i>coche</i> eril olduğu için <b>lo</b>, <i>la</i> değil."}, {"id": 10, "section": "1–20 · Traduce", "prompt": "Eve geldiğimde herkes beni bekliyordu ve masa çoktan hazırlanmıştı.", "opts": ["Cuando he llegado a casa, todos me esperaban y la mesa estaba preparando.", "Cuando llegué a casa, todos me esperaron y la mesa ya estaba preparando.", "Cuando llegué a casa, todos me esperaban y la mesa ya estaba preparada.", "Cuando llegaba a casa, todos me esperaron y la mesa ya fue preparada."], "ans": 2, "explanation": "<b>llegué</b> tek tamamlanmış olay. <b>me esperaban</b> devam eden arka plan. <b>estaba preparada</b> durum bildirir; <i>preparando</i> 'hazırlıyordu' demektir ve burada anlamı değiştirir."}, {"id": 11, "section": "1–20 · Traduce", "prompt": "Bu sabah müdüre belgeleri gönderdim; onları ona e-postayla gönderdim.", "opts": ["Esta mañana enviaba los documentos al director; se los enviaba por correo electrónico.", "Esta mañana envié los documentos al director; se los envié por correo electrónico.", "Esta mañana envié los documentos al director; le los envié por correo electrónico.", "Esta mañana envié los documentos al director; se las envié por correo electrónico."], "ans": 1, "explanation": "<b>los documentos → los</b>; <b>al director → le → se</b>. Sonuç: <b>se los envié</b>. <i>se las</i> cinsiyet bakımından yanlıştır."}, {"id": 12, "section": "1–20 · Traduce", "prompt": "Ben bu filmi daha önce hiç görmedim ama kardeşim geçen ay iki kez izledi.", "opts": ["Nunca he visto esta película, pero mi hermano la vio dos veces el mes pasado.", "Nunca vi esta película, pero mi hermano la ha visto dos veces el mes pasado.", "Nunca he visto esta película, pero mi hermano la veía dos veces el mes pasado.", "Nunca he visto esta película, pero mi hermano le vio dos veces el mes pasado."], "ans": 0, "explanation": "Yaşam deneyimi: <b>Nunca he visto</b>. <b>el mes pasado</b> bitmiş zaman → <b>vio</b>. <b>película</b> dişil doğrudan nesne → <b>la</b>."}, {"id": 13, "section": "1–20 · Traduce", "prompt": "Dün yağmur yağıyordu, bu yüzden evden çıkmadık.", "opts": ["Ayer ha llovido, por eso no salíamos de casa.", "Ayer llovió, por eso no salíamos de casa.", "Ayer estaba llover, por eso no salimos de casa.", "Ayer llovía, por eso no salimos de casa."], "ans": 3, "explanation": "Hava durumu arka plan olarak <b>llovía</b>; karar/tamamlanmış eylem <b>no salimos</b>. Bağlama göre <i>llovió</i> mümkün olabilse de burada arka plan etkisi vurgulanıyor."}, {"id": 14, "section": "1–20 · Traduce", "prompt": "Onlara gerçeği anlatmak istiyorum ama henüz uygun zamanı bulamadım.", "opts": ["Quiero contarla la verdad, pero todavía no he encontrado el momento adecuado.", "Quiero contarles la verdad, pero todavía no he encontrado el momento adecuado.", "Quiero contárselos la verdad, pero todavía no he encontrado el momento adecuado.", "Quiero les contar la verdad, pero todavía no encontré el momento adecuado."], "ans": 1, "explanation": "<b>a ellos → les</b>; mastarda <b>contarles</b>. <b>todavía no he encontrado</b> şu ana kadar gerçekleşmemiş durum için Perfecto. <i>contarla la verdad</i> çift OD hatasıdır."}, {"id": 15, "section": "1–20 · Traduce", "prompt": "O kadın bana anahtarları verdi, ben de onları resepsiyon görevlisine teslim ettim.", "opts": ["Esa mujer me daba las llaves y yo se las entregaba al recepcionista.", "Esa mujer me dio las llaves y yo se los entregué al recepcionista.", "Esa mujer me dio las llaves y yo se las entregué al recepcionista.", "Esa mujer me dio las llaves y yo le las entregué al recepcionista."], "ans": 2, "explanation": "<b>las llaves → las</b>; <b>al recepcionista → le → se</b>. Bu nedenle <b>se las entregué</b>. Şıklar arasında hem zaman hem de cinsiyet tuzağı var."}, {"id": 16, "section": "1–20 · Traduce", "prompt": "Şu anda çocuklar uyuyor, lütfen çok fazla gürültü yapmayın.", "opts": ["Ahora los niños están durmiendo; por favor, no hagáis demasiado ruido.", "Ahora los niños están durmiendo; por favor, no hacer demasiado ruido.", "Ahora los niños están dormiendo; por favor, no hacéis demasiado ruido.", "Ahora los niños duermen ahora; por favor, no haced demasiado ruido."], "ans": 0, "explanation": "<b>dormir → durmiendo</b> gerundio düzensizidir. İspanya vosotros için olumsuz emir: <b>no hagáis</b>. Dikkat: <i>dormiendo</i> yanlış."}, {"id": 17, "section": "1–20 · Traduce", "prompt": "Geçen yıl bu evde yaşıyorduk ama eylül ayında başka bir eve taşındık.", "opts": ["El año pasado vivíamos en esta casa, pero en septiembre nos hemos mudado a otra.", "El año pasado vivimos en esta casa, pero en septiembre nos mudábamos a otra.", "El año pasado vivíamos en esta casa, pero en septiembre nos mudamos a otra.", "El año pasado estábamos viviendo en esta casa, pero en septiembre nos mudábamos a otra."], "ans": 2, "explanation": "Uzun süren durum/arka plan: <b>vivíamos</b>. Belirli ayda tamamlanan değişim: <b>nos mudamos</b>. Bu klasik Imperfecto + Indefinido karşıtlığıdır."}, {"id": 18, "section": "1–20 · Traduce", "prompt": "Bu restoranda çok insan var ama bizim masamız pencerenin yanında.", "opts": ["En este restaurante hay muchas gente, pero nuestra mesa es al lado de la ventana.", "En este restaurante están mucha gente, pero nuestra mesa hay al lado de la ventana.", "En este restaurante es mucha gente, pero nuestra mesa está al lado de la ventana.", "En este restaurante hay mucha gente, pero nuestra mesa está al lado de la ventana."], "ans": 3, "explanation": "Varlık: <b>hay mucha gente</b>. <b>gente</b> tekil kolektif isimdir → <b>mucha</b>. Belirli nesnenin konumu: <b>nuestra mesa está...</b>."}, {"id": 19, "section": "1–20 · Traduce", "prompt": "Marta bana fotoğrafları gösterdi ve sonra onları annesine gönderdi.", "opts": ["Marta me mostró las fotos y después le las envió a su madre.", "Marta me mostró las fotos y después se las envió a su madre.", "Marta me mostraba las fotos y después se las enviaba a su madre.", "Marta me enseñó las fotos y después se los envió a su madre."], "ans": 1, "explanation": "<b>las fotos → las</b>; <b>a su madre → le → se</b>. Tamamlanmış olay zinciri olduğundan Indefinido kullanılır."}, {"id": 20, "section": "1–20 · Traduce", "prompt": "Saat sekizi çeyrek geçiyor ve ders dokuzdan çeyrek önce bitecek.", "opts": ["Son las ocho y cuarto y la clase va a terminar a las nueve menos cuarto.", "Es las ocho y cuarto y la clase va terminar a las nueve menos cuarto.", "Son las ocho y cuarto y la clase está terminar a las nueve menos cuarto.", "Son las ocho menos cuarto y la clase va a terminar a las nueve y cuarto."], "ans": 0, "explanation": "Saat 8:15 → <b>son las ocho y cuarto</b>. 8:45 → <b>las nueve menos cuarto</b>. Yakın gelecek: <b>va a terminar</b>."}, {"id": 21, "section": "21–35 · Transforma", "prompt": "Presente → Imperfecto: «Todos los días trabajo hasta tarde y vuelvo a casa en autobús.»", "opts": ["Todos los días estaba trabajando hasta tarde y volví a casa en autobús.", "Todos los días trabajaba hasta tarde y volvía a casa en autobús.", "Todos los días trabajé hasta tarde y volví a casa en autobús.", "Todos los días trabajaba hasta tarde y volví a casa en autobús."], "ans": 1, "explanation": "Geçmiş alışkanlığa dönüştürürken iki fiil de Imperfecto olmalı: <b>trabajaba / volvía</b>. Birini Indefinido bırakmak zaman uyumunu bozar."}, {"id": 22, "section": "21–35 · Transforma", "prompt": "Ir a + infinitivo → pasado: «Voy a llamar a Ana después de cenar.»", "opts": ["Fui a llamar a Ana después de cenar.", "Estaba a llamar a Ana después de cenar.", "He ido a llamar a Ana después de cenar.", "Iba a llamar a Ana después de cenar."], "ans": 3, "explanation": "Geçmişteki plan/niyet için <b>ir</b> fiili Imperfecto olur: <b>iba a llamar</b> = arayacaktım."}, {"id": 23, "section": "21–35 · Transforma", "prompt": "Estar + gerundio → pasado: «Estamos preparando la cena.»", "opts": ["Estábamos preparando la cena.", "Estábamos preparar la cena.", "Estuvimos preparando la cena siempre.", "Estuvimos preparar la cena."], "ans": 0, "explanation": "Devam eden eylemi geçmişe taşırken <b>estar</b> Imperfecto: <b>estábamos preparando</b>."}, {"id": 24, "section": "21–35 · Transforma", "prompt": "OD: «Compré la chaqueta ayer.» → la chaqueta yerine zamir kullan.", "opts": ["Lo compré ayer.", "Le compré ayer.", "La compré ayer.", "Se compré ayer."], "ans": 2, "explanation": "<b>la chaqueta</b> dişil tekil doğrudan nesne → <b>la</b>. Çekimli fiilden önce: <b>La compré.</b>"}, {"id": 25, "section": "21–35 · Transforma", "prompt": "OI: «Escribí un correo a mis profesores.» → yalnızca kişiyi zamirleştir.", "opts": ["Le escribí un correo.", "Les escribí un correo.", "Los escribí un correo.", "Se escribí un correo."], "ans": 1, "explanation": "<b>a mis profesores</b> çoğul dolaylı nesne → <b>les</b>. OD olan <i>un correo</i> cümlede kaldığı için <b>les</b> → <b>se</b> dönüşmez."}, {"id": 26, "section": "21–35 · Transforma", "prompt": "OD + OI: «Di las llaves a Marta.» → iki nesneyi de zamirleştir.", "opts": ["Las se di.", "Le las di.", "Se las di.", "Se los di."], "ans": 2, "explanation": "<b>las llaves → las</b>; <b>a Marta → le → se</b>. Sıra: OI + OD + fiil → <b>se las di</b>."}, {"id": 27, "section": "21–35 · Transforma", "prompt": "OD + OI + infinitivo: «Voy a explicar el problema a Carlos.» → iki zamiri mastara bağla.", "opts": ["Voy a explicárselo.", "Voy a explicarlole.", "Voy a se lo explicar.", "Voy a explicársele."], "ans": 0, "explanation": "<b>el problema → lo</b>, <b>a Carlos → le → se</b>. Infinitivoya eklenince: <b>explicar + se + lo = explicárselo</b>. Vurgu işareti gerekir."}, {"id": 28, "section": "21–35 · Transforma", "prompt": "OD + OI + gerundio: «Estoy mostrando las fotos a Ana.» → zamirleri gerundioya bağla.", "opts": ["Estoy mostrando se las.", "Estoy mostrándolasle.", "Estoy mostrandoselas.", "Estoy mostrándoselas."], "ans": 3, "explanation": "<b>las fotos → las</b>, <b>a Ana → le→se</b>. Gerundioya bitişince <b>mostrándoselas</b>; vurgu işareti zorunludur."}, {"id": 29, "section": "21–35 · Transforma", "prompt": "Reflexivo + ir a: «Me levanto temprano.» → yarın için plan yap.", "opts": ["Mañana voy a levantar me temprano.", "Mañana me voy a levantar temprano.", "Mañana me voy levantar temprano.", "Mañana voy a me levantar temprano."], "ans": 1, "explanation": "Doğru iki yapı: <b>me voy a levantar</b> / <b>voy a levantarme</b>. Zamir iki fiilin arasına ayrı gelemez."}, {"id": 30, "section": "21–35 · Transforma", "prompt": "Perfecto + reflexivo: «Marta se ducha.» → «hoy» ile Pretérito Perfecto.", "opts": ["Hoy Marta se ha duchado.", "Hoy Marta ha se duchado.", "Hoy Marta se duchó siempre.", "Hoy Marta ha duchádose."], "ans": 0, "explanation": "Perfecto yapısında reflexivo zamir yardımcı fiilden önce: <b>se ha duchado</b>. Participle'a bağlanmaz."}, {"id": 31, "section": "21–35 · Transforma", "prompt": "Comparativa: «Ana es alta. Marta es igual de alta.» → tek cümle kur.", "opts": ["Ana es tan alta que Marta.", "Ana es más alta como Marta.", "Ana está tan alta como Marta.", "Ana es tan alta como Marta."], "ans": 3, "explanation": "Eşitlik: <b>tan + adjetivo + como</b>. Genel fiziksel özellik için <b>ser</b>."}, {"id": 32, "section": "21–35 · Transforma", "prompt": "Presente habitual → pasado habitual: «Suelo estudiar por la noche.»", "opts": ["Estaba soler estudiar por la noche.", "Solí estudiar por la noche.", "Solía estudiar por la noche.", "Suelo estudiaba por la noche."], "ans": 2, "explanation": "<b>soler</b> geçmiş alışkanlıkta Imperfecto: <b>solía + infinitivo</b>."}, {"id": 33, "section": "21–35 · Transforma", "prompt": "Tener que → pasado habitual: «Tengo que trabajar los sábados.»", "opts": ["Estaba que trabajar los sábados.", "Tenía que trabajar los sábados.", "Tenía trabajar que los sábados.", "Tuve que trabajar los sábados siempre."], "ans": 1, "explanation": "Tekrarlanan geçmiş zorunluluk → <b>tenía que + infinitivo</b>. <i>los sábados</i> alışkanlığı gösterir."}, {"id": 34, "section": "21–35 · Transforma", "prompt": "Indefinido + OD: «Ayer vi a Marta y a Laura.» → kişileri zamirleştir.", "opts": ["Ayer los vi.", "Ayer se vi.", "Ayer les vi.", "Ayer las vi."], "ans": 3, "explanation": "<b>a Marta y a Laura</b> iki kadın, doğrudan nesne → <b>las</b>. Standart öğretim normunda burada OD kullanılır."}, {"id": 35, "section": "21–35 · Transforma", "prompt": "OI + OD + Perfecto: «He enviado las fotos a mis padres.» → iki nesneyi zamirleştir.", "opts": ["Se las he enviado.", "Les las he enviado.", "He se las enviado.", "Se los he enviado."], "ans": 0, "explanation": "<b>las fotos → las</b>; <b>a mis padres → les→se</b>. Perfecto: zamirler yardımcı fiilden önce → <b>se las he enviado</b>."}, {"id": 36, "section": "36–50 · Corrige", "prompt": "Hata avı: «Ayer he fui al supermercado y compré pan.»", "opts": ["Ayer fui al supermercado y he comprado pan ayer.", "Ayer iba al supermercado y compré pan.", "Ayer fui al supermercado y compré pan.", "Ayer he ido al supermercado y compré pan ayer."], "ans": 2, "explanation": "<b>Ayer</b> bitmiş zaman → Indefinido. <b>he fui</b> diye bir yapı yoktur. Doğru: <b>fui</b>."}, {"id": 37, "section": "36–50 · Corrige", "prompt": "Hata avı: «Le lo expliqué tres veces, pero no entendió.»", "opts": ["Se le expliqué tres veces, pero no entendió.", "Se lo expliqué tres veces, pero no entendió.", "Le lo expliqué tres veces, pero no lo entendió.", "Lo le expliqué tres veces, pero no entendió."], "ans": 1, "explanation": "<b>le + lo</b> birlikte kullanılamaz; <b>le → se</b>. Doğru kalıp: <b>se lo expliqué</b>."}, {"id": 38, "section": "36–50 · Corrige", "prompt": "Hata avı: «Ahora estoy leer un libro muy interesante.»", "opts": ["Ahora estoy a leer un libro muy interesante.", "Ahora leo estando un libro muy interesante.", "Ahora estoy leído un libro muy interesante.", "Ahora estoy leyendo un libro muy interesante."], "ans": 3, "explanation": "<b>estar + gerundio</b> gerekir: <b>leer → leyendo</b>."}, {"id": 39, "section": "36–50 · Corrige", "prompt": "Hata avı: «Mañana voy a me levantar a las seis.»", "opts": ["Mañana me voy a levantar a las seis.", "Mañana voy me a levantar a las seis.", "Mañana me voy levantar a las seis.", "Mañana voy a me levanto a las seis."], "ans": 0, "explanation": "Reflexivo zamir ya <b>me voy a levantar</b> biçiminde önde ya da <b>voy a levantarme</b> biçiminde sonda olmalıdır."}, {"id": 40, "section": "36–50 · Corrige", "prompt": "Hata avı: «Cuando era niño, fui al parque todos los domingos.»", "opts": ["Cuando fui niño, iba al parque todos los domingos.", "Cuando estaba niño, iba al parque todos los domingos.", "Cuando era niño, iba al parque todos los domingos.", "Cuando era niño, fui al parque cada domingo una vez."], "ans": 2, "explanation": "<b>todos los domingos</b> tekrar eden alışkanlık → Imperfecto <b>iba</b>. Yaş/dönem için <b>era niño</b>."}, {"id": 41, "section": "36–50 · Corrige", "prompt": "Hata avı: «Esta semana vi tres películas españolas.»", "opts": ["Esta semana he visto tres películas españolas.", "Esta semana he ver tres películas españolas.", "Esta semana veía tres películas españolas.", "Esta semana he visto tres película españolas."], "ans": 0, "explanation": "Dersinizde kullanılan zaman mantığına göre <b>esta semana</b> henüz bitmemiş dönem → Perfecto: <b>he visto</b>. Ayrıca sayıdan sonra <b>películas</b> çoğul olmalı."}, {"id": 42, "section": "36–50 · Corrige", "prompt": "Hata avı: «La puerta está abrida desde esta mañana.»", "opts": ["La puerta es abierta desde esta mañana.", "La puerta está abriendo desde esta mañana.", "La puerta está abierto desde esta mañana.", "La puerta está abierta desde esta mañana."], "ans": 3, "explanation": "<b>abrir → abierto</b> düzensiz participio. Sıfat görevinde <b>puerta</b> ile uyum: <b>abierta</b>."}, {"id": 43, "section": "36–50 · Corrige", "prompt": "Hata avı: «A mis padres le gustan mucho los viajes.»", "opts": ["A mis padres les gusta mucho los viajes.", "A mis padres les gustan mucho los viajes.", "A mis padres se gustan mucho los viajes.", "A mis padres le gusta mucho los viajes."], "ans": 1, "explanation": "<b>a mis padres → les</b>; hoşa giden şey <b>los viajes</b> çoğul → <b>gustan</b>. İki çoğulluk işaretini de görmek gerekir."}, {"id": 44, "section": "36–50 · Corrige", "prompt": "Hata avı: «Hay la farmacia al lado del banco.»", "opts": ["La farmacia hay al lado del banco.", "Está una farmacia al lado del banco.", "La farmacia está al lado del banco.", "Hay una farmacia está al lado del banco."], "ans": 2, "explanation": "Belirli bir yerin konumu → <b>estar</b>: <b>La farmacia está...</b>. <b>Hay</b> belirsiz varlık bildirir."}, {"id": 45, "section": "36–50 · Corrige", "prompt": "Hata avı: «Mi hermano es cansado hoy porque trabajó mucho.»", "opts": ["Mi hermano está cansado hoy porque trabajó mucho.", "Mi hermano es cansado hoy porque estuvo trabajando mucho.", "Mi hermano está cansada hoy porque trabajó mucho.", "Mi hermano está cansado hoy porque era trabajar mucho."], "ans": 0, "explanation": "<b>cansado</b> geçici durum → <b>estar</b>. Özne <b>mi hermano</b> eril tekil → <b>cansado</b>."}, {"id": 46, "section": "36–50 · Corrige", "prompt": "Hata avı: «Los niños están dormiendo ahora.»", "opts": ["Los niños están dormidos ahora mismo y durmiendo.", "Los niños están durmiendo ahora.", "Los niños están dormir ahora.", "Los niños son durmiendo ahora."], "ans": 1, "explanation": "<b>dormir</b> gerundio düzensiz: <b>durmiendo</b>. En sık yapılan hata <i>dormiendo</i> yazmaktır."}, {"id": 47, "section": "36–50 · Corrige", "prompt": "Hata avı: «El profesor se las explicó el ejercicio a los alumnos.»", "opts": ["El profesor lo se explicó a los alumnos.", "El profesor se las explicó a los alumnos.", "El profesor les lo explicó a los alumnos.", "El profesor se lo explicó a los alumnos."], "ans": 3, "explanation": "<b>el ejercicio → lo</b> (eril tekil). <b>a los alumnos → les→se</b>. Dolayısıyla <b>se lo explicó</b>."}, {"id": 48, "section": "36–50 · Corrige", "prompt": "Hata avı: «Mientras cenamos, sonó el teléfono.» (Ama anlam: 'Yemek yerken telefon çaldı.')", "opts": ["Mientras cenábamos, sonaba el teléfono una vez.", "Mientras cenamos, ha sonado el teléfono ayer.", "Mientras cenábamos, sonó el teléfono.", "Mientras cenamos, sonaba el teléfono."], "ans": 2, "explanation": "Devam eden arka plan 'yemek yiyorduk' → Imperfecto <b>cenábamos</b>; tek olay 'telefon çaldı' → Indefinido <b>sonó</b>."}, {"id": 49, "section": "36–50 · Corrige", "prompt": "Hata avı: «Voy a explicarselo mañana.»", "opts": ["Voy a se lo explicar mañana.", "Voy a explicárselo mañana.", "Voy explicárselo a mañana.", "Voy a explicársele mañana."], "ans": 1, "explanation": "İnfinitivoya iki zamir eklenince vurgu korunması için aksan gerekir: <b>explicárselo</b>. Ayrıca sıra <b>se + lo</b>."}, {"id": 50, "section": "36–50 · Corrige", "prompt": "Hata avı: «Estoy mostrandoselas ahora.»", "opts": ["Estoy mostrándoselas ahora.", "Estoy mostrárselas ahora.", "Estoy se las mostrando ahora.", "Estoy mostrándolas se ahora."], "ans": 0, "explanation": "Gerundio + iki zamir birleştiğinde <b>mostrándoselas</b> yazılır; vurgu işareti gerekir. Öndeki alternatif ise <b>se las estoy mostrando</b> olurdu."}];
+
+let cur=0,student='',state={};
+
+function showScreen(x){
+  document.querySelectorAll('.screen').forEach(e=>e.classList.remove('active'));
+  document.getElementById('sc-'+x).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function startQuiz(){
+  const s=document.getElementById('student').value;
+  if(!s){alert('Lütfen adınızı seçin.');return}
+  student=s;document.getElementById('topStudent').textContent=student;
+  showScreen('quiz');render();
+}
+function stateFor(id){
+  if(!state[id])state[id]={selected:null,answered:false,correct:false};
+  return state[id];
+}
+function choose(i){
+  const q=QS[cur],st=stateFor(q.id);
+  if(st.answered)return;
+  st.selected=i;
+  st.answered=true;
+  st.correct=(i===q.ans);
+  render();
+}
+function nav(d){
+  cur=Math.max(0,Math.min(49,cur+d));
+  render();window.scrollTo({top:0,behavior:'smooth'});
+}
+function render(){
+  const q=QS[cur],st=stateFor(q.id);
+  const opts=q.opts.map((o,i)=>{
+    let cls='option';
+    if(st.selected===i)cls+=' selected';
+    if(st.answered&&i===q.ans)cls+=' correct';
+    if(st.answered&&st.selected===i&&i!==q.ans)cls+=' wrong';
+    if(st.answered)cls+=' locked';
+    return `<button class="${cls}" onclick="choose(${i})"><b>${String.fromCharCode(65+i)})</b> ${o}</button>`;
+  }).join('');
+
+  const fb=st.answered?`
+  <div class="feedback ${st.correct?'correct':'wrong'}">
+    <strong>${st.correct?'✅ Doğru!':'❌ Yanlış.'}</strong><br><br>
+    <b>Doğru cevap:</b> ${String.fromCharCode(65+q.ans)}) ${q.opts[q.ans]}
+    <div class="expl"><h4>📚 Detaylı Açıklama</h4>${q.explanation}</div>
+  </div>`:'';
+
+  document.getElementById('qarea').innerHTML=`
+    <div class="section-pill">${q.section}</div>
+    <div class="qcard">
+      <div class="qhead"><div class="qnum">SORU ${q.id} / 50</div><div class="prompt">${q.prompt}</div></div>
+      <div class="options">${opts}</div>
+      ${fb}
+    </div>`;
+  updateMeta();
+}
+function updateMeta(){
+  const done=QS.filter(q=>state[q.id]?.answered).length;
+  document.getElementById('answered').textContent=done;
+  document.getElementById('bar').style.width=(done/50*100)+'%';
+  document.getElementById('secName').textContent=QS[cur].section;
+  document.getElementById('curNo').textContent=cur+1;
+  document.getElementById('navcount').textContent=(cur+1)+' / 50';
+  document.getElementById('prev').disabled=cur===0;
+  const nx=document.getElementById('next');
+  if(cur===49){nx.textContent='Teslime Git →';nx.onclick=goConfirm}
+  else{nx.textContent='İleri →';nx.onclick=()=>nav(1)}
+}
+function goConfirm(){
+  const done=QS.filter(q=>state[q.id]?.answered).length;
+  document.getElementById('confirmInfo').innerHTML=
+    `<strong>${done}</strong> soru cevaplandı · <strong>${50-done}</strong> soru boş.<br><br>
+    🚨 Şık seçilen sorular kilitlenmiştir ve değiştirilemez.`;
+  document.getElementById('student2').value=student;
+  showScreen('confirm');
+}
+function submitQuiz(){
+  const s=document.getElementById('student2').value;
+  if(!s){alert('Lütfen adınızı seçin.');return}
+  student=s;
+  let ok=0,wrong=0,blank=0;
+  QS.forEach(q=>{
+    const st=state[q.id];
+    if(!st||!st.answered)blank++;
+    else if(st.correct)ok++;
+    else wrong++;
+  });
+  const score=ok*2;
+  document.getElementById('resultName').textContent=student;
+  document.getElementById('score').textContent=score;
+  document.getElementById('rCorrect').textContent=ok;
+  document.getElementById('rWrong').textContent=wrong;
+  document.getElementById('rBlank').textContent=blank;
+  showScreen('result');
+  saveSheets(student,score,ok,wrong,blank);
+}
+async function saveSheets(nm,score,ok,wrong,blank){
+  const el=document.getElementById('saveStatus');
+  try{
+    const n=new Date(),
+      dd=String(n.getDate()).padStart(2,'0'),
+      mm=String(n.getMonth()+1).padStart(2,'0'),
+      yy=n.getFullYear(),
+      hh=String(n.getHours()).padStart(2,'0'),
+      mi=String(n.getMinutes()).padStart(2,'0'),
+      ss=String(n.getSeconds()).padStart(2,'0');
+    const formatted=`✅ ${score}/100
+✓${ok} ✗${wrong}
+${dd}.${mm}.${yy}
+${hh}:${mi}:${ss}`;
+    await fetch(ASU,{
+      method:'POST',mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        spreadsheetId:SID,sheetName:SHN,studentName:nm,taskColumn:TCL,
+        score,correct:ok,wrong,blank,formatted
+      })
+    });
+    el.textContent='✅ Ödev başarıyla kaydedildi!';
+    el.style.background='#eaf8ee';el.style.color='#3c7b4d';
+  }catch(e){
+    el.textContent='⚠️ Kaydedilemedi — Profeye bildirin';
+    el.style.background='#fff0f1';el.style.color='#a13f48';
+  }
+}
+</script>
+</body>
+</html>
