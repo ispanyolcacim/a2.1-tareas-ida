@@ -219,8 +219,9 @@ function st(id){
 }
 function selectOpt(i){
  const q=QS[cur], x=st(q.id);
- if(x.checked) return;
  x.selected=i;
+ x.checked=true;
+ x.correct=(i===q.ans);
  render();
 }
 function render(){
@@ -235,9 +236,20 @@ function render(){
  document.getElementById("qarea").innerHTML=`
    <div class="section">${sec(q.id)}</div>
    <div class="qcard">
-     <div class="qhead"><div class="qnum">SORU ${q.id} / 50</div><div class="prompt">${q.q}</div></div>
+     <div class="qhead">
+       <div class="qnum">SORU ${q.id} / 50</div>
+       <div class="prompt">${q.q}</div>
+     </div>
      <div class="options">${opts}</div>
-</div>`;
+     ${x.checked ? `
+       <div class="feedback show ${x.correct ? 'ok' : 'bad'}">
+         <div style="font-size:16px;font-weight:900;margin-bottom:8px">
+           ${x.correct ? '✅ Doğru!' : '❌ Yanlış.'}
+         </div>
+         ${q.feedback}
+       </div>
+     ` : ''}
+   </div>`;
  updateMeta();
 }
 function updateMeta(){
