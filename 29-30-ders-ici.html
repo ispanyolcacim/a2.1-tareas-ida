@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A2.1 – 29-30. Ders | Okuma Odaklı Sınıf İçi Etkinliği</title>
+<style>
+*{box-sizing:border-box}
+:root{
+--pink:#dc6384;--pink2:#ef8aa6;--light:#f8d5df;--gold:#efbd50;--dark:#4b2736;
+--mid:#8d5969;--green:#4d9d68;--red:#d45d69;--cream:#fff7db;
+}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;color:var(--dark);
+background:linear-gradient(155deg,#fff9f2,#fff7fb 55%,#fffdea);min-height:100vh}
+.header{background:linear-gradient(135deg,var(--pink2),var(--pink));color:white;text-align:center;padding:22px 16px;
+box-shadow:0 5px 20px #dc638444}
+.header .tag{display:inline-block;padding:5px 14px;border-radius:99px;background:#ffffff2d;border:1px solid #ffffff77;
+font-size:12px;font-weight:800;letter-spacing:1px}
+.header h1{font-size:clamp(22px,4vw,31px);margin:8px 0 5px}
+.header p{margin:0;font-size:13px}
+.wrap{max-width:980px;margin:22px auto 55px;padding:0 16px}
+.card{background:white;border:1.5px solid var(--light);border-radius:20px;padding:20px;box-shadow:0 5px 22px #dc638418}
+.cover{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.notice{background:linear-gradient(135deg,#fff9df,#fff3f7);border-left:5px solid var(--pink2);padding:14px 16px;
+border-radius:0 14px 14px 0;line-height:1.7;font-size:14px}
+.btn{border:0;border-radius:13px;padding:12px 17px;font:700 14px inherit;cursor:pointer;transition:.15s}
+.btn:hover{transform:translateY(-1px)} .primary{background:linear-gradient(135deg,var(--pink2),var(--pink));color:#fff}
+.gold{background:linear-gradient(135deg,#f8d37b,var(--gold));color:var(--dark)} .outline{background:#fff;border:2px solid var(--light);color:var(--dark)}
+.wide{width:100%}
+.screen{display:none} .screen.active{display:block}
+.topbar{position:sticky;top:8px;z-index:20;background:#fffefeea;backdrop-filter:blur(12px);border:1.5px solid var(--light);
+border-radius:16px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+box-shadow:0 4px 16px #dc63841f}
+.progress{height:9px;background:var(--light);border-radius:99px;overflow:hidden;margin:12px 0 5px}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--gold));transition:.2s}
+.progtext{display:flex;justify-content:space-between;color:var(--mid);font-size:12px;margin-bottom:12px}
+.textbadge{display:inline-block;background:linear-gradient(90deg,var(--pink2),var(--pink));color:#fff;border-radius:99px;
+padding:7px 13px;font-size:12px;font-weight:800;margin-bottom:10px}
+.reading{background:#fff8e0;border:1px solid #efd274;border-radius:16px;padding:17px 18px;line-height:1.75;margin-bottom:14px}
+.reading h3{margin:0 0 10px;color:#8c5b1d} .reading p{margin:9px 0}
+.qcard{background:white;border:1.5px solid var(--light);border-radius:20px;overflow:hidden;box-shadow:0 5px 20px #dc638417}
+.qhead{padding:20px 20px 10px} .qnum{font-size:12px;color:var(--pink);font-weight:900;margin-bottom:10px}
+.prompt{font-size:17px;line-height:1.65}
+.options{display:grid;gap:10px;padding:7px 20px 18px}
+.option{text-align:left;background:#fff9fb;border:2px solid var(--light);border-radius:13px;padding:13px 14px;cursor:pointer;
+color:var(--dark);font:600 14px/1.45 inherit}
+.option:hover{border-color:#e99ab0;background:#fff5f8} .option.selected{border-color:var(--pink);background:#fff0f5}
+.option.correct{border-color:var(--green);background:#eff9f2} .option.wrong{border-color:var(--red);background:#fff0f1}
+.feedback{margin:0 20px 20px;padding:16px 17px;background:#fff9df;border-left:5px solid var(--gold);border-radius:0 14px 14px 0;
+line-height:1.7;font-size:14px}
+.feedback.ok{border-left-color:var(--green);background:#effaf2} .feedback.bad{border-left-color:var(--red);background:#fff1f2}
+.translation{margin-top:15px;background:#f6f2ff;border:1px solid #d9caee;border-radius:14px;padding:14px 16px}
+.translation h4{margin:0 0 9px;color:#6f4f8f;font-size:15px} .translation p{margin:9px 0}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
+.navcenter{font-size:13px;color:var(--mid);font-weight:800}
+.legend{display:grid;gap:9px;margin-top:12px} .legend div{background:#fff8fa;border:1px solid var(--light);padding:10px 12px;border-radius:12px;font-size:13px}
+.result{max-width:600px;margin:28px auto;text-align:center} .score{font-size:62px;font-weight:900;line-height:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0} .stat{background:#fff8fa;border:1px solid var(--light);border-radius:13px;padding:12px}
+.stat b{display:block;font-size:25px}
+@media(max-width:720px){.cover{grid-template-columns:1fr} .topbar{flex-wrap:wrap} .prompt{font-size:15px} .stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+ <div class="tag">A2.1 · 29–30. DERS · SINIF İÇİ</div>
+ <h1>📖 Comprensión Lectora + OD & OI</h1>
+ <p>9 metin · 54 soru · Okuma odaklı · @ispanyolcacim · Profe Hazel</p>
+</div>
+
+<section id="cover" class="screen active">
+<div class="wrap">
+ <div class="cover">
+  <div class="card">
+   <h2>📚 ¿Quién dio qué a quién?</h2>
+   <div class="notice">
+    Bu etkinliğin ana odağı <strong>okuduğunu anlama</strong>dır. Her metinde önce olayları ve detayları anlayacak,
+    ardından Objeto Directo / Objeto Indirecto yapılarını bağlam içinde çözeceksiniz.<br><br>
+    Bir şıkka tıkladığınız anda <strong>✅ Doğru / ❌ Yanlış</strong> sonucu, açıklama ve
+    <strong>metnin TAM Türkçe çevirisi</strong> açılır.
+   </div><br>
+   <button class="btn primary wide" onclick="start()">▶ Etkinliğe Başla</button>
+  </div>
+  <div class="card">
+   <h2>🧩 Yapı</h2>
+   <div class="legend">
+    <div><b>9 farklı metin</b></div>
+    <div>Her metinde <b>4 okuduğunu anlama</b> sorusu</div>
+    <div>Her metinde <b>2 OD / OI</b> sorusu</div>
+    <div>Toplam <b>54 soru</b></div>
+    <div>Her sorudan sonra <b>tam Türkçe çeviri</b></div>
+   </div>
+  </div>
+ </div>
+</div>
+</section>
+
+<section id="quiz" class="screen">
+<div class="wrap">
+ <div class="topbar">
+  <div><strong>📖 Okuma Etkinliği</strong><br><span id="answered">0</span> / 54 cevaplandı</div>
+  <button class="btn gold" onclick="finish()">🏁 Etkinliği Bitir</button>
+ </div>
+ <div class="progress"><div id="bar"></div></div>
+ <div class="progtext"><span id="textName"></span><span>Soru <b id="curNo">1</b> / 54</span></div>
+ <div id="area"></div>
+ <div class="nav">
+  <button class="btn outline" id="prev" onclick="move(-1)">← Geri</button>
+  <div class="navcenter" id="count">1 / 54</div>
+  <button class="btn primary" id="next" onclick="move(1)">İleri →</button>
+ </div>
+</div>
+</section>
+
+<section id="result" class="screen">
+<div class="wrap">
+ <div class="result card">
+  <div style="font-size:52px">📚</div>
+  <h2>Etkinlik Tamamlandı</h2>
+  <div class="score"><span id="score">0</span><span style="font-size:22px;color:var(--mid)">/54</span></div>
+  <div class="stats">
+   <div class="stat"><b id="correct" style="color:var(--green)">0</b>Doğru</div>
+   <div class="stat"><b id="wrong" style="color:var(--red)">0</b>Yanlış</div>
+   <div class="stat"><b id="blank" style="color:#999">0</b>Boş</div>
+  </div>
+  <button class="btn primary wide" onclick="reviewWrong()">🔎 Yanlışlara Dön</button>
+ </div>
+</div>
+</section>
+
+<script>
+const TEXTS=[{"title": "TEXTO 1 — Un favor antes del trabajo", "es": "<p>Esta mañana, Laura salió de casa muy temprano porque tenía una reunión importante en la oficina. Cuando llegó a la parada del autobús, recibió un mensaje de su hermano Pablo. Pablo había olvidado una carpeta azul en casa y necesitaba los documentos que estaban dentro.</p><p>Laura volvió rápidamente a casa, encontró la carpeta encima de la mesa y decidió llevarla a la universidad de Pablo antes de ir al trabajo. Cuando llegó, Pablo estaba esperando en la entrada. Laura le dio la carpeta y Pablo le dio las gracias.</p><p>Después, Laura fue directamente a su oficina. Llegó diez minutos tarde, pero su jefe entendió la situación.</p>", "tr": "<p>Bu sabah Laura çok erken evden çıktı çünkü ofiste önemli bir toplantısı vardı. Otobüs durağına vardığında kardeşi Pablo&#x27;dan bir mesaj aldı. Pablo mavi bir dosyayı evde unutmuştu ve dosyanın içindeki belgelere ihtiyacı vardı.</p><p>Laura hızlıca eve geri döndü, dosyayı masanın üzerinde buldu ve işe gitmeden önce dosyayı Pablo&#x27;nun üniversitesine götürmeye karar verdi. Oraya vardığında Pablo girişte bekliyordu. Laura dosyayı ona verdi ve Pablo ona teşekkür etti.</p><p>Daha sonra Laura doğrudan ofisine gitti. On dakika geç kaldı ama patronu durumu anlayışla karşıladı.</p>"}, {"title": "TEXTO 2 — Las fotografías del viaje", "es": "<p>El mes pasado, Marta viajó a Sevilla con dos amigas. Durante el viaje hicieron muchas fotografías de la ciudad, de la comida y de los lugares que visitaron.</p><p>Cuando Marta volvió a casa, su madre quiso ver todas las fotografías. Marta todavía no las había organizado, así que pasó toda la tarde seleccionando las mejores.</p><p>Después de cenar, Marta abrió el ordenador y enseñó las fotografías a su madre. Su madre estaba muy contenta porque nunca había estado en Sevilla y le hizo muchas preguntas sobre el viaje.</p>", "tr": "<p>Geçen ay Marta iki arkadaşıyla Sevilla&#x27;ya seyahat etti. Seyahat sırasında şehrin, yemeklerin ve ziyaret ettikleri yerlerin birçok fotoğrafını çektiler.</p><p>Marta eve döndüğünde annesi bütün fotoğrafları görmek istedi. Marta onları henüz düzenlememişti, bu nedenle bütün öğleden sonrasını en iyi fotoğrafları seçerek geçirdi.</p><p>Akşam yemeğinden sonra Marta bilgisayarı açtı ve fotoğrafları annesine gösterdi. Annesi çok mutluydu çünkü daha önce hiç Sevilla&#x27;da bulunmamıştı ve Marta&#x27;ya seyahat hakkında birçok soru sordu.</p>"}, {"title": "TEXTO 3 — Una sorpresa para Ana", "es": "<p>Carlos quería preparar una sorpresa para su novia Ana porque era su cumpleaños. Primero compró unas flores y un pequeño regalo. Después llamó a un restaurante y reservó una mesa para dos personas.</p><p>Por la tarde, Carlos fue a casa de su hermana porque necesitaba ayuda para envolver el regalo. Su hermana terminó de envolverlo rápidamente y también le dio algunas ideas para la cena.</p><p>Esa noche, Carlos fue a buscar a Ana. Primero le dio las flores y después le entregó el regalo. Ana no esperaba nada y se emocionó mucho.</p>", "tr": "<p>Carlos kız arkadaşı Ana&#x27;ya bir sürpriz hazırlamak istiyordu çünkü Ana&#x27;nın doğum günüydü. Önce birkaç çiçek ve küçük bir hediye aldı. Daha sonra bir restoranı aradı ve iki kişilik bir masa ayırttı.</p><p>Öğleden sonra Carlos hediyeyi paketlemek için yardıma ihtiyacı olduğu için kız kardeşinin evine gitti. Kız kardeşi hediyeyi hızlıca paketlemeyi bitirdi ve ayrıca akşam yemeği için ona bazı fikirler verdi.</p><p>O akşam Carlos Ana&#x27;yı almaya gitti. Önce ona çiçekleri verdi, daha sonra hediyeyi teslim etti. Ana hiçbir şey beklemiyordu ve çok duygulandı.</p>"}, {"title": "TEXTO 4 — Un problema con los apuntes", "es": "<p>Sergio faltó a clase el lunes porque estaba enfermo. Al día siguiente escribió a su compañera Elena y le preguntó qué habían estudiado.</p><p>Elena había tomado muchos apuntes durante la clase y también tenía unas fotografías de la pizarra. Por eso decidió enviar todo el material a Sergio por correo electrónico.</p><p>Por la noche, Sergio revisó los apuntes, pero no entendió un ejercicio. Llamó a Elena y ella explicó el ejercicio lentamente. Después de varios ejemplos, Sergio finalmente entendió el problema.</p>", "tr": "<p>Sergio hasta olduğu için pazartesi günü derse katılmadı. Ertesi gün sınıf arkadaşı Elena&#x27;ya yazdı ve derste ne çalıştıklarını sordu.</p><p>Elena ders sırasında birçok not almıştı ve ayrıca tahtanın birkaç fotoğrafı da vardı. Bu nedenle bütün materyali Sergio&#x27;ya e-posta yoluyla göndermeye karar verdi.</p><p>Akşam Sergio notları gözden geçirdi fakat bir alıştırmayı anlamadı. Elena&#x27;yı aradı ve Elena alıştırmayı yavaşça açıkladı. Birkaç örnekten sonra Sergio sonunda problemi anladı.</p>"}, {"title": "TEXTO 5 — La cena familiar", "es": "<p>El domingo, toda la familia de David iba a reunirse en casa de sus padres. David prometió llevar el postre y su hermana Sofía dijo que prepararía una ensalada.</p><p>Por la mañana, David hizo una tarta de chocolate. Mientras la tarta estaba en el horno, su madre lo llamó porque necesitaba unas bebidas para la cena. David fue al supermercado y compró varias botellas.</p><p>Cuando llegó a casa de sus padres, puso las bebidas en la cocina y entregó la tarta a su madre. Más tarde, su padre pidió las bebidas y David las llevó al comedor.</p><p>Después de cenar, todos probaron la tarta y dijeron que estaba deliciosa.</p>", "tr": "<p>Pazar günü David&#x27;in bütün ailesi anne ve babasının evinde buluşacaktı. David tatlıyı getireceğine söz verdi ve kız kardeşi Sofía bir salata hazırlayacağını söyledi.</p><p>Sabah David çikolatalı bir pasta yaptı. Pasta fırındayken annesi onu aradı çünkü akşam yemeği için içeceklere ihtiyacı vardı. David süpermarkete gitti ve birkaç şişe satın aldı.</p><p>Anne ve babasının evine vardığında içecekleri mutfağa koydu ve pastayı annesine teslim etti. Daha sonra babası içecekleri istedi ve David onları yemek odasına götürdü.</p><p>Akşam yemeğinden sonra herkes pastayı tattı ve çok lezzetli olduğunu söyledi.</p>"}, {"title": "TEXTO 6 — El paquete equivocado", "es": "<p>El martes por la mañana, Irene recibió un paquete en su oficina. Al principio pensó que era para ella porque aparecía el nombre de su empresa en la caja. Sin embargo, cuando leyó la etiqueta con atención, descubrió que el paquete pertenecía a Marcos, un compañero que trabajaba en otra planta.</p><p>Irene llamó a Marcos para avisarlo. Él estaba en una reunión y no podía bajar en ese momento, así que le pidió que guardara el paquete durante una hora. Irene lo dejó junto a su escritorio.</p><p>Más tarde, Marcos fue a buscarlo. Irene le entregó el paquete y él le regaló una pequeña caja de bombones para darle las gracias.</p>", "tr": "<p>Salı sabahı Irene ofisine bir paket teslim aldı. İlk başta kutunun üzerinde şirketinin adı yazdığı için paketin kendisine ait olduğunu düşündü. Ancak etiketi dikkatlice okuyunca paketin başka bir katta çalışan iş arkadaşı Marcos&#x27;a ait olduğunu fark etti.</p><p>Irene haber vermek için Marcos&#x27;u aradı. Marcos bir toplantıdaydı ve o anda aşağı inemiyordu, bu yüzden Irene&#x27;den paketi bir saat saklamasını istedi. Irene paketi masasının yanına bıraktı.</p><p>Daha sonra Marcos paketi almaya geldi. Irene paketi ona teslim etti ve Marcos teşekkür etmek için ona küçük bir kutu çikolata hediye etti.</p>"}, {"title": "TEXTO 7 — Una tarde en la biblioteca", "es": "<p>Lucía tenía que preparar un trabajo sobre la historia de su ciudad. Fue a la biblioteca municipal porque necesitaba consultar varios libros antiguos. La bibliotecaria, Carmen, le recomendó tres libros y también le mostró una colección de fotografías históricas.</p><p>Lucía tomó muchas notas, pero no podía llevarse uno de los libros porque era demasiado antiguo. Carmen le explicó que podía consultar ese libro solamente dentro de la biblioteca.</p><p>Antes de irse, Lucía pidió unas copias de dos fotografías. Carmen las preparó y se las entregó en un sobre. Lucía le dio las gracias y prometió devolver los otros libros la semana siguiente.</p>", "tr": "<p>Lucía şehrinin tarihi hakkında bir çalışma hazırlamak zorundaydı. Birkaç eski kitaba bakması gerektiği için belediye kütüphanesine gitti. Kütüphaneci Carmen ona üç kitap tavsiye etti ve ayrıca tarihi fotoğraflardan oluşan bir koleksiyon gösterdi.</p><p>Lucía birçok not aldı ancak kitaplardan birini ödünç alamıyordu çünkü kitap çok eskiydi. Carmen bu kitabı yalnızca kütüphanenin içinde inceleyebileceğini açıkladı.</p><p>Gitmeden önce Lucía iki fotoğrafın kopyalarını istedi. Carmen onları hazırladı ve bir zarfın içinde Lucía&#x27;ya teslim etti. Lucía ona teşekkür etti ve diğer kitapları ertesi hafta geri getireceğine söz verdi.</p>"}, {"title": "TEXTO 8 — El cumpleaños de la abuela", "es": "<p>La familia de Nuria organizó una pequeña fiesta para celebrar el cumpleaños de su abuela. Nadie quería contarle el plan porque deseaban sorprenderla. Nuria compró unas flores, su hermano preparó una lista de música y sus padres encargaron una tarta.</p><p>El día de la fiesta, la abuela llegó a casa pensando que iban a cenar como cualquier otro domingo. Cuando abrió la puerta, toda la familia empezó a cantar. Nuria le dio las flores y sus padres colocaron la tarta sobre la mesa.</p><p>Después de cenar, la abuela quiso ver unas fotos familiares antiguas. El padre de Nuria buscó varios álbumes y se los llevó al salón. Todos pasaron más de una hora mirando las fotografías y recordando historias.</p>", "tr": "<p>Nuria&#x27;nın ailesi büyükannelerinin doğum gününü kutlamak için küçük bir parti düzenledi. Onu şaşırtmak istedikleri için hiç kimse planı ona anlatmak istemedi. Nuria birkaç çiçek aldı, kardeşi bir müzik listesi hazırladı ve anne babası bir pasta sipariş etti.</p><p>Parti günü büyükanne, her zamanki bir pazar günü gibi akşam yemeği yiyeceklerini düşünerek eve geldi. Kapıyı açtığında bütün aile şarkı söylemeye başladı. Nuria çiçekleri ona verdi ve anne babası pastayı masanın üzerine koydu.</p><p>Akşam yemeğinden sonra büyükanne eski aile fotoğraflarını görmek istedi. Nuria&#x27;nın babası birkaç albüm buldu ve onları salona getirdi. Herkes bir saatten fazla fotoğraflara bakarak ve eski hikâyeleri hatırlayarak vakit geçirdi.</p>"}, {"title": "TEXTO 9 — Un problema en el hotel", "es": "<p>Durante un viaje de trabajo, Andrés se alojó en un hotel cerca del centro. Al llegar a su habitación, descubrió que no había toallas limpias y que una de las lámparas no funcionaba. Llamó a recepción y explicó los dos problemas.</p><p>La recepcionista escuchó con atención y prometió solucionarlos enseguida. Primero pidió a un empleado que llevara unas toallas nuevas a Andrés. Después avisó al técnico del hotel sobre la lámpara.</p><p>Unos minutos más tarde, el empleado llevó las toallas a la habitación y se las entregó a Andrés. El técnico llegó después y cambió la lámpara. Antes de dormir, Andrés llamó de nuevo a recepción para dar las gracias por la rapidez del servicio.</p>", "tr": "<p>Andrés bir iş seyahati sırasında şehir merkezine yakın bir otelde kaldı. Odasına geldiğinde temiz havluların olmadığını ve lambalardan birinin çalışmadığını fark etti. Resepsiyonu aradı ve iki sorunu da açıkladı.</p><p>Resepsiyon görevlisi dikkatle dinledi ve sorunları hemen çözeceğine söz verdi. Önce bir çalışandan Andrés&#x27;e yeni havlular götürmesini istedi. Daha sonra otelin teknisyenine lamba sorununu bildirdi.</p><p>Birkaç dakika sonra çalışan havluları odaya götürdü ve onları Andrés&#x27;e teslim etti. Teknisyen daha sonra geldi ve lambayı değiştirdi. Andrés uyumadan önce hizmetin hızlı olması nedeniyle teşekkür etmek için resepsiyonu tekrar aradı.</p>"}];
+const QS=[{"text": 0, "prompt": "¿Por qué volvió Laura a casa?", "opts": ["Porque Pablo necesitaba una carpeta.", "Porque había olvidado su teléfono.", "Porque no quería ir al trabajo.", "Porque perdió el autobús."], "ans": 0, "expl": "Pablo había olvidado una carpeta azul en casa y necesitaba los documentos que estaban dentro.", "id": 1}, {"text": 0, "prompt": "¿Dónde estaba la carpeta?", "opts": ["En la oficina.", "En la universidad.", "Encima de la mesa.", "En el autobús."], "ans": 2, "expl": "Metinde açıkça <b>encontró la carpeta encima de la mesa</b> deniyor.", "id": 2}, {"text": 0, "prompt": "¿Quién estaba esperando a Laura en la entrada?", "opts": ["Su jefe.", "Pablo.", "Su madre.", "Un compañero de trabajo."], "ans": 1, "expl": "Metinde <b>Pablo estaba esperando en la entrada</b> ifadesi bulunuyor.", "id": 3}, {"text": 0, "prompt": "¿Qué ocurrió finalmente en la oficina?", "opts": ["Laura perdió la reunión.", "Su jefe se enfadó mucho.", "Laura decidió no trabajar.", "Laura llegó diez minutos tarde."], "ans": 3, "expl": "Laura, Pablo'ya yardım ettiği için ofise on dakika geç ulaşıyor; patronu ise durumu anlıyor.", "id": 4}, {"text": 0, "prompt": "En la frase <b>Laura le dio la carpeta</b>, ¿qué representa <b>le</b>?", "opts": ["Laura.", "Pablo.", "la carpeta.", "la oficina."], "ans": 1, "expl": "<b>¿Qué dio Laura?</b> → la carpeta = OD.<br><b>¿A quién?</b> → a Pablo = OI.<br>Bu nedenle <b>Pablo → le</b>.", "id": 5}, {"text": 0, "prompt": "Si sustituimos también <b>la carpeta</b>, ¿qué frase es correcta?", "opts": ["Laura se la dio.", "Laura le la dio.", "Laura la le dio.", "Laura se lo dio."], "ans": 0, "expl": "<b>la carpeta → la</b> (OD), <b>a Pablo → le</b> (OI).<br><b>le + la → se la</b>.<br>✅ <b>Laura se la dio.</b> = Laura onu ona verdi.", "id": 6}, {"text": 1, "prompt": "¿Con quién viajó Marta?", "opts": ["Con su familia.", "Con su madre.", "Sola.", "Con dos amigas."], "ans": 3, "expl": "İlk cümlede <b>Marta viajó a Sevilla con dos amigas</b> deniyor.", "id": 7}, {"text": 1, "prompt": "¿Qué hizo Marta durante toda la tarde?", "opts": ["Preparó la cena.", "Escribió mensajes.", "Seleccionó fotografías.", "Compró recuerdos."], "ans": 2, "expl": "Marta fotoğrafları henüz düzenlememişti ve bütün öğleden sonrayı en iyi fotoğrafları seçerek geçirdi.", "id": 8}, {"text": 1, "prompt": "¿Por qué la madre de Marta hizo muchas preguntas?", "opts": ["Porque también había viajado a Sevilla.", "Porque no le gustaron las fotografías.", "Porque nunca había estado en Sevilla.", "Porque quería comprar una cámara."], "ans": 2, "expl": "Annesi daha önce Sevilla'ya hiç gitmediği için seyahat hakkında çok soru soruyor.", "id": 9}, {"text": 1, "prompt": "¿Cuándo enseñó Marta las fotografías a su madre?", "opts": ["Antes de cenar.", "Después de cenar.", "Durante el viaje.", "Por la mañana."], "ans": 1, "expl": "Metinde açıkça <b>Después de cenar</b> ifadesi kullanılıyor.", "id": 10}, {"text": 1, "prompt": "Sustituye: <b>Marta enseñó las fotografías a su madre.</b>", "opts": ["Marta se las enseñó.", "Marta le las enseñó.", "Marta se los enseñó.", "Marta las se enseñó."], "ans": 0, "expl": "<b>las fotografías → las</b> (OD), <b>a su madre → le</b> (OI).<br><b>le + las → se las</b>.", "id": 11}, {"text": 1, "prompt": "¿Qué significa <b>Marta se las enseñó</b>?", "opts": ["Annesi fotoğrafları Marta'ya gösterdi.", "Marta annesini arkadaşlarına gösterdi.", "Marta Sevilla'yı annesine gösterdi.", "Marta fotoğrafları annesine gösterdi."], "ans": 3, "expl": "<b>las → las fotografías</b>, <b>se → a su madre</b>. Dolayısıyla: Marta onları annesine gösterdi.", "id": 12}, {"text": 2, "prompt": "¿Por qué quería Carlos preparar una sorpresa?", "opts": ["Porque era su aniversario.", "Porque Ana estaba enferma.", "Porque Carlos iba a viajar.", "Porque era el cumpleaños de Ana."], "ans": 3, "expl": "Metinde sürprizin nedeni Ana'nın doğum günü olarak veriliyor.", "id": 13}, {"text": 2, "prompt": "¿Qué reservó Carlos?", "opts": ["Una mesa.", "Una habitación.", "Un coche.", "Un viaje."], "ans": 0, "expl": "Carlos restoranı arayıp iki kişilik bir masa ayırtıyor.", "id": 14}, {"text": 2, "prompt": "¿Quién ayudó a Carlos a envolver el regalo?", "opts": ["Su madre.", "Ana.", "Su hermana.", "Un camarero."], "ans": 2, "expl": "Carlos hediyeyi paketlemek için kız kardeşinin evine gidiyor.", "id": 15}, {"text": 2, "prompt": "¿Qué recibió Ana primero?", "opts": ["El regalo.", "Las flores.", "Una carta.", "La cena."], "ans": 1, "expl": "Metindeki sıra: <b>Primero le dio las flores y después le entregó el regalo.</b>", "id": 16}, {"text": 2, "prompt": "Sustituye: <b>Carlos dio las flores a Ana.</b>", "opts": ["Carlos le las dio.", "Carlos se las dio.", "Carlos se los dio.", "Carlos las le dio."], "ans": 1, "expl": "<b>las flores → las</b>, <b>a Ana → le</b>. <b>le + las → se las</b>.", "id": 17}, {"text": 2, "prompt": "En <b>Su hermana terminó de envolverlo rápidamente</b>, ¿qué representa <b>lo</b>?", "opts": ["Carlos.", "el restaurante.", "Ana.", "el regalo."], "ans": 3, "expl": "<b>envolver algo</b> = bir şeyi paketlemek. Paketlenen şey <b>el regalo</b> olduğundan <b>lo = el regalo</b>.", "id": 18}, {"text": 3, "prompt": "¿Por qué faltó Sergio a clase?", "opts": ["Porque estaba enfermo.", "Porque estaba de viaje.", "Porque tenía trabajo.", "Porque olvidó la clase."], "ans": 0, "expl": "Metnin ilk cümlesi Sergio'nun hasta olduğu için derse gelmediğini söylüyor.", "id": 19}, {"text": 3, "prompt": "¿Qué tenía Elena además de los apuntes?", "opts": ["Un libro.", "Una grabación.", "Fotografías de la pizarra.", "Un examen."], "ans": 2, "expl": "Elena'nın notların yanında tahtanın fotoğrafları da vardı.", "id": 20}, {"text": 3, "prompt": "¿Cómo envió Elena el material?", "opts": ["En persona.", "Por correo postal.", "Por correo electrónico.", "Por teléfono."], "ans": 2, "expl": "Metinde materyali Sergio'ya <b>por correo electrónico</b> gönderdiği belirtiliyor.", "id": 21}, {"text": 3, "prompt": "¿Qué no entendió Sergio?", "opts": ["Un ejercicio.", "Las fotografías.", "El correo electrónico.", "Toda la clase."], "ans": 0, "expl": "Sergio notları inceliyor fakat bir alıştırmayı anlamıyor.", "id": 22}, {"text": 3, "prompt": "Sustituye: <b>Elena explicó el ejercicio a Sergio.</b>", "opts": ["Elena le lo explicó.", "Elena se la explicó.", "Elena lo se explicó.", "Elena se lo explicó."], "ans": 3, "expl": "<b>el ejercicio → lo</b>, <b>a Sergio → le</b>; <b>le + lo → se lo</b>.", "id": 23}, {"text": 3, "prompt": "¿Qué significa <b>Elena se lo explicó lentamente</b>?", "opts": ["Elena onu yavaşça gönderdi.", "Elena onu ona yavaşça açıkladı.", "Sergio onu Elena'ya açıkladı.", "Elena ona fotoğrafları gösterdi."], "ans": 1, "expl": "<b>se → a Sergio</b>, <b>lo → el ejercicio</b>. Yani: Elena onu ona yavaşça açıkladı.", "id": 24}, {"text": 4, "prompt": "¿Qué prometió llevar David?", "opts": ["El postre.", "La ensalada.", "Las bebidas.", "El pan."], "ans": 0, "expl": "David aile yemeğine tatlıyı götüreceğine söz veriyor.", "id": 25}, {"text": 4, "prompt": "¿Quién iba a preparar la ensalada?", "opts": ["David.", "La madre.", "El padre.", "Sofía."], "ans": 3, "expl": "Sofía salata hazırlayacağını söylüyor.", "id": 26}, {"text": 4, "prompt": "¿Por qué fue David al supermercado?", "opts": ["Porque necesitaba chocolate.", "Porque su madre necesitaba bebidas.", "Porque olvidó la tarta.", "Porque quería comprar una ensalada."], "ans": 1, "expl": "Annesi akşam yemeği için içeceklere ihtiyaç duyduğu için David markete gidiyor.", "id": 27}, {"text": 4, "prompt": "¿Dónde puso David las bebidas?", "opts": ["En el comedor.", "En el coche.", "En la cocina.", "En el jardín."], "ans": 2, "expl": "Eve varınca içecekleri mutfağa koyuyor.", "id": 28}, {"text": 4, "prompt": "Sustituye: <b>David entregó la tarta a su madre.</b>", "opts": ["David se lo entregó.", "David le la entregó.", "David la se entregó.", "David se la entregó."], "ans": 3, "expl": "<b>la tarta → la</b>, <b>a su madre → le</b>; <b>le + la → se la</b>.", "id": 29}, {"text": 4, "prompt": "En <b>David las llevó al comedor</b>, ¿qué representa <b>las</b>?", "opts": ["las tartas.", "las bebidas.", "las ensaladas.", "las personas."], "ans": 1, "expl": "Önceki cümlede babası <b>las bebidas</b> istiyor. Bu nedenle <b>las = las bebidas</b>.", "id": 30}, {"text": 5, "prompt": "¿Por qué pensó Irene al principio que el paquete era para ella?", "opts": ["Porque Marcos se lo había enviado.", "Porque estaba junto a su escritorio.", "Porque aparecía el nombre de su empresa en la caja.", "Porque tenía su nombre completo."], "ans": 2, "expl": "Kutunun üzerinde Irene'nin çalıştığı şirketin adı olduğu için ilk anda paketin kendisine ait olduğunu düşünüyor.", "id": 31}, {"text": 5, "prompt": "¿A quién pertenecía realmente el paquete?", "opts": ["A Marcos.", "A Irene.", "Al director.", "A un cliente."], "ans": 0, "expl": "Etiketi dikkatlice okuyunca paketin Marcos'a ait olduğunu fark ediyor.", "id": 32}, {"text": 5, "prompt": "¿Por qué no bajó Marcos inmediatamente?", "opts": ["Porque estaba fuera de la oficina.", "Porque estaba en una reunión.", "Porque no había leído el mensaje.", "Porque no quería recoger el paquete."], "ans": 1, "expl": "Marcos toplantıda olduğu için o anda aşağı inemiyor.", "id": 33}, {"text": 5, "prompt": "¿Qué le regaló Marcos a Irene?", "opts": ["Un libro.", "Un café.", "Una caja de bombones.", "Unas flores."], "ans": 2, "expl": "Marcos teşekkür etmek için Irene'ye küçük bir kutu çikolata veriyor.", "id": 34}, {"text": 5, "prompt": "En <b>Irene lo dejó junto a su escritorio</b>, ¿qué representa <b>lo</b>?", "opts": ["el paquete.", "el escritorio.", "Marcos.", "el nombre de la empresa."], "ans": 0, "expl": "Bırakılan nesne <b>el paquete</b> olduğu için eril tekil OD zamiri <b>lo</b> kullanılıyor.", "id": 35}, {"text": 5, "prompt": "Sustituye: <b>Irene entregó el paquete a Marcos.</b>", "opts": ["Irene le lo entregó.", "Irene se la entregó.", "Irene lo le entregó.", "Irene se lo entregó."], "ans": 3, "expl": "<b>el paquete → lo</b>, <b>a Marcos → le</b>; <b>le + lo → se lo</b>.", "id": 36}, {"text": 6, "prompt": "¿Por qué fue Lucía a la biblioteca?", "opts": ["Para devolver una película.", "Para estudiar un examen de matemáticas.", "Para preparar un trabajo sobre la historia de su ciudad.", "Para encontrarse con Carmen."], "ans": 2, "expl": "Lucía şehrinin tarihi hakkında bir çalışma hazırladığı için kütüphaneye gidiyor.", "id": 37}, {"text": 6, "prompt": "¿Qué le mostró Carmen además de recomendarle libros?", "opts": ["Una colección de fotografías históricas.", "Un mapa moderno.", "Una película documental.", "Un periódico del día."], "ans": 0, "expl": "Carmen üç kitap öneriyor ve ayrıca tarihi fotoğraflardan oluşan bir koleksiyon gösteriyor.", "id": 38}, {"text": 6, "prompt": "¿Por qué no podía Lucía llevarse uno de los libros?", "opts": ["Porque estaba reservado.", "Porque era demasiado caro.", "Porque Carmen lo necesitaba.", "Porque era demasiado antiguo."], "ans": 3, "expl": "Kitap çok eski olduğu için yalnızca kütüphane içinde incelenebiliyor.", "id": 39}, {"text": 6, "prompt": "¿Qué pidió Lucía antes de irse?", "opts": ["Otro libro.", "Copias de dos fotografías.", "Una tarjeta nueva.", "Un ordenador."], "ans": 1, "expl": "Lucía gitmeden önce iki fotoğrafın kopyalarını istiyor.", "id": 40}, {"text": 6, "prompt": "En <b>Carmen las preparó</b>, ¿qué representa <b>las</b>?", "opts": ["las copias.", "las fotografías originales.", "las notas.", "las bibliotecas."], "ans": 0, "expl": "Hazırlanan şey <b>unas copias</b> olduğu için <b>las = las copias</b>.", "id": 41}, {"text": 6, "prompt": "Sustituye: <b>Carmen entregó las copias a Lucía.</b>", "opts": ["Carmen le las entregó.", "Carmen se las entregó.", "Carmen se los entregó.", "Carmen las le entregó."], "ans": 1, "expl": "<b>las copias → las</b>, <b>a Lucía → le</b>; <b>le + las → se las</b>.", "id": 42}, {"text": 7, "prompt": "¿Qué celebraba la familia de Nuria?", "opts": ["Una boda.", "El aniversario de sus padres.", "El cumpleaños de su abuela.", "El cumpleaños de Nuria."], "ans": 2, "expl": "Aile büyükannenin doğum gününü kutlamak için sürpriz parti hazırlıyor.", "id": 43}, {"text": 7, "prompt": "¿Quién preparó la lista de música?", "opts": ["Nuria.", "La abuela.", "Los padres de Nuria.", "El hermano de Nuria."], "ans": 3, "expl": "Metinde Nuria'nın kardeşinin müzik listesi hazırladığı söyleniyor.", "id": 44}, {"text": 7, "prompt": "¿Qué pensaba la abuela cuando llegó a casa?", "opts": ["Que todos habían olvidado su cumpleaños.", "Que iban a viajar.", "Que había una reunión de trabajo.", "Que iba a cenar como cualquier domingo."], "ans": 3, "expl": "Büyükanne eve gelirken sıradan bir pazar akşamı yemeği olacağını düşünüyor.", "id": 45}, {"text": 7, "prompt": "¿Qué quiso ver la abuela después de cenar?", "opts": ["Un vídeo del viaje.", "Los regalos nuevos.", "Unas fotos familiares antiguas.", "La lista de música."], "ans": 2, "expl": "Yemekten sonra eski aile fotoğraflarını görmek istiyor.", "id": 46}, {"text": 7, "prompt": "En <b>Nuria le dio las flores</b>, ¿qué representa <b>le</b>?", "opts": ["Nuria.", "la abuela.", "las flores.", "la tarta."], "ans": 1, "expl": "<b>¿A quién dio las flores?</b> → a la abuela = OI → <b>le</b>.", "id": 47}, {"text": 7, "prompt": "Sustituye: <b>El padre llevó los álbumes al salón para la familia</b>. Si sustituimos <b>los álbumes</b>, ¿qué opción es correcta?", "opts": ["El padre los llevó al salón.", "El padre les llevó al salón.", "El padre se llevó al salón.", "El padre las llevó al salón."], "ans": 0, "expl": "<b>los álbumes</b> doğrudan taşınan nesnedir → OD eril çoğul → <b>los</b>.", "id": 48}, {"text": 8, "prompt": "¿Qué problemas encontró Andrés en la habitación?", "opts": ["No había agua y la cama estaba rota.", "No había toallas limpias y una lámpara no funcionaba.", "La puerta no cerraba y no había televisión.", "No tenía llave ni conexión a internet."], "ans": 1, "expl": "Andrés temiz havlu olmadığını ve lambalardan birinin çalışmadığını fark ediyor.", "id": 49}, {"text": 8, "prompt": "¿A quién avisó la recepcionista sobre la lámpara?", "opts": ["Al director.", "A un camarero.", "A otro huésped.", "Al técnico del hotel."], "ans": 3, "expl": "Resepsiyon görevlisi lamba için otelin teknisyenine haber veriyor.", "id": 50}, {"text": 8, "prompt": "¿Qué llegó primero a la habitación?", "opts": ["Las toallas nuevas.", "El técnico.", "La cena.", "Una lámpara nueva."], "ans": 0, "expl": "Önce çalışan yeni havluları getiriyor; teknisyen daha sonra geliyor.", "id": 51}, {"text": 8, "prompt": "¿Por qué volvió a llamar Andrés a recepción antes de dormir?", "opts": ["Para pedir otra habitación.", "Para quejarse otra vez.", "Para dar las gracias.", "Para pedir comida."], "ans": 2, "expl": "Hizmetin hızlı olması nedeniyle teşekkür etmek için tekrar arıyor.", "id": 52}, {"text": 8, "prompt": "En <b>El empleado se las entregó a Andrés</b>, ¿qué representa <b>las</b>?", "opts": ["las toallas.", "las habitaciones.", "las lámparas.", "las llamadas."], "ans": 0, "expl": "Teslim edilen nesneler <b>las toallas</b> olduğu için OD zamiri <b>las</b>.", "id": 53}, {"text": 8, "prompt": "Sustituye: <b>El empleado llevó las toallas a Andrés.</b>", "opts": ["El empleado le las llevó.", "El empleado se las llevó.", "El empleado se los llevó.", "El empleado las le llevó."], "ans": 1, "expl": "<b>las toallas → las</b>, <b>a Andrés → le</b>; <b>le + las → se las</b>.", "id": 54}];
+let cur=0;
+const state={};
+
+function show(id){
+ document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+function start(){show('quiz');render();}
+function st(id){if(!state[id])state[id]={selected:null,correct:false};return state[id];}
+function choose(i){
+ const q=QS[cur],x=st(q.id);
+ x.selected=i;
+ x.correct=(i===q.ans);
+ render();
+}
+function render(){
+ const q=QS[cur],x=st(q.id),t=TEXTS[q.text];
+ const opts=q.opts.map((o,i)=>{
+   let cls='option';
+   if(x.selected===i) cls+=' selected';
+   if(x.selected!==null && i===q.ans) cls+=' correct';
+   if(x.selected!==null && x.selected===i && i!==q.ans) cls+=' wrong';
+   return `<button class="${cls}" onclick="choose(${i})"><b>${String.fromCharCode(65+i)})</b> ${o}</button>`;
+ }).join('');
+ const fb=x.selected!==null?`
+   <div class="feedback ${x.correct?'ok':'bad'}">
+    <div style="font-size:16px;font-weight:900;margin-bottom:8px">${x.correct?'✅ Doğru!':'❌ Yanlış.'}</div>
+    <b>Doğru cevap:</b> ${String.fromCharCode(65+q.ans)}) ${q.opts[q.ans]}<br><br>
+    <b>Explicación / Açıklama:</b><br>${q.expl}
+    <div class="translation">
+      <h4>📘 Metnin Tam Türkçe Çevirisi</h4>
+      ${t.tr}
+    </div>
+   </div>`:'';
+ document.getElementById('area').innerHTML=`
+   <div class="textbadge">${t.title}</div>
+   <div class="reading"><h3>📖 Texto</h3>${t.es}</div>
+   <div class="qcard">
+    <div class="qhead"><div class="qnum">SORU ${q.id} / 54</div><div class="prompt">${q.prompt}</div></div>
+    <div class="options">${opts}</div>
+    ${fb}
+   </div>`;
+ update();
+}
+function update(){
+ const answered=QS.filter(q=>state[q.id]?.selected!==null && state[q.id]?.selected!==undefined).length;
+ document.getElementById('answered').textContent=answered;
+ document.getElementById('bar').style.width=(answered/54*100)+'%';
+ document.getElementById('textName').textContent=TEXTS[QS[cur].text].title;
+ document.getElementById('curNo').textContent=cur+1;
+ document.getElementById('count').textContent=(cur+1)+' / 54';
+ document.getElementById('prev').disabled=cur===0;
+ const n=document.getElementById('next');
+ if(cur===53){n.textContent='Bitir →';n.onclick=finish;}
+ else{n.textContent='İleri →';n.onclick=()=>move(1);}
+}
+function move(d){cur=Math.max(0,Math.min(53,cur+d));render();window.scrollTo({top:0,behavior:'smooth'});}
+function finish(){
+ let c=0,w=0,b=0;
+ QS.forEach(q=>{const x=state[q.id];if(!x||x.selected===null)b++;else if(x.correct)c++;else w++;});
+ document.getElementById('score').textContent=c;
+ document.getElementById('correct').textContent=c;
+ document.getElementById('wrong').textContent=w;
+ document.getElementById('blank').textContent=b;
+ show('result');
+}
+function reviewWrong(){
+ const idx=QS.findIndex(q=>state[q.id]?.selected!==null && !state[q.id].correct);
+ cur=idx>=0?idx:0;show('quiz');render();
+}
+</script>
+</body>
+</html>
