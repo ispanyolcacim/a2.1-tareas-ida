@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A2.1 Son Ders · 30 Dakikalık Büyük Tekrar</title>
+<style>
+*{box-sizing:border-box}
+:root{
+ --pink:#dc6384;--pink2:#ef8aa6;--light:#f8d5df;--gold:#efbd50;--dark:#4b2736;
+ --mid:#8d5969;--green:#4d9d68;--red:#d45d69;--cream:#fff7db;--purple:#76548f;
+}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;color:var(--dark);
+background:linear-gradient(155deg,#fff9f2,#fff7fb 55%,#fffdea);min-height:100vh}
+.header{background:linear-gradient(135deg,var(--pink2),var(--pink));color:white;text-align:center;padding:24px 16px;box-shadow:0 5px 20px #dc638444}
+.header .tag{display:inline-block;padding:5px 14px;border-radius:99px;background:#ffffff2d;border:1px solid #ffffff77;font-size:12px;font-weight:800;letter-spacing:1px}
+.header h1{font-size:clamp(23px,4vw,32px);margin:8px 0 5px}
+.header p{margin:0;font-size:13px}
+.wrap{max-width:980px;margin:22px auto 55px;padding:0 16px}
+.card{background:white;border:1.5px solid var(--light);border-radius:20px;padding:20px;box-shadow:0 5px 22px #dc638418}
+.cover{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.notice{background:linear-gradient(135deg,#fff9df,#fff3f7);border-left:5px solid var(--pink2);padding:14px 16px;border-radius:0 14px 14px 0;line-height:1.7;font-size:14px}
+.btn{border:0;border-radius:13px;padding:12px 17px;font:700 14px inherit;cursor:pointer;transition:.15s}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.primary{background:linear-gradient(135deg,var(--pink2),var(--pink));color:#fff}
+.gold{background:linear-gradient(135deg,#f8d37b,var(--gold));color:var(--dark)}
+.outline{background:#fff;border:2px solid var(--light);color:var(--dark)}
+.wide{width:100%}
+.screen{display:none} .screen.active{display:block}
+.topbar{position:sticky;top:8px;z-index:20;background:#fffefeea;backdrop-filter:blur(12px);border:1.5px solid var(--light);border-radius:16px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 4px 16px #dc63841f}
+.progress{height:9px;background:var(--light);border-radius:99px;overflow:hidden;margin:12px 0 5px}
+.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--gold));transition:.2s}
+.progtext{display:flex;justify-content:space-between;color:var(--mid);font-size:12px;margin-bottom:12px;gap:12px;flex-wrap:wrap}
+.sectionbadge{display:inline-block;background:linear-gradient(90deg,#76548f,#a56fc5);color:#fff;border-radius:99px;padding:7px 13px;font-size:12px;font-weight:800;margin-bottom:8px}
+.topicbadge{display:inline-block;background:#fff5c9;border:1px solid #efd274;color:#8c5b1d;border-radius:99px;padding:6px 11px;font-size:12px;font-weight:800;margin-left:6px}
+.qcard{background:white;border:1.5px solid var(--light);border-radius:20px;overflow:hidden;box-shadow:0 5px 20px #dc638417}
+.qhead{padding:20px 20px 10px}
+.qnum{font-size:12px;color:var(--pink);font-weight:900;margin-bottom:10px}
+.prompt{font-size:18px;line-height:1.65;font-weight:750}
+.options{display:grid;gap:10px;padding:7px 20px 18px}
+.option{text-align:left;background:#fff9fb;border:2px solid var(--light);border-radius:13px;padding:13px 14px;cursor:pointer;color:var(--dark);font:600 14px/1.45 inherit}
+.option:hover{border-color:#e99ab0;background:#fff5f8}
+.option.selected{border-color:var(--pink);background:#fff0f5}
+.option.correct{border-color:var(--green);background:#eff9f2}
+.option.wrong{border-color:var(--red);background:#fff0f1}
+.feedback{margin:0 20px 20px;padding:16px 17px;background:#fff9df;border-left:5px solid var(--gold);border-radius:0 14px 14px 0;line-height:1.75;font-size:14px}
+.feedback.ok{border-left-color:var(--green);background:#effaf2}
+.feedback.bad{border-left-color:var(--red);background:#fff1f2}
+.explbox{margin-top:14px;background:#f6f2ff;border:1px solid #d9caee;border-radius:14px;padding:14px 16px}
+.explbox h4{margin:0 0 8px;color:var(--purple);font-size:15px}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px}
+.navcenter{font-size:13px;color:var(--mid);font-weight:800}
+.legend{display:grid;gap:9px;margin-top:12px}
+.legend div{background:#fff8fa;border:1px solid var(--light);padding:10px 12px;border-radius:12px;font-size:13px}
+.result{max-width:640px;margin:28px auto;text-align:center}
+.score{font-size:62px;font-weight:900;line-height:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}
+.stat{background:#fff8fa;border:1px solid var(--light);border-radius:13px;padding:12px}
+.stat b{display:block;font-size:25px}
+.summary{text-align:left;background:#fff9df;border-radius:14px;padding:14px 16px;line-height:1.7;font-size:14px;margin:15px 0}
+@media(max-width:720px){.cover{grid-template-columns:1fr} .topbar{flex-wrap:wrap} .prompt{font-size:16px} .stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="tag">A2.1 · SON DERS · SINIF İÇİ</div>
+  <h1>🔄 Gran Repaso · A1.1 + A1.2 + A2.1</h1>
+  <p>30 soru · ≈30 dakika · Hızlı genel tekrar · @ispanyolcacim · Profe Hazel</p>
+</div>
+
+<section id="cover" class="screen active">
+<div class="wrap">
+  <div class="cover">
+    <div class="card">
+      <h2>🎓 Son Derse Hoş Geldiniz</h2>
+      <div class="notice">
+        Bu etkinlikte A1.1’den başlayıp A2.1’e kadar öğrendiğimiz temel yapıları
+        <strong>30 soruda hızlıca tekrar edeceğiz.</strong><br><br>
+        Bir şıkka tıkladığınız anda <strong>✅ Doğru / ❌ Yanlış</strong> sonucu ve
+        <strong>detaylı açıklama</strong> açılır. Cevaplamadan da <strong>İleri / Geri</strong>
+        butonlarıyla tüm soruları görebilirsiniz.
+      </div><br>
+      <button class="btn primary wide" onclick="start()">▶ Etkinliğe Başla</button>
+    </div>
+    <div class="card">
+      <h2>🧩 Yapı</h2>
+      <div class="legend">
+        <div><b>1–10:</b> A1.1 Temeller</div>
+        <div><b>11–20:</b> A1.2 Yapılar</div>
+        <div><b>21–30:</b> A2.1 Geçmiş Zamanlar + OD/OI</div>
+        <div><b>30 soru / yaklaşık 30 dakika</b></div>
+        <div>Her soruda <b>detaylı açıklama</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="quiz" class="screen">
+<div class="wrap">
+  <div class="topbar">
+    <div><strong>🔄 Büyük Tekrar</strong><br><span id="answered">0</span> / 30 cevaplandı</div>
+    <button class="btn gold" onclick="finish()">🏁 Etkinliği Bitir</button>
+  </div>
+  <div class="progress"><div id="bar"></div></div>
+  <div class="progtext"><span id="topicTop"></span><span>Soru <b id="curNo">1</b> / 30</span></div>
+  <div id="area"></div>
+  <div class="nav">
+    <button class="btn outline" id="prev" onclick="move(-1)">← Geri</button>
+    <div class="navcenter" id="count">1 / 30</div>
+    <button class="btn primary" id="next" onclick="move(1)">İleri →</button>
+  </div>
+</div>
+</section>
+
+<section id="result" class="screen">
+<div class="wrap">
+  <div class="result card">
+    <div style="font-size:52px">🎓</div>
+    <h2>Büyük Tekrar Tamamlandı</h2>
+    <div class="score"><span id="score">0</span><span style="font-size:22px;color:var(--mid)">/30</span></div>
+    <div class="stats">
+      <div class="stat"><b id="correct" style="color:var(--green)">0</b>Doğru</div>
+      <div class="stat"><b id="wrong" style="color:var(--red)">0</b>Yanlış</div>
+      <div class="stat"><b id="blank" style="color:#999">0</b>Boş</div>
+    </div>
+    <div class="summary">
+      <b>Bugün neyi topladık?</b><br>
+      A1.1 temelleri → A1.2 yapıları → A2.1 geçmiş zamanlar → OD / OI.<br>
+      Sonuçtan sonra isterseniz yanlış yaptığınız sorulara geri dönebilirsiniz.
+    </div>
+    <button class="btn primary wide" onclick="reviewWrong()">🔎 Yanlışlara Dön</button>
+  </div>
+</div>
+</section>
+
+<script>
+const QS = [{"section": "A1.1 · Temeller", "topic": "Presente de Indicativo", "prompt": "Yo normalmente ______ español después del trabajo.", "opts": ["estudio", "estudias", "estudié", "estoy estudiando"], "ans": 0, "expl": "Buradaki anahtar kelime <b>normalmente</b> (= genellikle). Bu ifade bir alışkanlık anlatır; bu yüzden <b>Presente de Indicativo</b> kullanırız.<br><br>\n<b>estudiar → yo estudio</b><br><br>\n✅ <b>Yo normalmente estudio español después del trabajo.</b><br>\n= Ben genellikle işten sonra İspanyolca çalışırım.<br><br>\n<b>Mini hatırlatma:</b><br>\n• Normalmente estudio. → Genellikle çalışırım.<br>\n• Ahora estoy estudiando. → Şu anda çalışıyorum.<br>\n• Ayer estudié. → Dün çalıştım."}, {"section": "A1.1 · Temeller", "topic": "SER / ESTAR", "prompt": "Marta ______ muy cansada hoy, pero normalmente ______ una persona muy activa.", "opts": ["es / está", "está / es", "está / está", "es / es"], "ans": 1, "expl": "<b>Hoy está muy cansada</b>: bugün yorgun olmak geçici bir durumdur → <b>ESTAR</b>.<br>\n<b>Es una persona muy activa</b>: genel bir özellik anlatılır → <b>SER</b>.<br><br>\n✅ <b>Marta está muy cansada hoy, pero normalmente es una persona muy activa.</b><br><br>\n<b>SER:</b> kimlik, meslek, köken, genel özellik.<br>\n<b>ESTAR:</b> durum, konum, geçici hâl."}, {"section": "A1.1 · Temeller", "topic": "HAY / ESTAR", "prompt": "En mi barrio ______ dos supermercados, pero el supermercado grande ______ al lado de mi casa.", "opts": ["están / hay", "hay / está", "está / hay", "hay / es"], "ans": 1, "expl": "İlk bölümde bir şeyin <b>varlığını</b> söylüyoruz: <b>Hay dos supermercados.</b><br>\nİkinci bölümde belirli bir yerin <b>konumunu</b> söylüyoruz: <b>El supermercado grande está...</b><br><br>\n✅ <b>En mi barrio hay dos supermercados, pero el supermercado grande está al lado de mi casa.</b><br><br>\n<b>HAY + belirsiz şey:</b> Hay un restaurante.<br>\n<b>ESTAR + belirli şey:</b> El restaurante está aquí."}, {"section": "A1.1 · Temeller", "topic": "TENER", "prompt": "Mi hermano ______ 28 años y ______ mucha hambre.", "opts": ["es / está", "tiene / tiene", "está / hay", "tiene / es"], "ans": 1, "expl": "İspanyolcada yaş ve bazı fiziksel durumlar <b>tener</b> ile kurulur.<br><br>\n✅ <b>Mi hermano tiene 28 años y tiene mucha hambre.</b><br>\n= Kardeşim 28 yaşında ve çok aç.<br><br>\nİspanyolca mantığıyla: “28 yaşa sahip” ve “açlığa sahip”.<br><br>\n<b>Tener ifadeleri:</b> tener hambre, tener sed, tener frío, tener calor, tener miedo, tener sueño."}, {"section": "A1.1 · Temeller", "topic": "Verbos Reflexivos", "prompt": "Todos los días Laura ______ a las siete y después ______.", "opts": ["levanta / ducha", "se levanta / se ducha", "está levantando / ducha", "se levantar / se duchar"], "ans": 1, "expl": "<b>levantarse</b> ve <b>ducharse</b> dönüşlü fiillerdir. Laura = ella olduğu için zamir <b>se</b> olur.<br><br>\n✅ <b>Laura se levanta a las siete y después se ducha.</b><br><br>\n<b>Zamirler:</b> yo→me, tú→te, él/ella→se, nosotros→nos, vosotros→os, ellos→se."}, {"section": "A1.1 · Temeller", "topic": "Perífrasis Verbales", "prompt": "Mañana tengo un examen. Esta noche ______ estudiar mucho.", "opts": ["tengo que", "acabo de", "suelo", "dejo de"], "ans": 0, "expl": "<b>tener que + infinitivo</b> zorunluluk bildirir.<br><br>\n✅ <b>Tengo que estudiar mucho.</b> = Çok çalışmak zorundayım.<br><br>\nDiğerleri:<br>\n• <b>acabar de + infinitivo</b> → az önce yapmak<br>\n• <b>soler + infinitivo</b> → genellikle yapmak<br>\n• <b>dejar de + infinitivo</b> → yapmayı bırakmak"}, {"section": "A1.1 · Temeller", "topic": "Demostrativos", "prompt": "Öğretmenin hemen yanındaki kitabı gösteriyorsun: ______ libro es muy interesante.", "opts": ["Este", "Ese", "Aquel", "Estos"], "ans": 0, "expl": "Konuşan kişiye yakın nesnelerde <b>este / esta / estos / estas</b> kullanılır.<br>\n<b>libro</b> eril tekil olduğu için:<br><br>\n✅ <b>Este libro es muy interesante.</b><br><br>\nYakın → este<br>\nOrta mesafe → ese<br>\nUzak → aquel"}, {"section": "A1.1 · Temeller", "topic": "Posesivos", "prompt": "Nosotros vivimos con ______ padres y nuestra hermana vive con ______ marido.", "opts": ["nuestros / su", "nuestro / sus", "nuestros / sus", "nuestras / su"], "ans": 0, "expl": "<b>padres</b> eril çoğul → <b>nuestros padres</b>.<br>\n<b>marido</b> tekil → <b>su marido</b>.<br><br>\n✅ <b>Vivimos con nuestros padres y nuestra hermana vive con su marido.</b>"}, {"section": "A1.1 · Temeller", "topic": "Gustar", "prompt": "A mis padres ______ mucho las películas españolas.", "opts": ["le gusta", "les gusta", "les gustan", "se gustan"], "ans": 2, "expl": "Önce <b>kime?</b> sorusu: <b>a mis padres → les</b>.<br>\nSonra <b>ne hoş geliyor?</b>: <b>las películas españolas</b> çoğul → <b>gustan</b>.<br><br>\n✅ <b>A mis padres les gustan mucho las películas españolas.</b><br><br>\nTürkçe doğal mantık: Anne babam İspanyol filmlerini çok seviyor.<br>\nİspanyolca mantığı: İspanyol filmleri anne babama hoş geliyor."}, {"section": "A1.1 · Temeller", "topic": "Gustar Ailesi · Doler", "prompt": "A mí ______ la cabeza cuando estoy muy cansado.", "opts": ["me gusta", "me gustan", "me duele", "me duelen"], "ans": 2, "expl": "<b>doler</b> de gustar mantığıyla çalışır.<br>\n<b>la cabeza</b> tekil olduğu için → <b>duele</b>.<br>\n<b>a mí → me</b>.<br><br>\n✅ <b>Me duele la cabeza.</b> = Başım ağrıyor.<br><br>\nİspanyol mantığıyla: “Baş bana ağrı veriyor.”<br>\nÇoğul: <b>Me duelen los ojos.</b>"}, {"section": "A1.2 · Yapılar", "topic": "Comparativos", "prompt": "Mi coche es ______ rápido ______ el tuyo.", "opts": ["muy / que", "más / que", "tan / que", "mucho / como"], "ans": 1, "expl": "Üstünlük karşılaştırması: <b>más + adjetivo + que</b>.<br><br>\n✅ <b>Mi coche es más rápido que el tuyo.</b><br><br>\n• más… que → daha…<br>\n• menos… que → daha az…<br>\n• tan… como → kadar"}, {"section": "A1.2 · Yapılar", "topic": "Comparativo Irregular", "prompt": "Este restaurante es ______ que el otro.", "opts": ["más bueno", "mejor", "más mejor", "muy mejor"], "ans": 1, "expl": "<b>bueno → mejor</b> düzensiz karşılaştırmadır.<br><br>\n✅ <b>Este restaurante es mejor que el otro.</b><br><br>\nBenzerleri: bueno→mejor, malo→peor, grande→mayor, pequeño→menor.<br>\n❌ <b>más mejor</b> denmez; mejor zaten “daha iyi” anlamını taşır."}, {"section": "A1.2 · Yapılar", "topic": "Estar + Gerundio", "prompt": "No puedo hablar ahora. ______.", "opts": ["Trabajo", "Voy a trabajar", "Estoy trabajando", "He trabajado"], "ans": 2, "expl": "Anahtar kelime <b>ahora</b>. Şu anda devam eden eylem için <b>estar + gerundio</b> kullanılır.<br><br>\n✅ <b>Estoy trabajando.</b> = Şu anda çalışıyorum.<br><br>\n<b>Trabajo todos los días.</b> → Her gün çalışırım.<br>\n<b>Estoy trabajando ahora.</b> → Şu anda çalışıyorum."}, {"section": "A1.2 · Yapılar", "topic": "Gerundio Irregular", "prompt": "Ahora los niños están ______ en el parque. (dormir)", "opts": ["dormiendo", "durmiendo", "dormando", "durmando"], "ans": 1, "expl": "<b>dormir</b> gerundioda düzensizdir: <b>o → u</b>.<br><br>\n✅ <b>dormir → durmiendo</b><br>\n✅ <b>Los niños están durmiendo.</b><br><br>\nBenzerleri: pedir→pidiendo, decir→diciendo, leer→leyendo, ir→yendo, caer→cayendo."}, {"section": "A1.2 · Yapılar", "topic": "Gerundio + Reflexivo", "prompt": "María şu anda duş alıyor. Hangisi doğrudur?", "opts": ["María se está duchando.", "María está se duchando.", "María está ducharse.", "María se está duchar."], "ans": 0, "expl": "İki doğru yapı mümkündür:<br><br>\n✅ <b>María se está duchando.</b><br>\n✅ <b>María está duchándose.</b><br><br>\nZamir ya çekimli fiilden önce gelir ya da gerundioya bitişir. Anlam değişmez."}, {"section": "A1.2 · Yapılar", "topic": "Ir a + Infinitivo", "prompt": "Este fin de semana nosotros ______ visitar a nuestros abuelos.", "opts": ["estamos", "vamos a", "hemos", "fuimos"], "ans": 1, "expl": "Yakın gelecek / plan için <b>ir + a + infinitivo</b> kullanılır.<br><br>\n✅ <b>Vamos a visitar a nuestros abuelos.</b><br>\n= Bu hafta sonu büyükanne ve büyükbabamızı ziyaret edeceğiz."}, {"section": "A1.2 · Yapılar", "topic": "Ir a + Reflexivo", "prompt": "Mañana yo ______ temprano. (levantarse)", "opts": ["voy a levantarme", "voy levantarme", "me voy levantar", "voy a me levantar"], "ans": 0, "expl": "Doğru iki kullanım vardır:<br><br>\n✅ <b>Voy a levantarme temprano.</b><br>\n✅ <b>Me voy a levantar temprano.</b><br><br>\n❌ <b>voy a me levantar</b> olmaz.<br>\nZamir ya çekimli fiilden önce ya da infinitivoya bitişik gelir."}, {"section": "A1.2 · Yapılar", "topic": "Muy / Mucho", "prompt": "Ana está ______ cansada porque trabaja ______.", "opts": ["mucho / muy", "muy / mucho", "muy / mucha", "mucha / mucho"], "ans": 1, "expl": "<b>cansada</b> sıfat → <b>muy cansada</b>.<br>\n<b>trabaja</b> fiil → <b>trabaja mucho</b>.<br><br>\n✅ <b>Ana está muy cansada porque trabaja mucho.</b><br><br>\nFormül:<br>\n• muy + sıfat/zarf<br>\n• verbo + mucho<br>\n• mucho/a/os/as + isim"}, {"section": "A1.2 · Yapılar", "topic": "Pretérito Perfecto", "prompt": "Esta semana ______ tres películas españolas.", "opts": ["vi", "veía", "he visto", "estoy viendo"], "ans": 2, "expl": "<b>esta semana</b> henüz içinde bulunduğumuz zaman dilimidir. Bu yüzden <b>Pretérito Perfecto</b> uygundur.<br><br>\n<b>haber + participio</b><br>\n✅ <b>Esta semana he visto tres películas españolas.</b><br><br>\nhe, has, ha, hemos, habéis, han + participio"}, {"section": "A1.2 · Yapılar", "topic": "Participio", "prompt": "Hangisi tamamen doğru gruptur?", "opts": ["hacido – abrido – escribido", "hecho – abierto – escrito", "hecho – abrido – escribido", "hacido – abierto – escrito"], "ans": 1, "expl": "Bu üç fiilin participiosu düzensizdir:<br><br>\n<b>hacer → hecho</b><br>\n<b>abrir → abierto</b><br>\n<b>escribir → escrito</b><br><br>\nDiğerleri: dicho, visto, puesto, vuelto, roto, muerto.<br>\nÖrnek: <b>He hecho los deberes.</b> / <b>La puerta está abierta.</b>"}, {"section": "A2.1 · Geçmiş Zamanlar", "topic": "Pretérito Indefinido", "prompt": "Ayer nosotros ______ en un restaurante mexicano.", "opts": ["comemos", "hemos comido", "comíamos", "comimos"], "ans": 3, "expl": "Anahtar kelime <b>ayer</b>: bitmiş bir zaman dilimidir. Bu yüzden <b>Pretérito Indefinido</b> kullanılır.<br><br>\n✅ <b>Ayer comimos en un restaurante mexicano.</b><br>\nIndefinido: geçmişte başladı, gerçekleşti ve tamamlandı."}, {"section": "A2.1 · Geçmiş Zamanlar", "topic": "Indefinido · Düzensiz Kök", "prompt": "Ayer Ana no ______ venir a clase. (poder)", "opts": ["pudo", "podió", "podía", "puede"], "ans": 0, "expl": "<b>poder → pud-</b> düzensiz kök alır.<br><br>\npude, pudiste, <b>pudo</b>, pudimos, pudisteis, pudieron.<br><br>\n✅ <b>Ana no pudo venir a clase.</b><br>\nDüzensiz köklerde normal -ó / -ió mantığı kullanılmaz."}, {"section": "A2.1 · Geçmiş Zamanlar", "topic": "Indefinido · J Kökleri", "prompt": "Ellos ______ que no tenían tiempo. (decir)", "opts": ["dicieron", "dijieron", "dijeron", "decieron"], "ans": 2, "expl": "<b>decir → dij-</b>.<br>\nJ ile biten düzensiz köklerde ellos çekiminde <b>-ieron değil, -eron</b> gelir.<br><br>\n✅ <b>dijeron</b><br>\nBenzer: traer→trajeron, producir→produjeron.<br><br>\n🧠 <b>J + ERON</b>"}, {"section": "A2.1 · Geçmiş Zamanlar", "topic": "Indefinido · E→I / O→U", "prompt": "Anoche Pedro ______ muy tarde. (dormir)", "opts": ["dormió", "durmió", "durmía", "duerme"], "ans": 1, "expl": "Bazı -IR fiilleri Indefinidoda yalnızca 3. tekil ve 3. çoğul şahısta ses değiştirir.<br><br>\n<b>dormir → durmió / durmieron</b><br>\nAma: yo dormí, tú dormiste.<br><br>\nE→I: pedir→pidió / pidieron<br>\nO→U: dormir→durmió / durmieron"}, {"section": "A2.1 · Geçmiş Zamanlar", "topic": "Indefinido · I→Y", "prompt": "Ayer Marta ______ un libro entero. (leer)", "opts": ["leió", "leyó", "leía", "leyió"], "ans": 1, "expl": "Bazı fiillerde 3. şahıslarda <b>i → y</b> olur.<br><br>\nleer: leí, leíste, <b>leyó</b>, leímos, leísteis, <b>leyeron</b>.<br><br>\n✅ <b>Marta leyó un libro entero.</b><br>\nBenzer: oír→oyó, caer→cayó."}, {"section": "A2.1 · Geçmiş Zamanlar", "topic": "SER / IR · Indefinido", "prompt": "El año pasado nosotros ______ a Madrid.", "opts": ["éramos", "fuimos", "íbamos", "hemos ido"], "ans": 1, "expl": "<b>ser</b> ve <b>ir</b>, Indefinidoda aynı çekimi paylaşır:<br>\nfui, fuiste, fue, <b>fuimos</b>, fuisteis, fueron.<br><br>\nBurada <b>a Madrid</b> bir yere gitmeyi gösterdiği için fiil <b>ir</b>.<br>\n✅ <b>Fuimos a Madrid.</b>"}, {"section": "A2.1 · Geçmiş Zamanlar", "topic": "Pretérito Imperfecto", "prompt": "Cuando era pequeño, todos los veranos ______ con mis abuelos.", "opts": ["viví", "he vivido", "vivía", "vivo"], "ans": 2, "expl": "<b>cuando era pequeño</b> + <b>todos los veranos</b> geçmişte tekrar eden alışkanlığı gösterir.<br><br>\n✅ <b>Todos los veranos vivía con mis abuelos.</b><br><br>\nImperfecto: geçmiş alışkanlık, tekrar, betimleme, yaş, saat, arka plan."}, {"section": "A2.1 · Geçmiş Zamanlar", "topic": "Indefinido vs Imperfecto", "prompt": "Mientras yo ______, alguien ______ a la puerta.", "opts": ["cociné / llamaba", "cocinaba / llamó", "cociné / llamó", "cocinaba / llamaba"], "ans": 1, "expl": "Devam eden arka plan → <b>Imperfecto</b>: <b>yo cocinaba</b>.<br>\nAraya giren tamamlanmış olay → <b>Indefinido</b>: <b>alguien llamó</b>.<br><br>\n✅ <b>Mientras yo cocinaba, alguien llamó a la puerta.</b><br>\n= Ben yemek yaparken biri kapıyı çaldı.<br><br>\n🎬 <b>Imperfecto = sahne, Indefinido = sahnede olan olay.</b>"}, {"section": "A2.1 · Geçmişe Taşıma", "topic": "Presente → Imperfecto", "prompt": "Şimdiki zamanda: Ahora estoy trabajando. Bunu geçmişte devam eden bir eyleme dönüştür.", "opts": ["Ayer estuve trabajar.", "Ayer estaba trabajando.", "Ayer trabajé trabajando.", "Ayer era trabajando."], "ans": 1, "expl": "A1.2’deki <b>estar + gerundio</b> yapısını A2.1’de geçmişe taşıyoruz.<br><br>\n<b>Estoy trabajando.</b> → Şu anda çalışıyorum.<br>\n<b>Estaba trabajando.</b> → Çalışıyordum.<br><br>\nAynı mantık:<br>\n<b>Voy a estudiar.</b> → Çalışacağım.<br>\n<b>Iba a estudiar.</b> → Çalışacaktım."}, {"section": "A2.1 · OD / OI", "topic": "Objeto Directo + Objeto Indirecto", "prompt": "Marta dio las llaves a Pedro. Hem “las llaves” hem “a Pedro” zamirleştirildiğinde hangisi doğrudur?", "opts": ["Marta le las dio.", "Marta las le dio.", "Marta se las dio.", "Marta se los dio."], "ans": 2, "expl": "Önce nesneleri bulalım:<br><br>\n<b>¿Qué dio Marta?</b> → <b>las llaves</b> = OD → <b>las</b><br>\n<b>¿A quién?</b> → <b>a Pedro</b> = OI → <b>le</b><br><br>\nNormalde <b>le + las</b> oluşur. Ama İspanyolcada:<br>\n<b>le / les + lo / la / los / las → se + lo / la / los / las</b><br><br>\n✅ <b>Marta se las dio.</b> = Marta onları ona verdi.<br><br>\n🧠 Sıralama: <b>OI + OD + fiil</b><br>\n💃 <b>“Hele bi dur yeğenim… LE LO olmaz.”</b> Halayda le lo le la olabilir ama İspanyolcada halay çekmiyoruz. 😄"}];
+let cur=0;
+const state={};
+
+function show(id){
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function start(){show('quiz');render();}
+function st(i){if(!state[i])state[i]={selected:null,correct:false};return state[i];}
+
+function choose(i){
+  const x=st(cur);
+  x.selected=i;
+  x.correct=(i===QS[cur].ans);
+  render();
+}
+
+function render(){
+  const q=QS[cur], x=st(cur);
+  const opts=q.opts.map((o,i)=>{
+    let cls='option';
+    if(x.selected===i) cls+=' selected';
+    if(x.selected!==null && i===q.ans) cls+=' correct';
+    if(x.selected!==null && x.selected===i && i!==q.ans) cls+=' wrong';
+    return `<button class="${cls}" onclick="choose(${i})"><b>${String.fromCharCode(65+i)})</b> ${o}</button>`;
+  }).join('');
+
+  const fb=x.selected!==null?`
+    <div class="feedback ${x.correct?'ok':'bad'}">
+      <div style="font-size:16px;font-weight:900;margin-bottom:8px">${x.correct?'✅ Doğru!':'❌ Yanlış.'}</div>
+      <b>Doğru cevap:</b> ${String.fromCharCode(65+q.ans)}) ${q.opts[q.ans]}
+      <div class="explbox">
+        <h4>📚 Explicación / Detaylı Açıklama</h4>
+        ${q.expl}
+      </div>
+    </div>`:'';
+
+  document.getElementById('area').innerHTML=`
+    <div style="margin-bottom:10px">
+      <span class="sectionbadge">${q.section}</span>
+      <span class="topicbadge">${q.topic}</span>
+    </div>
+    <div class="qcard">
+      <div class="qhead">
+        <div class="qnum">SORU ${cur+1} / 30</div>
+        <div class="prompt">${q.prompt}</div>
+      </div>
+      <div class="options">${opts}</div>
+      ${fb}
+    </div>`;
+  update();
+}
+
+function update(){
+  const answered=QS.filter((q,i)=>state[i]?.selected!==null && state[i]?.selected!==undefined).length;
+  document.getElementById('answered').textContent=answered;
+  document.getElementById('bar').style.width=(answered/30*100)+'%';
+  document.getElementById('topicTop').textContent=QS[cur].section+' · '+QS[cur].topic;
+  document.getElementById('curNo').textContent=cur+1;
+  document.getElementById('count').textContent=(cur+1)+' / 30';
+  document.getElementById('prev').disabled=cur===0;
+  const n=document.getElementById('next');
+  if(cur===29){n.textContent='Bitir →';n.onclick=finish;}
+  else{n.textContent='İleri →';n.onclick=()=>move(1);}
+}
+
+function move(d){
+  cur=Math.max(0,Math.min(29,cur+d));
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function finish(){
+  let c=0,w=0,b=0;
+  QS.forEach((q,i)=>{
+    const x=state[i];
+    if(!x||x.selected===null)b++;
+    else if(x.correct)c++;
+    else w++;
+  });
+  document.getElementById('score').textContent=c;
+  document.getElementById('correct').textContent=c;
+  document.getElementById('wrong').textContent=w;
+  document.getElementById('blank').textContent=b;
+  show('result');
+}
+
+function reviewWrong(){
+  const idx=QS.findIndex((q,i)=>state[i]?.selected!==null && !state[i].correct);
+  cur=idx>=0?idx:0;
+  show('quiz');
+  render();
+}
+</script>
+</body>
+</html>
