@@ -61,6 +61,7 @@ background:linear-gradient(155deg,#fff9f2,#fff7fb 55%,#fffdea);min-height:100vh}
 .summary{text-align:left;background:#fff9df;border-radius:14px;padding:14px 16px;line-height:1.7;font-size:14px;margin:15px 0}
 @media(max-width:720px){.cover{grid-template-columns:1fr} .topbar{flex-wrap:wrap} .prompt{font-size:16px} .stats{grid-template-columns:1fr}}
 </style>
+<link rel="stylesheet" href="a21-theme.css?v=20261103-palettes">
 </head>
 <body>
 <div class="header">
@@ -101,7 +102,7 @@ background:linear-gradient(155deg,#fff9f2,#fff7fb 55%,#fffdea);min-height:100vh}
 <div class="wrap">
   <div class="topbar">
     <div><strong>🔄 Büyük Tekrar</strong><br><span id="answered">0</span> / 30 cevaplandı</div>
-    <button class="btn gold" onclick="finish()">🏁 Etkinliği Bitir</button>
+    <button class="btn gold theme-finish" onclick="finish()">🏁 Bitir</button>
   </div>
   <div class="progress"><div id="bar"></div></div>
   <div class="progtext"><span id="topicTop"></span><span>Soru <b id="curNo">1</b> / 30</span></div>
