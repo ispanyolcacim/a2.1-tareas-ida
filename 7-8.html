@@ -145,6 +145,11 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .status-error { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
 .status-pending { background:rgba(246,207,128,0.2); border:1.5px solid rgba(246,207,128,0.5); color:#9a6000; }
 .result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+
+/* Yazma tesliminden önce öğrencinin kendi kopyasını saklama onayı */
+.writing-copy-confirm{display:flex;align-items:flex-start;gap:10px;margin:18px 0 12px;padding:14px 16px;border:1.5px solid #e6bd64;border-radius:12px;background:#fff8e7;color:#634b1b;font-size:14px;line-height:1.6;text-align:left;cursor:pointer}
+.writing-copy-confirm input{flex:0 0 auto;width:20px;height:20px;margin:2px 0 0;accent-color:#b88016;cursor:pointer}
+.writing-copy-confirm small{display:block;font-size:12px;font-weight:400}
 </style>
 <script src="student-roster.js" defer></script>
 <link rel="stylesheet" href="a21-theme.css?v=20261103-palettes">
@@ -249,8 +254,12 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
         </table>
       </div>
     </div>
+    <label class="writing-copy-confirm" for="writing-copy-confirm">
+      <input type="checkbox" id="writing-copy-confirm" onchange="updateWritingCopyGate()">
+      <span><strong>Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım.</strong><small>Bu kutucuğu işaretlemeden yazma ödevinizi teslim edemezsiniz.</small></span>
+    </label>
     <div class="writing-nav">
-      <button class="btn btn-gold" onclick="goToConfirmAfterWriting()">✔ Yazıyı Tamamladım, Teslim Et</button>
+      <button id="writing-copy-submit" class="btn btn-gold" onclick="goToConfirmAfterWriting()" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
     </div>
   </div>
 </div>
@@ -530,6 +539,7 @@ function updateCharCount() {
   document.getElementById('char-count').textContent = document.getElementById('writing-input').value.length + ' karakter';
 }
 function goToConfirmAfterWriting() {
+  if(!requireWritingCopy()) return;
   const text = document.getElementById('writing-input').value.trim();
   if (text.length < 20) { alert('Lütfen çevirinizi tamamlayın (en az 20 karakter).'); return; }
   writingText = text;
@@ -537,6 +547,7 @@ function goToConfirmAfterWriting() {
   showScreen('confirm');
 }
 async function confirmAndSubmit() {
+  if(!requireWritingCopy()) return;
   const sel = document.getElementById('confirm-name-select');
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
   studentName = sel.value;
@@ -600,9 +611,25 @@ async function sendToSheets(name, score, correct, wrong, blank) {
   }
 }
 function goToName() {
+  resetWritingCopy();
   mcAnswers={}; fillAnswers={}; submitted=false; currentQ=0; quizMode='dinleme';
   document.getElementById('name-select').value='';
   showScreen('name');
+}
+
+function updateWritingCopyGate(){
+  document.getElementById('writing-copy-submit').disabled=!document.getElementById('writing-copy-confirm').checked;
+}
+function requireWritingCopy(){
+  if(document.getElementById('writing-copy-confirm').checked) return true;
+  alert('Lütfen önce ödevinizin fotoğrafını çekin veya yazınızın bir kopyasını alın ve kutucuğu işaretleyin.');
+  return false;
+}
+function resetWritingCopy(){
+  const checkbox=document.getElementById('writing-copy-confirm');
+  checkbox.checked=false;
+  checkbox.disabled=false;
+  updateWritingCopyGate();
 }
 </script>
 </body>
