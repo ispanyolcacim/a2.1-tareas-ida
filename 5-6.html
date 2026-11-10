@@ -204,7 +204,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 <div class="header">
   <div class="header-tag">2. Hafta Ödevi &nbsp;|&nbsp; A2.1 (5-6. Ders)</div>
   <h1>🇪🇸 A2.1 – H2 5-6. Ders – Pretérito Indefinido</h1>
-  <div class="header-sub">55 soru + Yazma &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+  <div class="header-sub">55 soru &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
 </div>
 <!-- EKRAN 1: AD SEÇİMİ -->
 <div class="screen active" id="screen-name">
@@ -219,13 +219,12 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
       <option>Seher Ercin</option><option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
     </select>
     <div class="info-box">
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Dinleme (İspanya Aksanı) — Soru 1–15 (30 puan)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> Boşluk Doldurma — Soru 16–35 (20 puan)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Eşleştirme (Sürükle-Bırak) — 36-50 (15 puan)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 4:</strong> Okuduğunu Anlama — Soru 51–55 (15 puan)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Yazma Bölümü:</strong> Paragraf Çeviri (20 puan)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Dinleme (İspanya Aksanı) — Soru 1–15</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> Boşluk Doldurma — Soru 16–35</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Eşleştirme (Sürükle-Bırak) — Soru 36–50</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 4:</strong> Okuduğunu Anlama — Soru 51–55</span></div>
       <div class="ib-hr"></div>
-      <div class="ib-row"><div class="ib-dot" style="background:var(--c4)"></div><span>Toplam 100 puan</span></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--c4)"></div><span>Sonuç 100 puan üzerinden hesaplanır.</span></div>
     </div>
     <button class="btn btn-main btn-full" onclick="startQuiz()">▶ Başla</button>
   </div>
@@ -268,7 +267,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
     <div class="match-progress">
       <span>Eşleşme: <strong id="match-done">0</strong> / 15</span>
-      <span class="match-score-badge">15 puan</span>
+      <span class="match-score-badge">15 eşleştirme</span>
     </div>
     <div class="match-columns">
       <div>
@@ -527,9 +526,9 @@ function renderQuestion() {
     btnNext.className = 'btn btn-gold btn-sm';
     btnNext.onclick = () => { showScreen('match'); buildMatchUI(); };
   } else if (quizMode === 'okuma' && isLast) {
-    btnNext.textContent = '✍️ Yazma Bölümüne Geç →';
+    btnNext.textContent = '✔ Ödevi Tamamla →';
     btnNext.className = 'btn btn-gold btn-sm';
-    btnNext.onclick = () => showScreen('writing');
+    btnNext.onclick = goToConfirm;
   } else {
     btnNext.textContent = 'İleri →';
     btnNext.className = 'btn btn-main btn-sm';
@@ -782,6 +781,10 @@ function goToReading() {
 function updateCharCount() {
   document.getElementById('char-count').textContent = document.getElementById('writing-input').value.length + ' karakter';
 }
+function goToConfirm() {
+  document.getElementById('confirm-name-select').value = studentName;
+  showScreen('confirm');
+}
 function goToConfirmAfterWriting() {
   if(!requireWritingCopy()) return;
   const text = document.getElementById('writing-input').value.trim();
@@ -793,12 +796,16 @@ function goToConfirmAfterWriting() {
 }
 async function confirmAndSubmit() {
   if (submitted) return;
-  if(!requireWritingCopy()) return;
+  if (WRITING_ONLY && !requireWritingCopy()) return;
   const sel = document.getElementById('confirm-name-select');
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
   studentName = sel.value;
   const btn = document.querySelector('#screen-confirm .btn-gold');
   btn.disabled = true; btn.textContent = '⏳ Gönderiliyor…';
+  if (!WRITING_ONLY) {
+    submitQuiz();
+    return;
+  }
   const now = new Date();
   const tarih = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
   try {
@@ -806,13 +813,9 @@ async function confirmAndSubmit() {
       student_name: studentName, lesson: LESSON_NAME + (WRITING_ONLY ? ' (Yazma)' : ''),
       submit_date: tarih, writing_text: writingText
     });
-    if (WRITING_ONLY) {
-      submitted = true;
-      document.getElementById('writing-result-name').textContent = studentName;
-      showScreen('writing-result');
-    } else {
-      submitQuiz();
-    }
+    submitted = true;
+    document.getElementById('writing-result-name').textContent = studentName;
+    showScreen('writing-result');
   } catch(e) {
     btn.disabled = false; btn.textContent = '✔ Ödevi Teslim Et';
     alert('Yazı gönderilemedi. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.');
@@ -844,7 +847,9 @@ function submitQuiz() {
   // blank count
   const mcBlank = ALL_MC.filter(q => mcAnswers[q.id] === undefined).length;
   const fillBlank = Q_BOSUK.filter(q => fillAnswers[q.id] === undefined).length;
-  const score = (dinleme * 2) + (fillCorrect * 1) + matchScore + (okuma * 3);
+  const rawScore = (dinleme * 2) + fillCorrect + matchScore + (okuma * 3);
+  const maxScore = (Q_DINLEME.length * 2) + Q_BOSUK.length + MATCH_PAIRS.length + (Q_OKUMA.length * 3);
+  const score = Math.round(rawScore / maxScore * 100);
   const correct = dinleme + fillCorrect + matchScore + okuma;
   const wrong = (Q_DINLEME.length - dinleme) + (Q_BOSUK.filter(q => fillAnswers[q.id] !== undefined && fillAnswers[q.id].trim().toLowerCase() !== q.answer.toLowerCase()).length) + (15 - matchScore) + (Q_OKUMA.length - okuma);
   const blank = mcBlank + fillBlank;
@@ -881,7 +886,10 @@ async function sendToSheets(name, score, correct, wrong, blank) {
   }
 }
 function goToName() {
-  resetWritingCopy();
+  if (WRITING_ONLY) resetWritingCopy();
+  const submitButton = document.querySelector('#screen-confirm .btn-gold');
+  submitButton.disabled = false;
+  submitButton.textContent = '✔ Ödevi Teslim Et';
   mcAnswers = {}; fillAnswers = {}; matchScore = 0; matchChecked = false;
   submitted = false; currentQ = 0; quizMode = 'dinleme';
   document.getElementById('name-select').value = '';
@@ -907,6 +915,9 @@ if (WRITING_ONLY) {
   document.querySelector('.header h1').textContent = '✍️ A2.1 – H2 5-6. Ders – Yazma Ödevi';
   document.querySelector('.header-sub').textContent = 'Pretérito Indefinido · Paragraf Çeviri · Profe Hazel';
   showScreen('writing');
+} else {
+  document.getElementById('screen-writing').remove();
+  document.getElementById('screen-writing-result').remove();
 }
 </script>
 </body>
