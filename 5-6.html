@@ -367,6 +367,16 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
   </div>
 </div>
+<!-- Yazma bağlantısından yapılan bağımsız teslimin sonucu -->
+<div class="screen" id="screen-writing-result">
+  <div class="confirm-wrap">
+    <div style="font-size:48px;margin-bottom:12px">✅</div>
+    <h2>Yazma ödeviniz gönderildi!</h2>
+    <p id="writing-result-name"></p>
+    <p>Profe Hazel yazınızı kontrol ettikten sonra notunuzu sistemde görebilirsiniz.</p>
+    <a class="btn btn-main btn-full" href="5-6.html">📚 5+6. Ders Ödevine Git</a>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
 emailjs.init('xNYEbUQNiWJPvbyoJ');
@@ -377,6 +387,7 @@ const SPREADSHEET_ID   = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
 const SHEET_NAME       = 'A2.1';
 const TASK_COLUMN      = 'H2 – 5-6.Ders';
 const LESSON_NAME      = 'A2.1 H2 – 5-6. Ders';
+const WRITING_ONLY     = new URLSearchParams(window.location.search).get('bolum') === 'yazma';
 const VIMEO_URL        = 'https://vimeo.com/330766043?fl=pl&fe=vl';
 const FIILLER = ['vender','escuchar','vivir','preparar','comprar','subir','hablar','comer','estudiar','recibir','mirar','beber','trabajar','responder','abrir','caminar','aprender','visitar','cenar','escribir'];
 // ── KISIM 1: DİNLEME (1-15) ──
@@ -781,6 +792,7 @@ function goToConfirmAfterWriting() {
   showScreen('confirm');
 }
 async function confirmAndSubmit() {
+  if (submitted) return;
   if(!requireWritingCopy()) return;
   const sel = document.getElementById('confirm-name-select');
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
@@ -791,10 +803,16 @@ async function confirmAndSubmit() {
   const tarih = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
   try {
     await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-      student_name: studentName, lesson: LESSON_NAME,
+      student_name: studentName, lesson: LESSON_NAME + (WRITING_ONLY ? ' (Yazma)' : ''),
       submit_date: tarih, writing_text: writingText
     });
-    submitQuiz();
+    if (WRITING_ONLY) {
+      submitted = true;
+      document.getElementById('writing-result-name').textContent = studentName;
+      showScreen('writing-result');
+    } else {
+      submitQuiz();
+    }
   } catch(e) {
     btn.disabled = false; btn.textContent = '✔ Ödevi Teslim Et';
     alert('Yazı gönderilemedi. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.');
@@ -883,6 +901,12 @@ function resetWritingCopy(){
   checkbox.checked=false;
   checkbox.disabled=false;
   updateWritingCopyGate();
+}
+if (WRITING_ONLY) {
+  document.title = 'A2.1 – H2 5-6. Ders – Yazma Ödevi';
+  document.querySelector('.header h1').textContent = '✍️ A2.1 – H2 5-6. Ders – Yazma Ödevi';
+  document.querySelector('.header-sub').textContent = 'Pretérito Indefinido · Paragraf Çeviri · Profe Hazel';
+  showScreen('writing');
 }
 </script>
 </body>
