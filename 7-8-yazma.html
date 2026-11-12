@@ -1,278 +1,174 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A2.1 (7+8) · Paragraf Çeviri Ödevi</title>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --c1: #fcedbe; --c2: #f6cf80; --c3: #f7c9d3; --c4: #ee84a8; --c5: #d35a75;
-  --dark: #4a2535; --mid: #8a5060; --white: #ffffff; --green: #6aab7a; --red: #d97070;
-  --radius: 14px;
-}
-body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linear-gradient(160deg,#fff8f0 0%,#fff5f8 60%,#fffde8 100%); min-height:100vh; color:var(--dark); }
-.header { background:linear-gradient(135deg,var(--c4),var(--c5)); padding:18px 20px 14px; text-align:center; box-shadow:0 4px 18px rgba(238,132,168,0.4); position:relative; overflow:hidden; }
-.header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,0.1) 14px,rgba(255,255,255,0.1) 15px); }
-.header-tag { display:inline-block; background:rgba(255,255,255,0.35); border:1.5px solid rgba(255,255,255,0.55); border-radius:20px; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:3px 14px; margin-bottom:8px; color:var(--white); position:relative; }
-.header h1 { font-size:clamp(16px,4vw,23px); font-weight:800; color:var(--white); position:relative; text-shadow:0 1px 4px rgba(0,0,0,0.15); }
-.header-sub { font-size:12px; color:rgba(255,255,255,0.85); margin-top:4px; position:relative; }
-.screen { display:none; animation:fadeIn 0.3s ease; }
-.screen.active { display:block; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-/* NAME */
-.name-body { max-width:420px; margin:0 auto; padding:32px 20px; text-align:center; }
-.name-body h2 { font-size:20px; color:var(--dark); margin-bottom:5px; }
-.name-body p { font-size:13px; color:var(--mid); margin-bottom:20px; }
-.name-select { width:100%; padding:13px 16px; font-size:15px; background:var(--white); border:2px solid var(--c3); border-radius:var(--radius); color:var(--dark); appearance:none; cursor:pointer; margin-bottom:14px; font-family:inherit; transition:border-color 0.2s; }
-.name-select:focus { outline:none; border-color:var(--c2); box-shadow:0 0 0 3px rgba(246,207,128,0.25); }
-.info-box { background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); padding:14px 16px; margin-bottom:18px; text-align:left; font-size:13px; line-height:1.75; box-shadow:0 2px 10px rgba(238,132,168,0.12); }
-.ib-row { display:flex; align-items:flex-start; gap:9px; margin-bottom:5px; }
-.ib-row:last-child { margin-bottom:0; }
-.ib-dot { width:8px; height:8px; border-radius:50%; background:var(--c2); flex-shrink:0; margin-top:5px; }
-.ib-hr { height:1px; background:var(--c3); margin:9px 0; }
-/* BUTTONS */
-.btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; padding:12px 24px; border:none; border-radius:var(--radius); font-size:14px; font-weight:700; cursor:pointer; transition:all 0.2s; font-family:inherit; }
-.btn-main { background:linear-gradient(135deg,var(--c4),var(--c5)); color:white; box-shadow:0 4px 12px rgba(211,90,117,0.35); }
-.btn-main:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(211,90,117,0.5); }
-.btn-gold { background:linear-gradient(135deg,var(--c2),#e8b040); color:var(--dark); box-shadow:0 4px 12px rgba(246,207,128,0.4); }
-.btn-gold:hover { transform:translateY(-2px); }
-.btn-outline { background:var(--white); border:2px solid var(--c3); color:var(--dark); }
-.btn-outline:hover { background:var(--c3); }
-.btn-green { background:linear-gradient(135deg,#82e0aa,#27ae60); color:white; box-shadow:0 4px 12px rgba(39,174,96,0.3); }
-.btn-sm { padding:9px 18px; font-size:13px; }
-.btn-full { width:100%; }
-.btn:disabled { opacity:0.35; cursor:not-allowed; transform:none !important; }
-/* QUIZ */
-.quiz-wrap { max-width:640px; margin:0 auto; padding:16px; }
-.top-bar { display:flex; align-items:center; justify-content:space-between; background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); padding:10px 16px; margin-bottom:12px; gap:8px; flex-wrap:wrap; box-shadow:0 2px 8px rgba(238,132,168,0.12); }
-.top-student { font-size:12px; color:var(--mid); font-weight:600; }
-.top-scores { display:flex; gap:14px; }
-.top-score-item { display:flex; align-items:center; gap:5px; font-size:13px; font-weight:700; }
-.sc-correct { color:var(--green); } .sc-wrong { color:var(--red); }
-.prog-wrap { margin-bottom:14px; }
-.prog-bar { height:7px; background:var(--c3); border-radius:4px; overflow:hidden; }
-.prog-fill { height:100%; background:linear-gradient(90deg,var(--c4),var(--c2)); border-radius:4px; transition:width 0.4s ease; width:0%; }
-.prog-info { display:flex; justify-content:space-between; font-size:11px; color:var(--mid); margin-top:3px; }
-.section-badge { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg,var(--c4),var(--c5)); border-radius:20px; padding:5px 14px; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:white; margin-bottom:10px; box-shadow:0 2px 8px rgba(211,90,117,0.3); }
-.fiiller-box { background:var(--c1); border:2px solid var(--c2); border-radius:var(--radius); padding:13px 16px; margin-bottom:12px; }
-.fiiller-box .fb-title { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a6000; margin-bottom:9px; }
-.fiiller-grid { display:flex; flex-wrap:wrap; gap:7px; }
-.fiil-tag { background:white; border:1.5px solid var(--c4); border-radius:8px; padding:5px 12px; font-size:13px; font-weight:700; color:var(--c5); }
-.aksani-badge { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(90deg,#8e44ad,#6c3483); border-radius:20px; padding:5px 14px; font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:white; margin-bottom:8px; }
-.audio-box { background:linear-gradient(135deg,#f4ecf7,#e8d5f5); border:1.5px solid #c39bd3; border-radius:12px; padding:14px 16px; margin-bottom:12px; }
-.audio-box p { font-size:13px; color:#6c3483; font-weight:600; margin-bottom:8px; }
-.audio-link { display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg,#8e44ad,#6c3483); color:white; padding:9px 18px; border-radius:8px; font-size:13px; font-weight:700; text-decoration:none; transition:all 0.2s; }
-.audio-link:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(142,68,173,0.4); }
-.q-card { background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(238,132,168,0.15); margin-bottom:12px; }
-.q-head { padding:16px 18px 14px; border-bottom:1px solid var(--c3); display:flex; gap:12px; align-items:flex-start; }
-.q-num { background:linear-gradient(135deg,var(--c4),var(--c5)); color:white; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; flex-shrink:0; margin-top:1px; }
-.q-text { font-size:14.5px; line-height:1.65; flex:1; color:var(--dark); font-weight:500; }
-.reading-box { background:var(--c1); border-left:3px solid var(--c2); border-radius:0 8px 8px 0; padding:10px 14px; margin:8px 0 10px; font-size:13px; line-height:1.75; font-style:italic; color:var(--mid); }
-.q-opts { padding:12px 16px 14px; display:grid; gap:8px; }
-.opt-btn { display:flex; align-items:flex-start; gap:10px; padding:11px 14px; background:#fdf8fb; border:1.5px solid var(--c3); border-radius:10px; color:var(--dark); font-size:13.5px; line-height:1.5; cursor:pointer; text-align:left; width:100%; transition:all 0.18s; font-family:inherit; }
-.opt-btn:hover:not(:disabled) { background:var(--c1); border-color:var(--c2); transform:translateX(4px); }
-.opt-btn:disabled { cursor:default; }
-.opt-letter { background:var(--c3); color:var(--dark); border-radius:6px; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; }
-.opt-btn.correct { background:#edfaf2; border-color:#8dcca0; }
-.opt-btn.correct .opt-letter { background:var(--green); color:white; }
-.opt-btn.wrong { background:#fdf0f0; border-color:#e8a0a0; }
-.opt-btn.wrong .opt-letter { background:var(--red); color:white; }
-.explanation { display:none; margin:0 16px 14px; background:var(--c1); border-left:3px solid var(--c2); border-radius:0 8px 8px 0; padding:11px 14px; font-size:13px; line-height:1.7; color:var(--mid); }
-.explanation.show { display:block; }
-.exp-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a6000; margin-bottom:4px; }
-/* FILL */
-.fill-input-wrap { padding:14px 16px; }
-.fill-context { font-size:14px; line-height:2; color:var(--dark); margin-bottom:12px; white-space:pre-line; }
-.fill-blank { font-weight:700; color:var(--c5); border-bottom:2px solid var(--c4); padding:0 4px; }
-.fill-input { width:100%; padding:11px 14px; font-size:15px; font-family:inherit; color:var(--dark); background:white; border:2px solid var(--c3); border-radius:10px; transition:border-color 0.2s; }
-.fill-input:focus { outline:none; border-color:var(--c2); box-shadow:0 0 0 3px rgba(246,207,128,0.2); }
-.fill-input.correct-input { background:#edfaf2; border-color:#8dcca0; color:#276221; font-weight:700; }
-.fill-input.wrong-input { background:#fdf0f0; border-color:#e8a0a0; color:#a04040; }
-.fill-feedback { margin-top:8px; font-size:13.5px; font-weight:600; display:none; padding:8px 12px; border-radius:8px; }
-.fill-feedback.ok { display:block; background:#edfaf2; color:#276221; border:1px solid #8dcca0; }
-.fill-feedback.err { display:block; background:#fdf0f0; color:#a04040; border:1px solid #e8a0a0; }
-/* NAV */
-.nav-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:4px; margin-bottom:16px; flex-wrap:wrap; }
-.nav-center { font-size:13px; color:var(--mid); font-weight:600; text-align:center; flex:1; }
-.finish-bar { position:sticky; bottom:0; background:rgba(255,248,250,0.97); backdrop-filter:blur(10px); border-top:1.5px solid var(--c3); padding:11px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; box-shadow:0 -4px 14px rgba(238,132,168,0.18); }
-.finish-info { font-size:12px; color:var(--mid); }
-.finish-info strong { color:var(--dark); font-size:14px; }
-/* WRITING */
-.writing-wrap { max-width:620px; margin:0 auto; padding:20px 16px; }
-.writing-card { background:var(--white); border:1.5px solid var(--c3); border-radius:var(--radius); overflow:hidden; box-shadow:0 3px 14px rgba(238,132,168,0.15); margin-bottom:16px; }
-.writing-head { background:linear-gradient(135deg,var(--c4),var(--c5)); padding:14px 18px; display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; color:white; }
-.writing-body { padding:20px; font-size:14px; line-height:1.85; color:var(--dark); }
-.writing-body strong { color:var(--c5); }
-.yonerge-box { background:var(--c1); border:1.5px solid var(--c2); border-radius:10px; padding:14px 16px; margin-bottom:14px; font-size:13.5px; line-height:1.8; }
-.yonerge-box .y-label { font-size:10px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#9a6000; margin-bottom:6px; }
-.fiil-list { display:flex; flex-wrap:wrap; gap:7px; margin:10px 0; }
-.fiil-chip { background:white; border:1.5px solid var(--c4); border-radius:8px; padding:4px 12px; font-size:13px; font-weight:700; color:var(--c5); }
-.tr-text-box { background:var(--c1); border:1.5px solid var(--c2); border-radius:10px; padding:14px 16px; margin:12px 0; font-size:13.5px; line-height:2; color:var(--dark); }
-.writing-textarea { width:100%; min-height:200px; padding:14px 16px; font-size:14px; line-height:1.8; font-family:inherit; color:var(--dark); background:var(--c1); border:2px solid rgba(246,207,128,0.6); border-radius:10px; resize:vertical; margin-top:12px; transition:border-color 0.2s; }
-.writing-textarea:focus { outline:none; border-color:var(--c2); box-shadow:0 0 0 3px rgba(246,207,128,0.15); }
-.char-count { font-size:11px; color:var(--mid); text-align:right; margin-top:4px; }
-.rubric { width:100%; border-collapse:collapse; margin-top:14px; font-size:13px; }
-.rubric th { background:linear-gradient(90deg,var(--c4),var(--c5)); padding:9px 14px; text-align:left; font-size:11px; letter-spacing:.8px; text-transform:uppercase; color:white; }
-.rubric td { padding:9px 14px; border-bottom:1px solid var(--c3); vertical-align:top; }
-.rubric tr:last-child td { border-bottom:none; font-weight:700; background:rgba(246,207,128,0.15); }
-.rubric tr:nth-child(even) td { background:rgba(247,201,211,0.15); }
-.rubric .pts { text-align:right; color:var(--c5); font-weight:700; white-space:nowrap; }
-.send-status { margin-top:12px; padding:10px 16px; border-radius:8px; font-size:13px; font-weight:600; text-align:center; display:none; }
-.send-ok { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
-.send-err { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
-.writing-nav { display:flex; gap:10px; justify-content:center; margin-top:16px; flex-wrap:wrap; }
-/* CONFIRM */
-.confirm-wrap { max-width:420px; margin:0 auto; padding:40px 20px; text-align:center; }
-.confirm-wrap h2 { font-size:22px; color:var(--dark); margin-bottom:8px; }
-.confirm-wrap p { font-size:14px; color:var(--mid); margin-bottom:20px; line-height:1.6; }
-/* RESULT */
-.result-wrap { max-width:460px; margin:0 auto; padding:28px 20px; text-align:center; }
-.result-card { background:var(--white); border:1.5px solid var(--c3); border-radius:20px; padding:28px 22px; margin-bottom:14px; box-shadow:0 6px 24px rgba(238,132,168,0.2); }
-.result-emoji { font-size:50px; margin-bottom:10px; }
-.result-name { font-size:14px; color:var(--mid); margin-bottom:3px; }
-.result-title { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:16px; }
-.result-score-big { font-size:62px; font-weight:900; line-height:1; color:var(--dark); }
-.result-score-big span { font-size:24px; font-weight:400; color:var(--mid); }
-.result-pct { font-size:13px; color:var(--mid); margin-top:4px; margin-bottom:18px; }
-.result-stats { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
-.rs-item { background:linear-gradient(135deg,var(--c3),var(--c1)); border:1px solid var(--c4); border-radius:12px; padding:11px 16px; min-width:76px; text-align:center; }
-.rs-item .rs-n { font-size:28px; font-weight:800; line-height:1; }
-.rs-item .rs-l { font-size:11px; color:var(--mid); margin-top:3px; }
-.rs-correct .rs-n { color:var(--green); } .rs-wrong .rs-n { color:var(--red); } .rs-blank .rs-n { color:#bbb; }
-.status-badge { display:inline-flex; align-items:center; gap:7px; padding:9px 20px; border-radius:50px; font-size:13px; font-weight:700; margin-bottom:14px; }
-.status-ok { background:rgba(106,171,122,0.15); border:1.5px solid rgba(106,171,122,0.4); color:#3a7a4a; }
-.status-error { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
-.status-pending { background:rgba(246,207,128,0.2); border:1.5px solid rgba(246,207,128,0.5); color:#9a6000; }
-.result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
-
-/* Yazma tesliminden önce öğrencinin kendi kopyasını saklama onayı */
-.writing-copy-confirm{display:flex;align-items:flex-start;gap:10px;margin:18px 0 12px;padding:14px 16px;border:1.5px solid #e6bd64;border-radius:12px;background:#fff8e7;color:#634b1b;font-size:14px;line-height:1.6;text-align:left;cursor:pointer}
-.writing-copy-confirm input{flex:0 0 auto;width:20px;height:20px;margin:2px 0 0;accent-color:#b88016;cursor:pointer}
-.writing-copy-confirm small{display:block;font-size:12px;font-weight:400}
-</style>
-<script src="student-roster.js" defer></script>
-<link rel="stylesheet" href="a21-theme.css?v=20261103-palettes">
-
-<link rel="stylesheet" href="weekly-reminders.css?v=20261112">
-<script src="weekly-reminders.js?v=20261112" defer></script>
-</head>
-<body>
-<div class="header">
-<aside class="weekly-reminder" role="note" aria-labelledby="weekly-reminder-title" data-week="2" data-cover="screen-name">
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#b92568"><title>A2.1 (7+8) · Otomatik Çeviri Ödevi</title><meta name="description" content="Pretérito indefinido paragraf çevirisi: otomatik puanlama, cümle cümle açıklama ve imperfecto notları."><link rel="stylesheet" href="weekly-reminders.css?v=20261112"><script defer src="student-roster.js"></script><script defer src="weekly-reminders.js?v=20261112"></script><style>@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Nunito:wght@600;700;800;900&display=swap');
+:root{--primary:#b92568;--dark:#95194e;--ink:#342331;--muted:#6b5060;--line:#f1d3e1;--soft:#fce3ef;--bg:#fff2f8;--future:#6a44a2;--future-bg:#f3edfc;--green:#246b53;--red:#a52340}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 'Nunito Sans',system-ui,sans-serif}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,a:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #b9256890;outline-offset:4px}[hidden]{display:none!important}.shell{max-width:980px;margin:auto;padding:32px 25px 60px}.brand{display:flex;justify-content:space-between;gap:15px;font-size:12px;letter-spacing:.08em;font-weight:800;color:var(--muted);margin-bottom:25px}.brand b{color:var(--primary)}h1,h2,h3,h4{font-family:'Nunito',system-ui,sans-serif;line-height:1.3}h1{font-size:clamp(30px,5vw,43px);letter-spacing:-.03em;margin:0 0 10px}h2{font-size:27px;margin:0 0 14px}h3{font-size:21px;margin:0 0 12px}h4{font-size:17px;margin:18px 0 8px}p{margin:0 0 16px}.sub{color:var(--muted);margin-bottom:30px}.screen{display:none}.screen.active{display:block}.card,.input-card,.sentence-analysis{border:1px solid var(--line);border-radius:16px;background:#fff}.card{padding:27px 30px;margin-bottom:20px}.start-card{max-width:620px;margin:25px auto}.muted{color:var(--muted)}.small{font-size:14px}.eyebrow{color:var(--primary);font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}label{font-weight:800}select{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;color:var(--ink);background:#fff;margin:10px 0 18px}.button{border:0;border-radius:10px;padding:12px 20px;background:var(--primary);color:white;font-weight:800;font-size:15px}.button:hover{background:var(--dark)}.button.secondary{background:#fff;color:var(--dark);border:1px solid var(--line)}.buttons{display:flex;align-items:center;flex-wrap:wrap;gap:12px}.error-message{color:var(--red);font-size:14px;margin:8px 0}.progress-line{display:flex;justify-content:space-between;gap:15px;font-size:13px;color:var(--muted);margin:18px 0 8px}.progress-track{background:var(--soft);height:5px;border-radius:10px;margin-bottom:25px}.progress-fill{background:var(--primary);height:100%;width:0;border-radius:10px}.input-card{padding:22px 25px;margin-bottom:15px}.input-heading{display:flex;justify-content:space-between;gap:15px;color:var(--primary);font-size:14px;margin-bottom:8px}.input-heading span{color:var(--muted);font-size:12px}.input-card p{font-size:17px}.input-card textarea{width:100%;min-height:95px;padding:12px 14px;border:1px solid #dcb9ca;border-radius:9px;resize:vertical;color:var(--ink);background:#fffcfe;line-height:1.7;outline:none}.input-card textarea:focus{border:2px solid var(--primary);padding:11px 13px}.copy-confirm{display:flex;gap:10px;align-items:flex-start;background:#fff8e7;border:1px solid #e6d297;border-radius:12px;padding:17px;font-size:14px;line-height:1.5;margin:18px 0}.copy-confirm input{width:20px;height:20px;accent-color:var(--primary);flex-shrink:0;margin:2px 0 0}.copy-confirm small{display:block;font-size:12px;font-weight:400;margin-top:3px}.method-note{font-size:14px;line-height:1.6;color:var(--muted);background:#fff;border-left:3px solid var(--primary);padding:13px 17px;margin:18px 0 25px}.score-header{display:flex;justify-content:space-between;gap:20px;align-items:center;margin:24px 0}.score-value{font:900 60px/1 'Nunito',sans-serif;color:var(--primary);white-space:nowrap}.score-value span{font-size:23px;color:var(--muted);font-weight:700}.save-status{font-size:14px;color:var(--muted);background:#fff;padding:13px 17px;border:1px solid var(--line);border-radius:10px;margin:12px 0 20px}.save-status.saved{color:var(--green)}.save-status.failed{color:var(--red);border-color:#dfacb7}.compare{padding:19px 22px;border:1px solid var(--line);border-radius:12px;margin:12px 0 16px}.compare h3,.compare h4{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px}.compare p{font-size:18px;line-height:1.95;margin:0;overflow-wrap:anywhere;white-space:pre-wrap}.compare.student{background:#fff}.compare.model{background:#f5fbf8;border-color:#cee4d9}.student-error{background:#ffe0e6;color:#92213a;text-decoration:underline wavy #bd3553;text-underline-offset:4px;border-radius:3px;padding:0 1px}.student-spelling{background:#fff1bf;color:#77540d;border-bottom:2px solid #d6a232;border-radius:2px;padding:0 1px}.future-word{color:var(--future);font-weight:900;border-bottom:2px solid #ad8cda}.future-note{background:var(--future-bg);border-left:4px solid #9166c3;border-radius:9px;padding:18px 20px;margin:22px 0;color:#493766;font-size:15px;line-height:1.8}.future-note h4{color:var(--future);margin:3px 0 10px}.future-note p:last-child{margin:0}.future-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;color:var(--future);margin:0 0 6px}.legend-note{display:flex;gap:15px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:12px 0 20px}.legend-note span{padding:2px 6px;border-radius:4px}.legend-note .red-key{background:#ffe0e6}.legend-note .yellow-key{background:#fff1bf}.legend-note .purple-key{background:var(--future-bg)}.analysis-heading{margin:36px 0 18px}.sentence-analysis{margin:13px 0;overflow:hidden}.sentence-analysis>summary{display:flex;justify-content:space-between;gap:15px;padding:18px 22px;cursor:pointer;font-weight:900;list-style:none}.sentence-analysis>summary::after{content:'⌄';font-size:16px;order:3;color:var(--primary)}.sentence-analysis>summary strong{margin-left:auto;color:var(--primary);font-size:14px}.sentence-analysis[open]>summary{border-bottom:1px solid var(--line)}.analysis-body{padding:22px 27px}.source-sentence{font-size:15px;color:var(--muted)}.analysis-body .compare p{font-size:17px}.feedback{background:#fff5f7;border-radius:10px;padding:16px 19px;margin:15px 0;font-size:14px}.feedback h4{margin:0 0 8px;color:var(--red);font-size:15px}.feedback ul{padding-left:20px;margin:0}.feedback li+li{margin-top:6px}.success-note{color:var(--green);font-size:14px;font-weight:700}.explanation{font-size:15px;line-height:1.85}.point-details{font-size:13px;border-top:1px solid var(--line);padding-top:12px;margin-top:20px}.point-details>summary{cursor:pointer;font-weight:800;color:var(--muted)}.point-details ul{list-style:none;margin:10px 0 0;padding:0}.point-details li{display:flex;justify-content:space-between;gap:15px;padding:7px 0;border-bottom:1px solid #f6edf2}.point-details strong{white-space:nowrap;color:var(--primary)}a{color:var(--dark)}.result-actions{margin-top:25px}.footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px;margin-top:45px}.footer details{margin-top:12px}.footer summary{cursor:pointer}.footer a{display:inline-block;margin-right:15px}.rubric{width:100%;font-size:13px;border-collapse:collapse;margin-top:15px}.rubric td{padding:7px 0;border-bottom:1px solid var(--line)}.rubric td:last-child{text-align:right;font-weight:800}.confirm-paragraph{font-size:17px;line-height:1.9;white-space:pre-wrap;background:var(--bg);border-radius:10px;padding:18px}.pending-note{font-size:13px;color:var(--muted)}
+@media(max-width:600px){body{font-size:16px}.shell{padding:22px 16px 40px}.brand{font-size:10px}.card{padding:21px 18px}.input-card{padding:18px 16px}.score-value{font-size:48px}.score-header{align-items:flex-start}.score-header h2{font-size:24px}.compare{padding:17px 16px}.compare p{font-size:17px;line-height:1.85}.analysis-body{padding:18px 16px}.sentence-analysis>summary{padding:16px}.analysis-body .compare p{font-size:16px}.future-note{padding:16px;font-size:14px}.point-details{font-size:12px}.input-card textarea{font-size:16px}.legend-note{gap:7px}.buttons .button{padding:11px 15px}}
+</style></head><body><div class="shell"><header><div class="brand"><b>ESPAÑOL CON PROFE HAZEL</b><span>A2.1 · 7+8. DERS</span></div><p class="eyebrow">Türkçeden İspanyolcaya</p><h1>Paragraf çeviri ödevi</h1><p class="sub">Pretérito indefinido · Düzensiz köklü fiiller · 100 puan</p></header>
+<main><section class="screen active" id="screen-name"><aside class="weekly-reminder" role="note" aria-labelledby="weekly-reminder-title" data-week="2" data-cover="screen-name">
   <h2 class="weekly-reminder__title" id="weekly-reminder-title">📚 2. hafta hatırlatması</h2>
   <p class="weekly-reminder__text">İkinci haftayı da tamamladık! ✨ <strong class="weekly-reminder__action">Şimdiye kadar eksik kalan ödevlerinizi tamamlamanızı rica ediyorum.</strong> Bir cümleyi duyduğumuzda anlamakla o cümleyi kendimiz kurabilmek farklı beceriler. Dinleyerek ve okuyarak aldığımız bilgiyi, konuşarak ve yazarak kullanmaya da ihtiyacımız var. Ödevleriniz, bu iki tarafı buluşturduğumuz çalışma alanınız. 🗣️✍️</p>
-</aside>
+</aside><div class="card start-card"><h2>Çeviriye başlayalım</h2><p>Paragrafın 9 cümlesini sırayla çevir. Teslimden sonra kendi paragrafını, örnek çeviriyi, düzeltilecek yerleri ve her cümlenin açıklamasını göreceksin.</p><label for="name-select">Adın ve soyadın</label><select id="name-select"><option value="">Adını seç</option></select><p class="error-message" id="name-error" role="alert"></p><button type="button" class="button" id="start-writing">Çeviriye başla →</button><table class="rubric"><tr><td>Anlam, fiiller ve dilbilgisi yapıları</td><td>90 puan</td></tr><tr><td>Tilde, yazım ve noktalama</td><td>10 puan</td></tr><tr><td>Toplam</td><td>100 puan</td></tr></table><p class="small muted" style="margin-top:12px">Her yazım, tilde veya noktalama uyarısı, o cümleye ayrılan yazım puanının yarısını düşürür.</p></div></section>
+<section class="screen" id="screen-edit"><div class="progress-line"><strong id="editing-name"></strong><span id="completed-count">0 / 9 cümle</span></div><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div><h2>Paragrafı cümle cümle çevir</h2><p class="muted small">Olayları pretérito indefinido ile anlat. Özellikle <b lang="es">estar, tener, poder, poner, saber, querer, hacer, venir, decir, traer, conducir, haber</b> fiillerini düşün. Özneye, nesne zamirlerine ve yazıma dikkat et.</p><div class="method-note">Örnek çevirideki sözcük sırasını aynen kullanman gerekmez. Anahtarda tanımlı eşdeğer ifadeler de kabul edilir. Arka plan anlatan bazı yerlerde <b>henüz görmediğimiz imperfecto</b> ile karşılaşacağız; bunların ayrıntılı notları sonuç bölümünde mor renkle gösterilir.</div><div id="sentence-fields"></div><div class="buttons"><button type="button" class="button secondary" id="copy-text">Metnimi kopyala</button><span class="small muted" id="copy-label"></span></div><label class="copy-confirm"><input type="checkbox" id="copy-confirm"><span>Ödevimin bir kopyasını aldım / fotoğrafını çektim.<small>Teslimden önce metnini kendin için sakla.</small></span></label><p class="error-message" id="edit-error" role="alert"></p><button type="button" class="button" id="review-submission" disabled>Çevirimi tamamladım →</button></section>
+<section class="screen" id="screen-confirm"><div class="card"><h2>Adını onayla ve teslim et</h2><p class="small muted">Puanın bu öğrenci adına kaydedilecek.</p><label for="confirm-name-select">Adın ve soyadın</label><select id="confirm-name-select"><option value="">Adını seç</option></select><h3>Senin paragrafın</h3><p class="confirm-paragraph" id="confirm-paragraph" lang="es"></p><p class="error-message" id="confirm-error" role="alert"></p><div class="buttons"><button type="button" class="button secondary" id="back-edit">← Düzenle</button><button type="button" class="button" id="submit-translation">Kontrol et ve teslim et</button></div></div></section>
+<section class="screen" id="screen-result"><div class="score-header"><div><p class="eyebrow">Çevirin değerlendirildi</p><h2 id="result-name"></h2><p class="small muted">Cümlelerini ve açıklamaları aşağıdan incele.</p></div><div class="score-value"><strong id="total-score">0</strong><span> / 100</span></div></div><p id="save-status" class="save-status" role="status"></p><button type="button" class="button secondary" id="retry-save" hidden>Puanı yeniden gönder</button><div class="legend-note"><span class="red-key">Pembe: kontrol edilecek yapı</span><span class="yellow-key">Sarı: yazım / tilde</span><span class="purple-key">Mor: imperfecto</span></div><article class="compare student"><h3>Senin yazdığın paragraf</h3><p id="student-paragraph" lang="es"></p></article><article class="compare model"><h3>Örnek doğru çeviri</h3><p id="model-paragraph" lang="es"></p></article><p class="small muted">Bu, doğru çevirilerden bir örnektir. Farklı bir ifade kullanman tek başına hata değildir. Tanımlı karşılıklarla eşleşmeyen bir ifade, puanlama anahtarında yer almıyor olabilir; ilgili cümleyi açıklamayla birlikte incele.</p><p><a href="#sentence-analysis">Cümle cümle analize geç ↓</a></p><div id="sentence-analysis" class="analysis-heading"><p class="eyebrow">Neden böyle çeviriyoruz?</p><h2>Cümle cümle analiz</h2></div><div id="analysis-list"></div><div class="result-actions"><button type="button" class="button secondary" id="new-attempt">Metnimi yeniden çalış</button><p class="pending-note">Yeni teslim, bu ödev için kaydedilen puanını günceller.</p></div></section></main>
+<footer class="footer">Profe Hazel · @ispanyolcacim<details><summary>Dilbilgisi kaynakları</summary><a href="https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/niveles/02_gramatica_inventario_b1-b2.htm" target="_blank" rel="noopener">Instituto Cervantes · Geçmiş zamanlar</a><a href="https://www.rae.es/dpd/haber" target="_blank" rel="noopener">RAE · Haber</a></details></footer></div><script>'use strict';
+const C=(label,points,target,patterns,extra={})=>({label,points,target,patterns,...extra});
+const translationTasks=[
+ {tr:'Dün ben bütün gün evdeydim çünkü çok işim vardı.',model:'Ayer estuve en casa todo el día porque tenía mucho trabajo.',max:12,orth:1,checks:[
+ C('Dün',1,'ayer',['ayer']),C('Evdeydim · yo',3,'estuve',['estuve','estaba'],{verb:'estar',person:'yo'}),C('Evde',1,'en casa',['en (?:mi )?casa']),C('Bütün gün',1,'todo el día',['todo el dia','durante todo el dia','el dia entero']),C('Neden ilişkisi',1,'porque',['porque','ya que','puesto que','pues']),C('İşim vardı · yo',2,'tenía',['tenia','tuve'],{verb:'tener',person:'yo'}),C('Çok iş',2,'mucho trabajo',['mucho trabajo','muchas (?:tareas|cosas) (?:que hacer)?'])],
+ explanation:[['Estuve neden doğru?','Estar → estuv- + -e = estuve. Özne yo. Evde geçirilen süreyi “dün, bütün gün” diye tamamlanmış bir zaman dilimi içinde topluca anlatıyoruz. Durum bildiren bir fiil de bu bakış açısıyla indefinido olabilir.'],['En casa ve todo el día','Evde olmak en casa ile söylenir; burada artikel kullanılmaz. Todo el día “bütün gün” demektir. Çünkü bağlantısını porque veya ya que ile kurabiliriz.']],
+ future:{title:'Tenía · geçmişteki neden ve arka plan',text:'Henüz görmediğimiz imperfecto ile karşılaşıyoruz: tenía mucho trabajo, evde kalmanın arka planını anlatır. İşin tam başlangıcını veya bittiği anı anlatmıyoruz. Modelde bu yüzden tenía seçildi. Tuve mucho trabajo da iş yükünü o gün yaşanan, tamamlanmış bir durum olarak özetleyen geçerli bir anlatım olabilir; otomatik değerlendirme bunu da kabul eder. Estaba ise evde bulunmayı içeriden, bir arka plan olarak sunar; estuve bütün günü tamamlanmış bir dönem olarak çerçeveler.'}},
+ {tr:'Sabah masanın üzerine kitaplarımı koydum ve ödevimi yapmaya çalıştım, ama ilk başta soruları anlayamadım.',model:'Por la mañana puse mis libros sobre la mesa e intenté hacer mis deberes, pero al principio no pude entender las preguntas.',max:16,orth:1,checks:[
+ C('Sabah',1,'por la mañana',['por la manana','en la manana','esa manana']),C('Koydum · yo',3,'puse',['puse','coloque','deje'],{verb:'poner',person:'yo'}),C('Kitaplarım',1,'mis libros',['mis libros','los libros mios']),C('Masanın üzerine',1,'sobre la mesa',['sobre la mesa','en la mesa','encima de la mesa']),C('Yapmaya çalıştım',3,'intenté',['intente','trate de','procure'],{verb:'intentar',person:'yo'}),C('Ödevimi yapmak',1,'hacer mis deberes',['hacer (?:yo )?(?:mis deberes|mi tarea|mi deber|el deber|la tarea)']),C('Ama',1,'pero',['pero','sin embargo']),C('İlk başta',1,'al principio',['al principio','inicialmente','en un principio','primero']),C('Anlayamadım · olumsuzluk',2,'no pude entender',['no pude (?:entender|comprender)','no (?:entendi|comprendi)','no podia (?:entender|comprender)','no (?:entendia|comprendia)'],{verb:'poder',negative:true}),C('Soruları',1,'las preguntas',['las preguntas','esas preguntas'])],
+ explanation:[['Puse, intenté, no pude','Poner → pus- + -e = puse; poder → pud- + -e = pude. Bu güçlü düzensiz köklerde tilde kullanılmaz. Intentar düzenlidir: intent- + -é. Intentar + infinitivo ve tratar de + infinitivo, bir şeyi yapmaya çalışmayı anlatır.'],['E intenté: neden y değil?','İspanyolcada /i/ sesiyle başlayan intenté öncesinde y bağlacı e olur. Bu nedenle modelde e intenté yazıyoruz. “Y traté de…” seçeneğinde sonraki ses /i/ olmadığı için y korunur.'],['Olumsuzluk ve isim grupları','No, çekimli fiilden önce gelir: no pude entender. Entender mastar kalır. Libros çoğul olduğu için mis libros; soruların tamamı için las preguntas kullanılır. Sobre / encima de la mesa üst yüzeyi daha açık anlatır; en la mesa da bu bağlamda kabul edilir.']]},
+ {tr:'Sonra öğretmenim bana bir mesaj gönderdi ve ne yapmam gerektiğini söyledi.',model:'Después mi profesor me mandó un mensaje y me dijo lo que tenía que hacer.',max:14,orth:1,checks:[
+ C('Sonra',1,'después',['despues','luego','a continuacion']),C('Öğretmenim',1,'mi profesor',['mi profesor','mi profesora','mi maestro','mi maestra']),C('Gönderdi · o',3,'mandó',['mando','envio','escribio'],{verb:'mandar',person:'third'}),C('Bir mesaj',1,'un mensaje',['un mensaje']),C('Bana',1,'me',['me']),C('Söyledi · o',3,'dijo',['dijo','explico','indico','comunico'],{verb:'decir',person:'third'}),C('Yapmam gerekiyordu',2,'tenía que',['tenia que','tuve que','debia','necesitaba']),C('Yapmak',1,'hacer',['hacer'])],
+ explanation:[['Mandó ve dijo','Gönderen ve söyleyen kişi öğretmen: üçüncü tekil kişi. Mandar düzenlidir: mand- + -ó. Decir ise dij- kökünü alır: dij- + -o = dijo; dijo üzerinde tilde yoktur. Envió ve explicó gibi anlamı karşılayan seçenekler de anahtarda yer alır.'],['Bana = me','Bir şeyi bana göndermek / söylemek için dolaylı nesne zamiri me kullanılır. Modelde iki fiilden önce de me yer alır. Konu daha önce belli olduğu için her örnekte yo zamirini ayrıca yazmak gerekmez.'],['Lo que / qué','Lo que tenía que hacer, “yapmam gereken şey” yapısını kurar. Me dijo qué tenía que hacer de doğrudur; burada dolaylı soru olduğu için qué tilde alır. Lo que yapısında ise que tilde almaz.']],
+ future:{title:'Tenía que hacer · dolaylı anlatım ve geçmişteki gereklilik',text:'Tenía que + infinitivo, öğretmenin sözünü ettiği anda geçerli olan gerekliliği anlatır. Me dijo ile aktarılan sözün arka planında “ne yapmam gerekiyordu?” bilgisi vardır; model bu yüzden imperfecto kullanır. Tuve que hacer ise bir gerekliliği tamamlanmış olay çerçevesinde anlatır ve çoğu bağlamda gerçekten yapmak zorunda kaldığımız bir işi öne çıkarır. Bu iki bakış aynı şey değildir. Henüz imperfecto işlemediğimiz için bu ödevin anahtarı tuve que seçeneğini de puanlar; sonuçta daha doğal arka plan seçimini ayrıca öğreniriz.'}},
+ {tr:'Öğleden sonra arkadaşım Ayşe evime geldi ve bana defterini getirdi.',model:'Por la tarde mi amiga Ayşe vino a mi casa y me trajo su cuaderno.',max:12,orth:1,checks:[
+ C('Öğleden sonra',1,'por la tarde',['por la tarde','en la tarde','esa tarde']),C('Arkadaşım Ayşe',1,'mi amiga Ayşe',['mi amiga (?:llamada )?ayse','mi amiga ayşe','una amiga mia (?:llamada )?ayse']),C('Geldi · o',3,'vino',['vino','llego'],{verb:'venir',person:'third'}),C('Evime',1,'a mi casa',['a mi casa','a casa']),C('Getirdi · o',3,'trajo',['trajo','entrego'],{verb:'traer',person:'third'}),C('Bana',1,'me',['me']),C('Onun defteri',1,'su cuaderno',['su cuaderno','su libreta'])],
+ explanation:[['Vino ve trajo','Venir → vin- + -o = vino. Traer → traj- + -o = trajo. J köklü fiillerin özel -eron eki yalnızca ellos/ellas/ustedes çekimindedir; burada kişi tekil olduğu için trajo kullanılır.'],['A mi casa ve su cuaderno','Geliş yönü a mi casa ile anlatılır; burada mi “benim”, su ise Ayşe’nin defterini belirtir. Bana getirdi: me trajo. Ayşe / Ayse yazımları özel ad aktarımı olarak kabul edilir.']]},
+ {tr:'Birlikte çalışmak istedik, ama çok yorulduk.',model:'Quisimos estudiar juntos, pero nos cansamos mucho.',max:8,orth:1,checks:[
+ C('İstedik · biz',2,'quisimos',['quisimos','teniamos ganas de'],{verb:'querer',person:'we'}),C('Çalışmak',1,'estudiar',['estudiar','trabajar']),C('Birlikte',1,'juntos',['juntos','juntas']),C('Ama',1,'pero',['pero','sin embargo']),C('Çok yorulduk',2,'nos cansamos mucho',['nos (?:cansamos|agotamos|fatigamos) (?:mucho|muchisimo)','(?:acabamos|terminamos|quedamos|estuvimos) (?:muy )?(?:cansados|cansadas|agotados|agotadas)'],{verb:'cansarse'})],
+ explanation:[['Quisimos + mastar','Querer → quis- + -imos = quisimos. İsteyen kişiler biz olduğumuz için estudiar veya trabajar mastar kalır. Çalışmak, ders çalışmak anlamındaysa estudiar daha açık bir tercihtir.'],['Nos cansamos','Cansarse, yorulma değişimini anlatan zamirli fiildir. Biz için nos + cansamos kullanılır. Estuvimos muy cansados ise bitkin bir durumda olduğumuzu anlatır. Juntos/juntas ve cansados/cansadas grubun cinsiyetine göre değişebilir.']]},
+ {tr:'Daha sonra ben doğru cevabı öğrendim ve alıştırmayı yapabildim.',model:'Más tarde supe la respuesta correcta y pude hacer el ejercicio.',max:10,orth:1,checks:[
+ C('Daha sonra',1,'más tarde',['mas tarde','despues','luego']),C('Öğrendim / öğrendim ki · yo',3,'supe',['supe','aprendi','descubri','me entere de'],{verb:'saber',person:'yo'}),C('Doğru cevap',1,'la respuesta correcta',['la respuesta correcta','la respuesta adecuada']),C('Yapabildim · yo',3,'pude',['pude','logre','consegui'],{verb:'poder',person:'yo'}),C('Alıştırmayı yapmak',1,'hacer el ejercicio',['(?:hacer|completar|resolver|realizar) (?:el ejercicio|la actividad)'])],
+ explanation:[['Supe neden “öğrendim”?','Saber → sup- + -e = supe. Indefinido ile saber çoğu kez bir bilgiyi o anda edinmeyi, öğrenmeyi anlatır. Sabía ise bilgiyi önceden biliyor olma durumunu anlatırdı. Bu cümlede yeni bilgiye ulaşma anı öne çıkıyor.'],['Pude hacer','Poder → pud- + -e = pude. Burada yapabilme gerçekleşmiş bir başarı olarak sunulur. İkinci fiil mastardır: pude hacer, pude resolver. Respuesta dişil olduğu için correcta ile uyumludur.']]},
+ {tr:'Akşam babam arabayı sürdü ve bizi kütüphaneye götürdü.',model:'Por la noche mi padre condujo el coche y nos llevó a la biblioteca.',max:12,orth:1,checks:[
+ C('Akşam',1,'por la noche',['por la noche','esa noche','al atardecer','por la tarde','en la noche']),C('Babam',1,'mi padre',['mi padre','mi papa']),C('Araba sürdü · o',3,'condujo',['condujo','manejo'],{verb:'conducir',person:'third'}),C('Arabayı',1,'el coche',['el coche','el auto','el automovil','el carro']),C('Bizi',1,'nos',['nos']),C('Götürdü · o',3,'llevó',['llevo','condujo'],{verb:'llevar',person:'third'}),C('Kütüphaneye',1,'a la biblioteca',['a la biblioteca','hasta la biblioteca'])],
+ explanation:[['Condujo ve llevó','Conducir → conduj- + -o = condujo; üçüncü tekil kişi, tilde yok. Llevar ise düzenlidir: llev- + -ó = llevó. Conducir aracı kullanmayı; llevar birini bir yere götürmeyi anlatır.'],['Bizi = nos','Nos llevó a la biblioteca yapısında nos doğrudan nesnedir: kimi götürdü? Bizi. Varış yönü a la biblioteca ile belirtilir. Coche / auto / carro ve manejar / conducir bölgesel karşılıklar olarak kabul edilir.']]},
+ {tr:'Kütüphanede çok sessiz bir ortam vardı.',model:'En la biblioteca había un ambiente muy silencioso.',max:6,orth:1,checks:[
+ C('Kütüphanede',1,'en la biblioteca',['en la biblioteca','la biblioteca']),C('Vardı / ortamın durumu',2,'había',['habia','hubo','(?:el )?ambiente (?:de la biblioteca )?(?:era|estaba)','la biblioteca (?:tenia|estaba)'],{verb:'haber'}),C('Çok sessiz ortam',2,'un ambiente muy silencioso',['(?:un )?ambiente (?:de la biblioteca )?(?:era |estaba )?muy (?:silencioso|tranquilo|callado)','(?:la biblioteca )?(?:estaba )?muy (?:silenciosa|tranquila)'])],
+ explanation:[['Haber: var olmak','Buradaki haber yardımcı fiil değil, varlık bildiren öznesiz yapıdır. Había un ambiente… deriz. Ortamın niteliği muy + sıfat ile anlatılır: muy silencioso. “Bir” için un, ambiente için eril tekil sıfat kullanılır.'],['Tekil haber','Varlık bildiren haber, sonrasındaki isim çoğul olsa bile tekil kalır: había un ambiente / había muchas personas. Bu kullanımda habían veya hubieron yazılmaz.']],
+ future:{title:'Había · geçmişteki mekânın tasviri',text:'Hikâyede yeni bir olay başlatmak yerine kütüphanenin nasıl bir ortamı olduğunu tasvir ediyoruz; model bu nedenle imperfecto olan había kullanır. Hubo ise bir durumu belli bir zaman diliminde gerçekleşen / yaşanan bir bütün olarak sunabilir; örneğin hubo un concierto bir olay bildirir. “Vardı” gördüğümüz her yerde otomatik olarak hubo yazmayacağız: önce olay mı, arka plan tasviri mi anlattığımıza bakacağız. Bu ödevde henüz görmediğimiz imperfecto nedeniyle hubo seçimi tek başına puan kaybettirmez; tasvir için había seçimini öğrenme notu olarak gösteririz.'}},
+ {tr:'Sonunda biz iyi bir çalışma yaptık ve eve mutlu döndük.',model:'Al final hicimos un buen trabajo y volvimos contentos a casa.',max:10,orth:2,checks:[
+ C('Sonunda',1,'al final',['al final','finalmente','por fin']),C('Yaptık · biz',2,'hicimos',['hicimos','realizamos'],{verb:'hacer',person:'we'}),C('İyi bir çalışma',1,'un buen trabajo',['un buen trabajo','un trabajo bueno']),C('Döndük · biz',2,'volvimos',['volvimos','regresamos','retornamos'],{verb:'volver',person:'we'}),C('Eve',1,'a casa',['a (?:nuestra )?casa']),C('Mutlu',1,'contentos',['contentos','contentas','felices','alegres'])],
+ explanation:[['Hicimos ve volvimos','Hacer → hic- + -imos = hicimos. Hacer fiilindeki z değişimi yalnızca üçüncü tekil hizo biçimindedir; hicimos yazarken c korunur. Volver, indefinido çekiminde bu kişilerde düzenlidir: volv- + -imos.'],['Buen trabajo ve contentos','Bueno, eril tekil isimden önce buen olur: un buen trabajo. Contentos / contentas veya felices, eve dönen biz grubunu niteler. Ev yönü a casa ile belirtilir; burada a la casa kullanmak zorunda değiliz.']]}
+];
+const requiredAccents='había teníamos día tenía mañana intenté traté procuré coloqué comprendí entendí podía entendía comprendía después envió mandó escribió explicó indicó comunicó debía llegó entregó enteré descubrí aprendí logré conseguí llevó manejó papá automóvil más muchísimas muchísimo'.split(' ');
+const spellingMap=new Map(requiredAccents.map(w=>[fold(w),w]));
 
-  <div class="header-tag">2. Hafta Ödevi &nbsp;|&nbsp; A2.1 (7-8. Ders)</div>
-  <h1>✍️ A2.1 – H2 7-8. Ders – Çeviri Ödevi</h1>
-  <div class="header-sub">Türkçeden İspanyolcaya paragraf çevirisi &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
-</div>
-<!-- EKRAN 1: AD SEÇİMİ -->
-<div class="screen active" id="screen-name">
-  <div class="name-body">
-    <h2>📚 Adınızı seçin</h2>
-    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
-    <select class="name-select" id="name-select">
-      <option value="">-- Adınızı Seçin --</option>
-      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option><option>Elif Bozkurt Alvurdu</option>
-      <option>Elif Ozgur Atli</option><option>Elif Safak</option><option>Emel Kanburoglu</option><option>Gulce Eyibilir</option>
-      <option>Kubra Cam</option><option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option>
-      <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option>
-      <option>Zeynep Oztaskin</option>
-    </select>
-    <div class="info-box"><div class="ib-row"><div class="ib-dot"></div><span><strong>Paragraf çevirisi:</strong> Pretérito indefinido · Düzensiz köklü fiiller · 25 puan</span></div></div>
-    <button class="btn btn-main btn-full" onclick="startWriting()">▶ Başla</button>
-  </div>
-</div>
-<!-- EKRAN 3: YAZMA -->
-<div class="screen" id="screen-writing">
-  <div class="writing-wrap">
-    <div class="writing-card">
-      <div class="writing-head">✍️ &nbsp;Yazma Bölümü &nbsp;<span style="opacity:.8;font-weight:400;font-size:13px">(25 puan)</span></div>
-      <div class="writing-body">
-        <div class="yonerge-box">
-          <div class="y-label">📝 Yönerge</div>
-          <strong>Pretérito Indefinido – Düzensiz Kök Değişimli Fiillerle Paragraf Çeviri Ödevi</strong><br><br>
-          Aşağıdaki Türkçe paragrafı İspanyolcaya çeviriniz. Çevirinizde <strong>Pretérito Indefinido</strong> zamanını kullanınız. Bu paragrafta özellikle <strong>düzensiz kök değişimi olan fiiller</strong> yer almaktadır. Bu nedenle fiillerin köklerine ve şahıs eklerine dikkat ediniz.<br><br>
-          <strong>Özellikle dikkat edilecek fiiller:</strong>
-          <div class="fiil-list">
-            <span class="fiil-chip">estar</span><span class="fiil-chip">tener</span><span class="fiil-chip">poder</span>
-            <span class="fiil-chip">poner</span><span class="fiil-chip">saber</span><span class="fiil-chip">querer</span>
-            <span class="fiil-chip">hacer</span><span class="fiil-chip">venir</span><span class="fiil-chip">decir</span>
-            <span class="fiil-chip">traer</span><span class="fiil-chip">conducir</span><span class="fiil-chip">haber</span>
-          </div>
-          Öznelerin kim olduğuna dikkat ederek fiilleri doğru şekilde çekimleyiniz. Bağlaçları, zaman zarflarını, tildeleri ve büyük-küçük harf kullanımını dikkatli yazınız.
-        </div>
-        <div class="tr-text-box">
-          <strong style="display:block;margin-bottom:8px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--mid)">🇹🇷 Çevrilecek Paragraf:</strong>
-          Dün ben bütün gün evdeydim çünkü çok işim vardı. Sabah masanın üzerine kitaplarımı koydum ve ödevimi yapmaya çalıştım, ama ilk başta soruları anlayamadım. Sonra öğretmenim bana bir mesaj gönderdi ve ne yapmam gerektiğini söyledi. Öğleden sonra arkadaşım Ayşe evime geldi ve bana defterini getirdi. Birlikte çalışmak istedik, ama çok yorulduk. Daha sonra ben doğru cevabı öğrendim ve alıştırmayı yapabildim. Akşam babam arabayı sürdü ve bizi kütüphaneye götürdü. Kütüphanede çok sessiz bir ortam vardı. Sonunda biz iyi bir çalışma yaptık ve eve mutlu döndük.
-        </div>
-        <p style="margin-top:14px"><strong>✏️ İspanyolca çevirinizi aşağıya yazın:</strong></p>
-        <textarea class="writing-textarea" id="writing-input" placeholder="Çevirinizi buraya yazın…" oninput="updateCharCount()"></textarea>
-        <div class="char-count" id="char-count">0 karakter</div>
-        <div class="send-status" id="send-status"></div>
-        <p style="margin-top:18px"><strong>📊 Puanlama Cetveli</strong></p>
-        <table class="rubric">
-          <thead><tr><th>Kriter</th><th class="pts">Puan</th></tr></thead>
-          <tbody>
-            <tr><td>Düzensiz köklü fiillerin doğru çekimi</td><td class="pts">10</td></tr>
-            <tr><td>Özne-fiil uyumu ve şahıs doğruluğu</td><td class="pts">6</td></tr>
-            <tr><td>Zaman zarflarının doğru kullanımı</td><td class="pts">4</td></tr>
-            <tr><td>Tilde ve büyük-küçük harf doğruluğu</td><td class="pts">3</td></tr>
-            <tr><td>Genel akıcılık ve anlaşılırlık</td><td class="pts">2</td></tr>
-            <tr><td><strong>Toplam</strong></td><td class="pts"><strong>25</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <label class="writing-copy-confirm" for="writing-copy-confirm">
-      <input type="checkbox" id="writing-copy-confirm" onchange="updateWritingCopyGate()">
-      <span><strong>Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım.</strong><small>Bu kutucuğu işaretlemeden yazma ödevinizi teslim edemezsiniz.</small></span>
-    </label>
-    <div class="writing-nav">
-      <button id="writing-copy-submit" class="btn btn-gold" onclick="goToConfirmAfterWriting()" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
-    </div>
-  </div>
-</div>
-<!-- EKRAN 4: AD ONAY -->
-<div class="screen" id="screen-confirm">
-  <div class="confirm-wrap">
-    <div style="font-size:48px;margin-bottom:12px">🎯</div>
-    <h2>Son adım — Adınızı onaylayın</h2>
-    <p>Ödevi teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
-    <select class="name-select" id="confirm-name-select" style="margin-bottom:16px">
-      <option value="">-- Adınızı Seçin --</option>
-      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option><option>Elif Bozkurt Alvurdu</option>
-      <option>Elif Ozgur Atli</option><option>Elif Safak</option><option>Emel Kanburoglu</option><option>Gulce Eyibilir</option>
-      <option>Kubra Cam</option><option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option>
-      <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option>
-      <option>Zeynep Oztaskin</option>
-    </select>
-    <button class="btn btn-gold btn-full" onclick="confirmAndSubmit()">✔ Ödevi Teslim Et</button>
-  </div>
-</div>
-<div class="screen" id="screen-result"><div class="result-wrap"><div class="result-card"><div class="result-emoji">✅</div><div class="result-name" id="res-name"></div><h2>Çevirin gönderildi!</h2><p>Öğretmenin değerlendirdikten sonra puanın portalda görünecek.</p></div><div class="result-actions"><button class="btn btn-outline" onclick="goToName()">Yeni çalışma</button></div></div></div><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-emailjs.init('xNYEbUQNiWJPvbyoJ');
-const EMAILJS_SERVICE  = 'service_4ee1wh7';
-const EMAILJS_TEMPLATE = 'template_xjyyxhf';
-
-let studentName='';let writingText='';let writingSubmitted=false;
-function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+id).classList.add('active');window.scrollTo(0,0)}
-function startWriting(){const name=document.getElementById('name-select').value;if(!name){alert('Lütfen adınızı seçin!');return}studentName=name;showScreen('writing')}
-function updateCharCount(){document.getElementById('char-count').textContent=document.getElementById('writing-input').value.length+' karakter'}
-function updateWritingCopyGate(){document.getElementById('writing-copy-submit').disabled=!document.getElementById('writing-copy-confirm').checked}
-function requireWritingCopy(){if(document.getElementById('writing-copy-confirm').checked)return true;alert('Lütfen önce ödevinizin fotoğrafını çekin veya yazınızın bir kopyasını alın ve kutucuğu işaretleyin.');return false}
-function goToConfirmAfterWriting(){if(!requireWritingCopy())return;const text=document.getElementById('writing-input').value.trim();if(text.length<20){alert('Lütfen çevirinizi tamamlayın (en az 20 karakter).');return}writingText=text;document.getElementById('confirm-name-select').value=studentName;showScreen('confirm')}
-async function confirmAndSubmit(){
- if(writingSubmitted||!requireWritingCopy())return;
- const name=document.getElementById('confirm-name-select').value;if(!name){alert('Lütfen adınızı seçin!');return}studentName=name;
- const button=document.querySelector('#screen-confirm .btn-gold');button.disabled=true;button.textContent='⏳ Gönderiliyor…';
- const now=new Date();const date=now.toLocaleDateString('tr-TR')+' '+now.toLocaleTimeString('tr-TR');
- try{await emailjs.send(EMAILJS_SERVICE,EMAILJS_TEMPLATE,{student_name:studentName,lesson:'A2.1 H2 – 7-8. Ders · Paragraf Çeviri Ödevi',submit_date:date,writing_text:writingText});writingSubmitted=true;document.getElementById('res-name').textContent=studentName;showScreen('result')}
- catch(error){button.disabled=false;button.textContent='✔ Ödevi Teslim Et';alert('Yazı gönderilemedi. Çeviriniz bu sayfada duruyor; lütfen internet bağlantınızı kontrol edip tekrar deneyin.')}
+'use strict';
+function fold(value){return String(value).normalize('NFD').replace(/\p{M}/gu,'').toLocaleLowerCase('es').replace(/[’‘]/g,"'");}
+function esc(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+const familyForms={
+ estar:'estuve estuviste estuvo estuvimos estuvisteis estuvieron estaba estabas estábamos estabais estaban estoy estás está estamos estáis están',
+ tener:'tuve tuviste tuvo tuvimos tuvisteis tuvieron tenía tenías teníamos teníais tenían tengo tienes tiene tenemos tenéis tienen',
+ poner:'puse pusiste puso pusimos pusisteis pusieron pongo pones pone ponemos ponéis ponen poní ponió ponimos',
+ intentar:'intenté intentaste intentó intentamos intentasteis intentaron traté trataste trató tratamos tratasteis trataron procuré procuró coloqué colocó',
+ poder:'pude pudiste pudo pudimos pudisteis pudieron podía podías podíamos podíais podían puedo puedes puede podemos podéis pueden podí podió logré logró conseguí consiguió',
+ mandar:'mandé mandaste mandó mandamos mandasteis mandaron envié enviaste envió enviamos enviasteis enviaron envío escribió escribí',
+ decir:'dije dijiste dijo dijimos dijisteis dijeron dijieron dijo explico explicó explicó indicó comunicó digo dices dice decí deció',
+ venir:'vine viniste vino vinimos vinisteis vinieron vengo vienes viene vení venió llegó llegué',
+ traer:'traje trajiste trajo trajimos trajisteis trajeron trajieron traigo traes trae traí traió entregó entregué',
+ querer:'quise quisiste quiso quisimos quisisteis quisieron quiero quieres quiere querí querió tenía teníamos',
+ cansarse:'cansé cansaste cansó cansamos cansasteis cansaron agotamos fatigamos cansados cansadas agotados agotadas acabamos terminamos estuvimos quedamos',
+ saber:'supe supiste supo supimos supisteis supieron sé sabes sabe sabí sabió sabía aprendí descubri descubrí enteré',
+ conducir:'conduje condujiste condujo condujimos condujisteis condujeron condujieron conducí condució manejo manejó manejé',
+ llevar:'llevé llevaste llevó llevamos llevasteis llevaron llevo condujo',
+ haber:'había habían hubo hubieron había hubo hay era estaba tenía',
+ hacer:'hice hiciste hizo hicimos hicisteis hicieron hací hació hace hago hizo hico realizamos realizó',
+ volver:'volví volviste volvió volvimos volvisteis volvieron vuelvo vuelves vuelve regresamos regresó retornamos retornó'
+};
+const properSpellings='estuve estuviste estuvo estuvimos estuvisteis estuvieron puse pusiste puso pusimos pusisteis pusieron pude pudiste pudo pudimos pudisteis pudieron dije dijiste dijo dijimos dijisteis dijeron vine viniste vino vinimos vinisteis vinieron traje trajiste trajo trajimos trajisteis trajeron quise quisiste quiso quisimos quisisteis quisieron supe supiste supo supimos supisteis supieron conduje condujiste condujo condujimos condujisteis condujeron hice hiciste hizo hicimos hicisteis hicieron tuve tuviste tuvo tuvimos tuvisteis tuvieron hubo cansamos'.split(' ');
+properSpellings.forEach(w=>spellingMap.set(fold(w),w));
+const pronouns=new Set(['yo','tu','el','ella','usted','nosotros','nosotras','vosotros','vosotras','ellos','ellas','ustedes']);
+function tokensFor(text){let normalized='';const tokens=[];for(const m of text.matchAll(/\p{L}[\p{L}\p{M}]*/gu)){const key=fold(m[0]);const nstart=normalized.length;normalized+=key+' ';tokens.push({raw:m[0],key,start:m.index,end:m.index+m[0].length,nstart,nend:nstart+key.length});}return{tokens,normalized:normalized.trimEnd()};}
+function rangesForMatch(parsed,match){return parsed.tokens.map((t,i)=>({t,i})).filter(({t})=>t.nstart<match.index+match[0].length&&t.nend>match.index).map(({i})=>i);}
+function findCriterion(criterion,parsed,used){
+ for(const pattern of criterion.patterns){const regex=new RegExp('\\b(?:'+fold(pattern)+')\\b','g');let match;
+  while((match=regex.exec(parsed.normalized))){const indices=rangesForMatch(parsed,match);if(!indices.length)continue;
+   if(criterion.verb&&indices.some(i=>used.has(i)))continue;
+   if(criterion.verb&&!criterion.negative){const before=parsed.tokens.slice(Math.max(0,indices[0]-4),indices[0]).map(t=>t.key);let boundary=-1;before.forEach((w,i)=>{if(['y','e','pero','porque','que','luego','despues'].includes(w))boundary=i});const scope=before.slice(boundary+1);if(scope.some(w=>['no','nunca','jamas'].includes(w)))continue;}
+   if(criterion.person){let before=parsed.tokens.slice(Math.max(0,indices[0]-4),indices[0]);let boundary=-1;before.forEach((t,i)=>{if(['y','e','pero','porque','que','pues'].includes(t.key))boundary=i});before=before.slice(boundary+1);const explicit=[...before].reverse().find(t=>pronouns.has(t.key)&&(!['el','tu'].includes(t.key)||/[éú]/.test(t.raw)||before.at(-1)===t));const allowed=criterion.person==='yo'?['yo']:criterion.person==='we'?['nosotros','nosotras']:['el','ella','usted'];if(explicit&&!allowed.includes(explicit.key))continue;}
+   // EnvÍo is presente; envIÓ is indefinido. A missing accent is handled as spelling.
+   if(criterion.verb&&indices.some(i=>parsed.tokens[i].raw.toLocaleLowerCase('es')==='envío'))continue;
+   if(criterion.verb)indices.forEach(i=>used.add(i));return{indices,actual:parsed.tokens.slice(indices[0],indices.at(-1)+1).map(t=>t.raw).join(' ')};
+  }
+ }
+ return null;
 }
-function goToName(){studentName='';writingText='';writingSubmitted=false;document.getElementById('name-select').value='';document.getElementById('writing-input').value='';document.getElementById('writing-copy-confirm').checked=false;updateWritingCopyGate();updateCharCount();const button=document.querySelector('#screen-confirm .btn-gold');button.disabled=false;button.textContent='✔ Ödevi Teslim Et';showScreen('name')}
+function distance(a,b){const row=Array.from({length:b.length+1},(_,i)=>i);for(let i=1;i<=a.length;i++){let diagonal=row[0];row[0]=i;for(let j=1;j<=b.length;j++){const old=row[j];row[j]=Math.min(row[j]+1,row[j-1]+1,diagonal+(a[i-1]===b[j-1]?0:1));diagonal=old}}return row[b.length];}
+function suspectedIndices(check,parsed,matched){
+ const forms=new Set((familyForms[check.verb]||'').split(' ').map(fold));const known=parsed.tokens.map((t,i)=>({t,i})).filter(({t,i})=>forms.has(t.key)&&!matched.has(i));
+ if(known.length)return[known[0].i];
+ const target=fold(check.target),count=target.split(/\s+/).length;let best=null;
+ if(target.length<4)return[];
+ for(let n=Math.max(1,count-1);n<=count+1;n++)for(let i=0;i+n<=parsed.tokens.length;i++){
+  const ids=Array.from({length:n},(_,k)=>i+k);if(ids.some(id=>matched.has(id)))continue;
+  const value=parsed.tokens.slice(i,i+n).map(t=>t.key).join(' '),similarity=1-distance(value,target)/Math.max(value.length,target.length);
+  if(similarity>=.7&&(!best||similarity>best.similarity))best={ids,similarity};
+ }
+ return best?.ids||[];
+}
+function orthography(text,parsed){const errors=[];
+ parsed.tokens.forEach((token,index)=>{const expected=spellingMap.get(token.key);if(expected&&token.raw.toLocaleLowerCase('es')!==expected)errors.push({indices:[index],message:`Yazım / tilde: ${token.raw} → ${expected}`,expected});});
+ const first=parsed.tokens[0];if(first&&first.raw[0]!==first.raw[0].toLocaleUpperCase('es'))errors.push({indices:[0],message:'Cümleye büyük harfle başla.',expected:first.raw[0].toLocaleUpperCase('es')+first.raw.slice(1)});
+ if(!/[.!?…][”»"']?\s*$/.test(text))errors.push({indices:[],message:'Cümle sonuna uygun noktalama işareti koy.',expected:'.'});
+ for(let i=0;i<parsed.tokens.length-1;i++){const a=parsed.tokens[i],b=parsed.tokens[i+1];if(a.key==='y'&&b.key==='intente')errors.push({indices:[i],message:'İ /i/ sesi öncesinde y → e: e intenté.',expected:'e'});if(a.key==='e'&&['trate','procure'].includes(b.key))errors.push({indices:[i],message:'Bu sözcük /i/ sesiyle başlamıyor; y bağlacını kullan.',expected:'y'});if(a.key==='lo'&&b.key==='que'&&b.raw!=='que')errors.push({indices:[i+1],message:'Lo que yapısında que tilde almaz.',expected:'que'});if(['dijo','explico','indico','comunico'].includes(a.key)&&b.key==='que'&&['tenia','tuve','debia','necesitaba'].includes(parsed.tokens[i+2]?.key)&&parsed.tokens.at(-1)?.key==='hacer'&&b.raw==='que')errors.push({indices:[i+1],message:'Dolaylı soruda qué tilde alır; diğer seçenek lo que tenía que hacer.',expected:'qué'});}
+ return errors;
+}
+function gradeSentence(task,text){const parsed=tokensFor(text),used=new Set(),matched=new Set();const checks=task.checks.map(check=>{const match=findCriterion(check,parsed,used);if(match)match.indices.forEach(i=>matched.add(i));return{...check,match,earned:match?check.points:0};});
+ const semantic=checks.reduce((n,c)=>n+c.earned,0),semanticMax=task.max-task.orth;
+ const marks=new Map();checks.filter(c=>!c.match).forEach(c=>suspectedIndices(c,parsed,matched).forEach(i=>marks.set(i,{kind:'error',message:`${c.label}: ${c.target}`})));
+ const spelling=orthography(text,parsed);spelling.forEach(error=>error.indices.forEach(i=>{if(!marks.has(i))marks.set(i,{kind:'spelling',message:error.message})}));
+ const orth=semantic/semanticMax>=.4?task.orth*Math.max(0,1-spelling.length*.5):0;
+ let cursor=0,html='';parsed.tokens.forEach((token,i)=>{html+=esc(text.slice(cursor,token.start));const mark=marks.get(i);html+=mark?`<mark class="student-${mark.kind}" title="${esc(mark.message)}">${esc(token.raw)}</mark>`:esc(token.raw);cursor=token.end});html+=esc(text.slice(cursor));
+ return{text,html,checks,spelling,semantic,orth,score:Math.round((semantic+orth)*100)/100,max:task.max,perfect:semantic===semanticMax&&spelling.length===0};
+}
+function gradeTranslation(answers){const rows=translationTasks.map((task,i)=>gradeSentence(task,String(answers[i]||'').trim()));return{rows,score:Math.round(rows.reduce((n,r)=>n+r.score,0)),maximum:100,perfect:rows.filter(r=>r.perfect).length,student:rows.map(r=>r.text).join(' '),model:translationTasks.map(t=>t.model).join(' ')};}
+function modelHTML(text){return esc(text).replace(/\b(tenía|había)\b/g,'<span class="future-word">$1</span>');}
 
+'use strict';
+const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
+const SPREADSHEET_ID='1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const TASK_COLUMN='7-8 Escritura';
+const STORE='hazel-a21-7-8-auto-translation-v1';
+const IS_PREVIEW=['127.0.0.1','localhost'].includes(location.hostname);
+const el=id=>document.getElementById(id);
+let studentName='',currentResult=null,pendingPayload=null,sending=false;
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('active',s.id==='screen-'+id));window.scrollTo({top:0,behavior:'instant'})}
+function answers(){return translationTasks.map((_,i)=>el('sentence-'+i).value.trim())}
+function saveDraft(){try{localStorage.setItem(STORE,JSON.stringify({studentName,answers:answers(),result:currentResult?{answers:currentResult.rows.map(r=>r.text),name:studentName}:null,pendingPayload}))}catch{}}
+function updateCount(){const count=answers().filter(a=>tokensFor(a).tokens.length>=3).length;el('completed-count').textContent=count+' / 9 cümle';el('progress-fill').style.width=(count/9*100)+'%';saveDraft()}
+function startWriting(){const name=el('name-select').value;if(!name){el('name-error').textContent='Lütfen listeden adını seç.';return}studentName=name;el('editing-name').textContent=studentName;showScreen('edit');saveDraft()}
+function prepareSubmission(){
+ const index=answers().findIndex(a=>tokensFor(a).tokens.length<3);if(index!==-1){el('edit-error').textContent=(index+1)+'. cümlenin çevirisini tamamla.';el('sentence-'+index).focus();return}
+ if(!el('copy-confirm').checked){el('edit-error').textContent='Önce metninin bir kopyasını aldığını onayla.';return}
+ el('edit-error').textContent='';el('submit-translation').disabled=false;el('confirm-name-select').value=studentName;el('confirm-paragraph').textContent=answers().join(' ');showScreen('confirm');
+}
+function makePayload(result,name){const date=new Intl.DateTimeFormat('tr-TR',{timeZone:'Europe/Istanbul',dateStyle:'short',timeStyle:'medium'}).format(new Date());return{spreadsheetId:SPREADSHEET_ID,sheetName:'A2.1',studentName:name,taskColumn:TASK_COLUMN,score:result.score,maxScore:100,correct:result.perfect,wrong:9-result.perfect,blank:0,formatted:'✅ '+result.score+'/100\nOtomatik çeviri · '+result.perfect+'/9 cümle tam\n'+date};}
+async function sendGrade(){
+ if(sending||!pendingPayload)return;sending=true;el('new-attempt').disabled=true;el('save-status').className='save-status';el('save-status').textContent='Puanın e-tabloya iletiliyor…';el('retry-save').hidden=true;
+ if(IS_PREVIEW){el('save-status').textContent='Önizleme sonucu: e-tabloya kayıt gönderilmedi.';sending=false;el('new-attempt').disabled=false;return}
+ try{const response=await fetch(APPS_SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(pendingPayload)});if(response.type!=='opaque'&&!response.ok)throw new Error('save failed');pendingPayload=null;saveDraft();el('save-status').className='save-status saved';el('save-status').textContent='Puanın e-tabloya gönderildi. Portalını yenileyerek sonucunu görebilirsin.';}
+ catch(error){saveDraft();el('save-status').className='save-status failed';el('save-status').textContent='Puanın bu tarayıcıda saklandı; bağlantı nedeniyle e-tabloya iletilemedi. Yeniden gönderebilirsin.';el('retry-save').hidden=false;}
+ finally{sending=false;el('new-attempt').disabled=false;}
+}
+function renderResult(result){
+ el('result-name').textContent=studentName;el('total-score').textContent=result.score;
+ el('student-paragraph').innerHTML=result.rows.map(r=>r.html).join(' ');el('model-paragraph').innerHTML=modelHTML(result.model);
+ const firstConcern=result.rows.findIndex(r=>!r.perfect);
+ el('analysis-list').innerHTML=result.rows.map((row,i)=>{
+  const task=translationTasks[i],failed=row.checks.filter(c=>!c.match),isOpen=i===(firstConcern<0?0:firstConcern);
+  const feedback=failed.length||row.spelling.length?'<div class="feedback"><h4>Düzeltilecek / kontrol edilecek yerler</h4><ul>'+failed.map(c=>`<li><b>${esc(c.label)}:</b> ${esc(c.target)} bekleniyor. Bu öge eksik veya çekim, kişi ya da olumsuzluk yapısı anahtarla uyuşmuyor.</li>`).join('')+row.spelling.map(e=>`<li>${esc(e.message)}</li>`).join('')+'</ul></div>':'<p class="success-note">Bu cümlenin anlam, yapı ve yazım ölçütleri tamamlandı.</p>';
+  const future=task.future?`<aside class="future-note"><p class="future-label">Henüz görmedik · Yakında işleyeceğiz</p><h4>${esc(task.future.title)}</h4><p>${esc(task.future.text)}</p></aside>`:'';
+  return `<details class="sentence-analysis" ${isOpen?'open':''}><summary><span>${i+1}. cümle</span><strong>${row.score} / ${row.max}</strong></summary><div class="analysis-body"><p class="source-sentence">${esc(task.tr)}</p><div class="compare student"><h4>Senin cümlen</h4><p lang="es">${row.html}</p></div><div class="compare model"><h4>Örnek doğru çeviri</h4><p lang="es">${modelHTML(task.model)}</p></div>${feedback}<div class="explanation">${task.explanation.map(([title,text])=>`<h4>${esc(title)}</h4><p>${esc(text)}</p>`).join('')}</div>${future}<details class="point-details"><summary>Puan dökümü</summary><ul>${row.checks.map(c=>`<li><span>${c.match?'✓':'○'} ${esc(c.label)}</span><strong>${c.earned} / ${c.points}</strong></li>`).join('')}<li><span>Yazım, tilde ve noktalama</span><strong>${row.orth} / ${task.orth}</strong></li></ul></details></div></details>`;
+ }).join('');
+}
+function submitTranslation(){
+ if(el('submit-translation').disabled)return;const name=el('confirm-name-select').value;if(!name){el('confirm-error').textContent='Lütfen adını onayla.';return}
+ el('submit-translation').disabled=true;studentName=name;currentResult=gradeTranslation(answers());pendingPayload=makePayload(currentResult,studentName);renderResult(currentResult);saveDraft();showScreen('result');sendGrade();
+}
+el('sentence-fields').innerHTML=translationTasks.map((task,i)=>`<article class="input-card"><div class="input-heading"><label for="sentence-${i}">${i+1}. cümle</label><span>${task.max} puan</span></div><p>${esc(task.tr)}</p><textarea id="sentence-${i}" lang="es" rows="3" spellcheck="true" autocomplete="off" aria-label="${i+1}. cümlenin İspanyolca çevirisi" placeholder="İspanyolca çevirini yaz…"></textarea></article>`).join('');
+document.querySelectorAll('#sentence-fields textarea').forEach(t=>t.addEventListener('input',()=>{currentResult=null;updateCount()}));
+el('start-writing').addEventListener('click',startWriting);el('review-submission').addEventListener('click',prepareSubmission);
+el('copy-confirm').addEventListener('change',()=>{el('review-submission').disabled=!el('copy-confirm').checked});
+el('back-edit').addEventListener('click',()=>showScreen('edit'));el('submit-translation').addEventListener('click',submitTranslation);el('retry-save').addEventListener('click',sendGrade);
+el('copy-text').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(answers().join(' '));el('copy-label').textContent='Metnin kopyalandı.'}catch{el('copy-label').textContent='Metnini seçip kopyalayabilir veya ekran görüntüsünü alabilirsin.'}});
+el('new-attempt').addEventListener('click',()=>{currentResult=null;pendingPayload=null;el('copy-confirm').checked=false;el('review-submission').disabled=true;showScreen('edit');saveDraft()});
+window.addEventListener('online',()=>{if(pendingPayload&&currentResult)sendGrade()});
+document.addEventListener('DOMContentLoaded',()=>{
+ if(IS_PREVIEW){for(const id of ['name-select','confirm-name-select']){const option=document.createElement('option');option.value='Önizleme Öğrencisi';option.textContent='Önizleme Öğrencisi';el(id).append(option)}}
+ try{const saved=JSON.parse(localStorage.getItem(STORE)||'null');if(saved){studentName=saved.studentName||'';el('name-select').value=studentName;(saved.answers||[]).forEach((a,i)=>{if(el('sentence-'+i))el('sentence-'+i).value=a});pendingPayload=saved.pendingPayload||null;if(saved.result){studentName=saved.result.name;currentResult=gradeTranslation(saved.result.answers);renderResult(currentResult);showScreen('result');el('save-status').textContent=pendingPayload?'Kaydı tamamlamak için puanını yeniden gönderebilirsin.':'Bu sonuç tarayıcında saklandı.';el('retry-save').hidden=!pendingPayload}}}catch{}
+ updateCount();
+});
 </script></body></html>
