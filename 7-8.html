@@ -166,7 +166,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 
   <div class="header-tag">2. Hafta Ödevi &nbsp;|&nbsp; A2.1 (7-8. Ders)</div>
   <h1>🇪🇸 A2.1 – H2 7-8. Ders – Pretérito Indefinido</h1>
-  <div class="header-sub">47 soru + Yazma &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+  <div class="header-sub">47 soru · Dinleme, okuma ve boşluk doldurma &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
 </div>
 <!-- EKRAN 1: AD SEÇİMİ -->
 <div class="screen active" id="screen-name">
@@ -184,10 +184,9 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <div class="info-box">
       <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 1:</strong> Dinleme (Puerto Rico Aksanı) — Soru 1–20 (30 puan · 1.5p/soru)</span></div>
       <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 2:</strong> Okuduğunu Anlama — Soru 21–30 (20 puan · 2p/soru)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Boşluk Doldurma — Soru 31–47 (25 puan · 1.5p/soru)</span></div>
-      <div class="ib-row"><div class="ib-dot"></div><span><strong>Yazma Bölümü:</strong> Paragraf Çeviri (25 puan)</span></div>
+      <div class="ib-row"><div class="ib-dot"></div><span><strong>Kısım 3:</strong> Boşluk Doldurma — Soru 31–47 (25 puan)</span></div>
       <div class="ib-hr"></div>
-      <div class="ib-row"><div class="ib-dot" style="background:var(--c4)"></div><span><strong>Toplam: 100 puan</strong></span></div>
+      <div class="ib-row"><div class="ib-dot" style="background:var(--c4)"></div><span><strong>Toplam: 75 puan</strong></span></div>
     </div>
     <button class="btn btn-main btn-full" onclick="startQuiz()">▶ Başla</button>
   </div>
@@ -218,56 +217,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <div class="finish-bar">
       <div class="finish-info"><strong id="bb-answered">0</strong> / 47 yanıtlandı</div>
       <div id="finish-btn-area"></div>
-    </div>
-  </div>
-</div>
-<!-- EKRAN 3: YAZMA -->
-<div class="screen" id="screen-writing">
-  <div class="writing-wrap">
-    <div class="writing-card">
-      <div class="writing-head">✍️ &nbsp;Yazma Bölümü &nbsp;<span style="opacity:.8;font-weight:400;font-size:13px">(25 puan)</span></div>
-      <div class="writing-body">
-        <div class="yonerge-box">
-          <div class="y-label">📝 Yönerge</div>
-          <strong>Pretérito Indefinido – Düzensiz Kök Değişimli Fiillerle Paragraf Çeviri Ödevi</strong><br><br>
-          Aşağıdaki Türkçe paragrafı İspanyolcaya çeviriniz. Çevirinizde <strong>Pretérito Indefinido</strong> zamanını kullanınız. Bu paragrafta özellikle <strong>düzensiz kök değişimi olan fiiller</strong> yer almaktadır. Bu nedenle fiillerin köklerine ve şahıs eklerine dikkat ediniz.<br><br>
-          <strong>Özellikle dikkat edilecek fiiller:</strong>
-          <div class="fiil-list">
-            <span class="fiil-chip">estar</span><span class="fiil-chip">tener</span><span class="fiil-chip">poder</span>
-            <span class="fiil-chip">poner</span><span class="fiil-chip">saber</span><span class="fiil-chip">querer</span>
-            <span class="fiil-chip">hacer</span><span class="fiil-chip">venir</span><span class="fiil-chip">decir</span>
-            <span class="fiil-chip">traer</span><span class="fiil-chip">conducir</span><span class="fiil-chip">haber</span>
-          </div>
-          Öznelerin kim olduğuna dikkat ederek fiilleri doğru şekilde çekimleyiniz. Bağlaçları, zaman zarflarını, tildeleri ve büyük-küçük harf kullanımını dikkatli yazınız.
-        </div>
-        <div class="tr-text-box">
-          <strong style="display:block;margin-bottom:8px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--mid)">🇹🇷 Çevrilecek Paragraf:</strong>
-          Dün ben bütün gün evdeydim çünkü çok işim vardı. Sabah masanın üzerine kitaplarımı koydum ve ödevimi yapmaya çalıştım, ama ilk başta soruları anlayamadım. Sonra öğretmenim bana bir mesaj gönderdi ve ne yapmam gerektiğini söyledi. Öğleden sonra arkadaşım Ayşe evime geldi ve bana defterini getirdi. Birlikte çalışmak istedik, ama çok yorulduk. Daha sonra ben doğru cevabı öğrendim ve alıştırmayı yapabildim. Akşam babam arabayı sürdü ve bizi kütüphaneye götürdü. Kütüphanede çok sessiz bir ortam vardı. Sonunda biz iyi bir çalışma yaptık ve eve mutlu döndük.
-        </div>
-        <p style="margin-top:14px"><strong>✏️ İspanyolca çevirinizi aşağıya yazın:</strong></p>
-        <textarea class="writing-textarea" id="writing-input" placeholder="Çevirinizi buraya yazın…" oninput="updateCharCount()"></textarea>
-        <div class="char-count" id="char-count">0 karakter</div>
-        <div class="send-status" id="send-status"></div>
-        <p style="margin-top:18px"><strong>📊 Puanlama Cetveli</strong></p>
-        <table class="rubric">
-          <thead><tr><th>Kriter</th><th class="pts">Puan</th></tr></thead>
-          <tbody>
-            <tr><td>Düzensiz köklü fiillerin doğru çekimi</td><td class="pts">10</td></tr>
-            <tr><td>Özne-fiil uyumu ve şahıs doğruluğu</td><td class="pts">6</td></tr>
-            <tr><td>Zaman zarflarının doğru kullanımı</td><td class="pts">4</td></tr>
-            <tr><td>Tilde ve büyük-küçük harf doğruluğu</td><td class="pts">3</td></tr>
-            <tr><td>Genel akıcılık ve anlaşılırlık</td><td class="pts">2</td></tr>
-            <tr><td><strong>Toplam</strong></td><td class="pts"><strong>25</strong></td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <label class="writing-copy-confirm" for="writing-copy-confirm">
-      <input type="checkbox" id="writing-copy-confirm" onchange="updateWritingCopyGate()">
-      <span><strong>Ödevimin fotoğrafını çektim / yazımın bir kopyasını aldım.</strong><small>Bu kutucuğu işaretlemeden yazma ödevinizi teslim edemezsiniz.</small></span>
-    </label>
-    <div class="writing-nav">
-      <button id="writing-copy-submit" class="btn btn-gold" onclick="goToConfirmAfterWriting()" disabled>✔ Yazıyı Tamamladım, Teslim Et</button>
     </div>
   </div>
 </div>
@@ -309,11 +258,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
   </div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-emailjs.init('xNYEbUQNiWJPvbyoJ');
-const EMAILJS_SERVICE  = 'service_4ee1wh7';
-const EMAILJS_TEMPLATE = 'template_xjyyxhf';
 const APPS_SCRIPT_URL  = 'https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
 const SPREADSHEET_ID   = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
 const SHEET_NAME       = 'A2.1';
@@ -381,7 +326,6 @@ const Q_BOSUK = [
 let studentName = '';
 let mcAnswers = {};
 let fillAnswers = {};
-let writingText = '';
 let submitted = false;
 let quizMode = 'dinleme';
 let currentQ = 0;
@@ -432,9 +376,9 @@ function renderQuestion() {
     btnNext.className = 'btn btn-gold btn-sm';
     btnNext.onclick = () => { quizMode = 'bosuk'; currentQ = 0; renderQuestion(); };
   } else if (quizMode === 'bosuk' && isLast) {
-    btnNext.textContent = '✍️ Yazma Bölümüne Geç →';
+    btnNext.textContent = 'Ödevi Bitir →';
     btnNext.className = 'btn btn-gold btn-sm';
-    btnNext.onclick = () => showScreen('writing');
+    btnNext.onclick = goToConfirm;
   } else {
     btnNext.textContent = 'İleri →';
     btnNext.className = 'btn btn-main btn-sm';
@@ -543,36 +487,18 @@ function checkFill(qId) {
   fillAnswers[qId] = inp.value.trim();
   renderQuestion();
 }
-function updateCharCount() {
-  document.getElementById('char-count').textContent = document.getElementById('writing-input').value.length + ' karakter';
-}
-function goToConfirmAfterWriting() {
-  if(!requireWritingCopy()) return;
-  const text = document.getElementById('writing-input').value.trim();
-  if (text.length < 20) { alert('Lütfen çevirinizi tamamlayın (en az 20 karakter).'); return; }
-  writingText = text;
+function goToConfirm() {
   document.getElementById('confirm-name-select').value = studentName;
   showScreen('confirm');
 }
-async function confirmAndSubmit() {
-  if(!requireWritingCopy()) return;
+function confirmAndSubmit() {
+  if (submitted) return;
   const sel = document.getElementById('confirm-name-select');
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
   studentName = sel.value;
-  const btn = document.querySelector('#screen-confirm .btn-gold');
-  btn.disabled = true; btn.textContent = '⏳ Gönderiliyor…';
-  const now = new Date();
-  const tarih = now.toLocaleDateString('tr-TR') + ' ' + now.toLocaleTimeString('tr-TR');
-  try {
-    await emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, {
-      student_name: studentName, lesson: LESSON_NAME,
-      submit_date: tarih, writing_text: writingText
-    });
-    submitQuiz();
-  } catch(e) {
-    btn.disabled = false; btn.textContent = '✔ Ödevi Teslim Et';
-    alert('Yazı gönderilemedi. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin.');
-  }
+  const button = document.querySelector('#screen-confirm .btn-gold');
+  button.disabled = true;
+  submitQuiz();
 }
 function submitQuiz() {
   submitted = true;
@@ -583,7 +509,7 @@ function submitQuiz() {
   Q_BOSUK.forEach(q => { const a=fillAnswers[q.id]; if(a && a.trim()===q.answer.trim()) fillCorrect++; });
   const dinlemeScore = dinleme * 1.5;
   const okumaScore   = okuma   * 2;
-  const fillScore    = fillCorrect * 1.5;
+  const fillScore    = fillCorrect * (25 / Q_BOSUK.length);
   const score = Math.round(dinlemeScore + okumaScore + fillScore);
   const correct = dinleme + okuma + fillCorrect;
   const fillWrong = Q_BOSUK.filter(q => fillAnswers[q.id]!==undefined && fillAnswers[q.id].trim()!==q.answer.trim()).length;
@@ -592,7 +518,7 @@ function submitQuiz() {
   const blank = [...Q_DINLEME,...Q_OKUMA].filter(q=>mcAnswers[q.id]===undefined).length + Q_BOSUK.filter(q=>fillAnswers[q.id]===undefined).length;
   document.getElementById('res-name').textContent = studentName;
   document.getElementById('res-score').innerHTML = score + '<span>/75</span>';
-  document.getElementById('res-pct').textContent = 'Soru puanı: ' + score + '/75 · Yazma ayrıca değerlendirilir';
+  document.getElementById('res-pct').textContent = 'Soru puanı: ' + score + '/75';
   document.getElementById('res-c').textContent = correct;
   document.getElementById('res-w').textContent = wrong;
   document.getElementById('res-b').textContent = blank;
@@ -619,26 +545,13 @@ async function sendToSheets(name, score, correct, wrong, blank) {
   }
 }
 function goToName() {
-  resetWritingCopy();
+  document.querySelector('#screen-confirm .btn-gold').disabled = false;
   mcAnswers={}; fillAnswers={}; submitted=false; currentQ=0; quizMode='dinleme';
   document.getElementById('name-select').value='';
   showScreen('name');
 }
 
-function updateWritingCopyGate(){
-  document.getElementById('writing-copy-submit').disabled=!document.getElementById('writing-copy-confirm').checked;
-}
-function requireWritingCopy(){
-  if(document.getElementById('writing-copy-confirm').checked) return true;
-  alert('Lütfen önce ödevinizin fotoğrafını çekin veya yazınızın bir kopyasını alın ve kutucuğu işaretleyin.');
-  return false;
-}
-function resetWritingCopy(){
-  const checkbox=document.getElementById('writing-copy-confirm');
-  checkbox.checked=false;
-  checkbox.disabled=false;
-  updateWritingCopyGate();
-}
 </script>
 </body>
 </html>
+

@@ -11,9 +11,12 @@
 .formula .ending{white-space:nowrap}.formula .ending-divider{color:var(--muted);font-weight:600}.formula .ending-1{color:#b92568}.formula .ending-2{color:#7042b5}.formula .ending-3{color:#2166ad}.formula .ending-4{color:#007c73}.formula .ending-5{color:#a35a08}.formula .ending-6{color:#b4382d}
 
 .spelling-change{color:#1464b4;font-weight:950;font-size:1.16em;text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+
+.game-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 16px}.game-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(270px,1fr);gap:22px;align-items:start}.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.board-cell{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:84px;padding:9px 7px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);text-align:left}.board-cell:nth-child(3n+2){background:#fff7fb}.board-cell:hover{border-color:var(--pink)}.board-cell.selected{border:2px solid var(--primary);box-shadow:0 0 0 3px var(--soft)}.cell-number{font-size:11px;font-weight:800;color:var(--muted)}.cell-emoji{align-self:center;font-size:27px;line-height:1.6;white-space:nowrap}.board-caption{text-align:center;margin-top:14px;font-size:12px}.game-task{text-align:center;margin:0;padding:23px 20px;min-width:0}.dice{font-size:57px;line-height:1.2;color:var(--primary);margin-bottom:12px}.game-task #game-message{margin:13px 0}.task-emoji{font-size:55px;line-height:1.5;margin:12px 0}.game-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:12px}.game-chips>span,.game-chips>strong{border-radius:8px;padding:4px 10px;background:var(--bg);font-size:15px}.game-reveal-row{text-align:left;margin-top:15px}.game-reveal-row>label{display:block;color:var(--muted);font-size:12px;font-weight:800;margin-bottom:5px}.game-reveal-row .answer-control{display:flex;width:100%;align-items:flex-start}.game-reveal-row .answer-view{flex:1;font-weight:700;line-height:1.8;font-size:16px}.game-reveal-row .answer-input{min-height:37px}.game-reveal-row .answer-lock{margin-top:5px}.game-reveal-row textarea{min-height:65px}
+@media(max-width:760px){.game-layout{grid-template-columns:1fr}.game-task{max-width:100%}.game-toolbar{align-items:flex-start}.board-cell{min-height:78px}.cell-emoji{font-size:25px}}@media(max-width:400px){.board{gap:5px}.board-cell{min-height:65px;padding:6px 3px;border-radius:8px}.cell-emoji{font-size:18px}.cell-number{font-size:10px}.game-toolbar .quiet-note{font-size:12px}}
 </style></head>
 <body><div class="shell"><header><div class="masthead"><span class="brand">ESPAÑOL CON PROFE HAZEL</span><span>A2.1 · 7+8. DERS</span></div><div class="hero"><p class="eyebrow">Ders içi etkinlik</p><h1 lang="es">Pretérito indefinido</h1><p>Geçmişi anlatıyoruz: fiiller, düzensiz kökler ve bir kütüphane hikâyesi.</p></div></header>
-<nav class="tabs" role="tablist" aria-label="Etkinlik bölümleri"><button type="button" role="tab" class="nav-tab" id="tab-regular" aria-selected="true" aria-controls="regular" data-section="regular"><span class="number">01</span>Düzenli fiiller</button><button type="button" role="tab" class="nav-tab" id="tab-irregular" aria-selected="false" aria-controls="irregular" data-section="irregular" tabindex="-1"><span class="number">02</span>Düzensiz kökler</button><button type="button" role="tab" class="nav-tab" id="tab-reading" aria-selected="false" aria-controls="reading" data-section="reading" tabindex="-1"><span class="number">03</span>Okuma</button></nav>
+<nav class="tabs" role="tablist" aria-label="Etkinlik bölümleri"><button type="button" role="tab" class="nav-tab" id="tab-regular" aria-selected="true" aria-controls="regular" data-section="regular"><span class="number">01</span>Düzenli fiiller</button><button type="button" role="tab" class="nav-tab" id="tab-irregular" aria-selected="false" aria-controls="irregular" data-section="irregular" tabindex="-1"><span class="number">02</span>Düzensiz kökler</button><button type="button" role="tab" class="nav-tab" id="tab-reading" aria-selected="false" aria-controls="reading" data-section="reading" tabindex="-1"><span class="number">03</span>Okuma</button><button type="button" role="tab" class="nav-tab" id="tab-game" aria-selected="false" aria-controls="game" data-section="game" tabindex="-1"><span class="number">04</span>Emoji oyunu</button></nav>
 <main><section id="regular" role="tabpanel" aria-labelledby="tab-regular"><div class="section-intro"><p class="eyebrow">01 · Fiili seç, çekimini hatırla</p><h2 lang="es">Verbos regulares</h2><p>Mastara tıkla, çekim tablosunu aç. Önce cevabı söyle; her çekimi yanındaki 🔒 ile tek tek açabilirsin. ⓘ işareti fiilin anlamını gösterir.</p></div>
 <div class="rule-card"><h3>Kök + geçmiş zaman eki</h3><p class="quiet-note">Mastardan <b>-ar, -er, -ir</b> ekini çıkar. Kalan köke aşağıdaki ekleri getir.</p><div class="endings-wrap"><table class="endings"><thead><tr><th>Mastar</th><th lang="es">yo</th><th lang="es">tú</th><th lang="es">él / ella / usted</th><th lang="es">nosotros/as</th><th lang="es">vosotros/as</th><th lang="es">ellos/as / ustedes</th></tr></thead><tbody><tr><td>-ar</td><td class="accent">-é</td><td>-aste</td><td class="accent">-ó</td><td>-amos</td><td>-asteis</td><td>-aron</td></tr><tr><td>-er / -ir</td><td class="accent">-í</td><td>-iste</td><td class="accent">-ió</td><td>-imos</td><td>-isteis</td><td>-ieron</td></tr></tbody></table></div></div>
 <div class="verb-grid" id="regular-grid"></div><div class="section-bottom"><span class="quiet-note">30 fiil · karışık sıra</span><button type="button" class="next-section" data-section="irregular">Düzensiz köklere geç →</button></div></section>
@@ -22,7 +25,10 @@
 <p class="quiet-note">Mastara tıklayarak tabloyu aç. Her kişi çekiminin cevabı kendi 🔒 düğmesinde.</p><div id="irregular-groups"></div><div class="section-bottom"><span class="quiet-note">PDF’deki 17 düzensiz kök</span><button type="button" class="next-section" data-section="reading">Okumaya geç →</button></div></section>
 <section id="reading" role="tabpanel" aria-labelledby="tab-reading" hidden><div class="section-intro"><p class="eyebrow">03 · Oku, keşfet, cevapla</p><h2 lang="es">Una tarde en la biblioteca</h2></div>
 <article class="reading-card"><h3 lang="es">Un trabajo en equipo</h3><p class="reading-meta">7+8. ders PDF’sindeki okuma metni</p><div id="reading-text" lang="es"></div></article><p class="reading-help">Telefonda bir kelimeye dokununca o cümlenin öge renkleri de görünür. Kelime kutusunda Türkçe, İngilizce, sözlük biçimi, sözcük türü ve cümledeki görev bulunur.</p>
-<div class="questions"><h3 lang="es">Comprendemos el texto</h3><p>Hep birlikte cevaplayalım. İstersen cevabı boşluğa yaz; örnek cevap yalnızca yanındaki 🔒 ile açılır.</p><div id="question-list" class="question-list"></div></div></section></main>
+<div class="questions"><h3 lang="es">Comprendemos el texto</h3><p>Hep birlikte cevaplayalım. İstersen cevabı boşluğa yaz; örnek cevap yalnızca yanındaki 🔒 ile açılır.</p><div id="question-list" class="question-list"></div></div><div class="section-bottom"><span class="quiet-note">Şimdi cümle kurma zamanı.</span><button type="button" class="next-section" data-section="game">Emoji oyununa geç →</button></div></section><section id="game" role="tabpanel" aria-labelledby="tab-game" hidden>
+<div class="section-intro"><p class="eyebrow">04 · Zar at, ilerle, anlat</p><h2 lang="es">La ruta del pasado</h2><p>Bir kare seç veya zar at. Emojiyi, çıkan zaman ve özneyle <b lang="es">pretérito indefinido</b> kullanarak anlat.</p></div>
+<div class="game-toolbar"><span class="quiet-note">Sınıfça bir cümle kuralım.</span><button type="button" class="reset" id="reset-game">↺ Oyunu yeniden başlat</button></div>
+<div class="game-layout"><div class="board-wrap"><div class="board" id="game-board" aria-label="30 karelik emoji oyun tahtası"></div><p class="quiet-note board-caption">Başlangıç → numaraları takip et → 🏁 Bitiş</p></div><aside class="game-task rule-card"><p class="eyebrow">Birlikte cümle kuralım</p><div class="dice" id="dice-face" aria-label="Zar">⚄</div><button type="button" class="next-section" id="roll-dice">🎲 Zar at</button><p id="game-message" class="quiet-note" aria-live="polite">Bir kare seç veya zar at!</p><div id="game-prompt" hidden><span class="quiet-note" id="square-label"></span><div class="task-emoji" id="task-emoji" role="img"></div><div class="game-chips"><span lang="es" id="task-time"></span><strong lang="es" id="task-subject"></strong></div><p class="quiet-note" id="game-subject-note"></p><div id="game-answer-controls"></div></div></aside></div></section></main>
 <footer class="footer"><span>Profe Hazel · @ispanyolcacim</span><button type="button" class="reset" id="reset-lesson">Cevapları sıfırla</button></footer><div id="announcement" class="live-announcement" aria-live="polite"></div></div><script>'use strict';
 const persons=['yo','tú','él / ella / usted','nosotros / nosotras','vosotros / vosotras','ellos / ellas / ustedes'];
 const personLabels=['1. tekil kişi','2. tekil kişi','3. tekil kişi / resmî siz','1. çoğul kişi','2. çoğul kişi','3. çoğul kişi / resmî çoğul siz'];
@@ -1334,6 +1340,32 @@ phraseEnglishEntries.trim().split('\n').forEach(line=>{const [key,value]=line.sp
 'use strict';
 // lemma | Turkish dictionary meaning | English dictionary meaning | type | aliases
 const extraEntries=`
+oficina|ofis; iş yeri|office|isim|
+tarea|ödev; görev|homework; task|isim|
+pasta|makarna|pasta|isim|
+libro|kitap|book|isim|libros
+agua|su|water|isim|
+carta|mektup|letter|isim|
+domingo|pazar günü|Sunday|isim|
+playa|plaj; kumsal|beach|isim|
+ropa|giysi; kıyafet|clothes; clothing|isim|
+verano|yaz mevsimi|summer|isim|
+Madrid|Madrid; İspanya’nın başkenti|Madrid|özel isim|madrid
+viajar|seyahat etmek|to travel|fiil|
+puerta|kapı|door|isim|
+cena|akşam yemeği|dinner|isim|
+verdad|gerçek; doğruluk|truth|isim|
+regalo|hediye|gift; present|isim|
+postre|tatlı (yemek)|dessert|isim|
+pueblo|köy; küçük yerleşim yeri|village; town|isim|
+museo|müze|museum|isim|
+parque|park|park|isim|
+pasado|geçmiş; geçen|past; last|isim / sıfat|pasada
+mucho|çok; çok sayıda|much; many|miktar belirleyicisi / zarf|muchos
+producto|ürün|product|isim|productos
+ascensor|asansör|lift; elevator|isim|
+plaza|meydan|square; plaza|isim|
+ruta|rota; izlenen yol|route|isim|
 mucho|çok; isimden önce miktar belirtir.|much; many|miktar belirleyicisi / zarf|muchas
 alguno|bazı; birkaç|some; a few|belirleyici|algunos
 frase|cümle; ifade|sentence; phrase|isim|frases
@@ -1473,10 +1505,96 @@ let sentenceNumber=0;
 document.getElementById('reading-text').innerHTML=readingParagraphs.map((paragraph,i)=>`<p class="reading-paragraph" data-paragraph="${i+1}">${paragraph.map(chunks=>{sentenceNumber++;return `<span class="sentence" data-sentence="${sentenceNumber}">${chunks.map(([text,key],chunkIndex)=>`<span class="syntax-chunk" data-role="${escapeHTML(roles[key].detail)}" data-role-label="${escapeHTML(roles[key].label)}" style="--chunk-color:${chunkColors[chunkIndex]}">${escapeHTML(text)}</span>`).join('')}</span>`}).join(' ')}</p>`).join('');
 document.getElementById('question-list').innerHTML=readingQuestions.map(([q],i)=>`<article class="question-card"><div class="question-head"><span class="q-number">${String(i+1).padStart(2,'0')}</span><div class="q-content"><h4 lang="es">${escapeHTML(q)}</h4>${answerHTML(`reading-${i}`,`Okuma sorusu ${i+1}`,true)}</div></div></article>`).join('');
 readingQuestions.forEach(([q,a],i)=>registerAnswer(`reading-${i}`,a,{context:a,role:'Okuma sorusuna verilen örnek cevapta kullanılıyor.'}));
-function selectSection(id,focus=false){document.querySelectorAll('[role="tabpanel"]').forEach(panel=>panel.hidden=panel.id!==id);document.querySelectorAll('.nav-tab').forEach(tab=>{const active=tab.dataset.section===id;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus()});document.dispatchEvent(new Event('lesson:panel'));}
+const sectionIds=['regular','irregular','reading','game'];
+function selectSection(id,focus=false){document.querySelectorAll('[role="tabpanel"]').forEach(panel=>panel.hidden=panel.id!==id);document.querySelectorAll('.nav-tab').forEach(tab=>{const active=tab.dataset.section===id;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus()});history.replaceState(null,'','#bolum-'+(sectionIds.indexOf(id)+1));document.dispatchEvent(new Event('lesson:panel'));}
 document.querySelectorAll('.nav-tab,.next-section').forEach(button=>button.addEventListener('click',()=>{selectSection(button.dataset.section);if(button.classList.contains('next-section'))document.querySelector('.tabs').scrollIntoView({block:'start',behavior:'smooth'})}));
-document.querySelectorAll('.nav-tab').forEach((tab,i)=>tab.addEventListener('keydown',event=>{let index=null;if(event.key==='ArrowRight')index=(i+1)%3;if(event.key==='ArrowLeft')index=(i+2)%3;if(event.key==='Home')index=0;if(event.key==='End')index=2;if(index!==null){event.preventDefault();selectSection(['regular','irregular','reading'][index],true)}}));
+document.querySelectorAll('.nav-tab').forEach((tab,i)=>tab.addEventListener('keydown',event=>{let index=null;if(event.key==='ArrowRight')index=(i+1)%4;if(event.key==='ArrowLeft')index=(i+3)%4;if(event.key==='Home')index=0;if(event.key==='End')index=3;if(index!==null){event.preventDefault();selectSection(sectionIds[index],true)}}));
 document.getElementById('reset-lesson').addEventListener('click',()=>{for(const [id,r]of answerControls){r.typed='';r.input.value='';setAnswer(id,false,false)}saved={};persist();document.getElementById('announcement').textContent='Tüm cevaplar kapatıldı; yazılan cevaplar silindi.'});
+
+const initialSection=location.hash.match(/^#bolum-([1-4])$/);if(initialSection)selectSection(sectionIds[Number(initialSection[1])-1]);
+
+'use strict';
+const gameSubjects=[{text:'yo',person:0},{text:'tú',person:1},{text:'ella',person:2},{text:'él',person:2},{text:'nosotros',person:3},{text:'vosotros',person:4},{text:'ellos',person:5},{text:'ustedes',person:5}];
+const gameActions=[
+ ['💻🏢','ofiste çalışmak','trabajar','en la oficina','Ayer'],
+ ['📚✅','ödev yapmak','hacer','la tarea','Anoche'],
+ ['🍝😋','makarna yemek','comer','pasta','Ayer'],
+ ['📚🪑','kitapları masaya koymak','poner','los libros en la mesa','Ayer'],
+ ['💧🥤','su içmek','beber','agua','Ayer'],
+ ['🎟️🕐','boş vakti olmak','tener','tiempo libre','El sábado pasado'],
+ ['📝✉️','mektup yazmak','escribir','una carta','Anoche'],
+ ['🏖️☀️','plajda bulunmak','estar','en la playa','El domingo pasado'],
+ ['🛍️👕','kıyafet satın almak','comprar','ropa','Ayer'],
+ ['🏃🏁','yarışı bitirebilmek','poder','terminar la carrera','Ayer'],
+ ['🏡🏙️','Madrid’de yaşamak','vivir','en Madrid','El verano pasado'],
+ ['💡✅','cevabı öğrenmek','saber','la respuesta','Ayer'],
+ ['📚📝','İspanyolca çalışmak','estudiar','español','Anoche'],
+ ['🧳✈️','seyahat etmek istemek','querer','viajar a México','El verano pasado'],
+ ['🚪🔑','kapıyı açmak','abrir','la puerta','Ayer'],
+ ['🏠👋','eve gelmek','venir','a casa','Ayer'],
+ ['🍽️👩‍🍳','akşam yemeği hazırlamak','preparar','la cena','Anoche'],
+ ['💬🤫','doğruyu söylemek','decir','la verdad','Ayer'],
+ ['🤝📦','bir arkadaşa yardım etmek','ayudar','a un amigo','Ayer'],
+ ['📦🎁','hediye getirmek','traer','un regalo','Ayer'],
+ ['🍰🤝','tatlı paylaşmak','compartir','un postre','Ayer'],
+ ['🚗🛣️','köye kadar araba sürmek','conducir','hasta el pueblo','El sábado pasado'],
+ ['🏛️📸','müze ziyaret etmek','visitar','un museo','El domingo pasado'],
+ ['🇹🇷🇪🇸','bir metni İspanyolcaya çevirmek','traducir','un texto al español','Ayer'],
+ ['🚶🌳','parkta yürümek','caminar','por el parque','Ayer'],
+ ['🏭📦','ürün üretmek','producir','muchos productos','La semana pasada'],
+ ['✂️📄','metni kısaltmak','reducir','el texto','Ayer'],
+ ['🛗👥','asansöre sığmak','caber','en el ascensor','Ayer'],
+ ['🚶🗺️','merkezde dolaşmak','andar','por el centro','Ayer'],
+ ['🎶🏙️','meydanda konser olması','haber','un concierto en la plaza','Anoche']
+].map(([emoji,label,inf,tail,time])=>({emoji,label,inf,tail,time,verb:[...regularVerbs,...irregularVerbs].find(v=>v.inf===inf)}));
+const gameEl=id=>document.getElementById(id);
+let boardPosition=-1,currentGameTask=null;
+function gameSentence(action,subject){
+ const impersonal=action.inf==='haber';
+ const form=action.verb.forms[impersonal?2:subject.person];
+ const chunks=[[action.time+' ','Zaman tümleci; eylemin gerçekleştiği zamanı belirtir.']];
+ if(!impersonal)chunks.push([subject.text+' ','Özne zamiri; eylemi yapan kişiyi belirtir.']);
+ chunks.push([form+' ',impersonal?'Öznesiz haber yapısı; hubo, tekil ve çoğul isimlerle aynı biçimde kullanılır.':'Yüklemin çekimli fiili; pretérito indefinido.']);
+ const role=/^(en |por |hasta |a casa)/.test(action.tail)?'Yer / yön bildiren edatlı tamamlayıcı.':action.inf==='ayudar'?'A kişisel edatıyla kurulan doğrudan nesne grubu.':impersonal?'Haber ile var olduğu / gerçekleştiği belirtilen isim grubu.':'Fiilin anlamını tamamlayan nesne veya mastar grubu.';
+ chunks.push([action.tail+'.',role]);
+ return{answer:chunks.map(c=>c[0]).join(''),chunks};
+}
+function resetGameAnswer(id,text,options={}){
+ const r=answerControls.get(id);r.typed='';r.input.value='';saved[id]={typed:'',open:false};setAnswer(id,false,false);
+ r.answer=text;r.wrap.dataset.context=options.context||text;r.wrap.dataset.lemma=options.lemma||'';r.wrap.dataset.role=options.role||'';r.gameChunks=options.chunks;
+}
+function showGameTask(n){
+ const action=gameActions[n];const subject=gameSubjects[Math.floor(Math.random()*gameSubjects.length)];const model=gameSentence(action,subject);
+ boardPosition=n;currentGameTask={n,action,subject};gameEl('game-prompt').hidden=false;
+ gameEl('square-label').textContent=`${n+1}. KARE`;
+ gameEl('task-emoji').textContent=action.emoji;gameEl('task-emoji').setAttribute('aria-label',action.label);
+ gameEl('task-time').textContent=action.time;
+ gameEl('task-subject').textContent=action.inf==='haber'?'Öznesiz kullanım':subject.text;gameEl('task-subject').lang=action.inf==='haber'?'tr':'es';
+ gameEl('game-subject-note').textContent=action.inf==='haber'?'Meydanda bir konser olduğunu söyle.':'Bu zaman ve özneyle geçmişte tamamlanmış bir eylem anlat.';
+ resetGameAnswer('game-hint',action.inf,{lemma:action.inf,role:'İpucu: cümlede kullanılacak fiilin mastar biçimi.'});
+ resetGameAnswer('game-answer',model.answer,{context:model.answer,chunks:model.chunks});
+ gameEl('game-message').textContent='Emojiyi yorumla, kendi cümleni kur.';
+ gameEl('roll-dice').textContent=n===29?'🎲 Yeni tur':'🎲 Zar at';
+ document.querySelectorAll('.board-cell').forEach(b=>{const selected=Number(b.dataset.square)===n;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected))});
+ enhanceWords(gameEl('task-time'));enhanceWords(gameEl('task-subject'));
+}
+function resetGame(){
+ boardPosition=-1;currentGameTask=null;gameEl('game-prompt').hidden=true;gameEl('dice-face').textContent='⚄';gameEl('dice-face').setAttribute('aria-label','Zar');gameEl('game-message').textContent='Bir kare seç veya zar at!';gameEl('roll-dice').textContent='🎲 Zar at';
+ document.querySelectorAll('.board-cell').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false')});
+ for(const id of ['game-hint','game-answer'])resetGameAnswer(id,'');
+}
+gameEl('game-answer-controls').innerHTML=`<div class="game-reveal-row"><label for="game-hint">Fiil ipucu</label>${answerHTML('game-hint','Oyun fiil ipucu')}</div><div class="game-reveal-row"><label for="game-answer">Örnek cümle</label>${answerHTML('game-answer','Oyun örnek cümlesi',true)}</div>`;
+registerAnswer('game-hint','');registerAnswer('game-answer','');
+const board=gameEl('game-board');
+for(let row=0;row<5;row++)for(let col=0;col<6;col++){
+ const n=row*6+(row%2?5-col:col),a=gameActions[n],b=document.createElement('button');
+ b.type='button';b.className='board-cell';b.dataset.square=n;b.setAttribute('aria-label',`Kare ${n+1}: ${a.label}`);b.setAttribute('aria-pressed','false');
+ b.innerHTML=`<span class="cell-number">${n+1}${n===29?' 🏁':''}</span><span class="cell-emoji" aria-hidden="true">${a.emoji}</span>`;b.addEventListener('click',()=>showGameTask(n));board.append(b);
+}
+gameEl('roll-dice').addEventListener('click',()=>{const roll=Math.floor(Math.random()*6)+1;gameEl('dice-face').textContent=['⚀','⚁','⚂','⚃','⚄','⚅'][roll-1];gameEl('dice-face').setAttribute('aria-label',`Zar sonucu: ${roll}`);if(boardPosition===29)boardPosition=-1;showGameTask(Math.min(29,boardPosition+roll));gameEl('game-message').textContent=`Zarda ${roll} geldi. Cümle kurma zamanı!`});
+gameEl('reset-game').addEventListener('click',resetGame);
+document.addEventListener('lesson:answer',event=>{if(event.detail.id!=='game-answer'||!event.detail.open)return;const r=answerControls.get('game-answer');if(r.gameChunks)r.view.innerHTML=r.gameChunks.map(([text,role])=>`<span class="syntax-chunk" data-role="${escapeHTML(role)}">${escapeHTML(text)}</span>`).join('')});
+resetGame();
 
 'use strict';
 function lexicalForm(key,meta){if(!meta?.type.includes('fiil'))return '';return meta.form||(key===meta.lemma?'Mastar (infinitivo)':'Çekimli fiil');}
