@@ -1506,8 +1506,8 @@ document.getElementById('reading-text').innerHTML=readingParagraphs.map((paragra
 document.getElementById('question-list').innerHTML=readingQuestions.map(([q],i)=>`<article class="question-card"><div class="question-head"><span class="q-number">${String(i+1).padStart(2,'0')}</span><div class="q-content"><h4 lang="es">${escapeHTML(q)}</h4>${answerHTML(`reading-${i}`,`Okuma sorusu ${i+1}`,true)}</div></div></article>`).join('');
 readingQuestions.forEach(([q,a],i)=>registerAnswer(`reading-${i}`,a,{context:a,role:'Okuma sorusuna verilen örnek cevapta kullanılıyor.'}));
 const sectionIds=['regular','irregular','reading','game'];
-function selectSection(id,focus=false){document.querySelectorAll('[role="tabpanel"]').forEach(panel=>panel.hidden=panel.id!==id);document.querySelectorAll('.nav-tab').forEach(tab=>{const active=tab.dataset.section===id;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus()});history.replaceState(null,'','#bolum-'+(sectionIds.indexOf(id)+1));document.dispatchEvent(new Event('lesson:panel'));}
-document.querySelectorAll('.nav-tab,.next-section').forEach(button=>button.addEventListener('click',()=>{selectSection(button.dataset.section);if(button.classList.contains('next-section'))document.querySelector('.tabs').scrollIntoView({block:'start',behavior:'smooth'})}));
+function selectSection(id,focus=false){if(!sectionIds.includes(id))return;document.querySelectorAll('[role="tabpanel"]').forEach(panel=>panel.hidden=panel.id!==id);document.querySelectorAll('.nav-tab').forEach(tab=>{const active=tab.dataset.section===id;tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus()});history.replaceState(null,'','#bolum-'+(sectionIds.indexOf(id)+1));document.dispatchEvent(new Event('lesson:panel'));}
+document.querySelectorAll('.nav-tab[data-section],.next-section[data-section]').forEach(button=>button.addEventListener('click',()=>{selectSection(button.dataset.section);if(button.classList.contains('next-section'))document.querySelector('.tabs').scrollIntoView({block:'start',behavior:'smooth'})}));
 document.querySelectorAll('.nav-tab').forEach((tab,i)=>tab.addEventListener('keydown',event=>{let index=null;if(event.key==='ArrowRight')index=(i+1)%4;if(event.key==='ArrowLeft')index=(i+3)%4;if(event.key==='Home')index=0;if(event.key==='End')index=3;if(index!==null){event.preventDefault();selectSection(sectionIds[index],true)}}));
 document.getElementById('reset-lesson').addEventListener('click',()=>{for(const [id,r]of answerControls){r.typed='';r.input.value='';setAnswer(id,false,false)}saved={};persist();document.getElementById('announcement').textContent='Tüm cevaplar kapatıldı; yazılan cevaplar silindi.'});
 
@@ -1701,3 +1701,4 @@ document.addEventListener('lesson:answer',()=>{closeWord();enhanceWords()});
 document.addEventListener('lesson:panel',()=>closeWord());
 enhanceWords();
 </script></body></html>
+
