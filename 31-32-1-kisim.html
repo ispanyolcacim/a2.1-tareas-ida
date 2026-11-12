@@ -31,9 +31,17 @@ select{width:100%;padding:13px 14px;border:2px solid var(--light);border-radius:
 @media(max-width:720px){.cover-grid{grid-template-columns:1fr}.topbar{flex-wrap:wrap}.prompt{font-size:15px}.stats,.parts{grid-template-columns:1fr}}
 </style><script src="student-roster.js" defer></script>
 <link rel="stylesheet" href="a21-theme.css?v=20261103-palettes">
+
+<link rel="stylesheet" href="weekly-reminders.css?v=20261112">
+<script src="weekly-reminders.js?v=20261112" defer></script>
 </head><body>
 
-<div class="header"><div class="htag">8. HAFTA ÖDEVİ · A2.1 (31–32. DERS) · 1. KISIM</div><h1>🇪🇸 Gran Repaso · A1.1 + A1.2 + A2.1</h1><div class="sub">70 soru · 100 puan · Genel tekrar · @ispanyolcacim · Profe Hazel</div></div>
+<div class="header">
+<aside class="weekly-reminder" role="note" aria-labelledby="weekly-reminder-title" data-week="8" data-cover="sc-cover">
+  <h2 class="weekly-reminder__title" id="weekly-reminder-title">📚 8. hafta hatırlatması</h2>
+  <p class="weekly-reminder__text">Bu ödevlerle birlikte sekizinci haftayı geride bıraktık! 🎉 <strong class="weekly-reminder__action">Şimdiye kadar eksik kalan çalışmalarınızı tamamlamanızı rica ediyorum.</strong> Ardından ilk haftalardaki ödevlerinize dönüp bir bakın: Artık daha kolay anladığınız veya daha rahat kurduğunuz cümleler var mı? İlerlemenizi yalnızca zorlandığınız yerlere bakarak değerlendirmeyin. Verdiğiniz emeği ve yapabildiklerinizi de fark edin. 💛</p>
+</aside>
+<div class="htag">8. HAFTA ÖDEVİ · A2.1 (31–32. DERS) · 1. KISIM</div><h1>🇪🇸 Gran Repaso · A1.1 + A1.2 + A2.1</h1><div class="sub">70 soru · 100 puan · Genel tekrar · @ispanyolcacim · Profe Hazel</div></div>
 
 <section id="sc-cover" class="screen active"><div class="cover"><div class="cover-grid">
 <div class="card"><h2>📚 Adınızı seçin</h2><p>Ödeve başlamadan önce listeden adınızı seçin.</p><select id="student"><option value="">-- Adınızı Seçin --</option><option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option><option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option><option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option><option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option><option>Zeynep Ozay</option><option>Zeynep Oztaskin</option></select>
