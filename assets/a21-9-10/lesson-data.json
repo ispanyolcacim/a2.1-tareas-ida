@@ -1,0 +1,2402 @@
+{
+  "regular": [
+    {
+      "inf": "compartir",
+      "tr": "paylaşmak",
+      "en": "to share",
+      "group": "ir",
+      "stem": "compart",
+      "forms": [
+        "compartí",
+        "compartiste",
+        "compartió",
+        "compartimos",
+        "compartisteis",
+        "compartieron"
+      ]
+    },
+    {
+      "inf": "trabajar",
+      "tr": "çalışmak",
+      "en": "to work",
+      "group": "ar",
+      "stem": "trabaj",
+      "forms": [
+        "trabajé",
+        "trabajaste",
+        "trabajó",
+        "trabajamos",
+        "trabajasteis",
+        "trabajaron"
+      ]
+    },
+    {
+      "inf": "beber",
+      "tr": "içmek",
+      "en": "to drink",
+      "group": "er",
+      "stem": "beb",
+      "forms": [
+        "bebí",
+        "bebiste",
+        "bebió",
+        "bebimos",
+        "bebisteis",
+        "bebieron"
+      ]
+    },
+    {
+      "inf": "abrir",
+      "tr": "açmak",
+      "en": "to open",
+      "group": "ir",
+      "stem": "abr",
+      "forms": [
+        "abrí",
+        "abriste",
+        "abrió",
+        "abrimos",
+        "abristeis",
+        "abrieron"
+      ]
+    },
+    {
+      "inf": "visitar",
+      "tr": "ziyaret etmek",
+      "en": "to visit",
+      "group": "ar",
+      "stem": "visit",
+      "forms": [
+        "visité",
+        "visitaste",
+        "visitó",
+        "visitamos",
+        "visitasteis",
+        "visitaron"
+      ]
+    },
+    {
+      "inf": "aprender",
+      "tr": "öğrenmek",
+      "en": "to learn",
+      "group": "er",
+      "stem": "aprend",
+      "forms": [
+        "aprendí",
+        "aprendiste",
+        "aprendió",
+        "aprendimos",
+        "aprendisteis",
+        "aprendieron"
+      ]
+    },
+    {
+      "inf": "decidir",
+      "tr": "karar vermek",
+      "en": "to decide",
+      "group": "ir",
+      "stem": "decid",
+      "forms": [
+        "decidí",
+        "decidiste",
+        "decidió",
+        "decidimos",
+        "decidisteis",
+        "decidieron"
+      ]
+    },
+    {
+      "inf": "preparar",
+      "tr": "hazırlamak",
+      "en": "to prepare",
+      "group": "ar",
+      "stem": "prepar",
+      "forms": [
+        "preparé",
+        "preparaste",
+        "preparó",
+        "preparamos",
+        "preparasteis",
+        "prepararon"
+      ]
+    },
+    {
+      "inf": "correr",
+      "tr": "koşmak",
+      "en": "to run",
+      "group": "er",
+      "stem": "corr",
+      "forms": [
+        "corrí",
+        "corriste",
+        "corrió",
+        "corrimos",
+        "corristeis",
+        "corrieron"
+      ]
+    },
+    {
+      "inf": "recibir",
+      "tr": "almak; teslim almak",
+      "en": "to receive",
+      "group": "ir",
+      "stem": "recib",
+      "forms": [
+        "recibí",
+        "recibiste",
+        "recibió",
+        "recibimos",
+        "recibisteis",
+        "recibieron"
+      ]
+    },
+    {
+      "inf": "hablar",
+      "tr": "konuşmak",
+      "en": "to speak",
+      "group": "ar",
+      "stem": "habl",
+      "forms": [
+        "hablé",
+        "hablaste",
+        "habló",
+        "hablamos",
+        "hablasteis",
+        "hablaron"
+      ]
+    },
+    {
+      "inf": "comprender",
+      "tr": "anlamak",
+      "en": "to understand",
+      "group": "er",
+      "stem": "comprend",
+      "forms": [
+        "comprendí",
+        "comprendiste",
+        "comprendió",
+        "comprendimos",
+        "comprendisteis",
+        "comprendieron"
+      ]
+    },
+    {
+      "inf": "subir",
+      "tr": "çıkmak; yükselmek",
+      "en": "to go up",
+      "group": "ir",
+      "stem": "sub",
+      "forms": [
+        "subí",
+        "subiste",
+        "subió",
+        "subimos",
+        "subisteis",
+        "subieron"
+      ]
+    },
+    {
+      "inf": "comprar",
+      "tr": "satın almak",
+      "en": "to buy",
+      "group": "ar",
+      "stem": "compr",
+      "forms": [
+        "compré",
+        "compraste",
+        "compró",
+        "compramos",
+        "comprasteis",
+        "compraron"
+      ]
+    },
+    {
+      "inf": "responder",
+      "tr": "cevap vermek",
+      "en": "to answer",
+      "group": "er",
+      "stem": "respond",
+      "forms": [
+        "respondí",
+        "respondiste",
+        "respondió",
+        "respondimos",
+        "respondisteis",
+        "respondieron"
+      ]
+    },
+    {
+      "inf": "vivir",
+      "tr": "yaşamak",
+      "en": "to live",
+      "group": "ir",
+      "stem": "viv",
+      "forms": [
+        "viví",
+        "viviste",
+        "vivió",
+        "vivimos",
+        "vivisteis",
+        "vivieron"
+      ]
+    },
+    {
+      "inf": "descansar",
+      "tr": "dinlenmek",
+      "en": "to rest",
+      "group": "ar",
+      "stem": "descans",
+      "forms": [
+        "descansé",
+        "descansaste",
+        "descansó",
+        "descansamos",
+        "descansasteis",
+        "descansaron"
+      ]
+    },
+    {
+      "inf": "vender",
+      "tr": "satmak",
+      "en": "to sell",
+      "group": "er",
+      "stem": "vend",
+      "forms": [
+        "vendí",
+        "vendiste",
+        "vendió",
+        "vendimos",
+        "vendisteis",
+        "vendieron"
+      ]
+    },
+    {
+      "inf": "permitir",
+      "tr": "izin vermek",
+      "en": "to allow",
+      "group": "ir",
+      "stem": "permit",
+      "forms": [
+        "permití",
+        "permitiste",
+        "permitió",
+        "permitimos",
+        "permitisteis",
+        "permitieron"
+      ]
+    },
+    {
+      "inf": "estudiar",
+      "tr": "ders çalışmak",
+      "en": "to study",
+      "group": "ar",
+      "stem": "estudi",
+      "forms": [
+        "estudié",
+        "estudiaste",
+        "estudió",
+        "estudiamos",
+        "estudiasteis",
+        "estudiaron"
+      ]
+    },
+    {
+      "inf": "comer",
+      "tr": "yemek yemek",
+      "en": "to eat",
+      "group": "er",
+      "stem": "com",
+      "forms": [
+        "comí",
+        "comiste",
+        "comió",
+        "comimos",
+        "comisteis",
+        "comieron"
+      ]
+    },
+    {
+      "inf": "escribir",
+      "tr": "yazmak",
+      "en": "to write",
+      "group": "ir",
+      "stem": "escrib",
+      "forms": [
+        "escribí",
+        "escribiste",
+        "escribió",
+        "escribimos",
+        "escribisteis",
+        "escribieron"
+      ]
+    },
+    {
+      "inf": "caminar",
+      "tr": "yürümek",
+      "en": "to walk",
+      "group": "ar",
+      "stem": "camin",
+      "forms": [
+        "caminé",
+        "caminaste",
+        "caminó",
+        "caminamos",
+        "caminasteis",
+        "caminaron"
+      ]
+    },
+    {
+      "inf": "prometer",
+      "tr": "söz vermek",
+      "en": "to promise",
+      "group": "er",
+      "stem": "promet",
+      "forms": [
+        "prometí",
+        "prometiste",
+        "prometió",
+        "prometimos",
+        "prometisteis",
+        "prometieron"
+      ]
+    },
+    {
+      "inf": "cumplir",
+      "tr": "yerine getirmek; tamamlamak",
+      "en": "to fulfil; to complete",
+      "group": "ir",
+      "stem": "cumpl",
+      "forms": [
+        "cumplí",
+        "cumpliste",
+        "cumplió",
+        "cumplimos",
+        "cumplisteis",
+        "cumplieron"
+      ]
+    },
+    {
+      "inf": "ayudar",
+      "tr": "yardım etmek",
+      "en": "to help",
+      "group": "ar",
+      "stem": "ayud",
+      "forms": [
+        "ayudé",
+        "ayudaste",
+        "ayudó",
+        "ayudamos",
+        "ayudasteis",
+        "ayudaron"
+      ]
+    },
+    {
+      "inf": "temer",
+      "tr": "korkmak",
+      "en": "to fear",
+      "group": "er",
+      "stem": "tem",
+      "forms": [
+        "temí",
+        "temiste",
+        "temió",
+        "temimos",
+        "temisteis",
+        "temieron"
+      ]
+    },
+    {
+      "inf": "asistir",
+      "tr": "katılmak",
+      "en": "to attend",
+      "group": "ir",
+      "stem": "asist",
+      "forms": [
+        "asistí",
+        "asististe",
+        "asistió",
+        "asistimos",
+        "asististeis",
+        "asistieron"
+      ]
+    },
+    {
+      "inf": "terminar",
+      "tr": "bitirmek",
+      "en": "to finish",
+      "group": "ar",
+      "stem": "termin",
+      "forms": [
+        "terminé",
+        "terminaste",
+        "terminó",
+        "terminamos",
+        "terminasteis",
+        "terminaron"
+      ]
+    },
+    {
+      "inf": "romper",
+      "tr": "kırmak",
+      "en": "to break",
+      "group": "er",
+      "stem": "romp",
+      "forms": [
+        "rompí",
+        "rompiste",
+        "rompió",
+        "rompimos",
+        "rompisteis",
+        "rompieron"
+      ]
+    }
+  ],
+  "roots": [
+    {
+      "inf": "saber",
+      "stem": "sup",
+      "tr": "bilmek; öğrenmek / haber almak",
+      "en": "to know; to find out",
+      "group": "U",
+      "forms": [
+        "supe",
+        "supiste",
+        "supo",
+        "supimos",
+        "supisteis",
+        "supieron"
+      ]
+    },
+    {
+      "inf": "poder",
+      "stem": "pud",
+      "tr": "yapabilmek; gücü yetmek",
+      "en": "to be able to",
+      "group": "U",
+      "forms": [
+        "pude",
+        "pudiste",
+        "pudo",
+        "pudimos",
+        "pudisteis",
+        "pudieron"
+      ]
+    },
+    {
+      "inf": "poner",
+      "stem": "pus",
+      "tr": "koymak",
+      "en": "to put",
+      "group": "U",
+      "forms": [
+        "puse",
+        "pusiste",
+        "puso",
+        "pusimos",
+        "pusisteis",
+        "pusieron"
+      ]
+    },
+    {
+      "inf": "haber",
+      "stem": "hub",
+      "tr": "yardımcı fiil; hubo: vardı / oldu",
+      "en": "auxiliary verb; hubo: there was / were",
+      "group": "U",
+      "forms": [
+        "hube",
+        "hubiste",
+        "hubo",
+        "hubimos",
+        "hubisteis",
+        "hubieron"
+      ]
+    },
+    {
+      "inf": "caber",
+      "stem": "cup",
+      "tr": "sığmak",
+      "en": "to fit",
+      "group": "U",
+      "forms": [
+        "cupe",
+        "cupiste",
+        "cupo",
+        "cupimos",
+        "cupisteis",
+        "cupieron"
+      ]
+    },
+    {
+      "inf": "tener",
+      "stem": "tuv",
+      "tr": "sahip olmak; burada: yaşamak / duymak",
+      "en": "to have",
+      "group": "U",
+      "forms": [
+        "tuve",
+        "tuviste",
+        "tuvo",
+        "tuvimos",
+        "tuvisteis",
+        "tuvieron"
+      ]
+    },
+    {
+      "inf": "estar",
+      "stem": "estuv",
+      "tr": "bulunmak; bir durumda olmak",
+      "en": "to be; to be located",
+      "group": "U",
+      "forms": [
+        "estuve",
+        "estuviste",
+        "estuvo",
+        "estuvimos",
+        "estuvisteis",
+        "estuvieron"
+      ]
+    },
+    {
+      "inf": "andar",
+      "stem": "anduv",
+      "tr": "yürümek; dolaşmak",
+      "en": "to walk; to go about",
+      "group": "U",
+      "forms": [
+        "anduve",
+        "anduviste",
+        "anduvo",
+        "anduvimos",
+        "anduvisteis",
+        "anduvieron"
+      ]
+    },
+    {
+      "inf": "conducir",
+      "stem": "conduj",
+      "tr": "araç kullanmak",
+      "en": "to drive",
+      "group": "J",
+      "forms": [
+        "conduje",
+        "condujiste",
+        "condujo",
+        "condujimos",
+        "condujisteis",
+        "condujeron"
+      ]
+    },
+    {
+      "inf": "producir",
+      "stem": "produj",
+      "tr": "üretmek",
+      "en": "to produce",
+      "group": "J",
+      "forms": [
+        "produje",
+        "produjiste",
+        "produjo",
+        "produjimos",
+        "produjisteis",
+        "produjeron"
+      ]
+    },
+    {
+      "inf": "traducir",
+      "stem": "traduj",
+      "tr": "çevirmek; tercüme etmek",
+      "en": "to translate",
+      "group": "J",
+      "forms": [
+        "traduje",
+        "tradujiste",
+        "tradujo",
+        "tradujimos",
+        "tradujisteis",
+        "tradujeron"
+      ]
+    },
+    {
+      "inf": "reducir",
+      "stem": "reduj",
+      "tr": "azaltmak; kısaltmak",
+      "en": "to reduce; to shorten",
+      "group": "J",
+      "forms": [
+        "reduje",
+        "redujiste",
+        "redujo",
+        "redujimos",
+        "redujisteis",
+        "redujeron"
+      ]
+    },
+    {
+      "inf": "decir",
+      "stem": "dij",
+      "tr": "söylemek; demek",
+      "en": "to say; to tell",
+      "group": "J",
+      "forms": [
+        "dije",
+        "dijiste",
+        "dijo",
+        "dijimos",
+        "dijisteis",
+        "dijeron"
+      ]
+    },
+    {
+      "inf": "traer",
+      "stem": "traj",
+      "tr": "getirmek",
+      "en": "to bring",
+      "group": "J",
+      "forms": [
+        "traje",
+        "trajiste",
+        "trajo",
+        "trajimos",
+        "trajisteis",
+        "trajeron"
+      ]
+    },
+    {
+      "inf": "querer",
+      "stem": "quis",
+      "tr": "istemek",
+      "en": "to want",
+      "group": "I",
+      "forms": [
+        "quise",
+        "quisiste",
+        "quiso",
+        "quisimos",
+        "quisisteis",
+        "quisieron"
+      ]
+    },
+    {
+      "inf": "venir",
+      "stem": "vin",
+      "tr": "gelmek",
+      "en": "to come",
+      "group": "I",
+      "forms": [
+        "vine",
+        "viniste",
+        "vino",
+        "vinimos",
+        "vinisteis",
+        "vinieron"
+      ]
+    },
+    {
+      "inf": "hacer",
+      "stem": "hic",
+      "tr": "yapmak",
+      "en": "to do; to make",
+      "group": "I",
+      "forms": [
+        "hice",
+        "hiciste",
+        "hizo",
+        "hicimos",
+        "hicisteis",
+        "hicieron"
+      ]
+    }
+  ],
+  "total": [
+    {
+      "inf": "dar",
+      "tr": "vermek",
+      "en": "to give",
+      "forms": [
+        "di",
+        "diste",
+        "dio",
+        "dimos",
+        "disteis",
+        "dieron"
+      ],
+      "note": "Bu çekimlerin hiçbirinde tilde yok: di, dio; dí / dió değil."
+    },
+    {
+      "inf": "ser",
+      "tr": "olmak",
+      "en": "to be",
+      "forms": [
+        "fui",
+        "fuiste",
+        "fue",
+        "fuimos",
+        "fuisteis",
+        "fueron"
+      ],
+      "note": "Ser ve ir bu zamanda aynı çekilir. Anlamı bağlamdan buluruz: Fue un día estupendo."
+    },
+    {
+      "inf": "ir",
+      "tr": "gitmek",
+      "en": "to go",
+      "forms": [
+        "fui",
+        "fuiste",
+        "fue",
+        "fuimos",
+        "fuisteis",
+        "fueron"
+      ],
+      "note": "Ser ve ir bu zamanda aynı çekilir. Yer / yön bildiren bağlam: Fuimos al museo."
+    }
+  ],
+  "changes": [
+    {
+      "inf": "pedir",
+      "tr": "istemek; sipariş vermek",
+      "en": "to ask for; to order",
+      "forms": [
+        "pedí",
+        "pediste",
+        "pidió",
+        "pedimos",
+        "pedisteis",
+        "pidieron"
+      ],
+      "group": "e → i"
+    },
+    {
+      "inf": "repetir",
+      "tr": "tekrarlamak",
+      "en": "to repeat",
+      "forms": [
+        "repetí",
+        "repetiste",
+        "repitió",
+        "repetimos",
+        "repetisteis",
+        "repitieron"
+      ],
+      "group": "e → i"
+    },
+    {
+      "inf": "sentir",
+      "tr": "hissetmek",
+      "en": "to feel",
+      "forms": [
+        "sentí",
+        "sentiste",
+        "sintió",
+        "sentimos",
+        "sentisteis",
+        "sintieron"
+      ],
+      "group": "e → i"
+    },
+    {
+      "inf": "seguir",
+      "tr": "takip etmek; devam etmek",
+      "en": "to follow; to continue",
+      "forms": [
+        "seguí",
+        "seguiste",
+        "siguió",
+        "seguimos",
+        "seguisteis",
+        "siguieron"
+      ],
+      "group": "e → i",
+      "note": "-guir ile bitiyor; u burada okunmaz. Y grubuna girmez: siguió, siguieron."
+    },
+    {
+      "inf": "mentir",
+      "tr": "yalan söylemek",
+      "en": "to lie",
+      "forms": [
+        "mentí",
+        "mentiste",
+        "mintió",
+        "mentimos",
+        "mentisteis",
+        "mintieron"
+      ],
+      "group": "e → i"
+    },
+    {
+      "inf": "competir",
+      "tr": "yarışmak",
+      "en": "to compete",
+      "forms": [
+        "competí",
+        "competiste",
+        "compitió",
+        "competimos",
+        "competisteis",
+        "compitieron"
+      ],
+      "group": "e → i"
+    },
+    {
+      "inf": "elegir",
+      "tr": "seçmek",
+      "en": "to choose",
+      "forms": [
+        "elegí",
+        "elegiste",
+        "eligió",
+        "elegimos",
+        "elegisteis",
+        "eligieron"
+      ],
+      "group": "e → i"
+    },
+    {
+      "inf": "medir",
+      "tr": "ölçmek",
+      "en": "to measure",
+      "forms": [
+        "medí",
+        "mediste",
+        "midió",
+        "medimos",
+        "medisteis",
+        "midieron"
+      ],
+      "group": "e → i"
+    },
+    {
+      "inf": "reír",
+      "tr": "gülmek",
+      "en": "to laugh",
+      "forms": [
+        "reí",
+        "reíste",
+        "rio",
+        "reímos",
+        "reísteis",
+        "rieron"
+      ],
+      "group": "e → i",
+      "note": "Özel yazım: él / ella rio ve ellos rieron. Güncel yazımda rio tilde almaz; riieron yazılmaz."
+    },
+    {
+      "inf": "preferir",
+      "tr": "tercih etmek",
+      "en": "to prefer",
+      "forms": [
+        "preferí",
+        "preferiste",
+        "prefirió",
+        "preferimos",
+        "preferisteis",
+        "prefirieron"
+      ],
+      "group": "e → i"
+    },
+    {
+      "inf": "servir",
+      "tr": "servis etmek; hizmet etmek",
+      "en": "to serve",
+      "forms": [
+        "serví",
+        "serviste",
+        "sirvió",
+        "servimos",
+        "servisteis",
+        "sirvieron"
+      ],
+      "group": "e → i"
+    },
+    {
+      "inf": "dormir",
+      "tr": "uyumak",
+      "en": "to sleep",
+      "forms": [
+        "dormí",
+        "dormiste",
+        "durmió",
+        "dormimos",
+        "dormisteis",
+        "durmieron"
+      ],
+      "group": "o → u"
+    },
+    {
+      "inf": "morir",
+      "tr": "ölmek",
+      "en": "to die",
+      "forms": [
+        "morí",
+        "moriste",
+        "murió",
+        "morimos",
+        "moristeis",
+        "murieron"
+      ],
+      "group": "o → u"
+    },
+    {
+      "inf": "leer",
+      "tr": "okumak",
+      "en": "to read",
+      "forms": [
+        "leí",
+        "leíste",
+        "leyó",
+        "leímos",
+        "leísteis",
+        "leyeron"
+      ],
+      "group": "i → y"
+    },
+    {
+      "inf": "construir",
+      "tr": "inşa etmek",
+      "en": "to build",
+      "forms": [
+        "construí",
+        "construiste",
+        "construyó",
+        "construimos",
+        "construisteis",
+        "construyeron"
+      ],
+      "group": "i → y",
+      "note": "Tildeye dikkat: construí; ama construiste, construimos, construisteis."
+    },
+    {
+      "inf": "creer",
+      "tr": "inanmak; sanmak",
+      "en": "to believe; to think",
+      "forms": [
+        "creí",
+        "creíste",
+        "creyó",
+        "creímos",
+        "creísteis",
+        "creyeron"
+      ],
+      "group": "i → y"
+    },
+    {
+      "inf": "caer",
+      "tr": "düşmek",
+      "en": "to fall",
+      "forms": [
+        "caí",
+        "caíste",
+        "cayó",
+        "caímos",
+        "caísteis",
+        "cayeron"
+      ],
+      "group": "i → y"
+    },
+    {
+      "inf": "oír",
+      "tr": "duymak",
+      "en": "to hear",
+      "forms": [
+        "oí",
+        "oíste",
+        "oyó",
+        "oímos",
+        "oísteis",
+        "oyeron"
+      ],
+      "group": "i → y"
+    },
+    {
+      "inf": "sustituir",
+      "tr": "yerine koymak; değiştirmek",
+      "en": "to replace",
+      "forms": [
+        "sustituí",
+        "sustituiste",
+        "sustituyó",
+        "sustituimos",
+        "sustituisteis",
+        "sustituyeron"
+      ],
+      "group": "i → y"
+    },
+    {
+      "inf": "huir",
+      "tr": "kaçmak",
+      "en": "to flee",
+      "forms": [
+        "hui",
+        "huiste",
+        "huyó",
+        "huimos",
+        "huisteis",
+        "huyeron"
+      ],
+      "group": "i → y",
+      "note": "Hui tek heceli kabul edilir ve tilde almaz. Huyó ise tilde alır."
+    },
+    {
+      "inf": "influir",
+      "tr": "etkilemek",
+      "en": "to influence",
+      "forms": [
+        "influí",
+        "influiste",
+        "influyó",
+        "influimos",
+        "influisteis",
+        "influyeron"
+      ],
+      "group": "i → y"
+    }
+  ],
+  "orthographic": [
+    {
+      "inf": "buscar",
+      "tr": "aramak",
+      "en": "to look for",
+      "forms": [
+        "busqué",
+        "buscaste",
+        "buscó",
+        "buscamos",
+        "buscasteis",
+        "buscaron"
+      ],
+      "group": "-car → -qué"
+    },
+    {
+      "inf": "tocar",
+      "tr": "dokunmak; çalgı çalmak",
+      "en": "to touch; to play an instrument",
+      "forms": [
+        "toqué",
+        "tocaste",
+        "tocó",
+        "tocamos",
+        "tocasteis",
+        "tocaron"
+      ],
+      "group": "-car → -qué"
+    },
+    {
+      "inf": "sacar",
+      "tr": "çıkarmak; fotoğraf çekmek",
+      "en": "to take out; to take a photo",
+      "forms": [
+        "saqué",
+        "sacaste",
+        "sacó",
+        "sacamos",
+        "sacasteis",
+        "sacaron"
+      ],
+      "group": "-car → -qué"
+    },
+    {
+      "inf": "explicar",
+      "tr": "açıklamak",
+      "en": "to explain",
+      "forms": [
+        "expliqué",
+        "explicaste",
+        "explicó",
+        "explicamos",
+        "explicasteis",
+        "explicaron"
+      ],
+      "group": "-car → -qué"
+    },
+    {
+      "inf": "pagar",
+      "tr": "ödemek",
+      "en": "to pay",
+      "forms": [
+        "pagué",
+        "pagaste",
+        "pagó",
+        "pagamos",
+        "pagasteis",
+        "pagaron"
+      ],
+      "group": "-gar → -gué"
+    },
+    {
+      "inf": "llegar",
+      "tr": "varmak",
+      "en": "to arrive",
+      "forms": [
+        "llegué",
+        "llegaste",
+        "llegó",
+        "llegamos",
+        "llegasteis",
+        "llegaron"
+      ],
+      "group": "-gar → -gué"
+    },
+    {
+      "inf": "jugar",
+      "tr": "oyun oynamak",
+      "en": "to play",
+      "forms": [
+        "jugué",
+        "jugaste",
+        "jugó",
+        "jugamos",
+        "jugasteis",
+        "jugaron"
+      ],
+      "group": "-gar → -gué"
+    },
+    {
+      "inf": "empezar",
+      "tr": "başlamak",
+      "en": "to start",
+      "forms": [
+        "empecé",
+        "empezaste",
+        "empezó",
+        "empezamos",
+        "empezasteis",
+        "empezaron"
+      ],
+      "group": "-zar → -cé"
+    },
+    {
+      "inf": "organizar",
+      "tr": "düzenlemek",
+      "en": "to organise",
+      "forms": [
+        "organicé",
+        "organizaste",
+        "organizó",
+        "organizamos",
+        "organizasteis",
+        "organizaron"
+      ],
+      "group": "-zar → -cé"
+    },
+    {
+      "inf": "adelgazar",
+      "tr": "zayıflamak",
+      "en": "to lose weight",
+      "forms": [
+        "adelgacé",
+        "adelgazaste",
+        "adelgazó",
+        "adelgazamos",
+        "adelgazasteis",
+        "adelgazaron"
+      ],
+      "group": "-zar → -cé"
+    },
+    {
+      "inf": "cruzar",
+      "tr": "karşıya geçmek",
+      "en": "to cross",
+      "forms": [
+        "crucé",
+        "cruzaste",
+        "cruzó",
+        "cruzamos",
+        "cruzasteis",
+        "cruzaron"
+      ],
+      "group": "-zar → -cé"
+    }
+  ],
+  "turns": [
+    {
+      "speaker": "Paula",
+      "voice": "es-ES-ElviraNeural",
+      "block": 1,
+      "text": "Oye, Marcos, ¿qué hiciste ayer al final? Yo [[1:fui]] al centro con mi hermana. Primero buscamos una cafetería cerca de la plaza de Santa Ana. Ella [[2:pidió]] un café y yo [[3:pagué]] la cuenta.",
+      "syntax": [
+        [
+          "Oye, ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "Marcos, ",
+          "Seslenme · vocativo"
+        ],
+        [
+          "¿qué ",
+          "Soru nesnesi"
+        ],
+        [
+          "hiciste ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "ayer ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "al final?",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "Yo ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "[[1:fui]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "al centro ",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "con mi hermana.",
+          "Birliktelik"
+        ],
+        [
+          "Primero ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "buscamos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "una cafetería ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "cerca de la plaza de Santa Ana.",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "Ella ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "[[2:pidió]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "un café ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "yo ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "[[3:pagué]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "la cuenta.",
+          "Doğrudan nesne · complemento directo"
+        ]
+      ]
+    },
+    {
+      "speaker": "Marcos",
+      "voice": "es-ES-AlvaroNeural",
+      "block": 1,
+      "text": "Pues yo quedé con Dani en el Retiro. [[4:Llegué]] un poco tarde porque perdí el autobús. Dimos una vuelta y, después, leímos unos anuncios en el centro cultural.",
+      "syntax": [
+        [
+          "Pues ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "yo ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "quedé ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "con Dani ",
+          "Birliktelik"
+        ],
+        [
+          "en el Retiro.",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "[[4:Llegué]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "un poco tarde ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "porque ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "perdí ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "el autobús.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "Dimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "una vuelta ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "y, ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "después, ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "leímos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "unos anuncios ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "en el centro cultural.",
+          "Yer / yön · complemento de lugar"
+        ]
+      ]
+    },
+    {
+      "speaker": "Paula",
+      "voice": "es-ES-ElviraNeural",
+      "block": 1,
+      "text": "¿Y encontrasteis algo interesante?",
+      "syntax": [
+        [
+          "¿Y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "encontrasteis ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "algo interesante?",
+          "Doğrudan nesne · complemento directo"
+        ]
+      ]
+    },
+    {
+      "speaker": "Marcos",
+      "voice": "es-ES-AlvaroNeural",
+      "block": 1,
+      "text": "Sí, vimos un taller de fotografía. El chico de recepción nos [[5:dio]] toda la información y nosotros elegimos el grupo del sábado.",
+      "syntax": [
+        [
+          "Sí, ",
+          "Onay belirten söz"
+        ],
+        [
+          "vimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "un taller de fotografía.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "El chico de recepción ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "nos ",
+          "Dolaylı nesne · complemento indirecto"
+        ],
+        [
+          "[[5:dio]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "toda la información ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "nosotros ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "elegimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "el grupo del sábado.",
+          "Doğrudan nesne · complemento directo"
+        ]
+      ]
+    },
+    {
+      "speaker": "Paula",
+      "voice": "es-ES-ElviraNeural",
+      "block": 2,
+      "text": "¡Qué bien! Por la tarde mi hermana y yo fuimos a una librería. Allí conocimos a una escritora. Ella [[6:leyó]] un cuento y luego respondió a varias preguntas. A mi hermana le encantó.",
+      "syntax": [
+        [
+          "¡Qué bien!",
+          "Tepki / değerlendirme"
+        ],
+        [
+          "Por la tarde ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "mi hermana y yo ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "fuimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "a una librería.",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "Allí ",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "conocimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "a una escritora.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "Ella ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "[[6:leyó]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "un cuento ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "luego ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "respondió ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "a varias preguntas.",
+          "Edata bağlı tamamlayıcı"
+        ],
+        [
+          "A mi hermana ",
+          "Dolaylı nesne · complemento indirecto"
+        ],
+        [
+          "le ",
+          "Dolaylı nesne · complemento indirecto"
+        ],
+        [
+          "encantó.",
+          "Fiil / fiil grubu · verbo"
+        ]
+      ]
+    },
+    {
+      "speaker": "Marcos",
+      "voice": "es-ES-AlvaroNeural",
+      "block": 2,
+      "text": "Suena genial. ¿Volvisteis pronto a casa?",
+      "syntax": [
+        [
+          "Suena ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "genial.",
+          "Değerlendirme bildiren tamamlayıcı"
+        ],
+        [
+          "¿Volvisteis ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "pronto ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "a casa?",
+          "Yer / yön · complemento de lugar"
+        ]
+      ]
+    },
+    {
+      "speaker": "Paula",
+      "voice": "es-ES-ElviraNeural",
+      "block": 2,
+      "text": "No mucho. Antes de irnos, mi hermana se [[7:sintió]] un poco cansada, así que volvimos en metro. Yo me dormí enseguida, pero ella no [[8:durmió]] bien. Los vecinos pusieron música hasta muy tarde.",
+      "syntax": [
+        [
+          "No mucho.",
+          "Önceki soruya kısa cevap"
+        ],
+        [
+          "Antes de irnos, ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "mi hermana ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "se [[7:sintió]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "un poco cansada, ",
+          "Öznenin durumunu belirten sıfat grubu"
+        ],
+        [
+          "así que ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "volvimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "en metro.",
+          "Tarz / araç / miktar tamamlayıcısı"
+        ],
+        [
+          "Yo ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "me dormí ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "enseguida, ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "pero ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "ella ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "no [[8:durmió]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "bien.",
+          "Tarz / araç / miktar tamamlayıcısı"
+        ],
+        [
+          "Los vecinos ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "pusieron ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "música ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "hasta muy tarde.",
+          "Zaman · complemento de tiempo"
+        ]
+      ]
+    },
+    {
+      "speaker": "Marcos",
+      "voice": "es-ES-AlvaroNeural",
+      "block": 2,
+      "text": "Vaya, qué mala suerte. Pues nosotros salimos a cenar. En el restaurante nos [[9:sirvieron]] una tortilla buenísima. Al final, Dani se [[10:cayó]] al salir, pero no pasó nada. Nos reímos un montón y volvimos a casa andando.",
+      "syntax": [
+        [
+          "Vaya, ",
+          "Tepki ünlemi"
+        ],
+        [
+          "qué mala suerte.",
+          "Tepki / değerlendirme"
+        ],
+        [
+          "Pues ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "nosotros ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "salimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "a cenar.",
+          "Amaç / hedef bildiren grup"
+        ],
+        [
+          "En el restaurante ",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "nos ",
+          "Dolaylı nesne · complemento indirecto"
+        ],
+        [
+          "[[9:sirvieron]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "una tortilla buenísima.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "Al final, ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "Dani ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "se [[10:cayó]] ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "al salir, ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "pero ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "no pasó ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "nada.",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "Nos reímos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "un montón ",
+          "Tarz / araç / miktar tamamlayıcısı"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "volvimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "a casa ",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "andando.",
+          "Tarz / araç / miktar tamamlayıcısı"
+        ]
+      ]
+    }
+  ],
+  "blanks": [
+    {
+      "id": 1,
+      "answer": "fui",
+      "lemma": "ir",
+      "group": "Tamamen düzensiz",
+      "explanation": "Yo fui: ir fiilinin birinci tekil çekimi. Burada bir yere gitmek anlatılıyor.",
+      "block": 1
+    },
+    {
+      "id": 2,
+      "answer": "pidió",
+      "lemma": "pedir",
+      "group": "e → i",
+      "explanation": "Ella pidió: değişim yalnızca üçüncü kişilerde.",
+      "block": 1
+    },
+    {
+      "id": 3,
+      "answer": "pagué",
+      "lemma": "pagar",
+      "group": "g → gu",
+      "explanation": "Yo pagué: /g/ sesini korumak için e öncesine u gelir.",
+      "block": 1
+    },
+    {
+      "id": 4,
+      "answer": "Llegué",
+      "lemma": "llegar",
+      "group": "g → gu",
+      "explanation": "Yo llegué: yazım değişimi birinci tekil kişide.",
+      "block": 1
+    },
+    {
+      "id": 5,
+      "answer": "dio",
+      "lemma": "dar",
+      "group": "Tamamen düzensiz",
+      "explanation": "Dio yazımında tilde kullanılmaz.",
+      "block": 1
+    },
+    {
+      "id": 6,
+      "answer": "leyó",
+      "lemma": "leer",
+      "group": "i → y",
+      "explanation": "Ella leyó: le- + -ió → leyó.",
+      "block": 2
+    },
+    {
+      "id": 7,
+      "answer": "sintió",
+      "lemma": "sentirse",
+      "group": "e → i",
+      "explanation": "Se sintió: üçüncü tekil kişi, e → i.",
+      "block": 2
+    },
+    {
+      "id": 8,
+      "answer": "durmió",
+      "lemma": "dormir",
+      "group": "o → u",
+      "explanation": "Ella durmió: üçüncü tekil kişi, o → u.",
+      "block": 2
+    },
+    {
+      "id": 9,
+      "answer": "sirvieron",
+      "lemma": "servir",
+      "group": "e → i",
+      "explanation": "Nos sirvieron: özne onlar; üçüncü çoğulda e → i.",
+      "block": 2
+    },
+    {
+      "id": 10,
+      "answer": "cayó",
+      "lemma": "caerse",
+      "group": "i → y",
+      "explanation": "Se cayó: üçüncü tekil kişi, i → y.",
+      "block": 2
+    }
+  ],
+  "headlines": [
+    {
+      "letter": "A",
+      "text": "Se busca un perro"
+    },
+    {
+      "letter": "B",
+      "text": "Una habitación para estudiantes"
+    },
+    {
+      "letter": "C",
+      "text": "Taller de fotografía para principiantes"
+    },
+    {
+      "letter": "D",
+      "text": "Venta de una bicicleta"
+    },
+    {
+      "letter": "E",
+      "text": "Una ruta por la sierra"
+    },
+    {
+      "letter": "F",
+      "text": "Clases de cocina sin carne"
+    },
+    {
+      "letter": "G",
+      "text": "Trabajo de camarero los fines de semana"
+    },
+    {
+      "letter": "H",
+      "text": "Cambio de horario de la biblioteca"
+    }
+  ],
+  "ads": [
+    {
+      "id": 1,
+      "answer": "C",
+      "text": "¿Quieres hacer mejores fotos con el móvil? El centro cultural abre un grupo para personas sin experiencia. Las clases son los sábados de diez a doce. Practicamos la luz y los retratos en la calle. No necesitas una cámara profesional. La primera sesión es gratuita.",
+      "explanation": "Telefonla daha iyi fotoğraf çekme, deneyimsiz katılımcılar ve cumartesi dersleri fotoğraf atölyesini anlatıyor.",
+      "syntax": [
+        [
+          "¿Quieres hacer ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "mejores fotos ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "con el móvil?",
+          "Tarz / araç / miktar tamamlayıcısı"
+        ],
+        [
+          "El centro cultural ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "abre ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "un grupo ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "para personas sin experiencia.",
+          "Amaç / hedef bildiren grup"
+        ],
+        [
+          "Las clases ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "son ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "los sábados de diez a doce.",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "Practicamos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "la luz y los retratos ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "en la calle.",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "No necesitas ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "una cámara profesional.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "La primera sesión ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "es ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "gratuita.",
+          "Nitelik / yüklem adı · atributo"
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "answer": "F",
+      "text": "Aprende a preparar platos fáciles con verduras, arroz y legumbres. En nuestro curso no utilizamos carne ni pescado. Cocinamos en grupos pequeños y después comemos juntos. Los miércoles por la tarde, junto al mercado. El precio incluye todos los ingredientes. No hace falta saber cocinar.",
+      "explanation": "Et ve balık kullanılmayan yemekler ve kurstaki uygulama, etsiz yemek derslerini işaret ediyor.",
+      "syntax": [
+        [
+          "Aprende a preparar ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "platos fáciles con verduras, arroz y legumbres.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "En nuestro curso ",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "no utilizamos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "carne ni pescado.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "Cocinamos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "en grupos pequeños ",
+          "Tarz / araç / miktar tamamlayıcısı"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "después ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "comemos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "juntos.",
+          "Tarz / araç / miktar tamamlayıcısı"
+        ],
+        [
+          "Los miércoles por la tarde, ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "junto al mercado.",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "El precio ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "incluye ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "todos los ingredientes.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "No hace falta ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "saber cocinar.",
+          "Özne grubu · sujeto"
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "answer": "A",
+      "text": "Ayer por la tarde perdimos a Coco cerca del parque. Es pequeño, blanco y lleva un collar rojo. Es muy tranquilo y responde a su nombre. Si lo ves, por favor, llama al número del cartel del portal. No tiene ningún problema de salud. Su familia lo espera en casa.",
+      "explanation": "Kaybolan Coco’nun görünüşü, tasması ve bulunursa arama isteği kayıp köpek ilanına ait. Gerçek iletişim bilgisi verilmemiştir.",
+      "syntax": [
+        [
+          "Ayer por la tarde ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "perdimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "a Coco ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "cerca del parque.",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "Es ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "pequeño, blanco ",
+          "Nitelik / yüklem adı · atributo"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "lleva ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "un collar rojo.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "Es ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "muy tranquilo ",
+          "Nitelik / yüklem adı · atributo"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "responde ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "a su nombre.",
+          "Edata bağlı tamamlayıcı"
+        ],
+        [
+          "Si ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "lo ves, ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "por favor, ",
+          "Tarz / araç / miktar tamamlayıcısı"
+        ],
+        [
+          "llama ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "al número del cartel del portal.",
+          "Aranan telefon numarasını bildiren tamamlayıcı"
+        ],
+        [
+          "No tiene ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "ningún problema de salud.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "Su familia ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "lo espera ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "en casa.",
+          "Yer / yön · complemento de lugar"
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "answer": "E",
+      "text": "Este domingo salimos de Madrid a las ocho para caminar por la montaña. El camino es fácil y dura unas tres horas. Un guía acompaña al grupo durante toda la mañana. Trae agua, algo de comida y calzado cómodo. El autobús está incluido. Hay que reservar plaza antes del viernes.",
+      "explanation": "Madrid’den otobüsle çıkış, rehber, dağda yürüyüş ve rezervasyon bir doğa yürüyüşü turunu anlatıyor.",
+      "syntax": [
+        [
+          "Este domingo ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "salimos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "de Madrid ",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "a las ocho ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "para caminar por la montaña.",
+          "Amaç / hedef bildiren grup"
+        ],
+        [
+          "El camino ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "es ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "fácil ",
+          "Nitelik / yüklem adı · atributo"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "dura ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "unas tres horas.",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "Un guía ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "acompaña ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "al grupo ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "durante toda la mañana.",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "Trae ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "agua, algo de comida y calzado cómodo.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "El autobús ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "está incluido.",
+          "Edilgen / sonuç durumu bildiren yüklem"
+        ],
+        [
+          "Hay que reservar ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "plaza ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "antes del viernes.",
+          "Zaman · complemento de tiempo"
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "answer": "D",
+      "text": "Por mudanza, vendo mi bici de ciudad. Tiene tres años, funciona perfectamente y acaba de pasar una revisión. El precio incluye un casco y un candado. Puedes verla y probarla por las tardes en el barrio de Arganzuela. Solo recogida en persona; no hago envíos.",
+      "explanation": "Vendo, fiyatın kask ve kilidi içermesi ve bisikleti deneyebilme bilgileri satılık bisiklet ilanına ait.",
+      "syntax": [
+        [
+          "Por mudanza, ",
+          "Neden bildiren tamamlayıcı"
+        ],
+        [
+          "vendo ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "mi bici de ciudad.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "Tiene ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "tres años, ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "funciona ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "perfectamente ",
+          "Tarz / araç / miktar tamamlayıcısı"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "acaba de pasar ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "una revisión.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "El precio ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "incluye ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "un casco y un candado.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "Puedes verla y probarla ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "por las tardes ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "en el barrio de Arganzuela.",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "Solo recogida en persona;",
+          "Teslim alma koşulu bildiren söz öbeği"
+        ],
+        [
+          "no hago ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "envíos.",
+          "Doğrudan nesne · complemento directo"
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "answer": "B",
+      "text": "Disponible desde el próximo mes en un piso compartido con dos universitarias. Tiene cama, escritorio y mucha luz. Está a diez minutos a pie de la facultad. Buscamos una persona tranquila que estudie y no fume. Los gastos de agua e internet están incluidos en el precio.",
+      "explanation": "Paylaşımlı evde yatak ve çalışma masası bulunan alan, fakülteye yakınlık ve öğrenci arama bilgileri öğrenci odasını anlatıyor.",
+      "syntax": [
+        [
+          "Disponible ",
+          "Odanın durumunu belirten sıfat"
+        ],
+        [
+          "desde el próximo mes ",
+          "Zaman · complemento de tiempo"
+        ],
+        [
+          "en un piso compartido con dos universitarias.",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "Tiene ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "cama, escritorio y mucha luz.",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "Está ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "a diez minutos a pie de la facultad.",
+          "Yer / yön · complemento de lugar"
+        ],
+        [
+          "Buscamos ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "una persona tranquila ",
+          "Doğrudan nesne · complemento directo"
+        ],
+        [
+          "que ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "estudie ",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "y ",
+          "Bağlayıcı · nexo"
+        ],
+        [
+          "no fume.",
+          "Fiil / fiil grubu · verbo"
+        ],
+        [
+          "Los gastos de agua e internet ",
+          "Özne grubu · sujeto"
+        ],
+        [
+          "están incluidos ",
+          "Edilgen / sonuç durumu bildiren yüklem"
+        ],
+        [
+          "en el precio.",
+          "Dâhil olma ilişkisini belirten tamamlayıcı"
+        ]
+      ]
+    }
+  ],
+  "sourceNotes": [
+    [
+      "RAE · Fiil çekim modelleri",
+      "https://www.rae.es/dpd/ayuda/modelos-de-conjugacion-verbal"
+    ],
+    [
+      "RAE · Tilde",
+      "https://www.rae.es/dpd/tilde"
+    ],
+    [
+      "ULPGC · Construir",
+      "https://tulengua.iatext.ulpgc.es/conjugar-verbo/conjugacion-del-verbo-construir.html"
+    ]
+  ],
+  "audio": {
+    "type": "synthetic",
+    "locale": "es-ES",
+    "voices": [
+      "es-ES-ElviraNeural",
+      "es-ES-AlvaroNeural"
+    ],
+    "description": "İki farklı İspanya İspanyolcası sesiyle hazırlanmış özgün sentetik diyalog. İnsan kaydı değildir; belirli bir Madrid konuşuruna ait olduğu iddia edilmez."
+  }
+}

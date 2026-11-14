@@ -1,0 +1,50 @@
+[
+  {
+    "speaker": "Paula",
+    "start": 0.0,
+    "duration": 12.251,
+    "block": 1
+  },
+  {
+    "speaker": "Marcos",
+    "start": 12.471,
+    "duration": 10.112,
+    "block": 1
+  },
+  {
+    "speaker": "Paula",
+    "start": 22.804,
+    "duration": 1.917,
+    "block": 1
+  },
+  {
+    "speaker": "Marcos",
+    "start": 24.941,
+    "duration": 7.643,
+    "block": 1
+  },
+  {
+    "speaker": "Paula",
+    "start": 33.404,
+    "duration": 13.157,
+    "block": 2
+  },
+  {
+    "speaker": "Marcos",
+    "start": 46.78,
+    "duration": 3.109,
+    "block": 2
+  },
+  {
+    "speaker": "Paula",
+    "start": 50.109,
+    "duration": 13.128,
+    "block": 2
+  },
+  {
+    "speaker": "Marcos",
+    "start": 63.457,
+    "duration": 15.595,
+    "block": 2
+  }
+]
