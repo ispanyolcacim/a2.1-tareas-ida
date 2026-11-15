@@ -1,6 +1,6 @@
 # A2.1 · 9–10 classroom activity
 
-Canonical page: `9-10-ders-ici-etkinlik.html`.
+Canonical page: `09-10-ders-ici-ispanyolcacim-a21.html`.
 
 - Seven panels: regular preterite verbs, irregular roots, dar/ser/ir, third-person vowel and i→y changes, -car/-gar/-zar spelling, dialogue dictation, and advertisement-to-headline matching.
 - The first two panels copy the 30 regular verbs and 17 irregular-root verbs from the 7–8 classroom activity without changing their conjugations.
