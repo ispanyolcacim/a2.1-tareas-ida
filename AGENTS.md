@@ -37,3 +37,11 @@ User instruction, 15 November 2026: use `DD-DD-ders-ici-ispanyolcacim-LEVEL.html
 ## Clean classroom activity URLs
 
 User instruction, 15 November 2026: share and display classroom URLs ending in `.html`, without section fragments such as `#dictation-1`, `#estructura`, `#futuro` or `#bolum-2`, at every level. Tabs, keyboard navigation and previous/next controls must update the activity directly without adding a fragment. Honor an incoming legacy fragment for the initial section, then remove it with `history.replaceState` while preserving the path, query string, existing history state, answers and storage keys. Never append a default section on load. Use clean canonical URLs in messages, indexes and maintained activity links.
+
+## Required student and teacher portal registration
+
+Every new classroom activity must be registered and verified in BOTH the student portal lesson-note mapping and the encrypted teacher catalog. Preserve the existing password and all other lessons. Publish only re-encrypted teacher output with fresh salt/IV; never commit credentials, keys, or decrypted teacher HTML. Verify correct level, lesson and clean canonical URL in both portals.
+
+## A2.1 11–12 writing workshop
+
+User instruction, 16 November 2026: “La maleta equivocada” is a two-lesson group writing workshop. Do not impose word limits, character quotas, required verb counts, group-size caps or timed submission. Keep first-lesson draft saving and second-lesson revision/preview/final sending, first names only, and local draft retention. Do not send production test emails. Keep existing separate homework requirements intact.
