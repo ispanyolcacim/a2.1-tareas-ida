@@ -265,13 +265,11 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     <button class="btn btn-yellow btn-full" id="btn-dict-submit" onclick="goToDictConfirm()">📩 Dikteyi Teslim Et</button>
     <div class="dict-status" id="dict-status"></div>
     <div class="dict-correct-box" id="dict-correct-box">
-      <button class="btn-continue-big" onclick="goToQuizFromDictation()">➡️ KISIM 2'YE GEÇ: Okuma / Çeviri / Yol Gösterici</button>
-      <div class="dict-continue-hint">👉 Ödev burada bitmiyor! Toplam puanın için kalan 3 bölümü de tamamlaman gerekiyor.</div>
+      <h2 class="dict-correct-title" id="dict-result-heading" tabindex="-1">🎧 Dikte puanın <span id="dict-score-line">0 / 20</span></h2>
+      <button class="btn-continue-big" onclick="goToQuizFromDictation()">➡️ Kısım 2’ye Geç · Okuma Çalışması</button>
+      <div class="dict-continue-hint">Toplam puanın için kalan üç bölümü tamamla.</div>
       <div class="dict-correct-title">✅ Diktenin Doğru Hali</div>
       <div class="dict-correct-text" id="dict-correct-text"></div>
-      <div class="score-breakdown">
-        <div class="breakdown-row" style="background:rgba(248,206,91,0.3)"><span class="br-label">🎧 Dikte Puanı</span><span class="br-score" id="dict-score-line">0 / 20</span></div>
-      </div>
     </div>
   </div>
 </div>
@@ -366,7 +364,6 @@ let studentName = '';
 let answers = {};
 let currentQ = 0;
 let submitted = false;
-let quizTotalScore = 0; // Kısım 1-3 toplamı (80 üzerinden)
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById('screen-' + id).classList.add('active');
@@ -377,7 +374,7 @@ function startQuiz() {
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
   studentName = sel.value;
   answers = {}; submitted = false; currentQ = 0;
-  dictEmailSent = false; dictScoreFinal = 0; quizTotalScore = 0;
+  dictationSubmitted = false; dictScoreFinal = 0;
   document.getElementById('top-student').textContent = studentName;
   document.getElementById('dict-top-student').textContent = studentName;
   showScreen('dictation');
@@ -505,8 +502,7 @@ function submitQuiz() {
   const ceviriScore = fmt(ceviri * 1.5);   // 20 soru x 1.5 = 30
   const yolScore    = fmt(yol    * 2);     // 10 soru x 2   = 20
   const score       = fmt(okumaScore + ceviriScore + yolScore); // /80
-  quizTotalScore = score;
-  const totalScore = fmt(quizTotalScore + dictScoreFinal); // /100
+  const totalScore = fmt(score + dictScoreFinal); // /100
   const correct = okuma + ceviri + yol;
   const wrong   = QUESTIONS.filter(q => answers[q.id] !== undefined && answers[q.id] !== q.ans).length;
   const blank   = QUESTIONS.filter(q => answers[q.id] === undefined).length;
@@ -521,29 +517,25 @@ function submitQuiz() {
   document.getElementById('br-ceviri').textContent  = ceviriScore + ' / 30';
   document.getElementById('br-yol').textContent     = yolScore    + ' / 20';
   showScreen('result');
-  sendToSheets(studentName, score, correct, wrong, blank, totalScore);
+  sendToSheets(score, correct, wrong, blank, totalScore);
 }
+const istanbulDateTime = new Intl.DateTimeFormat('tr-TR', {
+  timeZone:'Europe/Istanbul', day:'2-digit', month:'2-digit', year:'numeric',
+  hour:'2-digit', minute:'2-digit', second:'2-digit', hourCycle:'h23'
+});
 function nowStamp() {
-  const now = new Date();
-  const dd=String(now.getDate()).padStart(2,'0'), mm=String(now.getMonth()+1).padStart(2,'0'), yyyy=now.getFullYear();
-  const hh=String(now.getHours()).padStart(2,'0'), min=String(now.getMinutes()).padStart(2,'0'), ss2=String(now.getSeconds()).padStart(2,'0');
-  return {dd,mm,yyyy,hh,min,ss2, full: dd+'.'+mm+'.'+yyyy+' '+hh+':'+min+':'+ss2};
+  return istanbulDateTime.format(new Date()).replace(', ', ' ');
 }
-async function postToSheet(taskColumn, formatted, score, correct, wrong, blank) {
-  await fetch(APPS_SCRIPT_URL, {
-    method:'POST', mode:'no-cors',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({ spreadsheetId:SPREADSHEET_ID, sheetName:SHEET_NAME, studentName, taskColumn, score, correct, wrong, blank, formatted })
-  });
-}
-async function sendToSheets(name, score, correct, wrong, blank, totalScore) {
+async function sendToSheets(otherScore, correct, wrong, blank, totalScore) {
   const el = document.getElementById('res-status');
-  const t = nowStamp();
+  const summary = `✅ ${totalScore}/100 (Toplam Puan)\nDikte puanı (${dictScoreFinal}/20)\nDiğer Bölümler (${otherScore}/80)\n${nowStamp()}`;
   try {
-    const summary = 'Dikte: '+dictScoreFinal+'/20\nTest: '+score+'/80\nToplam: '+totalScore+'/100\n'+t.full;
-    await postToSheet(TASK_COLUMN, summary, score, correct, wrong, blank);
-    await postToSheet(TASK_COLUMN + ' - Dikte', summary, dictScoreFinal, null, null, null);
-    await postToSheet(TASK_COLUMN + ' - Toplam', summary, totalScore, null, null, null);
+    await fetch(APPS_SCRIPT_URL, {
+      method:'POST', mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=UTF-8'},
+      body: JSON.stringify({spreadsheetId:SPREADSHEET_ID, sheetName:SHEET_NAME,
+        studentName, taskColumn:TASK_COLUMN, score:totalScore, correct, wrong, blank, formatted:summary})
+    });
     el.className = 'status-badge status-ok';
     el.textContent = '✅ Ödev başarıyla kaydedildi!';
   } catch(e) {
@@ -575,7 +567,7 @@ const DICT_TIPS = [
   "🎯 Fiil çekimlerini kontrol etmeden teslim etme!",
   "🧠💭 Geçmiş zaman (indefinido) çekimlerini bir daha gözden geçir."
 ];
-let dictTipIdx = 0, dictTipTimer = null, scWidget = null, dictEmailSent = false, dictScoreFinal = 0;
+let dictTipIdx = 0, dictTipTimer = null, scWidget = null, dictationSubmitted = false, dictScoreFinal = 0;
 
 function startDictTips() {
   const box = document.getElementById('dict-tip-box');
@@ -641,56 +633,47 @@ function goToDictConfirm() {
   showScreen('dict-confirm');
 }
 function confirmAndSubmitDictation() {
-  const btn = document.getElementById('btn-dict-confirm-yes');
-  btn.disabled = true; btn.textContent = '⏳ Gönderiliyor…';
-  sendDictationEmail();
-}
-function sendDictationEmail() {
-  if (dictEmailSent) return;
-  const text = document.getElementById('dictationText').value.trim();
-  const t = nowStamp();
-  dictScoreFinal = scoreDictation(text, DICT_CORRECT, DICT_MAX);
-  const statusEl = document.getElementById('dict-status');
-  const submitBtn = document.getElementById('btn-dict-submit');
-  statusEl.className = 'dict-status';
-  statusEl.textContent = 'Gönderiliyor...';
-  submitBtn.disabled = true;
-  if (typeof emailjs === 'undefined') {
-    statusEl.className = 'dict-status err';
-    statusEl.textContent = 'HATA: E-posta servisi yüklenemedi. İnternet bağlantınızı kontrol edip tekrar deneyin.';
-    submitBtn.disabled = false;
-    document.getElementById('btn-dict-confirm-yes').disabled = false;
-    document.getElementById('btn-dict-confirm-yes').textContent = '✔ Evet, Teslim Et';
+  if (dictationSubmitted) return;
+  const field = document.getElementById('dictationText');
+  const text = field.value.trim();
+  if (!text) {
     showScreen('dictation');
+    field.focus();
     return;
   }
-  const params = {
-    student_name: studentName,
-    name: studentName,
-    lesson: TASK_COLUMN + ' - Kısım 1 (Dikte)',
-    submit_date: t.full,
-    writing_text: text + '\n\n---\n📊 Bu dikte çalışması otomatik olarak puanlandı: ' + dictScoreFinal + ' / ' + DICT_MAX + ' puan aldı.' + '\n\n✅ Diktenin Doğru Hali:\n' + DICT_CORRECT,
-    email: ''
-  };
-  emailjs.send('service_4ee1wh7', 'template_xjyyxhf', params).then(() => {
-    dictEmailSent = true;
-    showScreen('dictation');
-    statusEl.className = 'dict-status ok';
-    statusEl.textContent = '✅ ' + studentName + ' öğrencisinin dikte çalışması e-posta ile iletildi. Puanı: ' + dictScoreFinal + ' / ' + DICT_MAX + '.';
-    document.getElementById('dictationText').disabled = true;
-    if (dictTipTimer) clearInterval(dictTipTimer);
-    document.getElementById('dict-correct-text').textContent = DICT_CORRECT;
-    document.getElementById('dict-score-line').textContent = dictScoreFinal + ' / ' + DICT_MAX;
-    document.getElementById('dict-correct-box').className = 'dict-correct-box show';
-    postToSheet(TASK_COLUMN + ' - Dikte', '🎧 Dikte: ' + dictScoreFinal + '/' + DICT_MAX + '\n' + t.full, dictScoreFinal, null, null, null);
-  }).catch((err) => {
-    showScreen('dictation');
-    statusEl.className = 'dict-status err';
-    statusEl.textContent = 'HATA: ' + (err && err.text ? err.text : 'Gönderilemedi, tekrar deneyin.');
-    submitBtn.disabled = false;
-    document.getElementById('btn-dict-confirm-yes').disabled = false;
-    document.getElementById('btn-dict-confirm-yes').textContent = '✔ Evet, Teslim Et';
-  });
+  dictScoreFinal = scoreDictation(text, DICT_CORRECT, DICT_MAX);
+  dictationSubmitted = true;
+  field.disabled = true;
+  document.getElementById('btn-dict-submit').disabled = true;
+  document.getElementById('btn-dict-confirm-yes').disabled = true;
+  if (dictTipTimer) clearInterval(dictTipTimer);
+  if (scWidget) scWidget.pause();
+  document.getElementById('dict-correct-text').textContent = DICT_CORRECT;
+  document.getElementById('dict-score-line').textContent = dictScoreFinal + ' / 20';
+  document.getElementById('dict-correct-box').classList.add('show');
+  showScreen('dictation');
+  const heading = document.getElementById('dict-result-heading');
+  heading.focus({preventScroll:true});
+  heading.scrollIntoView({block:'start'});
+  void sendDictationEmail(text);
+}
+async function sendDictationEmail(text) {
+  const status = document.getElementById('dict-status');
+  try {
+    await emailjs.send('service_4ee1wh7', 'template_xjyyxhf', {
+      student_name:studentName,
+      name:studentName,
+      lesson:TASK_COLUMN + ' - Kısım 1 (Dikte)',
+      submit_date:nowStamp(),
+      writing_text:text + '\n\n📊 Dikte puanı: ' + dictScoreFinal + ' / ' + DICT_MAX + '\n\n✅ Diktenin Doğru Hali:\n' + DICT_CORRECT,
+      email:''
+    });
+    status.className = 'dict-status ok';
+    status.textContent = '✅ Dikte çalışman öğretmenine iletildi.';
+  } catch {
+    status.className = 'dict-status err';
+    status.textContent = 'Dikte e-postası iletilemedi. Puanın hazır, Kısım 2’ye geçebilirsin.';
+  }
 }
 </script>
 </body>
