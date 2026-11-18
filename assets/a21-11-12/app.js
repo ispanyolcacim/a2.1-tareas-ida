@@ -1,23 +1,6 @@
 (function(){
 'use strict';
 const LESSON_TITLE='A2.1 (11-12) Ders İçi Grup Yazma Çalışması';
-function validateSubmission(s){
- if(!Array.isArray(s.names)||!s.names.length||s.names.some(n=>!String(n).trim()))return 'Lütfen grup üyelerinin isimlerini yazın.';
- if(!String(s.title||'').trim())return 'Hikâyenize bir başlık verin.';
- if(!String(s.text||'').trim())return 'Göndermeden önce ortak metninizi yazın.';
- if(!s.copyConfirmed)return 'Yazınızın kopyasını aldıktan sonra kontrol kutusunu işaretleyin.';
- return '';
-}
-function buildSubmission(s,date=new Date()){
- const names=s.names.map(n=>n.trim()).join(' · '),when=date.toLocaleString('tr-TR',{timeZone:'Europe/Istanbul'});
- const text='=== DERS İÇİ GRUP YAZMA ÇALIŞMASI ===\nDers: '+LESSON_TITLE+'\nGrup: '+(s.group.trim()||'Belirtilmedi')+'\nGrup üyeleri:\n'+s.names.map((n,i)=>(i+1)+'. '+n.trim()).join('\n')+'\nTarih: '+when+'\nKonu: La maleta equivocada\nGramática: Pretérito Indefinido\n\n=== ORTAK HİKÂYE ===\nBaşlık: '+s.title.trim()+'\n\n'+s.text.trim()+(s.plan?.trim()?'\n\n=== GRUBUN PLAN NOTLARI ===\n'+s.plan.trim():'');
- return{service_id:'service_4ee1wh7',template_id:'template_xjyyxhf',user_id:'xNYEbUQNiWJPvbyoJ',template_params:{student_name:names,lesson:LESSON_TITLE,submit_date:when,subject:LESSON_TITLE+' — '+names,writing_text:text}};
-}
-async function sendSubmission(s,transport=fetch){
- const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),25000);
- try{const response=await transport('https://api.emailjs.com/api/v1.0/email/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(buildSubmission(s)),signal:controller.signal});if(!response.ok){const err=new Error('Gönderim kabul edilmedi');err.status=response.status;throw err;}return true;}finally{clearTimeout(timer);}
-}
-if(typeof module!=='undefined'&&module.exports)module.exports={validateSubmission,buildSubmission,sendSubmission};
 if(typeof document==='undefined')return;
 const D=window.A21_LESSON,$=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const people=['yo','tú','él / ella / usted','nosotros/as','vosotros/as','ellos / ellas / ustedes'];
@@ -52,29 +35,33 @@ function openWord(button){if(wordTrigger===button&&!$('wordPopover').hidden){clo
 }
 $('wordClose').onclick=()=>closeWord(true);document.addEventListener('click',e=>{const v=e.target.closest('[data-verb]');if(v){showVerb(v.dataset.verb);return;}const word=e.target.closest('[data-word],[data-phrase],[data-story-word]');if(word){openWord(word);return;}if(!$('wordPopover').contains(e.target))closeWord();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('wordPopover').hidden){e.preventDefault();e.stopPropagation();closeWord(true);}},true);window.addEventListener('resize',closeWord);document.addEventListener('scroll',e=>{if(!$('wordPopover').contains(e.target))closeWord();},true);
-const DRAFT_KEY='a21-11-12-classroom-group-writing-v1';let session=1,sending=false,snapshot=null,lastSent='',storageAvailable=true,active=0;
-function signature(s){return JSON.stringify({names:s.names,group:s.group,title:s.title,text:s.text});}
-function getDraft(){return{names:[...document.querySelectorAll('.member-name')].map(x=>x.value.trim()),group:$('groupLabel').value.trim(),title:$('textTitle').value.trim(),plan:$('storyPlan').value,text:$('groupText').value,copyConfirmed:$('copyConfirm').checked,session,tab:active,checks:Object.fromEntries([...document.querySelectorAll('[data-check]')].map(c=>[c.dataset.check,c.checked]))};}
-function updateEditor(){const alreadySent=lastSent&&signature(getDraft())===lastSent;$('reviewButton').disabled=!!alreadySent||sending;if(alreadySent){$('formStatus').className='form-status success';$('formStatus').textContent='✅ Bu hikâye gönderildi. Metniniz ve taslağınız burada korunuyor.';}else if(!sending){$('formStatus').className='form-status';$('formStatus').textContent='';}}
-function saveDraft(){try{localStorage.setItem(DRAFT_KEY,JSON.stringify({...getDraft(),lastSent}));storageAvailable=true;$('draftStatus').textContent='✓ Taslak kaydedildi · '+new Date().toLocaleTimeString('tr-TR',{timeZone:'Europe/Istanbul',hour:'2-digit',minute:'2-digit'});}catch{storageAvailable=false;$('draftStatus').textContent='Taslak bu tarayıcıya kaydedilemedi. Metninizin kopyasını alın.';}updateEditor();}
-function addMember(value=''){const row=document.createElement('div');row.className='member-row';const label=document.createElement('label');label.append(document.createTextNode('Öğrenci'));const input=document.createElement('input');input.type='text';input.className='member-name';input.autocomplete='given-name';input.placeholder='İsminiz';input.value=value;label.append(input);row.append(label);const b=document.createElement('button');b.type='button';b.className='small-button';b.textContent='×';b.setAttribute('aria-label','Bu öğrenci alanını kaldır');b.onclick=()=>{if($('members').children.length>1){row.remove();renumber();$('copyConfirm').checked=false;saveDraft();}};row.append(b);$('members').append(row);renumber();}
+const DRAFT_KEY='a21-11-12-classroom-group-writing-v1';let storageAvailable=true,active=0;
+function getDraft(){return{names:[...document.querySelectorAll('.member-name')].map(x=>x.value.trim()),group:$('groupLabel').value.trim(),title:$('textTitle').value.trim(),plan:$('storyPlan').value,text:$('groupText').value,tab:active};}
+function saveDraft(){try{localStorage.setItem(DRAFT_KEY,JSON.stringify(getDraft()));storageAvailable=true;$('draftStatus').textContent='✓ Taslak kaydedildi · '+new Date().toLocaleTimeString('tr-TR',{timeZone:'Europe/Istanbul',hour:'2-digit',minute:'2-digit'});}catch{storageAvailable=false;$('draftStatus').textContent='Taslak bu tarayıcıya kaydedilemedi. Metninizin kopyasını alın.';}}
+function addMember(value=''){const row=document.createElement('div');row.className='member-row';const label=document.createElement('label');label.append(document.createTextNode('Öğrenci'));const input=document.createElement('input');input.type='text';input.className='member-name';input.autocomplete='given-name';input.placeholder='İsminiz';input.value=value;label.append(input);row.append(label);const b=document.createElement('button');b.type='button';b.className='small-button';b.textContent='×';b.setAttribute('aria-label','Bu öğrenci alanını kaldır');b.onclick=()=>{if($('members').children.length>1){row.remove();renumber();saveDraft();}};row.append(b);$('members').append(row);renumber();}
 function renumber(){[...$('members').children].forEach((r,i)=>{r.querySelector('label').firstChild.textContent='Öğrenci '+(i+1);r.querySelector('button').disabled=$('members').children.length===1;});}
-function setSession(n,save=true){session=n===2?2:1;document.querySelectorAll('[data-session]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.session)===session)));$('sessionOne').hidden=session!==1;$('sessionTwo').hidden=session!==2;$('finalChecklist').hidden=session!==2;$('submissionArea').hidden=session!==2;if(save)saveDraft();}
 let draft=null;try{draft=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null');}catch{}
-if(draft&&typeof draft==='object'){if(Array.isArray(draft.names))draft.names.forEach(n=>addMember(String(n)));$('groupLabel').value=String(draft.group||'');$('textTitle').value=String(draft.title||'');$('storyPlan').value=String(draft.plan||'');$('groupText').value=String(draft.text||'');$('copyConfirm').checked=!!draft.copyConfirmed;lastSent=String(draft.lastSent||'');setSession(Number(draft.session),false);document.querySelectorAll('[data-check]').forEach(c=>c.checked=!!draft.checks?.[c.dataset.check]);$('draftStatus').textContent='✓ Önceki taslağınız geri yüklendi.';}
+if(draft&&typeof draft==='object'){if(Array.isArray(draft.names))draft.names.forEach(n=>addMember(String(n)));$('groupLabel').value=String(draft.group||'');$('textTitle').value=String(draft.title||'');$('storyPlan').value=String(draft.plan||'');$('groupText').value=String(draft.text||'');$('draftStatus').textContent='✓ Önceki taslağınız geri yüklendi.';}
 if(!$('members').children.length)addMember();
-$('addMember').onclick=()=>{addMember();$('copyConfirm').checked=false;saveDraft();[...document.querySelectorAll('.member-name')].at(-1).focus();};
-$('groupForm').addEventListener('input',e=>{if(e.target!==$('copyConfirm')&&!e.target.hasAttribute('data-check'))$('copyConfirm').checked=false;saveDraft();});
-document.querySelectorAll('[data-session]').forEach(b=>b.onclick=()=>setSession(Number(b.dataset.session)));
-$('saveDraft').onclick=()=>{saveDraft();if(storageAvailable)$('formStatus').textContent='💾 Taslağınız bu tarayıcıda saklandı. İkinci derste buradan devam edebilirsiniz.';};
-document.querySelectorAll('[data-accent]').forEach(b=>b.onclick=()=>{const t=$('groupText');t.setRangeText(b.dataset.accent,t.selectionStart,t.selectionEnd,'end');t.focus();$('copyConfirm').checked=false;saveDraft();});
+$('addMember').onclick=()=>{addMember();saveDraft();[...document.querySelectorAll('.member-name')].at(-1).focus();};
+$('groupForm').addEventListener('input',saveDraft);
+$('groupForm').addEventListener('submit',e=>e.preventDefault());
+document.querySelectorAll('[data-accent]').forEach(b=>b.onclick=()=>{const t=$('groupText');t.setRangeText(b.dataset.accent,t.selectionStart,t.selectionEnd,'end');t.focus();saveDraft();});
 function copyContent(){const s=getDraft();return LESSON_TITLE+'\nGrup: '+(s.group||'—')+'\nGrup üyeleri: '+s.names.join(' · ')+'\n\n'+s.title+'\n\n'+s.text+(s.plan.trim()?'\n\nPLAN NOTLARI\n'+s.plan:'');}
-$('copyText').onclick=async()=>{try{await navigator.clipboard.writeText(copyContent());$('copyConfirm').checked=true;saveDraft();$('formStatus').textContent='✓ İsimler ve metin kopyalandı.';}catch{$('formStatus').textContent='Kopyalama açılamadı. “Metni indir” düğmesini kullanabilir veya metninizi seçip kopyalayabilirsiniz.';}};
-$('downloadText').onclick=()=>{const blob=new Blob([copyContent()],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='A2.1-11-12-Grup-Yazma.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);$('copyConfirm').checked=true;saveDraft();};
-$('toggleWide').onclick=()=>{const wide=$('yazma').classList.toggle('writing-wide');$('toggleWide').textContent=wide?'↔️ İki sütunlu görünüme dön':'↔️ Geniş yazma görünümü';};
-$('groupForm').addEventListener('submit',e=>{e.preventDefault();if(sending)return;if(session!==2){saveDraft();$('formStatus').textContent='Taslak kaydedildi. Ortak metnin son hâlini ikinci ders aşamasından gönderebilirsiniz.';return;}const value=getDraft(),error=validateSubmission(value);if(error){$('formStatus').className='form-status error';$('formStatus').textContent=error;return;}if(signature(value)===lastSent){updateEditor();return;}snapshot=value;$('sendMembers').textContent='👥 '+value.names.join(' · ')+(value.group?' | '+value.group:'');$('sendPreview').textContent=value.title+'\n\n'+value.text;$('sendStatus').className='';$('sendStatus').textContent='İsimlerinizi ve hikâyenizi son kez kontrol edin.';$('sendFinal').disabled=false;$('sendFinal').textContent='✔ Gönder';$('sendCancel').textContent='← Düzenlemeye dön';$('sendDialog').showModal();});
-$('sendCancel').onclick=()=>{if(!sending)$('sendDialog').close();};$('sendDialog').addEventListener('cancel',e=>{if(sending)e.preventDefault();});
-$('sendFinal').onclick=async()=>{if(sending||!snapshot||lastSent===signature(snapshot))return;sending=true;$('sendFinal').disabled=true;$('sendCancel').disabled=true;$('sendFinal').textContent='⏳ Gönderiliyor…';$('sendStatus').textContent='Grup hikâyeniz iletiliyor…';updateEditor();try{await sendSubmission(snapshot);lastSent=signature(snapshot);$('sendStatus').className='success';$('sendStatus').textContent='✅ Hikâyeniz Profe Hazel’e gönderildi. Taslağınız korunuyor.';$('sendFinal').textContent='✓ Gönderildi';$('sendCancel').textContent='Etkinliğe dön';saveDraft();}catch(e){$('sendStatus').className='error';$('sendStatus').textContent=e.name==='AbortError'?'⚠️ Gönderim teyit edilemedi. Metniniz korunuyor. Yeniden göndermeden önce öğretmeninize ulaşıp ulaşmadığını kontrol edin.':'⚠️ Gönderilemedi. Metniniz korunuyor. Bağlantınızı kontrol edip yeniden deneyebilirsiniz.';$('sendFinal').disabled=false;$('sendFinal').textContent='Tekrar gönder';}finally{sending=false;$('sendCancel').disabled=false;updateEditor();}};
+$('copyText').onclick=async()=>{
+ const text=copyContent(),status=$('formStatus'),manualCopy=$('manualCopy');
+ try{
+  await navigator.clipboard.writeText(text);
+  manualCopy.hidden=true;
+  status.textContent='✓ İsimler ve metin kopyalandı.';
+ }catch{
+  manualCopy.value=text;
+  manualCopy.hidden=false;
+  manualCopy.focus();
+  manualCopy.select();
+  status.textContent='Metin seçildi. Cihazınızın kopyalama komutunu kullanın.';
+ }
+};
 const tabs=[...document.querySelectorAll('[data-tab]')];
 function selectTab(i,focus=false,save=true){active=Math.max(0,Math.min(tabs.length-1,i));closeWord();tabs.forEach((b,j)=>{const chosen=j===active;b.setAttribute('aria-selected',String(chosen));b.tabIndex=chosen?0:-1;$(b.dataset.tab).hidden=!chosen;});$('sectionCounter').textContent=(active+1)+' / '+tabs.length;$('prevSection').disabled=active===0;$('nextSection').disabled=active===tabs.length-1;if(location.hash)history.replaceState(history.state,'',location.pathname+location.search);if(focus)tabs[active].focus({preventScroll:true});if(save)saveDraft();}
 tabs.forEach((b,i)=>{b.onclick=()=>selectTab(i);b.addEventListener('keydown',e=>{let n;if(e.key==='ArrowRight')n=(active+1)%tabs.length;else if(e.key==='ArrowLeft')n=(active-1+tabs.length)%tabs.length;else if(e.key==='Home')n=0;else if(e.key==='End')n=tabs.length-1;else return;e.preventDefault();selectTab(n,true);});});
@@ -84,6 +71,6 @@ $('zoomImage').onclick=()=>$('imageDialog').showModal();$('imageClose').onclick=
 for(const id of ['homeworkDialog','imageDialog','verbDialog'])$(id).addEventListener('click',e=>{if(e.target!==$(id))return;const r=$(id).getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)$(id).close();});
 function preparePrint(){document.body.classList.toggle('homework-print',$('homeworkDialog').open);const s=getDraft();$('printMembers').textContent='Grup: '+(s.group||'—')+'\nGrup üyeleri: '+s.names.join(' · ');$('printStory').textContent=s.title+'\n\n'+s.text;}
 $('printButton').onclick=()=>{preparePrint();window.print();};$('homeworkPrint').onclick=()=>{preparePrint();window.print();};window.addEventListener('beforeprint',preparePrint);window.addEventListener('afterprint',()=>document.body.classList.remove('homework-print'));
-window.addEventListener('beforeunload',e=>{if(sending||(!storageAvailable&&$('groupText').value.trim())){e.preventDefault();e.returnValue='';}});
-const legacy=location.hash.slice(1),legacyIndex=tabs.findIndex(t=>t.dataset.tab===legacy);selectTab(legacyIndex>=0?legacyIndex:Number.isInteger(draft?.tab)?draft.tab:0,false,false);updateEditor();
+window.addEventListener('beforeunload',e=>{if(!storageAvailable&&$('groupText').value.trim()){e.preventDefault();e.returnValue='';}});
+const legacy=location.hash.slice(1),legacyIndex=tabs.findIndex(t=>t.dataset.tab===legacy);selectTab(legacyIndex>=0?legacyIndex:Number.isInteger(draft?.tab)?draft.tab:0,false,false);
 })();
