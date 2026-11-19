@@ -1,0 +1,945 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 (15+16) · Ders İçi Etkinlik | Profe Hazel</title>
+<link rel="canonical" href="https://ispanyolcacim.github.io/a2.1-tareas-ida/15-16-ders-ici-ispanyolcacim-a21.html">
+<link rel="stylesheet" href="a21-theme.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {--line:#eed5e1;--paper:#fff;--rose:#a51e59;--pale:#fff1f7}
+  button { font: inherit; color: inherit; cursor: pointer; }
+  a { color: var(--rose); }
+  :focus-visible { outline: 3px solid var(--rose); outline-offset: 3px; }
+  .layout { width: min(100% - 32px, 940px); margin: 24px auto 56px; }
+  .masthead, .lesson-card, .reminder { background: var(--paper); border: 1px solid var(--line); border-radius: 20px; }
+  .masthead { border-top: 5px solid #dc4b91; padding: clamp(18px, 4vw, 32px); box-shadow: var(--theme-shadow); }
+  .masthead-top, .homework-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .brand { font-size: .78rem; font-weight: 900; letter-spacing: .1em; color: var(--rose); text-decoration: none; }
+  .logo { display: block; width: 180px; max-width: 100%; height: auto; margin: 18px 0 13px; }
+  .masthead-meta, .nav-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .masthead-meta span { font-size: .78rem; font-weight: 900; color: var(--rose); }
+  .eyebrow { margin: 0 0 3px; color: var(--rose); font-size: .8rem; letter-spacing: .08em; font-weight: 900; }
+  h1, h2, h3 { line-height: 1.2; }
+  h1 { margin: 0; font-size: clamp(1.9rem, 6vw, 3.25rem); }
+  h2 { margin: 0 0 13px; font-size: clamp(1.25rem, 4vw, 1.65rem); }
+  .reminder { width: min(620px, calc(100% - 24px)); max-height: calc(100% - 24px); color: var(--theme-ink); padding: 18px 42px 18px 20px; background: #fff8df; border-color: #ebd493; }
+  .reminder h2 { margin: 0 0 8px; }
+  .reminder p { margin: 7px 0 0; line-height: 1.5; }
+  .reminder .dismiss { position: absolute; top: 9px; right: 9px; width: 34px; height: 34px; background: transparent; border: 0; border-radius: 8px; font-size: 1.55rem; }
+  .reminder .dismiss:hover { background: #f7ebbc; }
+  .lesson-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 16px 0 12px; }
+  .lesson-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; text-decoration: none; font-weight: 800; border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; min-height: 40px; background: var(--paper); }
+  .pill:hover { background: var(--pale); }
+  .lesson-tabs [aria-selected="true"], .homework-button { background: var(--rose); border-color: var(--rose); color: white; }
+  .lesson-tabs [aria-selected="true"]:hover, .homework-button:hover { background: #861747; }
+  .lesson-card { padding: clamp(14px, 4vw, 26px); }
+  .player { display: block; width: 100%; height: 166px; border: 0; border-radius: 12px; background: #fcf7fa; }
+  .external { display: inline-block; margin-top: 8px; font-size: .87rem; }
+  .accordion { margin: 14px 0 0; border: 1px solid var(--line); border-radius: 12px; }
+  summary { cursor: pointer; }
+  .accordion > summary { padding: 12px 14px; font-weight: 900; background: var(--pale); border-radius: 11px; }
+  .accordion[open] > summary { border-radius: 11px 11px 0 0; }
+  .accordion-body { padding: 6px 14px 14px; }
+  .questions { margin: 6px 0 0; padding-inline-start: 1.45rem; }
+  .questions li { padding: 7px 0; line-height: 1.55; }
+  .questions li + li { border-top: 1px solid #f2e7ed; }
+  .questions li::marker { font-weight: 900; color: var(--rose); }
+  .transcript-tip { margin: 6px 0 9px; color: var(--theme-muted); font-size: .9rem; }
+  .sentences { display: grid; gap: 6px; }
+  .sentence { background: #fffafd; border: 1px solid #f2dfe9; border-radius: 9px; }
+  .sentence summary { padding: 7px 9px; line-height: 1.8; }
+  .sentence summary::marker { color: var(--rose); }
+  .sentence p { margin: 0 9px 8px; padding: 8px 10px 3px; border-top: 1px solid #f2dfe9; }
+  .role { border-radius: 4px; padding: .12em .2em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .legend { display: flex; flex-wrap: wrap; gap: 5px 7px; margin: 0 0 12px; padding: 0; list-style: none; font-size: .78rem; }
+  .subject { background: #f9d7e8; }
+  .verb { background: #e8ddfa; }
+  .object { background: #dcecff; }
+  .indirect { background: #ffdfcc; }
+  .complement { background: #d8f1e7; }
+  .attribute { background: #f7dffe; }
+  .linker { background: #fff0b9; }
+  .independent { background: #ebedf2; }
+  .vocab-word { display: inline; border: 0; border-radius: 3px; padding: 0; background: transparent; font: inherit; line-height: inherit; vertical-align: baseline; }
+  .vocab-word:hover, .vocab-word[aria-expanded="true"] { text-decoration: underline; text-underline-offset: .18em; }
+  .word-card { position: fixed; z-index: 5; width: min(320px, calc(100vw - 20px)); max-height: min(390px, calc(100dvh - 20px)); overflow: auto; padding: 12px 34px 12px 13px; color: var(--theme-ink); border: 1px solid var(--line); border-radius: 13px; background: var(--paper); box-shadow: 0 6px 24px #53253a33; }
+  .word-card h3, .word-card p { margin: 0 0 5px; }
+  .word-card p, .word-card details { font-size: .85rem; }
+  .word-card details p { margin: 5px 0 0; }
+  .word-card .word-close { position: absolute; top: 5px; right: 5px; width: 28px; height: 28px; border: 0; border-radius: 7px; background: var(--pale); }
+  .word-meta, .word-role { color: var(--theme-muted); }
+  .word-idiom { margin: 8px 0; padding-top: 7px; border-top: 1px solid var(--line); }
+  .role + .role { margin-inline-start: .05em; }
+  .homework { width: min(620px, calc(100% - 24px)); max-height: calc(100% - 24px); border: 1px solid var(--line); border-radius: 18px; color: var(--theme-ink); padding: 20px; }
+  .homework::backdrop, .reminder::backdrop { background: #27152380; }
+  .homework-head { margin-bottom: 12px; }
+  .homework-head h2, .homework h3 { margin: 0; }
+  .assignment { padding: 14px; border: 1px solid var(--line); border-radius: 12px; margin-top: 9px; }
+  .assignment p { margin: 6px 0; }
+  @media (max-width: 480px) {
+    .layout { width: calc(100% - 20px); margin-top: 10px; }
+    .logo { width: 160px; }
+    .lesson-tabs { display: grid; width: 100%; grid-template-columns: 1fr 1fr; }
+    .lesson-tabs button { justify-content: center; }
+  }
+  @media print {
+    @page { margin: 14mm; }
+    body { background: white; color: black; }
+    .layout { width: 100%; margin: 0; }
+    .masthead, .lesson-card { box-shadow: none; }
+    .lesson-card[hidden] { display: block !important; }
+    .lesson-card { margin: 12px 0; }
+    .lesson-nav, .player, .external, .print-button, .dismiss, dialog form, .word-card { display: none !important; }
+    body:has(.homework[open]) .layout { display: none; }
+    .homework[open] { position: static; width: 100%; max-height: none; border: 0; margin: 0; padding: 0; }
+    .homework a::after { content: " (" attr(href) ")"; overflow-wrap: anywhere; }
+    dialog::backdrop { display: none; }
+    .accordion > .accordion-body, .sentence > p { display: block; content-visibility: visible; }
+    .role { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .sentence, .questions li { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<main class="layout">
+  <header class="masthead">
+    <div class="masthead-top">
+      <a class="brand" href="https://www.ispanyolcacim.com">ESPAÑOL CON PROFE HAZEL</a>
+      <div class="masthead-meta"><span>A2.1 · 15+16. DERS</span><button class="pill print-button" type="button">🖨️ Yazdır / PDF</button></div>
+    </div>
+    <img class="logo" src="https://ispanyolcacim.github.io/a1.1-tareas/assets/a11-profe-hazel-logo-transparent.png" alt="İspanyolcacım Dil Akademisi · Profe Hazel" width="2174" height="723">
+    <p class="eyebrow">DERS İÇİ ETKİNLİK · (15+16) A2.1</p>
+    <h1>Dinleme Atölyesi</h1>
+  </header>
+  <nav class="lesson-nav" aria-label="Ders gezintisi">
+    <div class="lesson-tabs" role="tablist" aria-label="Dinleme bölümleri">
+      <button class="pill" id="tab-1" type="button" role="tab" aria-controls="bolum-1" aria-selected="true" tabindex="0">01 🎧 Dinleme</button>
+      <button class="pill" id="tab-2" type="button" role="tab" aria-controls="bolum-2" aria-selected="false" tabindex="-1">02 🎧 Dinleme</button>
+      <button class="pill" id="tab-3" type="button" role="tab" aria-controls="bolum-3" aria-selected="false" tabindex="-1">03 🎧 Dinleme</button>
+      <button class="pill" id="tab-4" type="button" role="tab" aria-controls="bolum-4" aria-selected="false" tabindex="-1">04 🎧 Dinleme</button>
+    </div>
+    <div class="nav-actions">
+      <button class="pill" type="button" data-dialog="reminder" aria-controls="reminder" aria-haspopup="dialog" aria-expanded="false">📣 Önemli hatırlatma</button>
+      <button class="pill homework-button" type="button" data-dialog="homework" aria-controls="homework" aria-haspopup="dialog" aria-expanded="false">📚 15–16. Ders Ödevleri</button>
+    </div>
+  </nav>
+  <section class="lesson-card" id="bolum-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
+    <h2 class="spanish-title" lang="es">Una semana en el pueblo</h2>
+    <div class="player-mount"></div>
+    <template><iframe class="player" title="SoundCloud · 1. dinleme · Una semana en el pueblo" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2441003013&amp;color=%23b92568&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false" allow="autoplay"></iframe></template>
+    <a class="external" href="https://soundcloud.com/profe-hazel/a2-1-15-16-1" target="_blank" rel="noopener">SoundCloud’da aç ↗</a>
+    <details class="accordion">
+      <summary>💬 Dinleme sonrası sorular</summary>
+      <div class="accordion-body">
+        <ol class="questions" lang="es">
+          <li><span class="role object" title="Doğrudan nesne">¿Cuántos años</span> <span class="role verb" title="Fiil">tiene</span> <span class="role subject" title="Özne">Marian</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role complement" title="Diğer tümleç">dónde</span> <span class="role verb" title="Fiil">vive?</span></li>
+          <li><span class="role attribute" title="Yüklem niteliği">¿Cómo</span> <span class="role verb" title="Fiil">son</span> <span class="role subject" title="Özne">sus ojos y su pelo?</span></li>
+          <li><span class="role object" title="Doğrudan nesne">¿Qué</span> <span class="role indirect" title="Dolaylı nesne">le</span> <span class="role verb" title="Fiil">ha propuesto</span> <span class="role subject" title="Özne">Tania</span> <span class="role indirect" title="Dolaylı nesne">a Marian?</span></li>
+          <li><span class="role object" title="Doğrudan nesne">¿Qué</span> <span class="role verb" title="Fiil">tiene</span> <span class="role attribute" title="Yüklem niteliği">pendiente</span> <span class="role subject" title="Özne">Marian</span> <span class="role complement" title="Diğer tümleç">a medianoche?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Cómo</span> <span class="role verb" title="Fiil">van a viajar</span> <span class="role subject" title="Özne">las dos amigas</span> <span class="role complement" title="Diğer tümleç">al pueblo?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Dónde</span> <span class="role verb" title="Fiil">se van a alojar</span> <span class="role subject" title="Özne">Marian y Tania?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Por qué</span> <span class="role indirect" title="Dolaylı nesne">le</span> <span class="role verb" title="Fiil">gusta</span> <span class="role subject" title="Özne">la idea de pasar una semana lejos de sus padres?</span></li>
+        </ol>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>📝 Transkript</summary>
+      <div class="accordion-body">
+        <p class="transcript-tip">Türkçe karşılığını görmek için cümleye tıkla.</p>
+        <ul class="legend" aria-label="Cümle ögelerinin renkleri"><li class="role subject">Özne</li><li class="role verb">Fiil</li><li class="role object">Doğrudan nesne</li><li class="role indirect">Dolaylı nesne</li><li class="role complement">Diğer tümleç</li><li class="role attribute">Yüklem niteliği</li><li class="role linker">Bağlayıcı</li><li class="role independent">Bağımsız öge</li></ul>
+        <div class="sentences">
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Me llamo</span> <span class="role attribute" title="Yüklem niteliği">Marian</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role verb" title="Fiil">tengo</span> <span class="role object" title="Doğrudan nesne">dieciséis años.</span></summary><p>Adım Marian ve on altı yaşındayım.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Vivo</span> <span class="role complement" title="Diğer tümleç">en Segovia,</span> <span class="role complement" title="Diğer tümleç">con mis padres,</span> <span class="role complement" title="Diğer tümleç">al norte de Madrid.</span></summary><p>Madrid’in kuzeyinde, Segovia’da annem ve babamla yaşıyorum.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Tengo</span> <span class="role object" title="Doğrudan nesne">los ojos verdes y el pelo rubio, largo y ondulado.</span></summary><p>Gözlerim yeşil, saçlarım sarı, uzun ve dalgalı.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">Mi mejor amiga</span> <span class="role verb" title="Fiil">se llama</span> <span class="role attribute" title="Yüklem niteliği">Tania</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role verb" title="Fiil">estudia</span> <span class="role complement" title="Diğer tümleç">en el mismo instituto que yo.</span></summary><p>En iyi arkadaşımın adı Tania ve benimle aynı lisede okuyor.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role complement" title="Diğer tümleç">Ya</span> <span class="role verb" title="Fiil">hemos terminado</span> <span class="role object" title="Doğrudan nesne">las clases</span> <span class="role linker" title="Bağlayıcı">y por eso</span> <span class="role subject" title="Özne">Tania</span> <span class="role object" title="Doğrudan nesne">me</span> <span class="role verb" title="Fiil">ha invitado</span> <span class="role complement" title="Diğer tümleç">a pasar una semana en su pueblo de la montaña.</span></summary><p>Derslerimiz bitti. Bu yüzden Tania beni dağdaki köyünde bir hafta geçirmeye davet etti.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role complement" title="Diğer tümleç">Ahora</span> <span class="role verb" title="Fiil">es</span> <span class="role attribute" title="Yüklem niteliği">medianoche</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role complement" title="Diğer tümleç">todavía</span> <span class="role verb" title="Fiil">no he terminado de hacer</span> <span class="role object" title="Doğrudan nesne">la maleta.</span></summary><p>Şu an gece yarısı ve hâlâ valizimi hazırlamayı bitirmedim.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Soy</span> <span class="role attribute" title="Yüklem niteliği">un desastre,</span> <span class="role complement" title="Diğer tümleç">siempre</span> <span class="role verb" title="Fiil">dejando</span> <span class="role object" title="Doğrudan nesne">todo</span> <span class="role complement" title="Diğer tümleç">para última hora.</span></summary><p>Ben tam bir felaketim, her şeyi son dakikaya bırakıyorum.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role complement" title="Diğer tümleç">Mañana</span> <span class="role verb" title="Fiil">salgo</span> <span class="role complement" title="Diğer tümleç">muy temprano</span> <span class="role complement" title="Diğer tümleç">con Tania</span> <span class="role complement" title="Diğer tümleç">para coger el tren.</span></summary><p>Yarın trene binmek için Tania’yla çok erken çıkacağım.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">El pueblo</span> <span class="role verb" title="Fiil">está</span> <span class="role complement" title="Diğer tümleç">a unos setenta kilómetros de Segovia</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role verb" title="Fiil">es</span> <span class="role attribute" title="Yüklem niteliği">bastante pequeño.</span></summary><p>Köy Segovia’ya yaklaşık yetmiş kilometre uzaklıkta ve oldukça küçük.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Es</span> <span class="role attribute" title="Yüklem niteliği">la primera vez</span> <span class="role linker" title="Bağlayıcı">que</span> <span class="role verb" title="Fiil">vamos</span> <span class="role complement" title="Diğer tümleç">juntas de viaje</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role verb" title="Fiil">estoy</span> <span class="role attribute" title="Yüklem niteliği">muy emocionada.</span></summary><p>İlk kez birlikte seyahate çıkıyoruz ve çok heyecanlıyım.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Además,</span> <span class="role verb" title="Fiil">no voy a ver</span> <span class="role object" title="Doğrudan nesne">a mis padres</span> <span class="role complement" title="Diğer tümleç">durante toda la semana.</span></summary><p>Ayrıca bütün hafta annemi ve babamı görmeyeceğim.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">Esto</span> <span class="role indirect" title="Dolaylı nesne">me</span> <span class="role verb" title="Fiil">gusta</span> <span class="role complement" title="Diğer tümleç">mucho</span> <span class="role linker" title="Bağlayıcı">porque</span> <span class="role verb" title="Fiil">necesito tener</span> <span class="role object" title="Doğrudan nesne">mi espacio</span> <span class="role complement" title="Diğer tümleç">a veces.</span></summary><p>Bu çok hoşuma gidiyor çünkü bazen kendime ayıracak bir alana ihtiyacım oluyor.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role complement" title="Diğer tümleç">En el pueblo</span> <span class="role verb" title="Fiil">nos vamos a alojar</span> <span class="role complement" title="Diğer tümleç">en casa de los abuelos de Tania.</span></summary><p>Köyde Tania’nın büyükanne ve büyükbabasının evinde kalacağız.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Creo</span> <span class="role linker" title="Bağlayıcı">que</span> <span class="role verb" title="Fiil">vamos a pasar</span> <span class="role object" title="Doğrudan nesne">una semana estupenda.</span></summary><p>Harika bir hafta geçireceğimizi düşünüyorum.</p></details>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="lesson-card" id="bolum-2" role="tabpanel" aria-labelledby="tab-2" tabindex="0" hidden>
+    <h2 class="spanish-title" lang="es">Una compra solidaria</h2>
+    <div class="player-mount"></div>
+    <template><iframe class="player" title="SoundCloud · 2. dinleme · Una compra solidaria" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2441004936&amp;color=%23b92568&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false" allow="autoplay"></iframe></template>
+    <a class="external" href="https://soundcloud.com/profe-hazel/a2-1-15-16-2" target="_blank" rel="noopener">SoundCloud’da aç ↗</a>
+    <details class="accordion">
+      <summary>💬 Dinleme sonrası sorular</summary>
+      <div class="accordion-body">
+        <ol class="questions" lang="es">
+          <li><span class="role indirect" title="Dolaylı nesne">¿Para quiénes</span> <span class="role verb" title="Fiil">ha hecho</span> <span class="role object" title="Doğrudan nesne">la compra?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Por qué</span> <span class="role verb" title="Fiil">no deben ir</span> <span class="role complement" title="Diğer tümleç">en persona</span> <span class="role subject" title="Özne">los abuelos y sus vecinos?</span></li>
+          <li><span class="role object" title="Doğrudan nesne">¿A quiénes</span> <span class="role verb" title="Fiil">ha visto</span> <span class="role complement" title="Diğer tümleç">en el supermercado</span> <span class="role subject" title="Özne">la persona que habla?</span></li>
+          <li><span class="role indirect" title="Dolaylı nesne">¿A quién</span> <span class="role verb" title="Fiil">está dedicada</span> <span class="role subject" title="Özne">la primera hora de apertura?</span></li>
+          <li><span class="role object" title="Doğrudan nesne">¿Qué ventaja</span> <span class="role verb" title="Fiil">tiene</span> <span class="role subject" title="Özne">ese horario</span> <span class="role complement" title="Diğer tümleç">para las personas mayores?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Por qué</span> <span class="role verb" title="Fiil">es</span> <span class="role attribute" title="Yüklem niteliği">importante</span> <span class="role subject" title="Özne">ayudar a estas personas,</span> <span class="role complement" title="Diğer tümleç">según la grabación?</span></li>
+        </ol>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>📝 Transkript</summary>
+      <div class="accordion-body">
+        <p class="transcript-tip">Türkçe karşılığını görmek için cümleye tıkla.</p>
+        <ul class="legend" aria-label="Cümle ögelerinin renkleri"><li class="role subject">Özne</li><li class="role verb">Fiil</li><li class="role object">Doğrudan nesne</li><li class="role indirect">Dolaylı nesne</li><li class="role complement">Diğer tümleç</li><li class="role attribute">Yüklem niteliği</li><li class="role linker">Bağlayıcı</li><li class="role independent">Bağımsız öge</li></ul>
+        <div class="sentences">
+          <details class="sentence"><summary lang="es"><span class="role complement" title="Diğer tümleç">Esta mañana</span> <span class="role verb" title="Fiil">he bajado</span> <span class="role complement" title="Diğer tümleç">al supermercado de mi barrio</span> <span class="role complement" title="Diğer tümleç">para hacer la compra</span> <span class="role indirect" title="Dolaylı nesne">a mis abuelos y a sus dos vecinos.</span></summary><p>Bu sabah büyükanne ve büyükbabamla onların iki komşusunun alışverişini yapmak için mahallemdeki süpermarkete indim.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">Ellos</span> <span class="role verb" title="Fiil">no deben ir</span> <span class="role complement" title="Diğer tümleç">en persona</span> <span class="role linker" title="Bağlayıcı">porque</span> <span class="role verb" title="Fiil">son</span> <span class="role attribute" title="Yüklem niteliği">personas de alto riesgo</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role complement" title="Diğer tümleç">también</span> <span class="role verb" title="Fiil">tienen</span> <span class="role object" title="Doğrudan nesne">problemas de movilidad.</span></summary><p>Yüksek risk grubundalar ve hareket etmekte de zorlanıyorlar. Bu yüzden kendileri gitmemeliler.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Cuando</span> <span class="role verb" title="Fiil">he llegado</span> <span class="role complement" title="Diğer tümleç">al supermercado,</span> <span class="role verb" title="Fiil">he visto</span> <span class="role object" title="Doğrudan nesne">a otros jóvenes de mi edad</span> <span class="role complement" title="Diğer tümleç">ayudando a personas mayores a coger algunos productos.</span></summary><p>Süpermarkete vardığımda benim yaşlarımda başka gençlerin, yaşlılara bazı ürünleri almaları için yardım ettiğini gördüm.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role object" title="Doğrudan nesne">¡Qué sentimiento tan bonito</span> <span class="role verb" title="Fiil">he tenido!</span></summary><p>Ne güzel bir duygu yaşadım!</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Además,</span> <span class="role subject" title="Özne">este supermercado</span> <span class="role verb" title="Fiil">prioriza</span> <span class="role object" title="Doğrudan nesne">la atención a este colectivo vulnerable</span> <span class="role linker" title="Bağlayıcı">y por eso</span> <span class="role subject" title="Özne">la primera hora de apertura diaria</span> <span class="role verb" title="Fiil">está</span> <span class="role attribute" title="Yüklem niteliği">dedicada</span> <span class="role complement" title="Diğer tümleç">en exclusiva</span> <span class="role complement" title="Diğer tümleç">para ellos.</span></summary><p>Üstelik bu süpermarket bu hassas gruba hizmet vermeye öncelik tanıyor. Bu yüzden her gün açılıştan sonraki ilk saat sadece onlara ayrılıyor.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">De esta manera,</span> <span class="role subject" title="Özne">las personas mayores</span> <span class="role verb" title="Fiil">pueden acceder</span> <span class="role complement" title="Diğer tümleç">a todo tipo de productos, incluidos los baratos.</span></summary><p>Böylece yaşlılar, ucuz olanlar da dâhil, her türlü ürüne erişebiliyorlar.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Es</span> <span class="role attribute" title="Yüklem niteliği">nuestra responsabilidad</span> <span class="role subject" title="Özne">cuidar a estas personas durante estos días tan duros y difíciles</span> <span class="role linker" title="Bağlayıcı">y así</span> <span class="role verb" title="Fiil">devolver</span> <span class="role indirect" title="Dolaylı nesne">a estas personas</span> <span class="role object" title="Doğrudan nesne">un poco de su ayuda en el pasado.</span></summary><p>Bu zor günlerde bu insanlarla ilgilenmek ve böylece geçmişteki yardımlarının bir kısmına karşılık vermek bizim sorumluluğumuz.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">No podemos olvidar</span> <span class="role linker" title="Bağlayıcı">que</span> <span class="role complement" title="Diğer tümleç">gracias a ellos</span> <span class="role verb" title="Fiil">conseguimos</span> <span class="role object" title="Doğrudan nesne">muchos derechos laborales y sociales</span> <span class="role linker" title="Bağlayıcı">y que</span> <span class="role subject" title="Özne">España</span> <span class="role verb" title="Fiil">es</span> <span class="role attribute" title="Yüklem niteliği">una nación moderna</span> <span class="role complement" title="Diğer tümleç">gracias a su esfuerzo y lucha.</span></summary><p>Onlar sayesinde birçok işçi hakkı ve sosyal hak kazandığımızı, İspanya’nın onların çabası ve mücadelesi sayesinde modern bir ülke olduğunu unutmamalıyız.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Si</span> <span class="role subject" title="Özne">tú</span> <span class="role verb" title="Fiil">conoces</span> <span class="role object" title="Doğrudan nesne">a personas de alto riesgo</span> <span class="role linker" title="Bağlayıcı">que</span> <span class="role verb" title="Fiil">no deben estar</span> <span class="role complement" title="Diğer tümleç">en la calle,</span> <span class="role independent" title="Bağımsız öge">por favor,</span> <span class="role verb" title="Fiil">ayuda</span> <span class="role object" title="Doğrudan nesne">a esta gente.</span></summary><p>Dışarı çıkmaması gereken yüksek risk grubundan birilerini tanıyorsan lütfen onlara yardım et.</p></details>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="lesson-card" id="bolum-3" role="tabpanel" aria-labelledby="tab-3" tabindex="0" hidden>
+    <h2 class="spanish-title" lang="es">Un Halloween diferente</h2>
+    <div class="player-mount"></div>
+    <template><iframe class="player" title="SoundCloud · 3. dinleme · Un Halloween diferente" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2441005044&amp;color=%23b92568&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false" allow="autoplay"></iframe></template>
+    <a class="external" href="https://soundcloud.com/profe-hazel/a2-1-15-16-3" target="_blank" rel="noopener">SoundCloud’da aç ↗</a>
+    <details class="accordion">
+      <summary>💬 Dinleme sonrası sorular</summary>
+      <div class="accordion-body">
+        <ol class="questions" lang="es">
+          <li><span class="role object" title="Doğrudan nesne">¿Qué</span> <span class="role verb" title="Fiil">va a hacer</span> <span class="role subject" title="Özne">la persona que habla</span> <span class="role complement" title="Diğer tümleç">con sus padres</span> <span class="role complement" title="Diğer tümleç">al principio?</span></li>
+          <li><span class="role object" title="Doğrudan nesne">¿Qué forma</span> <span class="role verb" title="Fiil">van a tener</span> <span class="role subject" title="Özne">las magdalenas?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Cómo</span> <span class="role verb" title="Fiil">van a celebrar</span> <span class="role object" title="Doğrudan nesne">el concurso de disfraces?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿A qué hora</span> <span class="role verb" title="Fiil">va a llamar</span> <span class="role subject" title="Özne">la profesora</span> <span class="role object" title="Doğrudan nesne">a los participantes?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Cómo</span> <span class="role verb" title="Fiil">van a votar</span> <span class="role subject" title="Özne">los participantes?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿De qué</span> <span class="role verb" title="Fiil">se ha disfrazado</span> <span class="role subject" title="Özne">la persona que habla?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Adónde</span> <span class="role verb" title="Fiil">va a ir</span> <span class="role subject" title="Özne">la familia</span> <span class="role complement" title="Diğer tümleç">después del concurso</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role object" title="Doğrudan nesne">qué</span> <span class="role verb" title="Fiil">va a ver</span> <span class="role complement" title="Diğer tümleç">allí?</span></li>
+        </ol>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>📝 Transkript</summary>
+      <div class="accordion-body">
+        <p class="transcript-tip">Türkçe karşılığını görmek için cümleye tıkla.</p>
+        <ul class="legend" aria-label="Cümle ögelerinin renkleri"><li class="role subject">Özne</li><li class="role verb">Fiil</li><li class="role object">Doğrudan nesne</li><li class="role indirect">Dolaylı nesne</li><li class="role complement">Diğer tümleç</li><li class="role attribute">Yüklem niteliği</li><li class="role linker">Bağlayıcı</li><li class="role independent">Bağımsız öge</li></ul>
+        <div class="sentences">
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">El dos mil veinte</span> <span class="role verb" title="Fiil">ha empezado</span> <span class="role complement" title="Diğer tümleç">terroríficamente</span> <span class="role complement" title="Diğer tümleç">a causa del COVID-19.</span></summary><p>2020, COVID-19 yüzünden korkunç başladı.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Sin embargo,</span> <span class="role verb" title="Fiil">me he acostumbrado</span> <span class="role complement" title="Diğer tümleç">a la nueva situación</span> <span class="role linker" title="Bağlayıcı">y,</span> <span class="role linker" title="Bağlayıcı">a pesar de todo,</span> <span class="role verb" title="Fiil">voy a pasar</span> <span class="role object" title="Doğrudan nesne">un Halloween fantástico.</span></summary><p>Yine de yeni duruma alıştım ve her şeye rağmen harika bir Cadılar Bayramı geçireceğim.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">He pensado</span> <span class="role complement" title="Diğer tümleç">en el siguiente plan.</span></summary><p>Aklıma şöyle bir plan geldi.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Primero,</span> <span class="role verb" title="Fiil">voy a decorar</span> <span class="role object" title="Doğrudan nesne">la casa</span> <span class="role complement" title="Diğer tümleç">con mis padres</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role verb" title="Fiil">a cocinar</span> <span class="role object" title="Doğrudan nesne">magdalenas con forma de calaveras.</span></summary><p>Önce annem ve babamla evi süsleyeceğim ve kafatası şeklinde küçük kekler yapacağım.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Después,</span> <span class="role subject" title="Özne">mis amigos del colegio y yo</span> <span class="role verb" title="Fiil">vamos a hacer</span> <span class="role object" title="Doğrudan nesne">un concurso de disfraces</span> <span class="role complement" title="Diğer tümleç">por videollamada</span> <span class="role complement" title="Diğer tümleç">con nuestra profesora.</span></summary><p>Ardından okul arkadaşlarımla birlikte öğretmenimizle görüntülü aramada bir kostüm yarışması yapacağız.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">Todos nosotros</span> <span class="role verb" title="Fiil">vamos a llevar</span> <span class="role object" title="Doğrudan nesne">disfraces</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role complement" title="Diğer tümleç">también</span> <span class="role verb" title="Fiil">vamos a decorar</span> <span class="role object" title="Doğrudan nesne">nuestros cuartos.</span></summary><p>Hepimiz kostüm giyeceğiz ve odalarımızı da süsleyeceğiz.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role complement" title="Diğer tümleç">A las siete de la tarde,</span> <span class="role subject" title="Özne">la profesora</span> <span class="role verb" title="Fiil">va a llamar</span> <span class="role object" title="Doğrudan nesne">a todos</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role complement" title="Diğer tümleç">por orden de lista</span> <span class="role verb" title="Fiil">vamos a hacer</span> <span class="role object" title="Doğrudan nesne">la presentación de nuestro disfraz.</span></summary><p>Akşam yedide öğretmen herkesi arayacak ve biz de listedeki sıraya göre kostümlerimizi tanıtacağız.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Finalmente,</span> <span class="role verb" title="Fiil">vamos a votar</span> <span class="role complement" title="Diğer tümleç">secretamente</span> <span class="role complement" title="Diğer tümleç">por el mejor disfraz,</span> <span class="role complement" title="Diğer tümleç">mandando un WhatsApp a la profesora.</span></summary><p>Son olarak öğretmene WhatsApp mesajı göndererek en iyi kostüm için gizlice oy vereceğiz.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Creo</span> <span class="role linker" title="Bağlayıcı">que</span> <span class="role verb" title="Fiil">voy a ganar</span> <span class="role linker" title="Bağlayıcı">porque</span> <span class="role complement" title="Diğer tümleç">ayer</span> <span class="role verb" title="Fiil">hice</span> <span class="role object" title="Doğrudan nesne">mi disfraz</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role verb" title="Fiil">daba</span> <span class="role object" title="Doğrudan nesne">mucho miedo.</span></summary><p>Kazanacağımı düşünüyorum çünkü kostümümü dün yaptım ve çok korkutucuydu.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Soy</span> <span class="role attribute" title="Yüklem niteliği">un virus verde del COVID-19.</span></summary><p>Ben yeşil bir COVID-19 virüsüyüm.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Luego,</span> <span class="role subject" title="Özne">mi familia y yo</span> <span class="role verb" title="Fiil">vamos a ir</span> <span class="role complement" title="Diğer tümleç">al motocine</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role complement" title="Diğer tümleç">allí</span> <span class="role verb" title="Fiil">vamos a ver</span> <span class="role object" title="Doğrudan nesne">una película de miedo.</span></summary><p>Sonra ailemle arabalı sinemaya gidip orada korku filmi izleyeceğiz.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Finalmente,</span> <span class="role complement" title="Diğer tümleç">antes de dormir,</span> <span class="role verb" title="Fiil">vamos a tomar</span> <span class="role object" title="Doğrudan nesne">las magdalenas con forma de calavera</span> <span class="role complement" title="Diğer tümleç">con chocolate caliente.</span></summary><p>Son olarak uyumadan önce kafatası şeklindeki küçük kekleri sıcak çikolatayla yiyeceğiz.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Va a ser</span> <span class="role attribute" title="Yüklem niteliği">un Halloween aterrador.</span></summary><p>Korkunç bir Cadılar Bayramı olacak.</p></details>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="lesson-card" id="bolum-4" role="tabpanel" aria-labelledby="tab-4" tabindex="0" hidden>
+    <h2 class="spanish-title" lang="es">Empiezo la universidad</h2>
+    <div class="player-mount"></div>
+    <template><iframe class="player" title="SoundCloud · 4. dinleme · Empiezo la universidad" src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F2441005158&amp;color=%23b92568&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false" allow="autoplay"></iframe></template>
+    <a class="external" href="https://soundcloud.com/profe-hazel/a2-1-15-16-4" target="_blank" rel="noopener">SoundCloud’da aç ↗</a>
+    <details class="accordion">
+      <summary>💬 Dinleme sonrası sorular</summary>
+      <div class="accordion-body">
+        <ol class="questions" lang="es">
+          <li><span class="role complement" title="Diğer tümleç">¿Cuándo</span> <span class="role verb" title="Fiil">empieza</span> <span class="role object" title="Doğrudan nesne">la universidad</span> <span class="role subject" title="Özne">Daniela?</span></li>
+          <li><span class="role object" title="Doğrudan nesne">¿Qué</span> <span class="role verb" title="Fiil">va a estudiar</span> <span class="role subject" title="Özne">Daniela</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role complement" title="Diğer tümleç">en qué universidad?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Por qué</span> <span class="role verb" title="Fiil">está</span> <span class="role attribute" title="Yüklem niteliği">nerviosa</span> <span class="role subject" title="Özne">Daniela?</span></li>
+          <li><span class="role subject" title="Özne">¿Quién</span> <span class="role verb" title="Fiil">va a acompañar</span> <span class="role object" title="Doğrudan nesne">a Daniela</span> <span class="role complement" title="Diğer tümleç">los primeros días?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Con quién</span> <span class="role verb" title="Fiil">va a vivir</span> <span class="role subject" title="Özne">Daniela</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role object" title="Doğrudan nesne">qué</span> <span class="role verb" title="Fiil">van a estudiar</span> <span class="role subject" title="Özne">las chicas de Guadalupe?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Dónde</span> <span class="role verb" title="Fiil">trabajó</span> <span class="role subject" title="Özne">Daniela</span> <span class="role complement" title="Diğer tümleç">con animales?</span></li>
+          <li><span class="role object" title="Doğrudan nesne">¿Cuántos años</span> <span class="role verb" title="Fiil">tiene que hacer</span> <span class="role subject" title="Özne">Daniela</span> <span class="role complement" title="Diğer tümleç">para conseguir el grado?</span></li>
+          <li><span class="role complement" title="Diğer tümleç">¿Cómo</span> <span class="role verb" title="Fiil">va a mantener</span> <span class="role object" title="Doğrudan nesne">el contacto con su familia</span> <span class="role subject" title="Özne">Daniela</span> <span class="role complement" title="Diğer tümleç">cada semana?</span></li>
+        </ol>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>📝 Transkript</summary>
+      <div class="accordion-body">
+        <p class="transcript-tip">Türkçe karşılığını görmek için cümleye tıkla.</p>
+        <ul class="legend" aria-label="Cümle ögelerinin renkleri"><li class="role subject">Özne</li><li class="role verb">Fiil</li><li class="role object">Doğrudan nesne</li><li class="role indirect">Dolaylı nesne</li><li class="role complement">Diğer tümleç</li><li class="role attribute">Yüklem niteliği</li><li class="role linker">Bağlayıcı</li><li class="role independent">Bağımsız öge</li></ul>
+        <div class="sentences">
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Empiezo</span> <span class="role object" title="Doğrudan nesne">la universidad.</span></summary><p>Üniversiteye başlıyorum.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role independent" title="Bağımsız öge">Hola,</span> <span class="role verb" title="Fiil">me llamo</span> <span class="role attribute" title="Yüklem niteliği">Daniela</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role verb" title="Fiil">tengo</span> <span class="role object" title="Doğrudan nesne">dieciocho años.</span></summary><p>Merhaba, adım Daniela ve on sekiz yaşındayım.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Vivo</span> <span class="role complement" title="Diğer tümleç">en Durango,</span> <span class="role complement" title="Diğer tümleç">en México,</span> <span class="role complement" title="Diğer tümleç">con mi familia.</span></summary><p>Meksika’da, Durango’da ailemle yaşıyorum.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">Este año</span> <span class="role verb" title="Fiil">va a ser</span> <span class="role attribute" title="Yüklem niteliği">muy especial.</span></summary><p>Bu yıl çok özel olacak.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Empiezo</span> <span class="role object" title="Doğrudan nesne">la universidad</span> <span class="role complement" title="Diğer tümleç">en septiembre.</span></summary><p>Eylülde üniversiteye başlıyorum.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Voy a estudiar</span> <span class="role object" title="Doğrudan nesne">veterinaria</span> <span class="role complement" title="Diğer tümleç">en la Universidad Autónoma de Nuevo León</span> <span class="role linker" title="Bağlayıcı">y</span> <span class="role verb" title="Fiil">va a ser</span> <span class="role attribute" title="Yüklem niteliği">muy padre.</span></summary><p>Nuevo León Özerk Üniversitesinde veterinerlik okuyacağım ve çok güzel olacak.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Sin embargo,</span> <span class="role complement" title="Diğer tümleç">también</span> <span class="role verb" title="Fiil">estoy</span> <span class="role attribute" title="Yüklem niteliği">nerviosa.</span></summary><p>Ama aynı zamanda gerginim.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Voy a estar</span> <span class="role complement" title="Diğer tümleç">lejos de mi casa y de mis padres y hermanos.</span></summary><p>Evimden, annemden, babamdan ve kardeşlerimden uzakta olacağım.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">Mi papá</span> <span class="role verb" title="Fiil">va a venir</span> <span class="role complement" title="Diğer tümleç">conmigo</span> <span class="role complement" title="Diğer tümleç">para ayudarme un poco</span> <span class="role complement" title="Diğer tümleç">los primeros días.</span></summary><p>Babam ilk günlerde bana biraz yardım etmek için benimle gelecek.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Voy a vivir</span> <span class="role complement" title="Diğer tümleç">en una casa</span> <span class="role complement" title="Diğer tümleç">con otros estudiantes.</span></summary><p>Başka öğrencilerle bir evde yaşayacağım.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Va a haber</span> <span class="role object" title="Doğrudan nesne">dos chicas de Guadalupe</span> <span class="role complement" title="Diğer tümleç">en la casa</span> <span class="role complement" title="Diğer tümleç">también.</span></summary><p>Evde Guadalupe’den iki kız da olacak.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">Ellas</span> <span class="role verb" title="Fiil">no van a estudiar</span> <span class="role object" title="Doğrudan nesne">veterinaria.</span></summary><p>Onlar veterinerlik okumayacaklar.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Van a hacer</span> <span class="role object" title="Doğrudan nesne">arquitectura.</span></summary><p>Mimarlık okuyacaklar.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">La carrera de veterinaria</span> <span class="role verb" title="Fiil">es</span> <span class="role attribute" title="Yüklem niteliği">difícil,</span> <span class="role linker" title="Bağlayıcı">pero</span> <span class="role indirect" title="Dolaylı nesne">me</span> <span class="role verb" title="Fiil">encanta.</span></summary><p>Veterinerlik bölümü zor ama ona bayılıyorum.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Además,</span> <span class="role verb" title="Fiil">tengo</span> <span class="role object" title="Doğrudan nesne">experiencia con los animales</span> <span class="role complement" title="Diğer tümleç">por un trabajo de verano en una granja en las afueras de Durango.</span></summary><p>Ayrıca Durango’nun dışında bir çiftlikte yaptığım yaz işi sayesinde hayvanlarla çalışma deneyimim var.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">La biología</span> <span class="role indirect" title="Dolaylı nesne">me</span> <span class="role verb" title="Fiil">fascina.</span></summary><p>Biyoloji beni büyülüyor.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Es</span> <span class="role attribute" title="Yüklem niteliği">mi asignatura preferida.</span></summary><p>En sevdiğim ders.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">No tengo</span> <span class="role object" title="Doğrudan nesne">dudas.</span></summary><p>Hiç şüphem yok.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Es</span> <span class="role attribute" title="Yüklem niteliği">mi carrera ideal.</span></summary><p>Benim için ideal bölüm.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Tengo que hacer</span> <span class="role object" title="Doğrudan nesne">cinco años</span> <span class="role complement" title="Diğer tümleç">para conseguir el grado.</span></summary><p>Diplomayı almak için beş yıl okumam gerekiyor.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Va a ser</span> <span class="role attribute" title="Yüklem niteliği">largo,</span> <span class="role linker" title="Bağlayıcı">pero</span> <span class="role indirect" title="Dolaylı nesne">me</span> <span class="role verb" title="Fiil">va a gustar</span> <span class="role subject" title="Özne">el resultado final</span> <span class="role linker" title="Bağlayıcı">porque</span> <span class="role verb" title="Fiil">voy a tener</span> <span class="role object" title="Doğrudan nesne">una profesión estupenda,</span> <span class="role complement" title="Diğer tümleç">siempre trabajando con animales.</span></summary><p>Uzun sürecek ama sonunda elde edeceğim sonuç hoşuma gidecek çünkü hep hayvanlarla çalışacağım harika bir mesleğim olacak.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">Los animales</span> <span class="role verb" title="Fiil">son</span> <span class="role attribute" title="Yüklem niteliği">mi pasión.</span></summary><p>Hayvanlar benim tutkum.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role verb" title="Fiil">Voy a extrañar</span> <span class="role object" title="Doğrudan nesne">a mis padres, a mis hermanos y a mi perro.</span></summary><p>Annemi, babamı, kardeşlerimi ve köpeğimi özleyeceğim.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role subject" title="Özne">El viaje de Nuevo León a Durango</span> <span class="role verb" title="Fiil">es</span> <span class="role attribute" title="Yüklem niteliği">largo,</span> <span class="role complement" title="Diğer tümleç">seis horas en carro.</span></summary><p>Nuevo León’dan Durango’ya yolculuk uzun, arabayla altı saat sürüyor.</p></details>
+          <details class="sentence"><summary lang="es"><span class="role linker" title="Bağlayıcı">Entonces,</span> <span class="role verb" title="Fiil">no voy a visitar</span> <span class="role object" title="Doğrudan nesne">a mi familia</span> <span class="role complement" title="Diğer tümleç">con frecuencia,</span> <span class="role linker" title="Bağlayıcı">pero</span> <span class="role verb" title="Fiil">vamos a hacer</span> <span class="role object" title="Doğrudan nesne">videollamadas</span> <span class="role complement" title="Diğer tümleç">cada semana.</span></summary><p>Bu yüzden ailemi sık sık ziyaret edemeyeceğim ama her hafta görüntülü konuşacağız.</p></details>
+        </div>
+      </div>
+    </details>
+  </section>
+</main>
+<dialog id="reminder" class="reminder" aria-labelledby="reminder-title">
+    <button class="dismiss" type="button" aria-label="Hatırlatmayı kapat">×</button>
+    <h2 id="reminder-title">🎉 Yolun yarısına geldik!</h2>
+    <p>15–16. dersle birlikte bugün <strong>8 haftalık yolculuğumuzun ilk yarısını tamamlıyoruz.</strong> Dört haftada öğrendiklerinizi kutlamak için bir an durun. 💛</p>
+    <p>📝 Ödev Takip Merkezi’ne uğrayıp eksik ödevlerinizi tamamlayın. 📚 Genel tekrar dosyalarınızı bir kez daha gözden geçirin ve aklınıza takılan yerleri not alın.</p>
+    <p>✨ Kalan dört haftaya eksiklerimizi kapatıp aynı merakla devam edelim.</p>
+</dialog>
+<dialog id="homework" class="homework" aria-labelledby="homework-title">
+  <div class="homework-head">
+    <h2 id="homework-title">📚 15–16. Ders Ödevleri</h2>
+    <div class="nav-actions"><button class="pill print-button" type="button">🖨️ Yazdır / PDF</button><form method="dialog"><button class="pill">← Etkinliğe dön</button></form></div>
+  </div>
+  <article class="assignment">
+    <h3>📝 A2.1 · 15–16. Ders Ödevi</h3>
+    <p>15–16. dersin mevcut çevrimiçi ödevi.</p>
+    <p><a href="https://ispanyolcacim.github.io/a2.1-tareas-ida/15-16.html" target="_blank" rel="noopener">Ödevi aç ↗</a></p>
+  </article>
+  <section class="assignment" aria-labelledby="prep-title">
+    <h3 id="prep-title">🧠 Sonraki derse hazırlık</h3>
+    <p>17–18. Ders Hazırlık Seti · 76 kelime</p>
+    <p><a href="https://quizlet.com/tr/870064920/a21-1718-ders-hazirlik-seti-flash-cards" target="_blank" rel="noopener">Quizlet setini aç ↗</a></p>
+  </section>
+</dialog>
+<aside class="word-card" id="word-card" aria-labelledby="word-title" hidden>
+  <button class="word-close" type="button" aria-label="Kelime kutusunu kapat">×</button>
+  <div aria-live="polite">
+    <h3 id="word-title" lang="es"></h3>
+    <p class="word-meta"></p>
+    <p><strong>TR</strong> <span class="word-tr"></span></p>
+    <p><strong>EN</strong> <span class="word-en" lang="en"></span></p>
+    <p class="word-role"></p>
+    <div class="word-idiom" hidden>
+      <p><strong lang="es"></strong></p>
+      <p class="idiom-tr"></p>
+      <p class="idiom-en" lang="en"></p>
+    </div>
+  </div>
+  <details>
+    <summary>İçinde geçtiği cümle</summary>
+    <p class="word-context" lang="es"></p>
+  </details>
+</aside>
+<script type="application/json" id="word-data">
+{
+  "a": ["a", "edat", "-e, -a", "to, at"],
+  "abuelos": ["el abuelo / la abuela", "çoğul isim", "büyükanne ve büyükbaba", "grandparents"],
+  "acceder": ["acceder", "mastar", "erişmek", "to access"],
+  "acompañar": ["acompañar", "mastar", "eşlik etmek", "to accompany"],
+  "acostumbrado": ["acostumbrarse", "ortaç", "alışmış", "got used"],
+  "además": ["además", "bağlayıcı", "ayrıca", "moreover"],
+  "adónde": ["adónde", "soru zarfı", "nereye", "where to"],
+  "afueras": ["las afueras", "çoğul isim", "şehir dışı, dış mahalleler", "outskirts"],
+  "ahora": ["ahora", "zaman zarfı", "şimdi", "now"],
+  "al": ["a + el", "edat + artikel", "-e, -a", "to the"],
+  "algunos": ["alguno/a", "belgisiz belirleyici", "bazı", "some"],
+  "allí": ["allí", "yer zarfı", "orada", "there"],
+  "alojar": ["alojarse", "mastar", "konaklamak", "to stay"],
+  "alto": ["alto/a", "sıfat", "yüksek", "high"],
+  "amiga": ["el amigo / la amiga", "isim", "arkadaş", "friend"],
+  "amigas": ["el amigo / la amiga", "isim", "arkadaş", "friend"],
+  "amigos": ["el amigo / la amiga", "isim", "arkadaş", "friend"],
+  "animales": ["el animal", "çoğul isim", "hayvanlar", "animals"],
+  "antes": ["antes", "zaman zarfı", "önce", "before"],
+  "apertura": ["la apertura", "isim", "açılış", "opening"],
+  "arquitectura": ["la arquitectura", "isim", "mimarlık", "architecture"],
+  "asignatura": ["la asignatura", "isim", "ders", "subject"],
+  "así": ["así", "zarf", "böylece, bu şekilde", "this way, thus"],
+  "atención": ["la atención", "isim", "ilgi, hizmet", "attention, service"],
+  "aterrador": ["aterrador/a", "sıfat", "korkutucu", "terrifying"],
+  "autónoma": ["autónomo/a", "sıfat", "özerk", "autonomous"],
+  "ayer": ["ayer", "zaman zarfı", "dün", "yesterday"],
+  "ayuda": ["la ayuda", "isim", "yardım", "help"],
+  "ayudando": ["ayudar", "gerundio", "yardım ederek", "helping"],
+  "ayudar": ["ayudar", "mastar", "yardım etmek", "to help"],
+  "ayudarme": ["ayudar + me", "mastar + zamir", "bana yardım etmek", "to help me"],
+  "año": ["el año", "isim", "yıl", "year"],
+  "años": ["el año", "isim", "yıl", "year"],
+  "bajado": ["bajar", "ortaç", "inmiş", "gone down"],
+  "baratos": ["barato/a", "sıfat", "ucuz", "inexpensive"],
+  "barrio": ["el barrio", "isim", "mahalle", "neighborhood"],
+  "bastante": ["bastante", "derece zarfı", "oldukça", "quite"],
+  "biología": ["la biología", "isim", "biyoloji", "biology"],
+  "bonito": ["bonito/a", "sıfat", "güzel", "lovely"],
+  "cada": ["cada", "belirleyici", "her", "every"],
+  "calavera": ["la calavera", "isim", "kafatası", "skull"],
+  "calaveras": ["la calavera", "isim", "kafatası", "skull"],
+  "caliente": ["caliente", "sıfat", "sıcak", "hot"],
+  "calle": ["la calle", "isim", "sokak", "street"],
+  "carrera": ["la carrera", "isim", "üniversite bölümü", "degree program"],
+  "carro": ["el carro", "isim", "araba (Meksika)", "car"],
+  "casa": ["la casa", "isim", "ev", "house, home"],
+  "causa": ["la causa", "isim", "sebep", "cause"],
+  "celebrar": ["celebrar", "mastar", "düzenlemek, gerçekleştirmek", "to hold"],
+  "chicas": ["la chica", "çoğul isim", "kızlar", "girls"],
+  "chocolate": ["el chocolate", "isim", "çikolata", "chocolate"],
+  "cinco": ["cinco", "sayı", "beş", "five"],
+  "clases": ["la clase", "çoğul isim", "dersler", "classes"],
+  "cocinar": ["cocinar", "mastar", "pişirmek", "to cook"],
+  "coger": ["coger", "mastar", "almak, binmek", "to pick up, to take"],
+  "colectivo": ["el colectivo", "isim", "topluluk, grup", "group"],
+  "colegio": ["el colegio", "isim", "okul", "school"],
+  "compra": ["la compra", "isim", "alışveriş", "shopping"],
+  "con": ["con", "edat", "ile", "with"],
+  "concurso": ["el concurso", "isim", "yarışma", "contest"],
+  "conmigo": ["conmigo", "edatlı zamir", "benimle", "with me"],
+  "conoces": ["conocer", "presente · tú", "tanıyorsun", "you know"],
+  "conseguimos": ["conseguir", "indefinido · nosotros", "elde ettik", "we obtained"],
+  "conseguir": ["conseguir", "mastar", "elde etmek", "to obtain"],
+  "contacto": ["el contacto", "isim", "iletişim, temas", "contact"],
+  "covid-19": ["COVID-19", "isim", "COVID-19", "COVID-19"],
+  "creo": ["creer", "presente · yo", "düşünüyorum, sanıyorum", "I think, I believe"],
+  "cuando": ["cuando", "zaman bağlayıcısı", "-dığında", "when"],
+  "cuartos": ["el cuarto", "çoğul isim", "odalar", "rooms"],
+  "cuidar": ["cuidar", "mastar", "ilgilenmek, göz kulak olmak", "to look after"],
+  "cuándo": ["cuándo", "soru zarfı", "ne zaman", "when"],
+  "cuántos": ["cuánto/a", "soru belirleyicisi", "kaç", "how many"],
+  "cómo": ["cómo", "soru zarfı", "nasıl", "how"],
+  "daba": ["dar", "imperfecto · 3. tekil", "veriyordu", "gave, caused"],
+  "daniela": ["Daniela", "özel isim", "Daniela", "Daniela"],
+  "de": ["de", "edat", "-in, -den", "of, from"],
+  "deben": ["deber", "presente · 3. çoğul", "-meliler, -malılar", "they should"],
+  "decorar": ["decorar", "mastar", "süslemek", "to decorate"],
+  "dedicada": ["dedicar", "ortaç / sıfat", "ayrılmış", "reserved"],
+  "dejando": ["dejar", "gerundio", "bırakarak", "leaving"],
+  "del": ["de + el", "edat + artikel", "-in, -den", "of the, from the"],
+  "derechos": ["el derecho", "çoğul isim", "haklar", "rights"],
+  "desastre": ["el desastre", "isim", "felaket", "disaster"],
+  "después": ["después", "zaman zarfı", "sonra", "afterward"],
+  "devolver": ["devolver", "mastar", "geri vermek, karşılığını vermek", "to give back"],
+  "diaria": ["diario/a", "sıfat", "günlük", "daily"],
+  "dieciocho": ["dieciocho", "sayı", "on sekiz", "eighteen"],
+  "dieciséis": ["dieciséis", "sayı", "on altı", "sixteen"],
+  "diferente": ["diferente", "sıfat", "farklı", "different"],
+  "difícil": ["difícil", "sıfat", "zor", "difficult"],
+  "difíciles": ["difícil", "sıfat", "zor", "difficult"],
+  "disfraces": ["el disfraz", "isim", "kostüm", "costume"],
+  "disfraz": ["el disfraz", "isim", "kostüm", "costume"],
+  "disfrazado": ["disfrazarse", "ortaç", "kostüm giymiş", "dressed up"],
+  "dormir": ["dormir", "mastar", "uyumak", "to sleep"],
+  "dos": ["dos", "sayı", "iki", "two"],
+  "dudas": ["la duda", "çoğul isim", "şüpheler", "doubts"],
+  "durango": ["Durango", "özel isim", "Durango", "Durango"],
+  "durante": ["durante", "edat", "boyunca, sırasında", "during"],
+  "duros": ["duro/a", "sıfat", "zorlu", "tough"],
+  "días": ["el día", "çoğul isim", "günler", "days"],
+  "dónde": ["dónde", "soru zarfı", "nerede", "where"],
+  "edad": ["la edad", "isim", "yaş", "age"],
+  "el": ["el / la", "belirli artikel", "belirli bir varlığı gösterir", "the"],
+  "ellas": ["ellos / ellas", "özne zamiri", "onlar", "they"],
+  "ellos": ["ellos / ellas", "özne zamiri", "onlar", "they"],
+  "embargo": ["sin embargo", "bağlayıcı içinde", "ancak, yine de", "however"],
+  "emocionada": ["emocionado/a", "sıfat", "heyecanlı", "excited"],
+  "empezado": ["empezar", "ortaç", "başlamış", "started"],
+  "empieza": ["empezar", "presente · 3. tekil", "başlıyor", "starts"],
+  "empiezo": ["empezar", "presente · yo", "başlıyorum", "I start"],
+  "en": ["en", "edat", "-de, -da, içinde", "in, at"],
+  "encanta": ["encantar", "presente · 3. tekil", "çok hoşuna gider", "loves, is delighted by"],
+  "entonces": ["entonces", "bağlayıcı", "o hâlde, bu yüzden", "so, then"],
+  "es": ["ser", "presente · 3. tekil", "-dır, -dir", "is"],
+  "ese": ["ese/a", "işaret sıfatı", "o", "that"],
+  "esfuerzo": ["el esfuerzo", "isim", "çaba", "effort"],
+  "eso": ["eso / esto", "işaret zamiri", "o, bu", "that, this"],
+  "espacio": ["el espacio", "isim", "alan", "space"],
+  "españa": ["España", "özel isim", "İspanya", "Spain"],
+  "especial": ["especial", "sıfat", "özel", "special"],
+  "esta": ["este/a", "işaret sıfatı", "bu", "this, these"],
+  "estar": ["estar", "mastar", "olmak, bulunmak", "to be"],
+  "estas": ["este/a", "işaret sıfatı", "bu", "this, these"],
+  "este": ["este/a", "işaret sıfatı", "bu", "this, these"],
+  "esto": ["eso / esto", "işaret zamiri", "o, bu", "that, this"],
+  "estos": ["este/a", "işaret sıfatı", "bu", "this, these"],
+  "estoy": ["estar", "presente · yo", "-im, bulunuyorum", "I am"],
+  "estudia": ["estudiar", "presente · 3. tekil", "okuyor, çalışıyor", "studies"],
+  "estudiantes": ["el/la estudiante", "çoğul isim", "öğrenciler", "students"],
+  "estudiar": ["estudiar", "mastar", "okumak, ders çalışmak", "to study"],
+  "estupenda": ["estupendo/a", "sıfat", "harika", "wonderful"],
+  "está": ["estar", "presente · 3. tekil", "bulunuyor, -dır", "is"],
+  "exclusiva": ["en exclusiva", "zarf öbeği içinde", "yalnızca, özel olarak", "exclusively"],
+  "experiencia": ["la experiencia", "isim", "deneyim", "experience"],
+  "extrañar": ["extrañar", "mastar", "özlemek", "to miss"],
+  "familia": ["la familia", "isim", "aile", "family"],
+  "fantástico": ["fantástico/a", "sıfat", "harika", "fantastic"],
+  "fascina": ["fascinar", "presente · 3. tekil", "büyüler", "fascinates"],
+  "favor": ["por favor", "nezaket ifadesi içinde", "lütfen", "please"],
+  "final": ["final", "sıfat", "son, nihai", "final"],
+  "finalmente": ["finalmente", "bağlayıcı", "son olarak", "finally"],
+  "forma": ["la forma", "isim", "biçim, şekil", "shape, form"],
+  "frecuencia": ["la frecuencia", "isim", "sıklık", "frequency"],
+  "ganar": ["ganar", "mastar", "kazanmak", "to win"],
+  "gente": ["la gente", "isim", "insanlar", "people"],
+  "grabación": ["la grabación", "isim", "kayıt", "recording"],
+  "gracias": ["gracias a", "edat öbeği içinde", "sayesinde", "thanks to"],
+  "grado": ["el grado", "isim", "lisans derecesi", "degree"],
+  "granja": ["la granja", "isim", "çiftlik", "farm"],
+  "guadalupe": ["Guadalupe", "özel isim", "Guadalupe", "Guadalupe"],
+  "gusta": ["gustar", "presente · 3. tekil", "hoşuna gider", "likes, is pleasing to"],
+  "gustar": ["gustar", "mastar", "hoşuna gitmek", "to like, to be pleasing to"],
+  "ha": ["haber", "yardımcı fiil · 3. tekil", "perfecto yardımcı fiili", "has (auxiliary)"],
+  "haber": ["haber", "mastar", "var olmak", "there to be"],
+  "habla": ["hablar", "presente · 3. tekil", "konuşuyor", "speaks"],
+  "hacer": ["hacer", "mastar", "yapmak", "to do, to make"],
+  "halloween": ["Halloween", "özel isim", "Cadılar Bayramı", "Halloween"],
+  "he": ["haber", "yardımcı fiil · yo", "perfecto yardımcı fiili", "have (auxiliary)"],
+  "hecho": ["hacer", "ortaç", "yapmış", "done, made"],
+  "hemos": ["haber", "yardımcı fiil · nosotros", "perfecto yardımcı fiili", "have (auxiliary)"],
+  "hermanos": ["el hermano / la hermana", "çoğul isim", "kardeşler", "siblings"],
+  "hice": ["hacer", "indefinido · yo", "yaptım", "I made, I did"],
+  "hola": ["hola", "ünlem", "merhaba", "hello"],
+  "hora": ["la hora", "isim", "saat", "hour"],
+  "horario": ["el horario", "isim", "saat düzeni", "schedule"],
+  "horas": ["la hora", "isim", "saat", "hour"],
+  "idea": ["la idea", "isim", "fikir", "idea"],
+  "ideal": ["ideal", "sıfat", "ideal", "ideal"],
+  "importante": ["importante", "sıfat", "önemli", "important"],
+  "incluidos": ["incluir", "ortaç", "dâhil", "included"],
+  "instituto": ["el instituto", "isim", "lise, ortaöğretim okulu", "secondary school"],
+  "invitado": ["invitar", "ortaç", "davet etmiş", "invited"],
+  "ir": ["ir", "mastar", "gitmek", "to go"],
+  "juntas": ["junto/a", "sıfat", "birlikte", "together"],
+  "jóvenes": ["el/la joven", "çoğul isim", "gençler", "young people"],
+  "kilómetros": ["el kilómetro", "çoğul isim", "kilometre", "kilometers"],
+  "la": ["el / la", "belirli artikel", "belirli bir varlığı gösterir", "the"],
+  "laborales": ["laboral", "sıfat", "çalışma hayatına ilişkin", "labor, workplace"],
+  "largo": ["largo/a", "sıfat", "uzun", "long"],
+  "las": ["el / la", "belirli artikel", "belirli bir varlığı gösterir", "the"],
+  "le": ["le", "dolaylı nesne zamiri", "ona", "to him, to her"],
+  "lejos": ["lejos", "yer zarfı", "uzakta", "far away"],
+  "león": ["Nuevo León", "yer adı içinde", "Nuevo León", "Nuevo León"],
+  "lista": ["la lista", "isim", "liste", "list"],
+  "llama": ["llamarse", "presente · 3. tekil", "adı …", "is called"],
+  "llamar": ["llamar", "mastar", "aramak", "to call"],
+  "llamo": ["llamarse", "presente · yo", "adım …", "I am called"],
+  "llegado": ["llegar", "ortaç", "varmış", "arrived"],
+  "llevar": ["llevar", "mastar", "giymek, takmak", "to wear"],
+  "los": ["el / la", "belirli artikel", "belirli bir varlığı gösterir", "the"],
+  "lucha": ["la lucha", "isim", "mücadele", "struggle"],
+  "luego": ["luego", "zaman zarfı", "ardından", "then"],
+  "madrid": ["Madrid", "özel isim", "Madrid", "Madrid"],
+  "magdalenas": ["la magdalena", "çoğul isim", "küçük kekler", "muffins, small cakes"],
+  "maleta": ["la maleta", "isim", "valiz", "suitcase"],
+  "mandando": ["mandar", "gerundio", "göndererek", "by sending"],
+  "manera": ["la manera", "isim", "yol, biçim", "way"],
+  "mantener": ["mantener", "mastar", "sürdürmek", "to maintain"],
+  "marian": ["Marian", "özel isim", "Marian", "Marian"],
+  "mayores": ["mayor", "sıfat", "yaşlı, ileri yaştaki", "older"],
+  "mañana": ["mañana", "isim veya zaman zarfı", "sabah, yarın", "morning, tomorrow"],
+  "me": ["me", "zamir", "beni, bana", "me, to me"],
+  "medianoche": ["la medianoche", "isim", "gece yarısı", "midnight"],
+  "mejor": ["mejor", "sıfat", "daha iyi, en iyi", "better, best"],
+  "mi": ["mi", "iyelik sıfatı", "benim", "my"],
+  "miedo": ["el miedo", "isim", "korku", "fear"],
+  "mil": ["mil", "sayı", "bin", "thousand"],
+  "mis": ["mi", "iyelik sıfatı", "benim", "my"],
+  "mismo": ["mismo/a", "sıfat", "aynı", "same"],
+  "moderna": ["moderno/a", "sıfat", "modern", "modern"],
+  "montaña": ["la montaña", "isim", "dağ", "mountain"],
+  "motocine": ["el autocine", "isim", "arabalı sinema", "drive-in cinema"],
+  "movilidad": ["la movilidad", "isim", "hareket kabiliyeti", "mobility"],
+  "mucho": ["mucho", "miktar zarfı", "çok", "a lot"],
+  "muchos": ["mucho/a", "miktar belirleyicisi", "birçok", "many"],
+  "muy": ["muy", "derece zarfı", "çok", "very"],
+  "méxico": ["México", "özel isim", "Meksika", "Mexico"],
+  "nación": ["la nación", "isim", "ulus, ülke", "nation"],
+  "necesito": ["necesitar", "presente · yo", "ihtiyacım var", "I need"],
+  "nerviosa": ["nervioso/a", "sıfat", "gergin, endişeli", "nervous"],
+  "no": ["no", "olumsuzluk zarfı", "değil, yok", "not, no"],
+  "norte": ["el norte", "isim", "kuzey", "north"],
+  "nos": ["nos", "dönüşlü zamir", "biz, kendimiz", "ourselves, us"],
+  "nosotros": ["nosotros/as", "özne zamiri", "biz", "we"],
+  "nuestra": ["nuestro/a", "iyelik sıfatı", "bizim", "our"],
+  "nuestro": ["nuestro/a", "iyelik sıfatı", "bizim", "our"],
+  "nuestros": ["nuestro/a", "iyelik sıfatı", "bizim", "our"],
+  "nueva": ["nuevo/a", "sıfat", "yeni", "new"],
+  "nuevo": ["Nuevo León", "yer adı içinde", "Nuevo León", "Nuevo León"],
+  "ojos": ["el ojo", "çoğul isim", "gözler", "eyes"],
+  "olvidar": ["olvidar", "mastar", "unutmak", "to forget"],
+  "ondulado": ["ondulado/a", "sıfat", "dalgalı", "wavy"],
+  "orden": ["el orden", "isim", "sıra", "order"],
+  "otros": ["otro/a", "belgisiz belirleyici", "başka, diğer", "other"],
+  "padre": ["el padre / la madre", "isim", "baba, ebeveynler", "father, parents"],
+  "padres": ["el padre / la madre", "isim", "baba, ebeveynler", "father, parents"],
+  "papá": ["el papá", "isim", "baba", "dad"],
+  "para": ["para", "edat", "için", "for, in order to"],
+  "participantes": ["el/la participante", "çoğul isim", "katılımcılar", "participants"],
+  "pasado": ["el pasado", "isim", "geçmiş", "past"],
+  "pasar": ["pasar", "mastar", "geçirmek", "to spend"],
+  "pasión": ["la pasión", "isim", "tutku", "passion"],
+  "pelo": ["el pelo", "isim", "saç", "hair"],
+  "película": ["la película", "isim", "film", "film"],
+  "pendiente": ["pendiente", "sıfat", "henüz yapılmamış", "still to do, pending"],
+  "pensado": ["pensar", "ortaç", "düşünmüş", "thought"],
+  "pequeño": ["pequeño/a", "sıfat", "küçük", "small"],
+  "pero": ["pero", "bağlaç", "ama", "but"],
+  "perro": ["el perro", "isim", "köpek", "dog"],
+  "persona": ["la persona", "isim", "kişi, insan", "person"],
+  "personas": ["la persona", "isim", "kişi, insan", "person"],
+  "pesar": ["a pesar de", "edat öbeği içinde", "-e rağmen", "in spite of"],
+  "plan": ["el plan", "isim", "plan", "plan"],
+  "poco": ["poco", "miktar ifadesi", "az, biraz", "little, a bit"],
+  "podemos": ["poder", "presente · nosotros", "yapabiliriz", "we can"],
+  "por": ["por", "edat", "nedeniyle, yoluyla, için", "because of, by, for"],
+  "porque": ["porque", "neden bağlacı", "çünkü", "because"],
+  "preferida": ["preferido/a", "sıfat", "en sevilen", "favorite"],
+  "presentación": ["la presentación", "isim", "sunum, tanıtım", "presentation"],
+  "primera": ["primero/a", "sıra sıfatı", "ilk", "first"],
+  "primero": ["primero", "sıra zarfı", "önce, ilk olarak", "first"],
+  "primeros": ["primero/a", "sıra sıfatı", "ilk", "first"],
+  "principio": ["el principio", "isim", "başlangıç", "beginning"],
+  "prioriza": ["priorizar", "presente · 3. tekil", "öncelik tanıyor", "prioritizes"],
+  "problemas": ["el problema", "çoğul isim", "sorunlar", "problems"],
+  "productos": ["el producto", "çoğul isim", "ürünler", "products"],
+  "profesión": ["la profesión", "isim", "meslek", "profession"],
+  "profesora": ["la profesora", "isim", "öğretmen", "teacher"],
+  "propuesto": ["proponer", "ortaç", "önermiş", "proposed"],
+  "pueblo": ["el pueblo", "isim", "köy, küçük kasaba", "village, small town"],
+  "pueden": ["poder", "presente · 3. çoğul", "yapabilirler", "they can"],
+  "que": ["que", "bağlaç veya ilgi zamiri", "ki, -en, -an", "that, who, which"],
+  "quién": ["quién", "soru zamiri", "kim, kimler", "who"],
+  "quiénes": ["quién", "soru zamiri", "kim, kimler", "who"],
+  "qué": ["qué", "soru / ünlem sözcüğü", "ne, hangi", "what, which"],
+  "responsabilidad": ["la responsabilidad", "isim", "sorumluluk", "responsibility"],
+  "resultado": ["el resultado", "isim", "sonuç", "result"],
+  "riesgo": ["el riesgo", "isim", "risk", "risk"],
+  "rubio": ["rubio/a", "sıfat", "sarı (saç)", "blond"],
+  "salgo": ["salir", "presente · yo", "çıkıyorum", "I leave"],
+  "se": ["se", "dönüşlü zamir", "kendisi, kendilerini", "oneself, themselves"],
+  "secretamente": ["secretamente", "durum zarfı", "gizlice", "secretly"],
+  "segovia": ["Segovia", "özel isim", "Segovia", "Segovia"],
+  "según": ["según", "edat", "-e göre", "according to"],
+  "seis": ["seis", "sayı", "altı", "six"],
+  "semana": ["la semana", "isim", "hafta", "week"],
+  "sentimiento": ["el sentimiento", "isim", "duygu", "feeling"],
+  "septiembre": ["septiembre", "ay adı", "eylül", "September"],
+  "ser": ["ser", "mastar", "olmak", "to be"],
+  "setenta": ["setenta", "sayı", "yetmiş", "seventy"],
+  "si": ["si", "koşul bağlacı", "eğer", "if"],
+  "siempre": ["siempre", "sıklık zarfı", "her zaman", "always"],
+  "siete": ["siete", "sayı", "yedi", "seven"],
+  "siguiente": ["siguiente", "sıfat", "sonraki, aşağıdaki", "next, following"],
+  "sin": ["sin", "edat", "-siz, -sız", "without"],
+  "situación": ["la situación", "isim", "durum", "situation"],
+  "sociales": ["social", "sıfat", "sosyal", "social"],
+  "solidaria": ["solidario/a", "sıfat", "dayanışma amaçlı", "supportive, showing solidarity"],
+  "son": ["ser", "presente · 3. çoğul", "-dırlar, -dirler", "they are"],
+  "soy": ["ser", "presente · yo", "-im", "I am"],
+  "su": ["su", "iyelik sıfatı", "onun, onların", "his, her, their"],
+  "supermercado": ["el supermercado", "isim", "süpermarket", "supermarket"],
+  "sus": ["su", "iyelik sıfatı", "onun, onların", "his, her, their"],
+  "también": ["también", "zarf", "de, da, ayrıca", "also"],
+  "tan": ["tan", "derece zarfı", "bu kadar, o kadar", "so"],
+  "tania": ["Tania", "özel isim", "Tania", "Tania"],
+  "tarde": ["la tarde", "isim", "öğleden sonra, akşamüstü", "afternoon, early evening"],
+  "temprano": ["temprano", "zaman zarfı", "erken", "early"],
+  "tener": ["tener", "mastar", "sahip olmak", "to have"],
+  "tengo": ["tener", "presente · yo", "var, sahibim", "I have"],
+  "tenido": ["tener", "ortaç", "sahip olmuş, yaşamış", "had, experienced"],
+  "terminado": ["terminar", "ortaç", "bitirmiş", "finished"],
+  "terroríficamente": ["terroríficamente", "durum zarfı", "korkunç biçimde", "terrifyingly"],
+  "tiene": ["tener", "presente · 3. tekil", "var, sahip", "has"],
+  "tienen": ["tener", "presente · 3. çoğul", "var, sahipler", "they have"],
+  "tipo": ["el tipo", "isim", "tür", "type"],
+  "toda": ["todo/a", "miktar belirleyicisi / zamir", "bütün, her şey, herkes", "all, everything, everyone"],
+  "todavía": ["todavía", "zaman zarfı", "hâlâ, henüz", "still, yet"],
+  "todo": ["todo/a", "miktar belirleyicisi / zamir", "bütün, her şey, herkes", "all, everything, everyone"],
+  "todos": ["todo/a", "miktar belirleyicisi / zamir", "bütün, her şey, herkes", "all, everything, everyone"],
+  "tomar": ["tomar", "mastar", "yemek, içmek, almak", "to have, to take"],
+  "trabajando": ["trabajar", "gerundio", "çalışarak", "working"],
+  "trabajo": ["el trabajo", "isim", "iş", "job"],
+  "trabajó": ["trabajar", "indefinido · 3. tekil", "çalıştı", "worked"],
+  "tren": ["el tren", "isim", "tren", "train"],
+  "tú": ["tú", "özne zamiri", "sen", "you"],
+  "un": ["un / una", "belirsiz artikel", "bir", "a, an"],
+  "una": ["un / una", "belirsiz artikel", "bir", "a, an"],
+  "universidad": ["la universidad", "isim", "üniversite", "university"],
+  "unos": ["un / una", "yaklaşık miktar belirleyicisi", "yaklaşık, birkaç", "about, around"],
+  "va": ["ir", "presente · 3. tekil", "gidiyor, gelecek yapısı", "goes, is going to"],
+  "vamos": ["ir", "presente · nosotros", "gidiyoruz, gelecek yapısı", "we go, we are going to"],
+  "van": ["ir", "presente · 3. çoğul", "gidiyorlar, gelecek yapısı", "they go, they are going to"],
+  "veces": ["la vez", "isim", "kez, defa", "time, occasion"],
+  "vecinos": ["el vecino / la vecina", "çoğul isim", "komşular", "neighbors"],
+  "veinte": ["veinte", "sayı", "yirmi", "twenty"],
+  "venir": ["venir", "mastar", "gelmek", "to come"],
+  "ventaja": ["la ventaja", "isim", "avantaj", "advantage"],
+  "ver": ["ver", "mastar", "görmek, izlemek", "to see, to watch"],
+  "verano": ["el verano", "isim", "yaz", "summer"],
+  "verde": ["verde", "sıfat", "yeşil", "green"],
+  "verdes": ["verde", "sıfat", "yeşil", "green"],
+  "veterinaria": ["la veterinaria", "isim", "veterinerlik", "veterinary medicine"],
+  "vez": ["la vez", "isim", "kez, defa", "time, occasion"],
+  "viajar": ["viajar", "mastar", "seyahat etmek", "to travel"],
+  "viaje": ["el viaje", "isim", "seyahat, yolculuk", "trip, journey"],
+  "videollamada": ["la videollamada", "isim", "görüntülü arama", "video call"],
+  "videollamadas": ["la videollamada", "isim", "görüntülü arama", "video call"],
+  "virus": ["el virus", "isim", "virüs", "virus"],
+  "visitar": ["visitar", "mastar", "ziyaret etmek", "to visit"],
+  "visto": ["ver", "ortaç", "görmüş", "seen"],
+  "vive": ["vivir", "presente · 3. tekil", "yaşıyor", "lives"],
+  "vivir": ["vivir", "mastar", "yaşamak", "to live"],
+  "vivo": ["vivir", "presente · yo", "yaşıyorum", "I live"],
+  "votar": ["votar", "mastar", "oy vermek", "to vote"],
+  "voy": ["ir", "presente · yo", "gidiyorum, gelecek yapısı", "I go, I am going to"],
+  "vulnerable": ["vulnerable", "sıfat", "hassas, risk altındaki", "vulnerable"],
+  "whatsapp": ["WhatsApp", "özel isim", "WhatsApp, WhatsApp mesajı", "WhatsApp, WhatsApp message"],
+  "y": ["y", "bağlaç", "ve", "and"],
+  "ya": ["ya", "zaman zarfı", "çoktan, artık", "already"],
+  "yo": ["yo", "özne zamiri", "ben", "I"],
+  "última": ["último/a", "sıfat", "son", "last"]
+}
+</script>
+<script type="application/json" id="idiom-data">
+{
+  "me llamo": ["llamarse", "dönüşlü ifade · yo", "adım …", "my name is …"],
+  "se llama": ["llamarse", "dönüşlü ifade · 3. tekil", "adı …", "is called …"],
+  "tener que": ["tener que + infinitivo", "zorunluluk yapısı", "-mek zorunda olmak", "to have to"],
+  "tengo que": ["tener que + infinitivo", "zorunluluk yapısı · yo", "-mem gerekiyor", "I have to"],
+  "tiene que": ["tener que + infinitivo", "zorunluluk yapısı · 3. tekil", "-mesi gerekiyor", "has to"],
+  "hacer la maleta": ["hacer la maleta", "ifade", "valizi hazırlamak", "to pack a suitcase"],
+  "para última hora": ["para última hora", "zaman ifadesi", "son dakikaya", "until the last minute"],
+  "coger el tren": ["coger el tren", "ifade", "trene binmek", "to take the train"],
+  "de viaje": ["de viaje", "ifade", "seyahatte, seyahate", "on a trip"],
+  "por eso": ["por eso", "sonuç bağlayıcısı", "bu yüzden", "that's why"],
+  "a veces": ["a veces", "sıklık ifadesi", "bazen", "sometimes"],
+  "esta mañana": ["esta mañana", "zaman ifadesi", "bu sabah", "this morning"],
+  "hacer la compra": ["hacer la compra", "ifade", "alışveriş yapmak", "to do the shopping"],
+  "he hecho la compra": ["hacer la compra", "ifade · pretérito perfecto", "alışverişi yaptım", "I have done the shopping"],
+  "ha hecho la compra": ["hacer la compra", "ifade · pretérito perfecto", "alışverişi yaptı", "has done the shopping"],
+  "en persona": ["en persona", "durum ifadesi", "bizzat, kendisi giderek", "in person"],
+  "de alto riesgo": ["de alto riesgo", "niteleme", "yüksek riskli", "high-risk"],
+  "en exclusiva": ["en exclusiva", "durum ifadesi", "yalnızca, özel olarak", "exclusively"],
+  "de esta manera": ["de esta manera", "bağlayıcı", "bu şekilde, böylece", "this way"],
+  "gracias a": ["gracias a", "edat öbeği", "sayesinde", "thanks to"],
+  "por favor": ["por favor", "nezaket ifadesi", "lütfen", "please"],
+  "a causa del": ["a causa de + el", "neden ifadesi", "yüzünden", "because of the"],
+  "sin embargo": ["sin embargo", "karşıtlık bağlayıcısı", "ancak, yine de", "however"],
+  "a pesar de todo": ["a pesar de todo", "karşıtlık bağlayıcısı", "her şeye rağmen", "despite everything"],
+  "por orden de lista": ["por orden de lista", "sıra ifadesi", "listedeki sıraya göre", "in list order"],
+  "daba mucho miedo": ["dar miedo", "ifade · imperfecto", "çok korkutucuydu", "it was very scary"],
+  "película de miedo": ["película de miedo", "isim öbeği", "korku filmi", "horror movie"],
+  "muy padre": ["padre", "Meksika İspanyolcasında sıfat", "çok güzel, harika", "really cool"],
+  "en las afueras": ["en las afueras", "yer ifadesi", "şehrin dışında", "on the outskirts"],
+  "con frecuencia": ["con frecuencia", "sıklık ifadesi", "sık sık", "often"]
+}
+</script>
+<script>
+  'use strict';
+  const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+  const panels = tabs.map(tab => document.getElementById(tab.getAttribute('aria-controls')));
+  const tablist = document.querySelector('[role="tablist"]');
+
+  function selectTab(index, focus = false) {
+    closeWord();
+    tabs.forEach((tab, position) => {
+      const active = position === index;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+      panels[position].hidden = !active;
+      // Unmount the player when leaving a section so only the current recording can play.
+      const mount = panels[position].querySelector('.player-mount');
+      if (!active) mount.replaceChildren();
+      if (active && !mount.firstElementChild) {
+        mount.append(panels[position].querySelector('template').content.cloneNode(true));
+      }
+    });
+    if (focus) tabs[index].focus();
+  }
+
+  tabs.forEach((tab, index) => tab.addEventListener('click', () => selectTab(index)));
+  tablist.addEventListener('keydown', event => {
+    const index = tabs.indexOf(event.target);
+    if (index < 0) return;
+    const positions = {
+      ArrowLeft: (index + tabs.length - 1) % tabs.length,
+      ArrowRight: (index + 1) % tabs.length,
+      Home: 0,
+      End: tabs.length - 1
+    };
+    if (!Object.hasOwn(positions, event.key)) return;
+    event.preventDefault();
+    selectTab(positions[event.key], true);
+  });
+
+  const legacyIndex = panels.findIndex(panel => '#' + panel.id === location.hash);
+  if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+
+  for (const trigger of document.querySelectorAll('[data-dialog]')) {
+    const dialog = document.getElementById(trigger.dataset.dialog);
+    trigger.addEventListener('click', () => {
+      dialog.showModal();
+      trigger.setAttribute('aria-expanded', 'true');
+    });
+    dialog.addEventListener('close', () => {
+      trigger.setAttribute('aria-expanded', 'false');
+      trigger.focus();
+    });
+    dialog.addEventListener('click', event => {
+      if (event.target !== dialog) return;
+      const box = dialog.getBoundingClientRect();
+      if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) {
+        dialog.close();
+      }
+    });
+  }
+  document.querySelector('.dismiss').addEventListener('click', event => event.currentTarget.closest('dialog').close());
+
+  const glossary = JSON.parse(document.getElementById('word-data').textContent);
+  const expressions = Object.entries(JSON.parse(document.getElementById('idiom-data').textContent))
+    .map(([phrase, meaning]) => [phrase, phrase.split(' '), meaning])
+    .sort((first, second) => second[1].length - first[1].length);
+  const token = /[\p{L}\p{N}]+(?:-[\p{L}\p{N}]+)*/gu;
+  for (const container of document.querySelectorAll('.lesson-card [lang="es"] .role, .spanish-title')) {
+    const text = container.textContent;
+    const nodes = document.createDocumentFragment();
+    let end = 0;
+    for (const match of text.matchAll(token)) {
+      const word = match[0];
+      const form = word.toLocaleLowerCase('es');
+      nodes.append(text.slice(end, match.index));
+      const button = document.createElement('button');
+      button.className = 'vocab-word';
+      button.type = 'button';
+      button.dataset.word = form;
+      button.textContent = word;
+      button.setAttribute('aria-controls', 'word-card');
+      button.setAttribute('aria-expanded', 'false');
+      nodes.append(button);
+      end = match.index + word.length;
+    }
+    nodes.append(text.slice(end));
+    container.replaceChildren(nodes);
+  }
+
+  const wordCard = document.getElementById('word-card');
+  let activeWord;
+
+  function closeWord(restoreFocus = false) {
+    if (!activeWord) return;
+    activeWord.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) activeWord.focus();
+    wordCard.hidden = true;
+    activeWord = null;
+  }
+
+  function showWord(button) {
+    if (button === activeWord) {
+      closeWord();
+      return;
+    }
+    closeWord();
+    activeWord = button;
+    button.setAttribute('aria-expanded', 'true');
+
+    const source = button.closest('summary, li, .spanish-title');
+    const buttons = [...source.querySelectorAll('[data-word]')];
+    const words = buttons.map(item => item.dataset.word);
+    const current = buttons.indexOf(button);
+    const idiom = expressions.find(([, parts]) =>
+      parts.some((_, offset) => current >= offset &&
+        parts.every((part, index) => words[current - offset + index] === part))
+    );
+    const form = button.dataset.word;
+    let [lemma, kind, turkish, english] = glossary[form];
+    if (form === 'padre' && idiom?.[0] === 'muy padre') {
+      [lemma, kind, turkish, english] = ['padre', 'sıfat · Meksika', 'güzel, harika', 'cool, great'];
+    } else if (form === 'ayuda' && button.closest('.role.verb')) {
+      [lemma, kind, turkish, english] = ['ayudar', 'imperativo · tú', 'yardım et', 'help'];
+    } else if (form === 'mañana') {
+      [lemma, kind, turkish, english] = idiom?.[0] === 'esta mañana'
+        ? ['la mañana', 'isim', 'sabah', 'morning']
+        : ['mañana', 'zaman zarfı', 'yarın', 'tomorrow'];
+    }
+    const put = (selector, text) => { wordCard.querySelector(selector).textContent = text; };
+    put('#word-title', button.textContent);
+    put('.word-meta', lemma + ' · ' + kind);
+    put('.word-tr', turkish);
+    put('.word-en', english);
+    const role = button.closest('.role')?.title;
+    put('.word-role', role ? 'Cümledeki öbeği · ' + role : '');
+    put('.word-context', source.textContent.trim());
+    wordCard.querySelector('details').open = false;
+    wordCard.querySelector('.word-idiom').hidden = !idiom;
+    if (idiom) {
+      put('.word-idiom strong', idiom[0]);
+      put('.idiom-tr', 'TR · ' + idiom[2][2]);
+      put('.idiom-en', 'EN · ' + idiom[2][3]);
+    }
+    wordCard.hidden = false;
+    placeWordCard();
+  }
+
+  function placeWordCard() {
+    if (!activeWord) return;
+    const box = activeWord.getBoundingClientRect();
+    const maxLeft = document.documentElement.clientWidth - wordCard.offsetWidth - 10;
+    const maxTop = document.documentElement.clientHeight - wordCard.offsetHeight - 10;
+    wordCard.style.left = Math.max(10, Math.min(box.left, maxLeft)) + 'px';
+    wordCard.style.top = Math.max(10, box.bottom + 7 <= maxTop ? box.bottom + 7 : box.top - wordCard.offsetHeight - 7) + 'px';
+  }
+
+  document.addEventListener('click', event => {
+    const word = event.target.closest('[data-word]');
+    if (word) {
+      event.preventDefault();
+      showWord(word);
+      if (event.detail === 0 && activeWord) wordCard.querySelector('.word-close').focus({ preventScroll: true });
+    } else if (!wordCard.contains(event.target)) {
+      closeWord();
+    }
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && activeWord) {
+      event.preventDefault();
+      closeWord(true);
+    }
+  });
+  wordCard.querySelector('.word-close').addEventListener('click', () => closeWord(true));
+  wordCard.addEventListener('toggle', placeWordCard, true);
+  window.addEventListener('scroll', () => closeWord(), { passive: true });
+  window.addEventListener('resize', () => closeWord());
+  selectTab(Math.max(legacyIndex, 0));
+
+  const printDetails = new Set();
+  window.addEventListener('beforeprint', () => {
+    document.querySelectorAll('main details:not([open])').forEach(details => {
+      printDetails.add(details);
+      details.open = true;
+    });
+  });
+  window.addEventListener('afterprint', () => {
+    printDetails.forEach(details => { details.open = false; });
+    printDetails.clear();
+  });
+  document.querySelectorAll('.print-button').forEach(button => button.addEventListener('click', () => window.print()));
+</script>
+</body>
+</html>
