@@ -17,10 +17,10 @@ function listeningQuestions() {
   const questions = [];
   RIOJA_TRACKS.forEach((track, section) => {
     track.gaps = [];
-    track.paragraphs = track.transcript.split('\n\n').map((paragraph, paragraphIndex) =>
+    track.paragraphs = track.transcript.split('\n\n').map(paragraph =>
       paragraph.replace(/\[\[([^\]]+)\]\]/g, (_, word) => {
         const number = questions.length + 1;
-        const item = { kind: 'gap', answer: word, section, number, paragraphIndex, gap: track.gaps.length + 1 };
+        const item = { kind: 'gap', answer: word, section, number, gap: track.gaps.length + 1 };
         track.gaps.push(item);
         questions.push(item);
         return '[[' + number + ']]';
@@ -46,6 +46,7 @@ const questions = isListening ? listeningQuestions() : [
   }))
 ];
 
+const pages = questions.filter(question => question.kind !== 'gap' || question.gap === 1);
 let page = 0;
 let studentName = '';
 let currentAudio = null;
@@ -53,14 +54,21 @@ let frozenResult = null;
 let saving = false;
 const answers = new Map();
 const drafts = new Map();
+const checkedGaps = new Set();
 
 const navigation = byId('jump-select');
 const questionCard = byId('question');
-const questionOptions = questions.map((question, index) => new Option(question.number, index));
+function questionRange(question) {
+  if (question.kind !== 'gap') return String(question.number);
+  const gaps = sections[question.section].track.gaps;
+  return gaps[0].number + '–' + gaps.at(-1).number;
+}
+
+const questionOptions = pages.map((question, index) => new Option(questionRange(question), index));
 sections.forEach((section, i) => {
   const group = document.createElement('optgroup');
   group.label = section.label;
-  questions.forEach((question, index) => {
+  pages.forEach((question, index) => {
     if (question.section === i) group.append(questionOptions[index]);
   });
   navigation.append(group);
@@ -122,53 +130,53 @@ function renderAudio(track) {
   container.append(title, player, link);
 }
 
-function fillGaps(paragraph, track, currentNumber, reveal) {
-  return escapeHtml(paragraph).replace(/\[\[(\d+)\]\]/g, (_, token) => {
-    const gap = track.gaps.find(item => item.number === Number(token));
-    if (reveal || (currentNumber === gap.number && answers.has(gap.number))) {
-      return '<span class="gap gap-revealed">' + escapeHtml(gap.answer) + '</span>';
-    }
-    const active = gap.number === currentNumber ? ' aria-current="true"' : '';
-    return '<span class="gap"' + active + '>(' + gap.gap + ') ______</span>';
-  });
-}
-
-function renderReading(track, section) {
-  const reading = byId('reading');
-  reading.hidden = !track;
-  if (!track) {
-    byId('reading-body').replaceChildren();
-    return;
-  }
-  const reveal = questions.filter(item => item.section === section).every(item => answers.has(item.number));
-  byId('reading-title').textContent = reveal
-    ? 'Transkript · Tam metin'
-    : 'Boşluklu metin · Tam transkript bu dinlemenin 15 sorusundan sonra açılır';
-  byId('reading-body').innerHTML = track.paragraphs
-    .map(paragraph => '<p>' + fillGaps(paragraph, track, null, reveal) + '</p>').join('');
-}
-
 function header(question, prompt, lang = 'tr') {
-  return '<header><span class="hw-question-number">' + question.number + '</span>'
+  return '<header><span class="hw-question-number">' + questionRange(question) + '</span>'
     + '<h2 id="prompt" lang="' + lang + '">' + escapeHtml(prompt) + '</h2></header>';
 }
 
 function gapCard(question, track) {
-  const checked = answers.get(question.number);
-  const value = checked?.value ?? drafts.get(question.number) ?? '';
-  const locked = Boolean(checked || frozenResult);
-  const accentOnly = checked && !checked.correct &&
-    comparison(value, true).normalize('NFD').replace(/\p{M}/gu, '') ===
-    comparison(question.answer, true).normalize('NFD').replace(/\p{M}/gu, '');
-  const feedback = checked ? '<p class="notice ' + (checked.correct ? 'is-correct">✅ Doğru. 2 puan.'
-    : 'is-wrong">❌ Doğru yazım <strong lang="es">' + escapeHtml(question.answer) + '</strong>.'
-      + (accentOnly ? ' Aksanı veya ñ harfini kontrol edin.' : ' Kaydı tekrar dinleyip sözcüğün yazımına dikkat edin.')) + '</p>' : '';
-  return header(question, 'Duyduğunuz kelimeyi yazın. · Boşluk ' + question.gap + '/10')
-    + '<p class="passage-line" lang="es">' + fillGaps(track.paragraphs[question.paragraphIndex], track, question.number, false) + '</p>'
-    + '<form class="written-form"><label for="gap-answer">Boşluk ' + question.gap + '</label>'
-    + '<input class="answer-input ' + inputResult(checked?.correct) + '" id="gap-answer" lang="es" spellcheck="false"'
-    + ' autocomplete="off" autocapitalize="off" required value="' + escapeHtml(value) + '"' + (locked ? ' disabled' : '') + '>'
-    + (locked ? '' : '<button class="btn btn-main" type="submit">✔ Kontrol et</button>') + '</form>' + feedback;
+  const checked = checkedGaps.has(question.section);
+  const locked = checked || Boolean(frozenResult);
+  const gapsByNumber = new Map(track.gaps.map(item => [item.number, item]));
+  const passage = track.paragraphs.map(paragraph => '<p>' + escapeHtml(paragraph)
+    .replace(/\[\[(\d+)\]\]/g, (_, token) => {
+      const gap = gapsByNumber.get(Number(token));
+      const answer = answers.get(gap.number);
+      const value = answer?.value ?? drafts.get(gap.number) ?? '';
+      const status = checked && !answer ? 'is-blank' : inputResult(answer?.correct);
+      return '<label class="cloze-gap"><span aria-hidden="true">(' + gap.gap + ')</span> '
+        + '<input class="answer-input ' + status + '" type="text" data-gap="' + gap.number
+        + '" aria-label="Boşluk ' + gap.gap + '" lang="es" spellcheck="false" autocomplete="off" autocapitalize="off"'
+        + ' value="' + escapeHtml(value) + '"' + (locked ? ' disabled' : '') + '></label>';
+    }) + '</p>').join('');
+
+  const feedback = checked ? gapFeedback(track.gaps) : '';
+  return header(question, 'Dinleyin ve metindeki boşlukları doldurun.')
+    + '<p class="cloze-instructions">Duyamadığınız kelimeleri boş bırakabilirsiniz. Aksanlara ve ñ harfine dikkat edin.</p>'
+    + '<form class="written-form"><div class="cloze-passage" lang="es">' + passage + '</div>'
+    + (locked ? '' : '<button class="btn btn-main" type="submit">✔ Boşlukları kontrol et</button>')
+    + '</form>' + feedback;
+}
+
+function gapFeedback(gaps) {
+  let correct = 0;
+  let wrong = 0;
+  const items = gaps.map(gap => {
+    const answer = answers.get(gap.number);
+    if (answer?.correct) {
+      correct++;
+      return '<li>✅ ' + gap.gap + '. Doğru · <strong lang="es">' + escapeHtml(gap.answer) + '</strong></li>';
+    }
+    const accentOnly = answer && comparison(answer.value, true).normalize('NFD').replace(/\p{M}/gu, '') ===
+      comparison(gap.answer, true).normalize('NFD').replace(/\p{M}/gu, '');
+    if (answer) wrong++;
+    const status = answer ? '❌ ' + gap.gap + '. Yanlış' : '➖ ' + gap.gap + '. Boş';
+    return '<li>' + status + ' · Doğru yazım <strong lang="es">' + escapeHtml(gap.answer) + '</strong>'
+      + (accentOnly ? ' · Aksanı veya ñ harfini kontrol edin.' : '') + '</li>';
+  }).join('');
+  return '<div class="notice" role="status"><p class="cloze-counts">' + correct + ' doğru · ' + wrong
+    + ' yanlış · ' + (gaps.length - correct - wrong) + ' boş</p><ol class="cloze-feedback">' + items + '</ol></div>';
 }
 
 function inputResult(correct) {
@@ -217,12 +225,9 @@ function choiceCard(question) {
 }
 
 function render() {
-  const question = questions[page];
+  const question = pages[page];
   const section = sections[question.section];
-  const refreshedTrack = currentAudio !== (section.track ?? null);
   renderAudio(section.track ?? null);
-  if (refreshedTrack) byId('reading').open = false;
-  renderReading(section.track, question.section);
   questionCard.innerHTML = question.kind === 'gap' ? gapCard(question, section.track)
     : question.kind === 'transform' ? transformCard(question) : choiceCard(question);
 
@@ -233,15 +238,22 @@ function render() {
   byId('top-scores').innerHTML = '<span class="score-correct">✓ ' + correct + '</span>'
     + '<span class="score-wrong">✗ ' + (graded.length - correct - partial) + '</span>'
     + (partial ? '<span>◐ ' + partial + ' kısmen doğru</span>' : '');
-  byId('answered-count').textContent = graded.length + ' / 50 soru kontrol edildi';
+  byId('answered-count').textContent = graded.length + ' / 50 soru yanıtlandı';
   byId('progress').value = graded.length;
   byId('section-name').textContent = section.label + (question.kind === 'gap' ? ' · Boşluk doldurma' : '');
-  byId('question-progress').textContent = 'Soru ' + question.number + ' / 50';
-  byId('nav-counter').textContent = question.number + ' / 50';
+  const range = questionRange(question);
+  byId('question-progress').textContent = 'Soru ' + range + ' / 50';
+  byId('nav-counter').textContent = range + ' / 50';
   byId('previous').disabled = page === 0;
-  byId('next').disabled = page === questions.length - 1;
+  byId('next').disabled = page === pages.length - 1;
   byId('open-confirm').textContent = frozenResult ? 'Sonuca dön' : '✔ Ödevi Teslim Et';
-  questions.forEach((item, index) => {
+  pages.forEach((item, index) => {
+    if (item.kind === 'gap') {
+      const completed = checkedGaps.has(item.section);
+      const hasDraft = sections[item.section].track.gaps.some(gap => drafts.has(gap.number));
+      questionOptions[index].textContent = questionRange(item) + (completed ? ' · Kontrol edildi' : hasDraft ? ' · Taslak' : ' · Boşluklar');
+      return;
+    }
     const answer = answers.get(item.number);
     const state = answer ? (answer.correct ? ' · ✓' : answer.points ? ' · ◐' : ' · ✗')
       : drafts.has(item.number) ? ' · Taslak' : '';
@@ -251,9 +263,9 @@ function render() {
 }
 
 function move(index) {
-  const next = questions[index];
+  const next = pages[index];
   if (!next) return;
-  const changedSection = questions[page].section !== next.section;
+  const changedSection = pages[page].section !== next.section;
   page = index;
   render();
   const target = changedSection && sections[next.section].track ? byId('listening') : questionCard;
@@ -267,11 +279,12 @@ function saveAnswer(question, value, points) {
 }
 
 questionCard.addEventListener('input', event => {
-  const question = questions[page];
+  const question = pages[page];
   if (question.kind === 'gap') {
+    const number = Number(event.target.dataset.gap);
     const value = event.target.value;
-    if (value.trim()) drafts.set(question.number, value);
-    else drafts.delete(question.number);
+    if (value.trim()) drafts.set(number, value);
+    else drafts.delete(number);
     return;
   }
   const inputs = [...questionCard.querySelectorAll('input')];
@@ -288,25 +301,36 @@ questionCard.addEventListener('input', event => {
 
 questionCard.addEventListener('submit', event => {
   event.preventDefault();
-  const question = questions[page];
+  const question = pages[page];
   if (answers.has(question.number) || frozenResult) return;
-  const values = [...event.target.querySelectorAll('input')].map(input => input.value.trim());
-  if (values.length !== (question.kind === 'gap' ? 1 : 4) || values.some(value => !value)) {
-    const input = [...event.target.querySelectorAll('input')].find(field => !field.disabled && !field.value.trim());
-    input?.focus();
+  const fields = [...event.target.querySelectorAll('input')];
+  const values = fields.map(input => input.value.trim());
+  if (question.kind === 'gap') {
+    if (checkedGaps.has(question.section)) return;
+    sections[question.section].track.gaps.forEach((gap, i) => {
+      const value = values[i];
+      if (value) {
+        const correct = correctGap(value, gap);
+        answers.set(gap.number, { value, points: correct ? 2 : 0, correct });
+      }
+      drafts.delete(gap.number);
+    });
+    checkedGaps.add(question.section);
+    render();
+    questionCard.querySelector('.cloze-counts')?.scrollIntoView({ block: 'nearest' });
     return;
   }
-  if (question.kind === 'gap') {
-    saveAnswer(question, values[0], correctGap(values[0], question) ? 2 : 0);
-  } else {
-    const correct = question.items.filter((item, i) => correctTransform(values[i], item)).length;
-    saveAnswer(question, values, correct / 2);
+  if (values.length !== 4 || values.some(value => !value)) {
+    fields.find(field => !field.disabled && !field.value.trim())?.focus();
+    return;
   }
+  const correct = question.items.filter((item, i) => correctTransform(values[i], item)).length;
+  saveAnswer(question, values, correct / 2);
 });
 
 questionCard.addEventListener('click', event => {
   const button = event.target.closest('[data-choice]');
-  const question = questions[page];
+  const question = pages[page];
   if (!button || answers.has(question.number) || frozenResult) return;
   const chosen = Number(button.dataset.choice);
   saveAnswer(question, chosen, chosen === question.answer ? 2 : 0);
@@ -331,7 +355,7 @@ byId('open-confirm').addEventListener('click', () => {
   byId('confirm-name-select').value = studentName;
   const blank = questions.length - answers.size;
   byId('confirm-summary').textContent = blank
-    ? blank + ' soru kontrol edilmedi. Teslim ederseniz bu sorular boş sayılacak.'
+    ? blank + ' soru boş bırakıldı veya henüz kontrol edilmedi. Teslim ederseniz bu sorular boş sayılacak.'
     : '50 sorunun tamamı kontrol edildi. Sonucunuzu kaydetmek için adınızı onaylayın.';
   showScreen('confirm');
 });
@@ -368,12 +392,12 @@ function buildSubmission(name, result) {
   const zone = { timeZone: 'Europe/Istanbul' };
   const date = new Intl.DateTimeFormat('tr-TR', { ...zone, day: '2-digit', month: '2-digit', year: 'numeric' }).format(now);
   const time = new Intl.DateTimeFormat('tr-TR', { ...zone, hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).format(now);
-  const lines = sections.map((section, i) => section.label + ' ' + result.sectionScores[i] + '/' + section.maximum);
-  const counts = '✓ ' + result.correct + ' · ◐ ' + result.partial + ' · ✗ ' + result.wrong + ' · Boş ' + result.blank;
+  const wrong = result.wrong + result.partial;
+  const counts = result.correct + ' doğru · ' + wrong + ' yanlış · ' + result.blank + ' boş';
   return {
     spreadsheetId: SPREADSHEET_ID, sheetName: 'A2.1', studentName: name,
-    taskColumn, score: result.score, correct: result.correct, wrong: result.wrong + result.partial, blank: result.blank,
-    formatted: ['✅ ' + result.score + '/100 (Toplam Puan)', ...lines, counts, date + ' ' + time].join('\n')
+    taskColumn, score: result.score, correct: result.correct, wrong, blank: result.blank,
+    formatted: ['✅ ' + result.score + '/100 (Toplam Puan)', counts, date + ' ' + time].join('\n')
   };
 }
 

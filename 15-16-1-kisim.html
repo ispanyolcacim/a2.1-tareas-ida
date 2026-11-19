@@ -5,21 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A2.1 (15+16) 1. Kısım · La magia de La Rioja | Profe Hazel</title>
 <link rel="stylesheet" href="a21-theme.css">
-<link rel="stylesheet" href="assets/a21-homework-15-16.css">
+<link rel="stylesheet" href="weekly-reminders.css">
+<link rel="stylesheet" href="assets/a21-homework-15-16.css?v=2">
 <script src="student-roster.js" defer></script>
 <script src="assets/a21-rioja-15-16.js" defer></script>
-<script src="assets/a21-homework-15-16.js" defer></script>
+<script src="assets/a21-homework-15-16.js?v=2" defer></script>
 </head>
 <body data-part="1">
-<header class="header">
-  <div class="header-tag">4. Hafta · A2.1 · 15–16. Ders Ödevi · 1. Kısım</div>
-  <h1>La magia de La Rioja</h1>
-  <div class="header-sub">50 soru · 100 puan · Profe Hazel</div>
-</header>
 <main class="hw-wrap">
-  <form class="hw-box" id="name-screen">
-    <h2>📚 Adınızı seçin</h2>
-    <ul><li>Üç dinleme kaydı · Her biri 10 boşluk ve 5 anlama sorusu</li><li>5 kelime bilgisi sorusu</li><li>Her soru 2 puan. Boşluklarda İspanyolca aksanlara ve ñ harfine dikkat edin.</li></ul>
+  <form class="hero homework-cover" id="name-screen">
+    <aside class="weekly-reminder" aria-labelledby="week-four-title">
+      <h2 class="weekly-reminder__title" id="week-four-title">📚 4. hafta hatırlatması</h2>
+      <p class="weekly-reminder__text">Dördüncü haftayı da geride bıraktık! 🎉 <strong class="weekly-reminder__action">Eksik ödevleriniz varsa lütfen tamamlayalım.</strong> Çalışırken duraksamanız, kelime aramanız ya da hata yapmanız öğrenmenin doğal bir parçası. Ödevlerinizi yapmak için her şeyi kusursuz öğrenmeyi beklemeyin. Deneyerek, hata yaparak ve düzeltmeleri fark ederek ilerliyoruz. Kurmaya cesaret ettiğiniz her cümle çok kıymetli. 💛</p>
+    </aside>
+    <p class="cover-tag">4. Hafta Ödevi · A2.1 (15–16. Ders) · 1. Kısım</p>
+    <h1 lang="es">La magia de La Rioja</h1>
+    <p class="cover-meta">50 soru · 100 puan · Profe Hazel</p>
+    <div class="cover-guide">
+      <h2 lang="es">La magia de La Rioja</h2>
+      <ul><li>Üç dinleme kaydı · Her biri 10 boşluk ve 5 anlama sorusu</li><li>5 kelime bilgisi sorusu</li><li>Her soru 2 puan. Boşluklarda İspanyolca aksanlara ve ñ harfine dikkat edin.</li></ul>
+    </div>
     <label for="name-select">Ad soyad</label>
     <select id="name-select" required>
       <option value="">-- Adınızı Seçin --</option>
@@ -30,7 +35,7 @@
       <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option>
       <option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
     </select>
-    <button class="btn btn-main" type="submit">▶ Başla</button>
+    <button class="btn btn-main cover-start" type="submit">Teste Başla</button>
   </form>
 
   <section id="quiz-screen" aria-label="Ödev soruları" hidden>
@@ -55,10 +60,6 @@
       <span id="nav-counter"></span>
       <button class="btn btn-main" id="next" type="button">İleri →</button>
     </nav>
-    <details class="reading" id="reading" hidden>
-      <summary id="reading-title"></summary>
-      <div class="reading-body" id="reading-body" lang="es"></div>
-    </details>
   </section>
 
   <form class="hw-box" id="confirm-screen" hidden>
