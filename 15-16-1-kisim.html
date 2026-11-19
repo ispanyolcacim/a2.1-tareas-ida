@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 (15+16) 1. Kısım · La magia de La Rioja | Profe Hazel</title>
+<link rel="stylesheet" href="a21-theme.css">
+<link rel="stylesheet" href="assets/a21-homework-15-16.css">
+<script src="student-roster.js" defer></script>
+<script src="assets/a21-rioja-15-16.js" defer></script>
+<script src="assets/a21-homework-15-16.js" defer></script>
+</head>
+<body data-part="1">
+<header class="header">
+  <div class="header-tag">4. Hafta · A2.1 · 15–16. Ders Ödevi · 1. Kısım</div>
+  <h1>La magia de La Rioja</h1>
+  <div class="header-sub">50 soru · 100 puan · Profe Hazel</div>
+</header>
+<main class="hw-wrap">
+  <form class="hw-box" id="name-screen">
+    <h2>📚 Adınızı seçin</h2>
+    <ul><li>Üç dinleme kaydı · Her biri 10 boşluk ve 5 anlama sorusu</li><li>5 kelime bilgisi sorusu</li><li>Her soru 2 puan. Boşluklarda İspanyolca aksanlara ve ñ harfine dikkat edin.</li></ul>
+    <label for="name-select">Ad soyad</label>
+    <select id="name-select" required>
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option>
+      <option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
+    </select>
+    <button class="btn btn-main" type="submit">▶ Başla</button>
+  </form>
+
+  <section id="quiz-screen" aria-label="Ödev soruları" hidden>
+    <div class="top-bar">
+      <span class="top-student" id="top-student"></span>
+      <div class="hw-scores" id="top-scores"></div>
+    </div>
+    <div class="submit-bar">
+      <span id="answered-count" aria-live="polite"></span>
+      <button class="btn btn-submit" id="open-confirm" type="button">✔ Ödevi Teslim Et</button>
+    </div>
+    <progress id="progress" max="50" value="0" aria-label="Yanıtlanan soru sayısı"></progress>
+    <div class="progress-label"><strong id="section-name"></strong><span id="question-progress"></span></div>
+    <details class="jump">
+      <summary>Soruya git</summary>
+      <select class="jump-select" id="jump-select" aria-label="Soru seç"></select>
+    </details>
+    <div class="listening" id="listening" hidden></div>
+    <article id="question" class="hw-card"></article>
+    <nav class="nav-bar" aria-label="Sorular">
+      <button class="btn btn-outline" id="previous" type="button">← Geri</button>
+      <span id="nav-counter"></span>
+      <button class="btn btn-main" id="next" type="button">İleri →</button>
+    </nav>
+    <details class="reading" id="reading" hidden>
+      <summary id="reading-title"></summary>
+      <div class="reading-body" id="reading-body" lang="es"></div>
+    </details>
+  </section>
+
+  <form class="hw-box" id="confirm-screen" hidden>
+    <h2>📋 Adınızı onaylayın</h2>
+    <p id="confirm-summary"></p>
+    <label for="confirm-name-select">Ad soyad</label>
+    <select id="confirm-name-select" required>
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option>
+      <option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
+    </select>
+    <div class="actions">
+      <button class="btn btn-outline" id="back-to-quiz" type="button">← Sorulara dön</button>
+      <button class="btn btn-submit" id="final-submit" type="submit">✔ Ödevi Teslim Et</button>
+    </div>
+  </form>
+
+  <section class="hw-box" id="result-screen" hidden>
+    <h2>Sonucunuz</h2>
+    <p id="result-name"></p>
+    <p class="result-score" id="result-score"></p>
+    <dl class="breakdown" id="result-breakdown"></dl>
+    <p id="result-counts"></p>
+    <p class="notice" id="result-status" role="status"></p>
+    <div class="actions">
+      <button class="btn btn-submit" id="retry-save" type="button" hidden>Gönderimi tekrar dene</button>
+      <button class="btn btn-outline" id="review" type="button">Cevaplarımı incele</button>
+      <a class="btn btn-outline" href="15-16-2-kisim.html">2. Kısma git ↗</a>
+    </div>
+  </section>
+</main>
+</body>
+</html>
