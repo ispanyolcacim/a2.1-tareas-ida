@@ -393,11 +393,11 @@ function buildSubmission(name, result) {
   const date = new Intl.DateTimeFormat('tr-TR', { ...zone, day: '2-digit', month: '2-digit', year: 'numeric' }).format(now);
   const time = new Intl.DateTimeFormat('tr-TR', { ...zone, hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23' }).format(now);
   const wrong = result.wrong + result.partial;
-  const counts = result.correct + ' doğru · ' + wrong + ' yanlış · ' + result.blank + ' boş';
+  const counts = '✓' + result.correct + ' ✗' + wrong;
   return {
     spreadsheetId: SPREADSHEET_ID, sheetName: 'A2.1', studentName: name,
     taskColumn, score: result.score, correct: result.correct, wrong, blank: result.blank,
-    formatted: ['✅ ' + result.score + '/100 (Toplam Puan)', counts, date + ' ' + time].join('\n')
+    formatted: ['✅ ' + (result.score / 2) + '/50', counts, date, time].join('\n')
   };
 }
 
