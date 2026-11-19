@@ -97,9 +97,8 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .result-emoji { font-size:50px; margin-bottom:10px; }
 .result-name  { font-size:14px; color:var(--mid); margin-bottom:3px; }
 .result-title { font-size:16px; font-weight:700; color:var(--dark); margin-bottom:16px; }
-.result-score-big { font-size:62px; font-weight:900; line-height:1; color:var(--dark); }
-.result-score-big span { font-size:24px; font-weight:400; color:var(--mid); }
-.result-pct { font-size:13px; color:var(--mid); margin-top:4px; margin-bottom:18px; }
+.result-summary { white-space:pre-line; margin:0 auto 18px; font-size:15px; line-height:1.85; color:var(--dark); }
+.result-summary::first-line { font-weight:900; font-size:clamp(16px, 4.6vw, 21px); }
 .result-stats { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
 .rs-item { background:linear-gradient(135deg,var(--pink2),var(--cream)); border:1px solid var(--pink1); border-radius:12px; padding:11px 16px; min-width:76px; text-align:center; }
 .rs-item .rs-n { font-size:28px; font-weight:800; line-height:1; }
@@ -110,20 +109,12 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .status-error   { background:rgba(217,112,112,0.15); border:1.5px solid rgba(217,112,112,0.4); color:#a04040; }
 .status-pending { background:rgba(248,206,91,0.18); border:1.5px solid rgba(248,206,91,0.45); color:#9a7000; }
 .result-actions { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
-/* Breakdown */
-.score-breakdown { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
-.breakdown-row { display:flex; justify-content:space-between; align-items:center; background:rgba(248,219,216,0.2); border:1px solid var(--pink2); border-radius:8px; padding:8px 14px; font-size:13px; }
-.breakdown-row .br-label { color:var(--mid); }
-.breakdown-row .br-score { font-weight:700; color:var(--dark); }
 /* DIKTE (4. Bölüm) */
 .dict-tip-box { background:linear-gradient(135deg,var(--yellow),#ffe8a8); border:1.5px solid #e8b84b; border-radius:var(--radius); padding:13px 16px; font-size:13px; color:#6a4f00; margin-bottom:12px; text-align:center; font-weight:700; line-height:1.6; transition:opacity 0.3s; }
 .dict-audio-controls { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
 .dict-info { font-size:11px; color:var(--mid); margin-top:8px; text-align:center; }
 #dictationText { width:100%; padding:13px 14px; border:1.5px solid var(--pink2); border-radius:var(--radius); font-family:inherit; font-size:13.5px; resize:vertical; margin:12px 0; outline:none; line-height:1.7; color:var(--dark); }
 #dictationText:focus { border-color:var(--yellow); box-shadow:0 0 0 3px rgba(248,206,91,0.2); }
-.dict-status { text-align:center; font-size:13px; font-weight:700; margin:10px 0; min-height:18px; }
-.dict-status.ok  { color:#3a7a4a; }
-.dict-status.err { color:#a04040; }
 .dict-correct-box { display:none; background:var(--cream); border-left:4px solid var(--yellow); border-radius:0 var(--radius) var(--radius) 0; padding:16px 18px; margin-top:14px; }
 .dict-correct-box.show { display:block; }
 .dict-correct-title { font-weight:800; color:var(--dark); margin-bottom:8px; font-size:14px; }
@@ -132,7 +123,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
 .btn-continue-big:hover { transform:translateY(-2px); }
 @keyframes continuePulse { 0%,100%{box-shadow:0 6px 20px rgba(74,144,226,.5)} 50%{box-shadow:0 6px 30px rgba(74,144,226,.85)} }
 .dict-continue-hint { text-align:center; font-size:12.5px; font-weight:700; color:#2f6fbf; margin-bottom:16px; line-height:1.6; }
-@media(max-width:480px){ .result-score-big{font-size:48px} }
 </style>
 <script src="student-roster.js" defer></script>
 <link rel="stylesheet" href="a21-theme.css?v=20261103-palettes">
@@ -223,14 +213,7 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
       <div class="result-emoji">🇪🇸</div>
       <div class="result-name" id="res-name">—</div>
       <div class="result-title">A2.1 · H4 – 13-14. Ders (Tüm Bölümler)</div>
-      <div class="result-score-big" id="res-score">0<span>/100</span></div>
-      <div class="result-pct" id="res-pct"></div>
-      <div class="score-breakdown">
-        <div class="breakdown-row" style="background:rgba(248,206,91,0.25)"><span class="br-label">🎧 Dikte (Kısım 1)</span><span class="br-score" id="br-dikte">0 / 20</span></div>
-        <div class="breakdown-row"><span class="br-label">📖 Okuma (Kısım 2)</span><span class="br-score" id="br-okuma">0 / 30</span></div>
-        <div class="breakdown-row"><span class="br-label">🔤 Çeviri (Kısım 3)</span><span class="br-score" id="br-ceviri">0 / 30</span></div>
-        <div class="breakdown-row"><span class="br-label">🌟 Yol Gösterici (Kısım 4)</span><span class="br-score" id="br-yol">0 / 20</span></div>
-      </div>
+      <p class="result-summary" id="res-summary"></p>
       <div class="result-stats">
         <div class="rs-item rs-correct"><div class="rs-n" id="res-c">0</div><div class="rs-l">Doğru</div></div>
         <div class="rs-item rs-wrong">  <div class="rs-n" id="res-w">0</div><div class="rs-l">Yanlış</div></div>
@@ -263,13 +246,12 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
     </div>
     <textarea id="dictationText" rows="8" placeholder="Duyduğunuzu buraya yazın..."></textarea>
     <button class="btn btn-yellow btn-full" id="btn-dict-submit" onclick="goToDictConfirm()">📩 Dikteyi Teslim Et</button>
-    <div class="dict-status" id="dict-status"></div>
     <div class="dict-correct-box" id="dict-correct-box">
       <h2 class="dict-correct-title" id="dict-result-heading" tabindex="-1">🎧 Dikte puanın <span id="dict-score-line">0 / 20</span></h2>
+      <div class="dict-correct-title">✅ Diktenin Doğru Hali</div>
+      <div class="dict-correct-text" id="dict-correct-text" lang="es"></div>
       <button class="btn-continue-big" onclick="goToQuizFromDictation()">➡️ Kısım 2’ye Geç · Okuma Çalışması</button>
       <div class="dict-continue-hint">Toplam puanın için kalan üç bölümü tamamla.</div>
-      <div class="dict-correct-title">✅ Diktenin Doğru Hali</div>
-      <div class="dict-correct-text" id="dict-correct-text"></div>
     </div>
   </div>
 </div>
@@ -285,7 +267,6 @@ body { font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif; background:linea
   </div>
 </div>
 <script src="https://w.soundcloud.com/player/api.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
 const SPREADSHEET_ID  = '1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
@@ -374,13 +355,17 @@ function startQuiz() {
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
   studentName = sel.value;
   answers = {}; submitted = false; currentQ = 0;
-  dictationSubmitted = false; dictScoreFinal = 0;
+  resetDictation();
+  const confirmButton = document.querySelector('#screen-confirm .btn-yellow');
+  confirmButton.disabled = false;
+  confirmButton.textContent = '✔ Evet, Teslim Et';
   document.getElementById('top-student').textContent = studentName;
   document.getElementById('dict-top-student').textContent = studentName;
   showScreen('dictation');
   startDictTips();
 }
 function goToQuizFromDictation() {
+  if (!dictationSubmitted) return;
   showScreen('quiz');
   renderQuestion();
 }
@@ -477,6 +462,7 @@ function goToConfirm() {
   showScreen('confirm');
 }
 function confirmAndSubmit() {
+  if (submitted || !dictationSubmitted) return;
   const sel = document.getElementById('confirm-name-select');
   if (!sel.value) { alert('Lütfen adınızı seçin!'); return; }
   studentName = sel.value;
@@ -501,23 +487,22 @@ function submitQuiz() {
   const okumaScore  = fmt(okuma  * 1.5);   // 20 soru x 1.5 = 30
   const ceviriScore = fmt(ceviri * 1.5);   // 20 soru x 1.5 = 30
   const yolScore    = fmt(yol    * 2);     // 10 soru x 2   = 20
-  const score       = fmt(okumaScore + ceviriScore + yolScore); // /80
-  const totalScore = fmt(score + dictScoreFinal); // /100
+  const otherScore = fmt(okumaScore + ceviriScore + yolScore);
+  const totalScore = fmt(otherScore + dictScoreFinal);
+  const summary = `✅ ${totalScore}/100 (Toplam Puan)
+Dikte puanı (${dictScoreFinal}/20)
+Diğer Bölümler (${otherScore}/80)
+${nowStamp()}`;
   const correct = okuma + ceviri + yol;
   const wrong   = QUESTIONS.filter(q => answers[q.id] !== undefined && answers[q.id] !== q.ans).length;
   const blank   = QUESTIONS.filter(q => answers[q.id] === undefined).length;
   document.getElementById('res-name').textContent   = studentName;
-  document.getElementById('res-score').innerHTML    = totalScore + '<span>/100</span>';
-  document.getElementById('res-pct').textContent    = '🎉 Ödev tamamlandı! (Dikte + Okuma + Çeviri + Yol Gösterici)';
+  document.getElementById('res-summary').textContent = summary;
   document.getElementById('res-c').textContent      = correct;
   document.getElementById('res-w').textContent      = wrong;
   document.getElementById('res-b').textContent      = blank;
-  document.getElementById('br-dikte').textContent   = dictScoreFinal + ' / 20';
-  document.getElementById('br-okuma').textContent   = okumaScore  + ' / 30';
-  document.getElementById('br-ceviri').textContent  = ceviriScore + ' / 30';
-  document.getElementById('br-yol').textContent     = yolScore    + ' / 20';
   showScreen('result');
-  sendToSheets(score, correct, wrong, blank, totalScore);
+  sendToSheets(totalScore, correct, wrong, blank, summary);
 }
 const istanbulDateTime = new Intl.DateTimeFormat('tr-TR', {
   timeZone:'Europe/Istanbul', day:'2-digit', month:'2-digit', year:'numeric',
@@ -526,9 +511,10 @@ const istanbulDateTime = new Intl.DateTimeFormat('tr-TR', {
 function nowStamp() {
   return istanbulDateTime.format(new Date()).replace(', ', ' ');
 }
-async function sendToSheets(otherScore, correct, wrong, blank, totalScore) {
+async function sendToSheets(totalScore, correct, wrong, blank, summary) {
   const el = document.getElementById('res-status');
-  const summary = `✅ ${totalScore}/100 (Toplam Puan)\nDikte puanı (${dictScoreFinal}/20)\nDiğer Bölümler (${otherScore}/80)\n${nowStamp()}`;
+  el.className = 'status-badge status-pending';
+  el.textContent = '⏳ Kaydediliyor…';
   try {
     await fetch(APPS_SCRIPT_URL, {
       method:'POST', mode:'no-cors',
@@ -569,6 +555,19 @@ const DICT_TIPS = [
 ];
 let dictTipIdx = 0, dictTipTimer = null, scWidget = null, dictationSubmitted = false, dictScoreFinal = 0;
 
+function resetDictation() {
+  dictationSubmitted = false;
+  dictScoreFinal = 0;
+  const field = document.getElementById('dictationText');
+  field.value = '';
+  field.disabled = false;
+  document.getElementById('btn-dict-submit').disabled = false;
+  document.getElementById('btn-dict-confirm-yes').disabled = false;
+  document.getElementById('dict-correct-box').classList.remove('show');
+  document.getElementById('dict-correct-text').textContent = '';
+  document.getElementById('dict-score-line').textContent = '0 / ' + DICT_MAX;
+}
+
 function startDictTips() {
   const box = document.getElementById('dict-tip-box');
   box.textContent = DICT_TIPS[0];
@@ -592,9 +591,6 @@ window.addEventListener('load', () => {
       });
     });
   }
-  if (typeof emailjs !== 'undefined') {
-    emailjs.init({ publicKey: 'xNYEbUQNiWJPvbyoJ' });
-  }
 });
 function playDictSegment() {
   if (!scWidget) { alert('Ses oynatıcı henüz yüklenmedi, birkaç saniye sonra tekrar deneyin.'); return; }
@@ -611,7 +607,7 @@ function pauseDictSegment() { if (scWidget) scWidget.pause(); }
 
 // Kelime bazlı, aksan/tilde duyarlı otomatik puanlama (LCS - en uzun ortak alt dizi)
 function normWord(w) {
-  return w.toLowerCase().replace(/^[¿¡"'“”.,;:()\-]+|["'“”.,;:()\-!?]+$/g, '');
+  return w.normalize('NFC').toLowerCase().replace(/^[¿¡"'“”.,;:()\-]+|["'“”.,;:()\-!?]+$/g, '');
 }
 function scoreDictation(studentText, correctText, maxPoints) {
   const a = correctText.split(/\s+/).map(normWord).filter(Boolean);
@@ -649,31 +645,12 @@ function confirmAndSubmitDictation() {
   if (dictTipTimer) clearInterval(dictTipTimer);
   if (scWidget) scWidget.pause();
   document.getElementById('dict-correct-text').textContent = DICT_CORRECT;
-  document.getElementById('dict-score-line').textContent = dictScoreFinal + ' / 20';
+  document.getElementById('dict-score-line').textContent = dictScoreFinal + ' / ' + DICT_MAX;
   document.getElementById('dict-correct-box').classList.add('show');
   showScreen('dictation');
   const heading = document.getElementById('dict-result-heading');
   heading.focus({preventScroll:true});
   heading.scrollIntoView({block:'start'});
-  void sendDictationEmail(text);
-}
-async function sendDictationEmail(text) {
-  const status = document.getElementById('dict-status');
-  try {
-    await emailjs.send('service_4ee1wh7', 'template_xjyyxhf', {
-      student_name:studentName,
-      name:studentName,
-      lesson:TASK_COLUMN + ' - Kısım 1 (Dikte)',
-      submit_date:nowStamp(),
-      writing_text:text + '\n\n📊 Dikte puanı: ' + dictScoreFinal + ' / ' + DICT_MAX + '\n\n✅ Diktenin Doğru Hali:\n' + DICT_CORRECT,
-      email:''
-    });
-    status.className = 'dict-status ok';
-    status.textContent = '✅ Dikte çalışman öğretmenine iletildi.';
-  } catch {
-    status.className = 'dict-status err';
-    status.textContent = 'Dikte e-postası iletilemedi. Puanın hazır, Kısım 2’ye geçebilirsin.';
-  }
 }
 </script>
 </body>
