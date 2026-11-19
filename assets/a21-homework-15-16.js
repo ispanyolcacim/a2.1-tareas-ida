@@ -397,7 +397,7 @@ function buildSubmission(name, result) {
   return {
     spreadsheetId: SPREADSHEET_ID, sheetName: 'A2.1', studentName: name,
     taskColumn, score: result.score, correct: result.correct, wrong, blank: result.blank,
-    formatted: ['✅ ' + (result.score / 2) + '/50', counts, date, time].join('\n')
+    formatted: ['✅ ' + result.score + '/100', counts, date, time].join('\n')
   };
 }
 
