@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A2.1 – H5 19-20. Ders – Pretérito Imperfecto (2. KISIM)</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--c1:#fcedbe;--c2:#f6cf80;--c3:#f7c9d3;--c4:#ee84a8;--c5:#d35a75;--dark:#4a2535;--mid:#8a5060;--white:#fff;--green:#6aab7a;--red:#d97070;--r:14px}
+body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0,#fff5f8 60%,#fffde8);min-height:100vh;color:var(--dark)}
+.hdr{background:linear-gradient(135deg,var(--c4),var(--c5));padding:18px 20px 14px;text-align:center;box-shadow:0 4px 18px rgba(238,132,168,.4);position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 14px,rgba(255,255,255,.1) 14px,rgba(255,255,255,.1) 15px)}
+.htag{display:inline-block;background:rgba(255,255,255,.35);border:1.5px solid rgba(255,255,255,.55);border-radius:20px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:3px 14px;margin-bottom:8px;color:#fff;position:relative}
+.hdr h1{font-size:clamp(16px,4vw,22px);font-weight:800;color:#fff;position:relative}
+.hsub{font-size:12px;color:rgba(255,255,255,.85);margin-top:4px;position:relative}
+.screen{display:none;animation:fi .3s ease}.screen.active{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+/* NAME */
+.nb{max-width:440px;margin:0 auto;padding:32px 20px;text-align:center}
+.nb h2{font-size:20px;color:var(--dark);margin-bottom:5px}
+.nb p{font-size:13px;color:var(--mid);margin-bottom:20px}
+.sel{width:100%;padding:13px 16px;font-size:15px;background:#fff;border:2px solid var(--c3);border-radius:var(--r);color:var(--dark);appearance:none;cursor:pointer;margin-bottom:14px;font-family:inherit}
+.sel:focus{outline:none;border-color:var(--c2)}
+.ib{background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);padding:14px 16px;margin-bottom:18px;text-align:left;font-size:13px;line-height:1.75}
+.ibr{display:flex;align-items:flex-start;gap:9px;margin-bottom:5px}
+.ibd{width:8px;height:8px;border-radius:50%;background:var(--c2);flex-shrink:0;margin-top:5px}
+.ibh{height:1px;background:var(--c3);margin:9px 0}
+.wm{background:linear-gradient(135deg,#fff8e8,#fff0f5);border:1.5px dashed var(--c4);border-radius:var(--r);padding:16px 18px;margin-bottom:18px;text-align:left;font-size:13px;line-height:1.85;color:var(--dark)}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:12px 24px;border:none;border-radius:var(--r);font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
+.bm{background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;box-shadow:0 4px 12px rgba(211,90,117,.35)}
+.bm:hover{transform:translateY(-2px)}
+.bg{background:linear-gradient(135deg,var(--c2),#e8b040);color:var(--dark);box-shadow:0 4px 12px rgba(246,207,128,.4)}
+.bg:hover{transform:translateY(-2px)}
+.bo{background:#fff;border:2px solid var(--c3);color:var(--dark)}
+.bo:hover{background:var(--c3)}
+.bs{padding:9px 18px;font-size:13px}
+.bf{width:100%}
+.btn:disabled{opacity:.35;cursor:not-allowed;transform:none!important}
+.topfin{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border:none;border-radius:20px;font-size:12.5px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,var(--c2),#e8b040);color:var(--dark);box-shadow:0 3px 10px rgba(246,207,128,.45);transition:all .2s;white-space:nowrap}
+.topfin:hover{transform:translateY(-1px)}
+/* QUIZ */
+.qw{max-width:660px;margin:0 auto;padding:16px}
+.tb{display:flex;align-items:center;justify-content:space-between;background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);padding:10px 16px;margin-bottom:12px;gap:8px;flex-wrap:wrap}
+.ts{font-size:12px;color:var(--mid);font-weight:600}
+.tsc{display:flex;gap:14px}
+.si{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:700}
+.sok{color:var(--green)}.ser{color:var(--red)}
+.pgw{margin-bottom:14px}
+.pgb{height:7px;background:var(--c3);border-radius:4px;overflow:hidden}
+.pgf{height:100%;background:linear-gradient(90deg,var(--c4),var(--c2));border-radius:4px;transition:width .4s;width:0%}
+.pgi{display:flex;justify-content:space-between;font-size:11px;color:var(--mid);margin-top:3px}
+.sb{display:inline-flex;align-items:center;background:linear-gradient(90deg,var(--c4),var(--c5));border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:10px;box-shadow:0 2px 8px rgba(211,90,117,.3)}
+.qc{background:#fff;border:1.5px solid var(--c3);border-radius:var(--r);overflow:hidden;box-shadow:0 3px 14px rgba(238,132,168,.15);margin-bottom:12px}
+.qh{padding:16px 18px 14px;border-bottom:1px solid var(--c3);display:flex;gap:12px;align-items:flex-start}
+.qn{background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0;margin-top:1px}
+.qt{font-size:14.5px;line-height:1.65;flex:1;color:var(--dark);font-weight:500}
+/* Fill warning box */
+.warn{background:rgba(246,207,128,.2);border:1.5px solid var(--c2);border-radius:10px;padding:10px 14px;margin:10px 16px 4px;font-size:12px;line-height:1.7;color:#7a5000}
+.warn strong{display:block;margin-bottom:3px;font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:#9a6000}
+/* Fill input */
+.fi-wrap{padding:12px 16px 14px}
+.fi-inp{width:100%;padding:11px 14px;font-size:14px;font-family:inherit;color:var(--dark);background:var(--c1);border:2px solid var(--c3);border-radius:10px;transition:border-color .2s}
+.fi-inp:focus{outline:none;border-color:var(--c2);background:#fff}
+.fi-inp.ok{background:#edfaf2;border-color:#8dcca0;color:#276221}
+.fi-inp.er{background:#fdf0f0;border-color:#e8a0a0;color:#a04040}
+.fi-btn{margin-top:8px;width:100%;padding:11px;border:none;border-radius:10px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--c4),var(--c5));color:#fff;transition:all .2s}
+.fi-btn:hover{transform:translateY(-1px)}
+.fi-btn:disabled{opacity:.35;cursor:default;transform:none}
+/* MC options */
+.qo{padding:12px 16px 14px;display:grid;gap:8px}
+.ob{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:#fdf8fb;border:1.5px solid var(--c3);border-radius:10px;color:var(--dark);font-size:13.5px;line-height:1.5;cursor:pointer;text-align:left;width:100%;transition:all .18s;font-family:inherit}
+.ob:hover:not(:disabled){background:var(--c1);border-color:var(--c2);transform:translateX(4px)}
+.ob:disabled{cursor:default}
+.ol{background:var(--c3);color:var(--dark);border-radius:6px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0}
+.ob.ok{background:#edfaf2;border-color:#8dcca0}
+.ob.ok .ol{background:var(--green);color:#fff}
+.ob.er{background:#fdf0f0;border-color:#e8a0a0}
+.ob.er .ol{background:var(--red);color:#fff}
+.ex{display:none;margin:0 16px 14px;background:var(--c1);border-left:3px solid var(--c2);border-radius:0 8px 8px 0;padding:11px 14px;font-size:13px;line-height:1.75;color:var(--mid)}
+.ex.show{display:block}
+.exl{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#9a6000;margin-bottom:4px}
+/* NAV */
+.nv{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;margin-bottom:16px;flex-wrap:wrap}
+.nc{font-size:13px;color:var(--mid);font-weight:600;text-align:center;flex:1}
+.fb{position:sticky;bottom:0;background:rgba(255,248,250,.97);backdrop-filter:blur(10px);border-top:1.5px solid var(--c3);padding:11px 16px;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;box-shadow:0 -4px 14px rgba(238,132,168,.18)}
+.fi2{font-size:12px;color:var(--mid)}
+.fi2 strong{color:var(--dark);font-size:14px}
+/* CONFIRM */
+.cfw{max-width:420px;margin:0 auto;padding:40px 20px;text-align:center}
+.cfw h2{font-size:22px;color:var(--dark);margin-bottom:8px}
+.cfw p{font-size:14px;color:var(--mid);margin-bottom:20px;line-height:1.6}
+.ns{background:rgba(211,90,117,.1);border:2px solid var(--c4);border-radius:var(--r);padding:14px 18px;margin-bottom:20px;font-size:14px;font-weight:700;color:var(--c5)}
+/* RESULT */
+.rw{max-width:460px;margin:0 auto;padding:28px 20px;text-align:center}
+.rc{background:#fff;border:1.5px solid var(--c3);border-radius:20px;padding:28px 22px;margin-bottom:14px;box-shadow:0 6px 24px rgba(238,132,168,.2)}
+.re{font-size:50px;margin-bottom:10px}
+.rn{font-size:14px;color:var(--mid);margin-bottom:3px}
+.rt{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:16px}
+.rbig{font-size:62px;font-weight:900;line-height:1;color:var(--dark)}
+.rbig span{font-size:24px;font-weight:400;color:var(--mid)}
+.rp{font-size:13px;color:var(--mid);margin-top:4px;margin-bottom:18px}
+.rst{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.ri{background:linear-gradient(135deg,var(--c3),var(--c1));border:1px solid var(--c4);border-radius:12px;padding:11px 16px;min-width:76px;text-align:center}
+.ri .rnum{font-size:28px;font-weight:800;line-height:1}
+.ri .rl{font-size:11px;color:var(--mid);margin-top:3px}
+.rok .rnum{color:var(--green)}.rer .rnum{color:var(--red)}.rbl .rnum{color:#bbb}
+.stb{display:inline-flex;align-items:center;gap:7px;padding:9px 20px;border-radius:50px;font-size:13px;font-weight:700;margin-bottom:14px}
+.stok{background:rgba(106,171,122,.15);border:1.5px solid rgba(106,171,122,.4);color:#3a7a4a}
+.ster{background:rgba(217,112,112,.15);border:1.5px solid rgba(217,112,112,.4);color:#a04040}
+.stpnd{background:rgba(246,207,128,.2);border:1.5px solid rgba(246,207,128,.5);color:#9a6000}
+.ra{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:6px}
+.byemsg{background:linear-gradient(135deg,#f3e8fb,#fff0f5);border:1.5px solid var(--c4);border-radius:var(--r);padding:16px 18px;margin-top:14px;text-align:left;font-size:13px;line-height:1.85;color:var(--dark)}
+</style>
+<script src="student-roster.js" defer></script>
+<link rel="stylesheet" href="a21-theme.css?v=20261103-palettes">
+
+<link rel="stylesheet" href="weekly-reminders.css?v=20261112">
+<script src="weekly-reminders.js?v=20261112" defer></script>
+</head>
+<body>
+<div class="hdr">
+<aside class="weekly-reminder" role="note" aria-labelledby="weekly-reminder-title" data-week="5" data-cover="sc-name">
+  <h2 class="weekly-reminder__title" id="weekly-reminder-title">📚 5. hafta hatırlatması</h2>
+  <p class="weekly-reminder__text">Bu ödevlerle birlikte beşinci haftayı tamamladık! 🌟 <strong class="weekly-reminder__action">Şimdiye kadar eksik kalan çalışmalarınızı tamamlamanızı rica ediyorum.</strong> Derste birlikte çözerken kolay gelen bir soru, tek başınıza çalışırken sizi düşündürebilir. Bireysel çalışma tam da bu yüzden önemli: Neleri rahatça yapabildiğinizi, nerelerde desteğe ihtiyaç duyduğunuzu gösterir. Takıldığınız yerleri not alın; birlikte üzerinden geçelim. 📝</p>
+</aside>
+
+  <div class="htag">5. Hafta Ödevi &nbsp;|&nbsp; A2.1 (19-20. Ders)</div>
+  <h1>🇪🇸 A2.1 – H5 19-20. Ders – Pretérito Imperfecto (2. KISIM)</h1>
+  <div class="hsub">50 soru &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
+</div>
+<!-- SCREEN 1: AD SEÇİMİ -->
+<div class="screen active" id="sc-name">
+  <div class="nb">
+    <h2>📚 Adınızı seçin</h2>
+    <p>Ödeve başlamadan önce lütfen listeden adınızı seçin.</p>
+    <select class="sel" id="name-sel">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option>
+      <option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
+    </select>
+    <div class="wm">📢 Sevgili arkadaşlar, bu testi çözmeden önce küçük bir hatırlatma yapmak istiyorum 🌸<br><br>
+    Eğer daha önceki haftalardan eksik veya tamamlanmamış ödeviniz varsa, lütfen en kısa sürede onları da tamamlamayı unutmayın 📚✨ Düzenli tekrar, İspanyolcanızın gelişimi için çok değerli! 💪🇪🇸<br><br>
+    Şimdi bol şans, keyifli çalışmalar! 🍀😊</div>
+    <div class="ib">
+      <div class="ibr"><div class="ibd"></div><span><strong>1–25:</strong> Çoktan seçmeli — 50 puan (2p/soru)</span></div>
+      <div class="ibr"><div class="ibd"></div><span><strong>26–50:</strong> Boşluk doldurma (fiil çekim tablosu) — 50 puan (2p/soru)</span></div>
+      <div class="ibh"></div>
+      <div class="ibr"><div class="ibd" style="background:var(--c4)"></div><span><strong>Toplam: 100 puan</strong></span></div>
+    </div>
+    <button class="btn bm bf" onclick="startQuiz()">▶ Başla</button>
+  </div>
+</div>
+<!-- SCREEN 2: QUIZ -->
+<div class="screen" id="sc-quiz">
+  <div class="qw">
+    <div class="tb">
+      <div class="ts" id="top-st">—</div>
+      <div class="tsc">
+        <div class="si sok">✓ <span id="sc-ok">0</span></div>
+        <div class="si ser">✗ <span id="sc-er">0</span></div>
+      </div>
+      <button class="topfin theme-finish" onclick="goConfirm()">🏁 Bitir</button>
+    </div>
+    <div class="pgw">
+      <div class="pgb"><div class="pgf" id="pgf"></div></div>
+      <div class="pgi"><span id="pg-sec">—</span><span>Soru <span id="pg-cur">1</span> / 50</span></div>
+    </div>
+    <div id="q-area"></div>
+    <div class="nv">
+      <button class="btn bo bs" id="btn-prev" onclick="nav(-1)">← Geri</button>
+      <div class="nc" id="nav-ctr">1 / 50</div>
+      <button class="btn bm bs" id="btn-next" onclick="nav(1)">İleri →</button>
+    </div>
+    <div class="fb">
+      <div class="fi2"><strong id="fin-ans">0</strong> / 50 yanıtlandı</div>
+    </div>
+  </div>
+</div>
+<!-- SCREEN 3: TESLİM ONAY -->
+<div class="screen" id="sc-confirm">
+  <div class="cfw">
+    <div style="font-size:48px;margin-bottom:12px">📋</div>
+    <h2>Ödevi Teslim Et</h2>
+    <div class="ns">⚠️ ÖDEVİNİZ HENÜZ TESLİM EDİLMEDİ</div>
+    <p>Teslim etmeden önce listeden adınızı seçin ve onaylayın.</p>
+    <select class="sel" id="cf-sel" style="margin-bottom:16px">
+      <option value="">-- Adınızı Seçin --</option>
+      <option>Aysen Gurkan</option><option>Birce Suzen</option><option>Ecem Sukas</option>
+      <option>Elif Bozkurt Alvurdu</option><option>Elif Ozgur Atli</option><option>Elif Safak</option>
+      <option>Emel Kanburoglu</option><option>Gulce Eyibilir</option><option>Kubra Cam</option>
+      <option>Leyla Gulyurt</option><option>Meryem Ozbek</option><option>Seher Ercin</option>
+      <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option>
+      <option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
+    </select>
+    <button class="btn bg bf" id="cf-btn" onclick="confirmSubmit()">✔ Evet, Teslim Et</button>
+  </div>
+</div>
+<!-- SCREEN 4: SINAV SONUÇ -->
+<div class="screen" id="sc-result">
+  <div class="rw">
+    <div class="rc">
+      <div class="re">🇪🇸</div>
+      <div class="rn" id="rs-name">—</div>
+      <div class="rt">A2.1 · H5 – 19-20. Ders · 2. Kısım · Pretérito Imperfecto</div>
+      <div class="rbig" id="rs-score">0<span>/100</span></div>
+      <div class="rp" id="rs-pct"></div>
+      <div class="rst">
+        <div class="ri rok"><div class="rnum" id="rs-c">0</div><div class="rl">Doğru</div></div>
+        <div class="ri rer"><div class="rnum" id="rs-w">0</div><div class="rl">Yanlış</div></div>
+        <div class="ri rbl"><div class="rnum" id="rs-b">0</div><div class="rl">Boş</div></div>
+      </div>
+      <div class="stb stpnd" id="rs-status">⏳ Kaydediliyor…</div>
+      <div class="byemsg">🌟 Tebrikler, testi tamamladınız! 🎉<br><br>
+      Küçük bir hatırlatma: eğer geçmiş haftalardan eksik ödeviniz varsa, lütfen onları da tamamlamayı unutmayın 🙏📖 Her ödev, İspanyolca yolculuğunuzda bir adım daha ileri gitmenizi sağlıyor 🚀🇪🇸<br><br>
+      Emeğiniz için teşekkürler, çalışmaya devam! 💜😊</div>
+    </div>
+    <div class="ra"><button class="btn bo" onclick="goName()">🔄 Yeniden Başla</button></div>
+  </div>
+</div>
+<script>
+const ASU='https://script.google.com/macros/s/AKfycbw-BwEhVOhO6GkkQHNWJA8LQLMkEGwNCtJ3BXSqik1RnzqZLl4a_a3HmYEoIlJAgY4Wkg/exec';
+const SID='1wziyxdRdIGL7OEq4yRib0i_CaCWJGI14fwDyMKB4abw';
+const SHN='A2.1';
+const TCL='H5 – 19-20.Ders (2. KISIM)';
+const LTR=['A','B','C','D'];
+const WARN='⚠️ Cevabınızı yazarken özneleri kullanmayınız ve her fiil çekiminden sonra virgül ve boşluk ile ayırma yapınız. Örnek format: hablo, hablas, habla, hablamos, habláis, hablan — Tildelere dikkat ediniz, aksi halde cevabınız yanlış sayılacaktır.';
+const MC_DATA=[{"id":1,"sec":"MC2","q":"\"Venía a pedir información sobre el curso.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişte alışkanlık","Geçmişin tasviri","Geçmişte devam eden eylem","Nezaket kullanımı"],"ans":3,"exp":"Burada venía kibar bir giriş cümlesidir. Bilgi almaya geliyordum Türkçede de nazik bir ifade gibi duyulur. Amaç geçmişi anlatmak değil, isteği yumuşatmaktır.","originalId":26},{"id":2,"sec":"MC2","q":"\"La habitación era pequeña, pero estaba muy limpia.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişin tanımı / tasviri / fotoğraf karesi","Geçmişte alışkanlık","Geçmişte devam eden eylem","Nezaket kullanımı"],"ans":0,"exp":"Odanın büyüklüğü ve temizliği anlatılıyor. Bu bir tasvirdir. Imperfecto geçmişteki kişi, yer, hava, duygu ve ortam özelliklerini anlatırken kullanılır.","originalId":27},{"id":3,"sec":"MC2","q":"\"Mientras mi madre cocinaba, yo hacía los deberes.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişin tasviri","Nezaket kullanımı","Geçmişte devam eden eylem","Tamamlanmış olay"],"ans":2,"exp":"Mientras iki devam eden eylemi bağlar. Anne yemek yapıyordu, ben ödev yapıyordum. İki eylem de geçmişte aynı anda devam eder.","originalId":28},{"id":4,"sec":"MC2","q":"\"Cuando entré en la clase, todos los estudiantes escribían.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişte alışkanlık","Geçmişin tasviri","Geçmişte devam eden eylem","Nezaket kullanımı"],"ans":2,"exp":"Ben sınıfa girdiğimde kısa olaydır. Öğrencilerin yazma eylemi ise o anda devam ediyordu. Bu yüzden escribían imperfecto'dur.","originalId":29},{"id":5,"sec":"MC2","q":"\"Cada verano visitábamos a nuestros primos en İzmir.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişte devam eden eylem","Geçmişte alışkanlık / rutin","Nezaket kullanımı","Tamamlanmış olay"],"ans":1,"exp":"Cada verano yani her yaz geçmişte tekrar eden bir rutini gösterir. Bu yüzden visitábamos ziyaret ederdik anlamındadır.","originalId":30},{"id":6,"sec":"MC2","q":"\"Llamaba para confirmar la cita.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişte alışkanlık","Geçmişin tasviri","Geçmişte devam eden eylem","Nezaket kullanımı"],"ans":3,"exp":"Telefon konuşmalarında llamaba para... çok kibar bir giriş yapısıdır. Burada geçmişte arama alışkanlığı yoktur. Kişi şu anda arama sebebini nazikçe söylüyor.","originalId":31},{"id":7,"sec":"MC2","q":"\"Había muchas flores en el jardín.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişin tanımı / tasviri / fotoğraf karesi","Geçmişte alışkanlık","Geçmişte devam eden eylem","Nezaket kullanımı"],"ans":0,"exp":"Bahçede ne olduğu anlatılıyor. Çok çiçek vardı. Bu bir ortam tasviridir. Geçmişin fotoğraf karesi gibi düşünülebilir.","originalId":32},{"id":8,"sec":"MC2","q":"\"Mi abuela tenía el pelo blanco y los ojos azules.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişin tanımı / tasviri / fotoğraf karesi","Geçmişte alışkanlık","Geçmişte devam eden eylem","Nezaket kullanımı"],"ans":0,"exp":"Burada kişinin fiziksel özellikleri anlatılır. Kişi tasvirlerinde imperfecto kullanılır. Tenía el pelo blanco anlamı: Saçları beyazdı.","originalId":33},{"id":9,"sec":"MC2","q":"\"Los sábados por la mañana, mi padre compraba pan fresco.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişte devam eden eylem","Geçmişte alışkanlık / rutin","Geçmişin tasviri","Nezaket kullanımı"],"ans":1,"exp":"Los sábados por la mañana tekrar eden zamanı gösterir. Babamın her cumartesi sabahı ekmek alma alışkanlığı anlatılır. Bu yüzden imperfecto kullanılır.","originalId":34},{"id":10,"sec":"MC2","q":"\"Ayer a las ocho, los niños jugaban en el parque.\" — Bu cümlede imperfecto hangi nedenle kullanılmıştır?","opts":["Geçmişin tasviri","Geçmişte alışkanlık","Geçmişte devam eden eylem","Nezaket kullanımı"],"ans":2,"exp":"Ayer a las ocho geçmişte belirli bir andır. O anda çocuklar parkta oynuyordu. Oyun eylemi devam ettiği için imperfecto kullanılır.","originalId":35},{"id":11,"sec":"MC3","q":"Ayer llegué tarde a casa porque ______ mucho tráfico en la ciudad.","opts":["hubo","hay","ha habido","había"],"ans":3,"exp":"Burada trafik, geçmişteki durum ve arka plan olarak anlatılıyor. Trafik vardı demek için había mucho tráfico kullanılır. Hubo bazı bağlamlarda oldu / meydana geldi anlamı verir ama burada ortam durumu anlatıldığı için había daha doğrudur.","originalId":36},{"id":12,"sec":"MC3","q":"Anoche, cuando sonó el teléfono, yo ______ en el sofá.","opts":["dormí","duermo","he dormido","dormía"],"ans":3,"exp":"Telefonun çalması kısa ve tamamlanmış olaydır: sonó. Benim uyuma halim ise o anda devam ediyordu. Bu yüzden dormía kullanılır. Telefon çaldığında uyuyordum.","originalId":37},{"id":13,"sec":"MC3","q":"El sábado pasado, primero desayuné con mi familia y después ______ al mercado.","opts":["iba","voy","fui","he ido"],"ans":2,"exp":"Burada olaylar sırayla anlatılıyor: kahvaltı yaptım, sonra pazara gittim. Tek ve tamamlanmış geçmiş olay olduğu için fui gerekir. Iba gidiyordum / giderdim olurdu.","originalId":38},{"id":14,"sec":"MC3","q":"Cuando llegamos al restaurante, la camarera ______ las mesas.","opts":["limpiaba","limpió","limpia","ha limpiado"],"ans":0,"exp":"Biz restorana vardığımızda garson masaları temizliyordu. Gelme olayı kısa ve tamamlanmış; temizlik ise arka planda devam eden eylemdir. Bu yüzden limpiaba doğru cevaptır.","originalId":39},{"id":15,"sec":"MC3","q":"Anoche vimos una película y después ______ sobre la historia durante una hora.","opts":["hablábamos","hablamos","hablamos todos los días","hablaban"],"ans":1,"exp":"Film izledik ve sonra bir saat konuştuk. Bu geçmişte tamamlanmış bir olay dizisidir. Bu yüzden hablamos kullanılır. Hablábamos konuşuyorduk / konuşurduk anlamı verir.","originalId":40},{"id":16,"sec":"MC3","q":"Antes, mis padres ______ cartas porque no usaban mensajes de texto.","opts":["escribieron","escribían","escriben","han escrito"],"ans":1,"exp":"Antes geçmişteki alışkanlığı gösterir. Tek bir mektup yazma olayından değil, geçmişte genel olarak mektup yazma alışkanlığından bahsedilir. Bu yüzden escribían doğru cevaptır.","originalId":41},{"id":17,"sec":"MC3","q":"Ayer por la tarde, mientras los niños ______ en el jardín, empezó a llover.","opts":["jugaron","juegan","han jugado","jugaban"],"ans":3,"exp":"Mientras geçmişte devam eden eylemi gösterir. Çocuklar oynuyordu, o sırada yağmur başladı. Oyun devam eden eylem olduğu için jugaban kullanılır.","originalId":42},{"id":18,"sec":"MC3","q":"Cuando entré en la clase, todos los estudiantes ______ en silencio.","opts":["estudiaron","estudian","estudiaban","han estudiado"],"ans":2,"exp":"Ben sınıfa girdim: kısa olay. Öğrenciler sessizce çalışıyordu: devam eden eylem. Bu yüzden estudiaban doğru cevaptır. Estudiaron çalıştılar anlamında tamamlanmış olay olurdu.","originalId":43},{"id":19,"sec":"MC3","q":"El año pasado, mi hermano ______ un coche nuevo.","opts":["compró","compraba","compra","ha comprado"],"ans":0,"exp":"Geçen yıl araba aldı tek seferlik ve tamamlanmış bir olaydır. Bu yüzden pretérito indefinido kullanılır: compró. Compraba alıyordu / alırdı anlamı verir ve burada uygun değildir.","originalId":44},{"id":20,"sec":"MC3","q":"Cuando vivíamos en Sevilla, mis hermanos y yo ______ al parque cada tarde.","opts":["íbamos","fuimos","vamos","hemos ido"],"ans":0,"exp":"Cada tarde tekrar eden alışkanlığı gösterir. Sevilla'da yaşadığımız dönemde her öğleden sonra parka giderdik. Bu yüzden íbamos doğru cevaptır.","originalId":45},{"id":21,"sec":"MC3","q":"El mes pasado, mis amigos y yo ______ un viaje a Valencia.","opts":["hacíamos","hacemos","hicimos","hemos hecho"],"ans":2,"exp":"El mes pasado bitmiş bir geçmiş zaman ifadesidir. Valencia'ya gezi yapmak burada tamamlanmış bir olaydır. Bu yüzden hicimos doğru cevaptır. Hacíamos alışkanlık veya devam eden eylem olurdu.","originalId":46},{"id":22,"sec":"MC3","q":"Ayer a las ocho, mi madre ______ la cena cuando llegué a casa.","opts":["preparó","prepara","ha preparado","preparaba"],"ans":3,"exp":"Ben eve geldiğimde annem yemek hazırlıyordu. Eve geliş kısa olaydır; yemek hazırlama o sırada devam ediyordu. Bu yüzden preparaba kullanılır.","originalId":47},{"id":23,"sec":"MC3","q":"El lunes pasado, Marta ______ tres correos importantes antes de salir de la oficina.","opts":["escribía","escribió","escribe","ha escrito"],"ans":1,"exp":"Üç önemli e-posta yazdı ifadesinde eylemin miktarı belli ve tamamlanmış. El lunes pasado da bitmiş geçmiş zaman verir. Bu yüzden escribió doğru cevaptır.","originalId":48},{"id":24,"sec":"MC3","q":"Cuando era niña, Clara siempre ______ con su muñeca favorita.","opts":["jugó","jugaba","juega","ha jugado"],"ans":1,"exp":"Cuando era niña ve siempre geçmişte tekrar eden alışkanlığı gösterir. Clara bir kez değil, çocukken hep bebeğiyle oynardı. Bu yüzden jugaba kullanılır.","originalId":49},{"id":25,"sec":"MC3","q":"Cuando abrí la ventana, ______ mucho.","opts":["llovía","llovió","llueve","ha llovido"],"ans":0,"exp":"Pencereyi açtığımda yağmur yağıyordu. Pencereyi açmak kısa olaydır; yağmurun yağması o anda devam eden durumdur. Bu yüzden llovía kullanılır.","originalId":50}];
+const FILL_DATA=[{"id":26,"verb":"beber","tr":"içmek","ans":"bebía, bebías, bebía, bebíamos, bebíais, bebían"},{"id":27,"verb":"leer","tr":"okumak","ans":"leía, leías, leía, leíamos, leíais, leían"},{"id":28,"verb":"vender","tr":"satmak","ans":"vendía, vendías, vendía, vendíamos, vendíais, vendían"},{"id":29,"verb":"correr","tr":"koşmak","ans":"corría, corrías, corría, corríamos, corríais, corrían"},{"id":30,"verb":"comprender","tr":"anlamak","ans":"comprendía, comprendías, comprendía, comprendíamos, comprendíais, comprendían"},{"id":31,"verb":"responder","tr":"cevap vermek","ans":"respondía, respondías, respondía, respondíamos, respondíais, respondían"},{"id":32,"verb":"tener","tr":"sahip olmak / -i olmak","ans":"tenía, tenías, tenía, teníamos, teníais, tenían"},{"id":33,"verb":"hacer","tr":"yapmak","ans":"hacía, hacías, hacía, hacíamos, hacíais, hacían"},{"id":34,"verb":"querer","tr":"istemek / sevmek","ans":"quería, querías, quería, queríamos, queríais, querían"},{"id":35,"verb":"poder","tr":"yapabilmek / gücü yetmek","ans":"podía, podías, podía, podíamos, podíais, podían"},{"id":36,"verb":"saber","tr":"bilmek","ans":"sabía, sabías, sabía, sabíamos, sabíais, sabían"},{"id":37,"verb":"deber","tr":"zorunda olmak / -meli olmak","ans":"debía, debías, debía, debíamos, debíais, debían"},{"id":38,"verb":"poner","tr":"koymak","ans":"ponía, ponías, ponía, poníamos, poníais, ponían"},{"id":39,"verb":"salir","tr":"çıkmak","ans":"salía, salías, salía, salíamos, salíais, salían"},{"id":40,"verb":"venir","tr":"gelmek","ans":"venía, venías, venía, veníamos, veníais, venían"},{"id":41,"verb":"decir","tr":"söylemek / demek","ans":"decía, decías, decía, decíamos, decíais, decían"},{"id":42,"verb":"dormir","tr":"uyumak","ans":"dormía, dormías, dormía, dormíamos, dormíais, dormían"},{"id":43,"verb":"pedir","tr":"istemek / rica etmek","ans":"pedía, pedías, pedía, pedíamos, pedíais, pedían"},{"id":44,"verb":"repetir","tr":"tekrar etmek","ans":"repetía, repetías, repetía, repetíamos, repetíais, repetían"},{"id":45,"verb":"sentir","tr":"hissetmek","ans":"sentía, sentías, sentía, sentíamos, sentíais, sentían"},{"id":46,"verb":"seguir","tr":"devam etmek / takip etmek","ans":"seguía, seguías, seguía, seguíamos, seguíais, seguían"},{"id":47,"verb":"ser","tr":"olmak","ans":"era, eras, era, éramos, erais, eran"},{"id":48,"verb":"ir","tr":"gitmek","ans":"iba, ibas, iba, íbamos, ibais, iban"},{"id":49,"verb":"ver","tr":"görmek / izlemek","ans":"veía, veías, veía, veíamos, veíais, veían"},{"id":50,"verb":"estar","tr":"olmak / bulunmak","ans":"estaba, estabas, estaba, estábamos, estabais, estaban"}];
+const QS=[...MC_DATA,...FILL_DATA];
+let student='',mcAns={},fillAns={},cur=0;
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('sc-'+id).classList.add('active');window.scrollTo(0,0);}
+function startQuiz(){
+  const s=document.getElementById('name-sel');
+  if(!s.value){alert('Lütfen adınızı seçin!');return;}
+  student=s.value;mcAns={};fillAns={};cur=0;
+  document.getElementById('top-st').textContent=student;
+  show('quiz');render();
+}
+function secLabel(id){if(id>=26)return 'Boşluk doldurma — Fiil çekimi';const q=MC_DATA.find(x=>x.id===id);if(q.originalId<=20)return 'Okuma — Çoktan seçmeli';if(q.originalId<=35)return 'Hangi kullanıma girer?';return 'Indefinido mu Imperfecto mu?';}
+function isFill(id){return id>=26;}
+function render(){
+  const q=QS[cur];
+  const done=Object.keys(mcAns).length+Object.keys(fillAns).length;
+  document.getElementById('pgf').style.width=(done/QS.length*100)+'%';
+  document.getElementById('pg-sec').textContent=secLabel(q.id);
+  document.getElementById('pg-cur').textContent=cur+1;
+  document.getElementById('nav-ctr').textContent=(cur+1)+' / '+QS.length;
+  document.getElementById('fin-ans').textContent=done;
+  document.getElementById('btn-prev').disabled=(cur===0);
+  const bn=document.getElementById('btn-next');
+  if(cur===QS.length-1){bn.textContent='✔ Tamam';bn.className='btn bg bs';bn.onclick=goConfirm;}
+  else{bn.textContent='İleri →';bn.className='btn bm bs';bn.onclick=()=>nav(1);}
+  let h='<div class="sb">'+secLabel(q.id)+'</div><div class="qc">';
+  if(!isFill(q.id)){
+    const ua=mcAns[q.id];
+    h+='<div class="qh"><div class="qn">'+q.id+'</div><div class="qt">'+q.q.replace('______','<span style="color:var(--c5);font-weight:800">______</span>')+'</div></div>';
+    h+='<div class="qo">';
+    q.opts.forEach((o,i)=>{
+      let c='ob';
+      if(ua!==undefined){if(i===q.ans)c+=' ok';if(i===ua&&ua!==q.ans)c+=' er';}
+      h+='<button class="'+c+'" '+(ua!==undefined?'disabled':'')+' onclick="mcPick('+q.id+','+i+')"><span class="ol">'+LTR[i]+'</span><span>'+o+'</span></button>';
+    });
+    h+='</div>';
+    h+='<div class="ex '+(ua!==undefined?'show':'')+'"><div class="exl">💡 Açıklama</div>'+q.exp+'</div>';
+  } else {
+    const fa=fillAns[q.id];
+    const checked=fa!==undefined;
+    const correct=checked&&checkFill(fa,q.ans);
+    h+='<div class="qh"><div class="qn">'+q.id+'</div><div class="qt">Aşağıdaki fiili 6 özneye göre pretérito imperfecto zamanında çekiniz.<br><br><strong>'+q.verb+'</strong> — <span style="color:var(--mid)">'+q.tr+'</span></div></div>';
+    h+='<div class="warn"><strong>⚠️ Uyarı</strong>'+WARN+'</div>';
+    h+='<div class="fi-wrap"><input type="text" class="fi-inp'+(checked?(correct?' ok':' er'):'')+ '" id="fi-'+q.id+'" placeholder="Örnek: hablo, hablas, habla, hablamos, habláis, hablan" '+(checked?'disabled':'')+' value="'+(fa||'')+'"><button class="fi-btn" '+(checked?'disabled':'')+' onclick="fillCheck('+q.id+')">✔ Kontrol Et</button></div>';
+    if(checked){
+      if(correct){h+='<div class="ex show"><div class="exl">✅ Doğru!</div>Doğru cevap: <strong>'+q.ans+'</strong></div>';}
+      else{h+='<div class="ex show"><div class="exl">😔 Yanlış</div>Doğru cevap: <strong>'+q.ans+'</strong></div>';}
+    }
+  }
+  h+='</div>';
+  document.getElementById('q-area').innerHTML=h;
+  if(isFill(q.id)&&!fillAns[q.id]){
+    const inp=document.getElementById('fi-'+q.id);
+    if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')fillCheck(q.id);});
+  }
+  let ok=0,er=0;
+  MC_DATA.forEach(qq=>{const a=mcAns[qq.id];if(a===undefined)return;if(a===qq.ans)ok++;else er++;});
+  FILL_DATA.forEach(qq=>{const a=fillAns[qq.id];if(a===undefined)return;if(checkFill(a,qq.ans))ok++;else er++;});
+  document.getElementById('sc-ok').textContent=ok;
+  document.getElementById('sc-er').textContent=er;
+}
+function checkFill(userVal,ans){
+  const uv=userVal.normalize('NFC').trim().toLowerCase().replace(/\s*,\s*/g,',');
+  const av=ans.normalize('NFC').trim().toLowerCase().replace(/\s*,\s*/g,',');
+  return uv===av;
+}
+function mcPick(qid,i){if(mcAns[qid]!==undefined)return;mcAns[qid]=i;render();}
+function fillCheck(qid){
+  const inp=document.getElementById('fi-'+qid);
+  if(!inp||!inp.value.trim()){alert('Lütfen cevabınızı yazın.');return;}
+  fillAns[qid]=inp.value;
+  render();
+}
+function nav(d){cur=Math.max(0,Math.min(QS.length-1,cur+d));render();}
+function goConfirm(){document.getElementById('cf-sel').value=student;show('confirm');}
+function confirmSubmit(){
+  try{
+    const s=document.getElementById('cf-sel');
+    if(!s||!s.value){alert('Lütfen adınızı seçin!');return;}
+    student=s.value;
+    const b=document.getElementById('cf-btn');
+    if(b){b.disabled=true;b.textContent='⏳ Kaydediliyor…';}
+    doSubmit();
+  }catch(e){
+    console.error(e);alert('Hata: '+e.message);
+    const b=document.getElementById('cf-btn');
+    if(b){b.disabled=false;b.textContent='✔ Evet, Teslim Et';}
+  }
+}
+function doSubmit(){
+  let ok=0,er=0,bl=0;
+  MC_DATA.forEach(q=>{const a=mcAns[q.id];if(a===undefined)bl++;else if(a===q.ans)ok++;else er++;});
+  FILL_DATA.forEach(q=>{const a=fillAns[q.id];if(a===undefined)bl++;else if(checkFill(a,q.ans))ok++;else er++;});
+  const score=ok*2;
+  document.getElementById('rs-name').textContent=student;
+  document.getElementById('rs-score').innerHTML=score+'<span>/100</span>';
+  document.getElementById('rs-pct').textContent='%'+score+' başarı';
+  document.getElementById('rs-c').textContent=ok;
+  document.getElementById('rs-w').textContent=er;
+  document.getElementById('rs-b').textContent=bl;
+  show('result');
+  saveSheets(student,score,ok,er,bl);
+}
+async function saveSheets(nm,score,ok,er,bl){
+  const el=document.getElementById('rs-status');
+  try{
+    const n=new Date();
+    const dd=String(n.getDate()).padStart(2,'0'),mm=String(n.getMonth()+1).padStart(2,'0'),yy=n.getFullYear();
+    const hh=String(n.getHours()).padStart(2,'0'),mi=String(n.getMinutes()).padStart(2,'0'),ss=String(n.getSeconds()).padStart(2,'0');
+    const fmt='✅ '+score+'/100\n✓'+ok+' ✗'+er+'\n'+dd+'.'+mm+'.'+yy+'\n'+hh+':'+mi+':'+ss;
+    await fetch(ASU,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({spreadsheetId:SID,sheetName:SHN,studentName:nm,taskColumn:TCL,score,correct:ok,wrong:er,blank:bl,formatted:fmt})});
+    el.className='stb stok';el.textContent='✅ Teslim isteği gönderildi. Ödev Takip Merkezi’nden sonucu kontrol edin.';
+  }catch(e){
+    el.className='stb ster';el.textContent='⚠️ Kaydedilemedi — Profeye bildirin';
+  }
+}
+function goName(){const b=document.getElementById('cf-btn');b.disabled=false;b.textContent='✔ Evet, Teslim Et';mcAns={};fillAns={};cur=0;document.getElementById('name-sel').value='';show('name');}
+</script>
+</body>
+</html>
