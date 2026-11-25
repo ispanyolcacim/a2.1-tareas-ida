@@ -98,7 +98,7 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
   <p class="weekly-reminder__text">Bu ödevlerle birlikte beşinci haftayı tamamladık! 🌟 <strong class="weekly-reminder__action">Şimdiye kadar eksik kalan çalışmalarınızı tamamlamanızı rica ediyorum.</strong> Derste birlikte çözerken kolay gelen bir soru, tek başınıza çalışırken sizi düşündürebilir. Bireysel çalışma tam da bu yüzden önemli: Neleri rahatça yapabildiğinizi, nerelerde desteğe ihtiyaç duyduğunuzu gösterir. Takıldığınız yerleri not alın; birlikte üzerinden geçelim. 📝</p>
 </aside>
 
-  <div class="htag">5. Hafta Ödevi &nbsp;|&nbsp; A2.1 (19-20. Ders) &nbsp;|&nbsp; 2. Kısım</div>
+  <div class="htag">5. Hafta Ödevi &nbsp;|&nbsp; A2.1 (19-20. Ders) &nbsp;|&nbsp; 3. Kısım</div>
   <h1>🇪🇸 A2.1 – H5 19-20. Ders – Yazma Bölümü</h1>
   <div class="hsub">Cuando era niño/a… &nbsp;•&nbsp; @ispanyolcacim &nbsp;•&nbsp; Profe Hazel</div>
 </div>
@@ -116,8 +116,8 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
       <option>Serra Sancakli Isik</option><option>Yasemin Kurtulus Tunc</option><option>Zeynep Geylan</option>
       <option>Zeynep Ozay</option><option>Zeynep Oztaskin</option>
     </select>
-    <div class="wm">📝 Bu ödev, <strong>A2.1 – H5 19-20. Ders'in 2. kısmı</strong>, yani <strong>Yazma Bölümü</strong>'dür. 🖋️<br><br>
-    Bu bölüme başlamadan önce lütfen <strong>1. kısım ödevinizi</strong> (100 soruluk test bölümünü) <strong>tamamladığınızdan emin olun</strong> ✅📚, çünkü iki kısım da ayrı ayrı değerlendirilecektir.<br><br>
+    <div class="wm">📝 Bu ödev, <strong>A2.1 – H5 19-20. Ders'in 3. kısmı</strong>, yani <strong>Yazma Bölümü</strong>'dür. 🖋️<br><br>
+    Bu bölüme başlamadan önce lütfen <strong>1. ve 2. kısım ödevlerinizi</strong> (her biri 50 soruluk test) <strong>tamamladığınızdan emin olun</strong> ✅📚, çünkü üç kısım da ayrı ayrı değerlendirilecektir.<br><br>
     Şimdi bol şans, keyifli yazılar! 🍀😊</div>
     <div class="ib">
       <div class="ibr"><div class="ibd" style="background:var(--c4)"></div><span><strong>Yazma bölümü</strong> — 100 puan üzerinden ayrıca değerlendirilir.</span></div>
@@ -133,7 +133,7 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
       <div class="wbody">
         <div class="fg">
           <div class="fw"><label>Nombre y Apellido</label><input type="text" id="w-name" placeholder="Adınızı ve soyadınızı yazınız..."></div>
-          <div class="fw"><label>Número de tarea</label><input type="text" value="A2.1 – 19-20. Ders (2. Kısım)" readonly></div>
+          <div class="fw"><label>Número de tarea</label><input type="text" value="A2.1 – 19-20. Ders (3. Kısım)" readonly></div>
           <div class="fw"><label>Tema de la tarea</label><input type="text" value="Cuando era niño/a…" readonly></div>
           <div class="fw"><label>Gramática</label><input type="text" value="Pretérito Imperfecto" readonly></div>
           <div class="fw" style="grid-column:1/-1"><label>Título de tu texto</label><input type="text" id="w-title" placeholder="Yazınızın başlığını yazınız..."></div>
@@ -226,11 +226,11 @@ body{font-family:'Segoe UI',sans-serif;background:linear-gradient(160deg,#fff8f0
     <div class="rc">
       <div class="re">✍️</div>
       <div class="rn" id="wrs-name">—</div>
-      <div class="rt">A2.1 · 19-20. Ders · 2. Kısım · Yazma Bölümü</div>
+      <div class="rt">A2.1 · 19-20. Ders · 3. Kısım · Yazma Bölümü</div>
       <div style="font-size:14px;color:var(--mid);line-height:1.7;margin-bottom:16px">Yazmanız Profe Hazel'e iletildi. Puanınız değerlendirme sonrasında bildirilecektir.</div>
       <div class="stb stpnd" id="wrs-status">⏳ Gönderiliyor…</div>
       <div class="byemsg">📝 Yazma bölümünüz alındı! 🎉<br><br>
-      Unutmayın: bu ödev sadece <strong>19-20. Ders'in 2. kısmıydı</strong>. Eğer <strong>1. kısım (100 soruluk test)</strong> ödevinizi henüz yapmadıysanız, lütfen en kısa sürede tamamlayın 📚✅<br><br>
+      Unutmayın: bu ödev sadece <strong>19-20. Ders'in 3. kısmıydı</strong>. Eğer <strong>1. ve 2. kısım (her biri 50 soruluk)</strong> ödevlerinizi henüz yapmadıysanız, lütfen en kısa sürede tamamlayın 📚✅<br><br>
       Emeğiniz için teşekkürler, çalışmaya devam! 💜😊</div>
     </div>
     <div class="ra">
@@ -287,7 +287,7 @@ async function submitWriting(){
     try{
       await emailjs.send(EMAILJS_SVC,EMAILJS_TPL,{
         student_name:student,
-        lesson:'A2.1 – 19-20. Ders – 2. Kısım (Yazma Bölümü)'+(title?' — '+title:''),
+        lesson:'A2.1 – 19-20. Ders – 3. Kısım (Yazma Bölümü)'+(title?' — '+title:''),
         submit_date:tarih,
         writing_text:text
       });
